@@ -21,7 +21,7 @@
 	    	$passwd = str_replace(array("<",">","[","]","*","^","-","'","="),"",$arrData["passwd"]); 
 			$passwd = md5($passwd);
 			
-	    	$sql = "SELECT * FROM user WHERE log_user = '$login' and password = '$passwd'";
+	    	$sql = "SELECT * FROM usuarios WHERE log_user = '$login' and password = '$passwd'";
 	    	$query = $this->db->query($sql);
 
 	    	if ($query->num_rows() > 0){	    		

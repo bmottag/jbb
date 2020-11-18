@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 	
-    <title>YELOS</title>
+    <title>JBB</title>
 
     <!-- Bootstrap Core CSS -->
 	<link href="<?php echo base_url("assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css"); ?>" rel="stylesheet">
@@ -46,7 +46,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title">Autenticación</h3>
                     </div>
                     <div class="panel-body">
 						<?php if(isset($msj)){?>
@@ -60,10 +60,10 @@
 
                             <fieldset>
                                 <div class="form-group">
-									<input type="text" id="inputLogin" name="inputLogin" class="form-control" placeholder="User" value="<?php echo get_cookie('user'); ?>" required autofocus >
+									<input type="text" id="inputLogin" name="inputLogin" class="form-control" placeholder="Usuario" value="<?php echo get_cookie('user'); ?>" required autofocus >
                                 </div>
                                 <div class="form-group">
-									<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" value="<?php echo get_cookie('password'); ?>" >
+									<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Contraseña" value="<?php echo get_cookie('password'); ?>" >
                                 </div>
 <!--
                                 <div class="checkbox">
@@ -72,7 +72,7 @@
                                     </label>
                                 </div>
 -->
-								<button type="submit" class="btn btn-lg btn-success btn-block" id='btnSubmit' name='btnSubmit'>Login </button>
+								<button type="submit" class="btn btn-lg btn-success btn-block" id='btnSubmit' name='btnSubmit'>Ingresar </button>
 
 								
 								

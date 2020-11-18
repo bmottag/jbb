@@ -50,7 +50,7 @@ class Login extends CI_Controller {
 
 			//busco datos del vehiculo
 			$arrParam = array(
-				"table" => "user",
+				"table" => "usuarios",
 				"order" => "id_user",
 				"column" => "log_user",
 				"id" => $login
@@ -99,12 +99,12 @@ class Login extends CI_Controller {
 						
 						$this->login_model->redireccionarUsuario();
 					}else{					
-						$data["msj"] = "<strong>" . $userExist[0]["first_name"] . "</strong> that's not your password.";
+						$data["msj"] = "<strong>" . $userExist[0]["first_name"] . "</strong> esa no es su contraseña.";
 						$this->session->sess_destroy();
 						$this->load->view('login', $data);
 					}
 			}else{
-				$data["msj"] = "<strong>" . $login . "</strong> doesn't exist.";
+				$data["msj"] = "<strong>" . $login . "</strong> no esta registrado.";
 				$this->session->sess_destroy();
 				$this->load->view('login', $data);
 			}
