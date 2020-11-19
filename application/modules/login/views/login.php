@@ -10,6 +10,7 @@
     <meta name="author" content="">
 	
     <title>JBB</title>
+	<link rel="icon" type="image/png" href="<?php echo base_url("images/favicon.ico"); ?>" />
 
     <!-- Bootstrap Core CSS -->
 	<link href="<?php echo base_url("assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css"); ?>" rel="stylesheet">
