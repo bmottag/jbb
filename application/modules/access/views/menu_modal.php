@@ -1,8 +1,8 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/access/menu.js"); ?>"></script>
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="exampleModalLabel">Manu links
-	<br><small>Add/Edit Menu link</small>
+	<h4 class="modal-title" id="exampleModalLabel">Enlaces Menú
+	<br><small>Adicionar/Editar Enlaces Menú</small>
 	</h4>
 </div>
 
@@ -13,14 +13,14 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="menu_name">Menu name : *</label>
+					<label class="control-label" for="menu_name">Nombre Menú : *</label>
 					<input type="text" id="menu_name" name="menu_name" class="form-control" value="<?php echo $information?$information[0]["menu_name"]:""; ?>" placeholder="Manu name" required >
 				</div> 
 			</div>
 			
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="menu_url">Menu URL : *</label>
+					<label class="control-label" for="menu_url">URL Menú : *</label>
 					<input type="text" id="menu_url" name="menu_url" class="form-control" value="<?php echo $information?$information[0]["menu_url"]:""; ?>" placeholder="Menu url" >
 				</div> 
 			</div>
@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="order">Order: *</label>
+					<label class="control-label" for="order">Orden: *</label>
 					<select name="order" id="order" class="form-control" required>
 						<option value='' >Select...</option>
 						<?php for ($i = 1; $i <= 10; $i++) { ?>
@@ -41,7 +41,7 @@
 		
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
-					<label class="control-label" for="menu_type">Menu type : *</label>
+					<label class="control-label" for="menu_type">Tipo Menú : *</label>
 					<select name="menu_type" id="menu_type" class="form-control" required>
 						<option value=''>Select...</option>
 						<option value=1 <?php if($information && $information[0]["menu_type"] == 1) { echo "selected"; }  ?>>Left</option>
@@ -54,7 +54,7 @@
 		<div class="row">
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
-					<label class="control-label" for="menu_state">State : *</label>
+					<label class="control-label" for="menu_state">Estado : *</label>
 					<select name="menu_state" id="menu_state" class="form-control" required>
 						<option value=''>Select...</option>
 						<option value=1 <?php if($information && $information[0]["menu_state"] == 1) { echo "selected"; }  ?>>Active</option>
@@ -65,7 +65,7 @@
 		
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="menu_icon">Menu icon: *</label>
+					<label class="control-label" for="menu_icon">Icono Menú : *</label>
 					<input type="text" id="menu_icon" name="menu_icon" class="form-control" value="<?php echo $information?$information[0]["menu_icon"]:""; ?>" placeholder="Menu icon" >
 				</div> 
 			</div>
@@ -75,7 +75,7 @@
 			<div class="row" align="center">
 				<div style="width:50%;" align="center">
 					<button type="button" id="btnSubmit" name="btnSubmit" class="btn btn-primary" >
-						Save <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+						Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
 					</button> 
 				</div>
 			</div>

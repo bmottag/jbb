@@ -9,7 +9,7 @@
     <meta name="author" content="bmottag">
 	<meta name="baseurl" content="<?php echo base_url()?>" />
 
-    <title>YELOS</title>
+    <title>JBB</title>
 	<link rel="icon" type="image/png" href="<?php echo base_url("images/favicon.ico"); ?>" />
 	
     <!-- Bootstrap Core CSS -->
