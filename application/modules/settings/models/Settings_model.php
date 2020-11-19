@@ -113,19 +113,19 @@
 				$idCompany = $this->input->post('hddId');
 				
 				$data = array(
-					'company_name' => $this->input->post('company'),
-					'contact' => $this->input->post('contact'),
-					'movil_number' => $this->input->post('movilNumber'),
+					'nombre_proveedor' => $this->input->post('company'),
+					'contacto' => $this->input->post('contact'),
+					'numero_celular' => $this->input->post('movilNumber'),
 					'email' => $this->input->post('email')
 				);
 				
 				//revisar si es para adicionar o editar
 				if ($idCompany == '') {
-					$query = $this->db->insert('param_company', $data);
+					$query = $this->db->insert('param_proveedores', $data);
 					$idCompany = $this->db->insert_id();				
 				} else {
-					$this->db->where('id_company', $idCompany);
-					$query = $this->db->update('param_company', $data);
+					$this->db->where('id_proveedor', $idCompany);
+					$query = $this->db->update('param_proveedores', $data);
 				}
 				if ($query) {
 					return $idCompany;

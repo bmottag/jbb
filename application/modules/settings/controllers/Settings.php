@@ -200,10 +200,9 @@ class Settings extends CI_Controller {
 	{
 			//se filtra por company_type para que solo se pueda editar los subcontratistas
 			$arrParam = array(
-				"table" => "param_company",
-				"order" => "id_company",
-				"column" => "company_type",
-				"id" => 2
+				"table" => "param_proveedores",
+				"order" => "id_proveedor",
+				"id" => "x"
 			);
 			$data['info'] = $this->general_model->get_basic_search($arrParam);
 			
@@ -224,9 +223,9 @@ class Settings extends CI_Controller {
 			
 			if ($data["idCompany"] != 'x') {
 				$arrParam = array(
-					"table" => "param_company",
-					"order" => "id_company",
-					"column" => "id_company",
+					"table" => "param_proveedores",
+					"order" => "id_proveedor",
+					"column" => "id_proveedor",
 					"id" => $data["idCompany"]
 				);
 				$data['information'] = $this->general_model->get_basic_search($arrParam);
@@ -247,9 +246,9 @@ class Settings extends CI_Controller {
 			
 			$idCompany = $this->input->post('hddId');
 			
-			$msj = "You have add a new company!!";
+			$msj = "Se adicionó el Proveedor!";
 			if ($idCompany != '') {
-				$msj = "You have update a company!!";
+				$msj = "Se actualizó el Proveedor!";
 			}
 
 			if ($idCompany = $this->settings_model->saveCompany()) {

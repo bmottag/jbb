@@ -22,7 +22,7 @@ $(function(){
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4 class="list-group-item-heading">
-					<i class="fa fa-gear fa-fw"></i> SETTINGS - COMPANY
+					<i class="fa fa-gear fa-fw"></i> CONFIGURACIÓN - PROVEEDORES
 					</h4>
 				</div>
 			</div>
@@ -35,11 +35,11 @@ $(function(){
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-building"></i> COMPANY LIST
+					<i class="fa fa-building"></i> LISTA PROVEEDORES
 				</div>
 				<div class="panel-body">
 					<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add a Company
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Proveedor
 					</button><br>
 <?php
 $retornoExito = $this->session->flashdata('retornoExito');
@@ -47,6 +47,7 @@ if ($retornoExito) {
     ?>
 	<div class="col-lg-12">	
 		<div class="alert alert-success ">
+		
 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 			<?php echo $retornoExito ?>		
 		</div>
@@ -72,20 +73,20 @@ if ($retornoError) {
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-								<th class="text-center">Company</th>
-								<th class="text-center">Contact</th>
-								<th class="text-center">Movil</th>
-								<th class="text-center">Email</th>
-								<th class="text-center">Edit</th>
+								<th class="text-center">Proveedor</th>
+								<th class="text-center">Contacto</th>
+								<th class="text-center">Celular</th>
+								<th class="text-center">Correo</th>
+								<th class="text-center">Editar</th>
 							</tr>
 						</thead>
 						<tbody>							
 						<?php
 							foreach ($info as $lista):
 									echo "<tr>";
-									echo "<td>" . $lista['company_name'] . "</td>";
-									echo "<td>" . $lista['contact'] . "</td>";
-$movil = $lista["movil_number"];
+									echo "<td>" . $lista['nombre_proveedor'] . "</td>";
+									echo "<td>" . $lista['contacto'] . "</td>";
+$movil = $lista["numero_celular"];
 // Separa en grupos de tres 
 $count = strlen($movil); 
 	
@@ -105,8 +106,8 @@ if($count == 10){
 									echo "<td>" . $lista['email'] . "</td>";
 									echo "<td class='text-center'>";
 						?>
-									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_company']; ?>" >
-										Edit <span class="glyphicon glyphicon-edit" aria-hidden="true">
+									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_proveedor']; ?>" >
+										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 									</button>
 						<?php
 									echo "</td>";
