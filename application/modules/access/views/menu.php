@@ -89,11 +89,11 @@ if ($retornoError) {
 									echo "<td class='text-center'>";
 									switch ($lista['menu_type']) {
 										case 1:
-											$valor = 'Left';
+											$valor = 'Lateral';
 											$clase = "text-success";
 											break;
 										case 2:
-											$valor = 'Top';
+											$valor = 'Superior';
 											$clase = "text-danger";
 											break;
 									}

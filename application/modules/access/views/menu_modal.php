@@ -31,7 +31,7 @@
 				<div class="form-group text-left">
 					<label class="control-label" for="order">Orden: *</label>
 					<select name="order" id="order" class="form-control" required>
-						<option value='' >Select...</option>
+						<option value='' >Seleccione...</option>
 						<?php for ($i = 1; $i <= 10; $i++) { ?>
 							<option value='<?php echo $i; ?>' <?php if ($information && $i == $information[0]["menu_order"]) { echo 'selected="selected"'; } ?> ><?php echo $i; ?></option>
 						<?php } ?>									
@@ -43,9 +43,9 @@
 				<div class="form-group text-left">
 					<label class="control-label" for="menu_type">Tipo Menú : *</label>
 					<select name="menu_type" id="menu_type" class="form-control" required>
-						<option value=''>Select...</option>
-						<option value=1 <?php if($information && $information[0]["menu_type"] == 1) { echo "selected"; }  ?>>Left</option>
-						<option value=2 <?php if($information && $information[0]["menu_type"] == 2) { echo "selected"; }  ?>>Top</option>
+						<option value=''>Seleccione...</option>
+						<option value=1 <?php if($information && $information[0]["menu_type"] == 1) { echo "selected"; }  ?>>Lateral</option>
+						<option value=2 <?php if($information && $information[0]["menu_type"] == 2) { echo "selected"; }  ?>>Superior</option>
 					</select>
 				</div>
 			</div>
@@ -56,9 +56,9 @@
 				<div class="form-group text-left">
 					<label class="control-label" for="menu_state">Estado : *</label>
 					<select name="menu_state" id="menu_state" class="form-control" required>
-						<option value=''>Select...</option>
-						<option value=1 <?php if($information && $information[0]["menu_state"] == 1) { echo "selected"; }  ?>>Active</option>
-						<option value=2 <?php if($information && $information[0]["menu_state"] == 2) { echo "selected"; }  ?>>Inactive</option>
+						<option value=''>Seleccione...</option>
+						<option value=1 <?php if($information && $information[0]["menu_state"] == 1) { echo "selected"; }  ?>>Activo</option>
+						<option value=2 <?php if($information && $information[0]["menu_state"] == 2) { echo "selected"; }  ?>>Inactivo</option>
 					</select>
 				</div>
 			</div>
