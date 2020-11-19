@@ -95,7 +95,7 @@
 				);
 
 				$this->db->where('id_user', $idUser);
-				$query = $this->db->update('user', $data);
+				$query = $this->db->update('usuarios', $data);
 
 				if ($query) {
 					return true;

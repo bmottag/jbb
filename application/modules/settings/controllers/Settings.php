@@ -138,7 +138,7 @@ class Settings extends CI_Controller {
 			}
 			
 			$arrParam = array(
-				"table" => "user",
+				"table" => "usuarios",
 				"order" => "id_user",
 				"column" => "id_user",
 				"id" => $idUser
@@ -155,7 +155,6 @@ class Settings extends CI_Controller {
 	public function update_password()
 	{
 			$data = array();			
-			$data["titulo"] = "UPDATE PASSWORD";
 			
 			$newPassword = $this->input->post("inputPassword");
 			$confirm = $this->input->post("inputConfirm");
@@ -169,18 +168,19 @@ class Settings extends CI_Controller {
 			$passwd = str_replace(array("<",">","[","]","*","^","-","'","="),"",$newPassword); 
 			
 			$data['linkBack'] = "settings/employee/" . $userState;
-			$data['titulo'] = "<i class='fa fa-unlock fa-fw'></i>CHANGE PASSWORD";
+			$data['titulo'] = "<i class='fa fa-unlock fa-fw'></i>CAMBIAR CONTRASEÑA";
 			
 			if($newPassword == $confirm)
 			{					
 					if ($this->settings_model->updatePassword()) {
-						$data["msj"] = "You have update the password.";
-						$data["msj"] .= "<br><strong>User name: </strong>" . $this->input->post("hddUser");
-						$data["msj"] .= "<br><strong>Password: </strong>" . $passwd;
-						$data["clase"] = "alert-success";
+						$data['msj'] = 'Se actualizó la contrasela del usuario.';
+						$data['msj'] .= '<br>';
+						$data['msj'] .= '<br><strong>Nombre Usuario: </strong>' . $this->input->post('hddUser');
+						$data['msj'] .= '<br><strong>Contraseña: </strong>' . $passwd;
+						$data['clase'] = 'alert-success';
 					}else{
-						$data["msj"] = "<strong>Error!!!</strong> Ask for help.";
-						$data["clase"] = "alert-danger";
+						$data['msj'] = '<strong>Error!!!</strong> Ask for help.';
+						$data['clase'] = 'alert-danger';
 					}
 			}else{
 				//definir mensaje de error

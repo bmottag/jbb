@@ -6,16 +6,8 @@
 					inputConfirm: 		{ required: true, minlength: 6, maxlength:12, equalTo: "#inputPassword" }
 				},
 				messages: {
-					inputPassword: {
-						required: "Please provide a password",
-						minlength: "Your password must be at least 6 characters long",
-						maxlength: "Please enter no more than 12 characters."
-					},
 					inputConfirm: {
-						required: "Please provide a password",
-						minlength: "Your password must be at least 6 characters long",
-						maxlength: "Please enter no more than 12 characters",
-						equalTo: "Please enter the same password as above"
+						equalTo: "La confirmación no es igual a la contraseña."
 					}
 				},
 				errorElement: "em",
