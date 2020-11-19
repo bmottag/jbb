@@ -46,7 +46,7 @@ class Settings extends CI_Controller {
 
 			if ($data["idEmployee"] != 'x') {
 				$arrParam = array(
-					"table" => "user",
+					"table" => "usuarios",
 					"order" => "id_user",
 					"column" => "id_user",
 					"id" => $data["idEmployee"]
@@ -69,9 +69,9 @@ class Settings extends CI_Controller {
 			
 			$idUser = $this->input->post('hddId');
 
-			$msj = "You have add a new Employee!!";
+			$msj = "Se adicionó un nuevo Usuario!";
 			if ($idUser != '') {
-				$msj = "You have update an Employee!!";
+				$msj = "Se actualizó el Usuario!";
 			}			
 
 			$log_user = $this->input->post('user');
@@ -93,8 +93,8 @@ class Settings extends CI_Controller {
 			if ($result_user) 
 			{
 				$data["result"] = "error";
-				$data["mensaje"] = " Error. The User name already exist.";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> The User name already exist.');
+				$data["mensaje"] = " Error. El Usuario ya existe.";
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> El Usuario ya existe.');
 			} else {
 					if ($this->settings_model->saveEmployee()) {
 						$data["result"] = true;					
