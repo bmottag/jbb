@@ -54,9 +54,9 @@ class Access extends CI_Controller {
 			
 			$idEnlace = $this->input->post('hddId');
 			
-			$msj = "You have add a new Menu link!!";
+			$msj = "Se adicionó un nuevo Menú!";
 			if ($idEnlace != '') {
-				$msj = "You have update a Menu link!!";
+				$msj = "Se actualizó el Menú!";
 			}
 
 			if ($this->access_model->saveMenu()) {
@@ -118,9 +118,9 @@ class Access extends CI_Controller {
 			
 			$idLink = $this->input->post('hddId');
 			
-			$msj = "You have add a new Link!!";
+			$msj = "Se adicionó un nuevo Enlace!";
 			if ($idLink != '') {
-				$msj = "You have update a Link!!";
+				$msj = "Se actualizó el Enlace!";
 			}
 
 			if ($this->access_model->saveLink()) {
@@ -193,9 +193,9 @@ class Access extends CI_Controller {
 			
 			$idPermiso = $this->input->post('hddId');
 			
-			$msj = "You have add a new Access!!";
+			$msj = "Se adicionó el nuevo acceso!";
 			if ($idPermiso != '') {
-				$msj = "You have update a Access!!";
+				$msj = "Se actualizó el acceso!";
 			}
 			
 			//para verificar si ya existe este permiso
@@ -210,8 +210,8 @@ class Access extends CI_Controller {
 			
 			if ($result_access) {
 				$data["result"] = "error";
-				$data["mensaje"] = " Error. The access already exist.";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> The access already exist.');
+				$data["mensaje"] = " Error. El acceso ya existe.";
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> El acceso ya existe.');
 			} else {
 				if ($this->access_model->saveRoleAccess()) {
 					$data["result"] = true;
@@ -397,7 +397,7 @@ class Access extends CI_Controller {
 		);
 		$linkList = $this->general_model->get_links($arrParam);
 
-        echo "<option value=''>Select...</option>";
+        echo "<option value=''>Seleccione...</option>";
         if ($linkList) {
             foreach ($linkList as $fila) {
                 echo "<option value='" . $fila["id_link"] . "' >" . $fila["link_name"] . "</option>";

@@ -24,7 +24,7 @@ $(function(){
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4 class="list-group-item-heading">
-					<i class="fa fa-cogs fa-fw"></i> MANAGE SYSTEM ACCESS 
+					<i class="fa fa-cogs fa-fw"></i> ADMINISTRAR ACCESO AL SISTEMA
 					</h4>
 				</div>
 			</div>
@@ -37,11 +37,11 @@ $(function(){
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-puzzle-piece"></i> ROLE ACCESS
+					<i class="fa fa-puzzle-piece"></i> ACCESO DE ROLES
 				</div>
 				<div class="panel-body">
 					<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add a Role Access
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Acceso de Roles
 					</button><br>
 <?php
 $retornoExito = $this->session->flashdata('retornoExito');
@@ -74,13 +74,13 @@ if ($retornoError) {
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-								<th class="text-center">Menu name</th>
-								<th class="text-center">Link name</th>
-								<th class="text-center">Rol name</th>
-								<th class="text-center">Edit/Delete</th>
-								<th class="text-center">Menu Type</th>
-								<th class="text-center">Menu Order</th>
-								<th class="text-center">Link order</th>
+								<th class="text-center">Nombre Menú</th>
+								<th class="text-center">Enlace Menú</th>
+								<th class="text-center">Nombre Rol</th>
+								<th class="text-center">Editar/Eliminar</th>
+								<th class="text-center">Tipo Menú</th>
+								<th class="text-center">Orden Menú</th>
+								<th class="text-center">Orden Enlace</th>
 							</tr>
 						</thead>
 						<tbody>							
@@ -96,7 +96,7 @@ if ($retornoError) {
 									echo "<td class='text-center'>";
 						?>
 									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_access']; ?>" >
-										Edit <span class="glyphicon glyphicon-edit" aria-hidden="true">
+										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 									</button>
 									
 									<button type="button" id="<?php echo $lista['id_access']; ?>" class='btn btn-danger btn-xs' title="Delete">

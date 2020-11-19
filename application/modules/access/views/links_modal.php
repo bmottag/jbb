@@ -13,7 +13,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="perfil">Nombre Menú : *</label>
+					<label class="control-label" for="perfil">Nombre Menú: *</label>
 					<select name="id_menu" id="id_menu" class="form-control" required>
 						<option value="">Select...</option>
 						<?php for ($i = 0; $i < count($menuList); $i++) { ?>
@@ -25,8 +25,8 @@
 		
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="link_name">Nombre Enlace : *</label>
-					<input type="text" id="link_name" name="link_name" class="form-control" value="<?php echo $information?$information[0]["link_name"]:""; ?>" placeholder="Link name" required >
+					<label class="control-label" for="link_name">Nombre Enlace: *</label>
+					<input type="text" id="link_name" name="link_name" class="form-control" value="<?php echo $information?$information[0]["link_name"]:""; ?>" placeholder="Nombre Enlace" required >
 				</div> 
 			</div>
 		
@@ -36,13 +36,13 @@
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="link_url">URL Enlace: *</label>
-					<input type="text" id="link_url" name="link_url" class="form-control" value="<?php echo $information?$information[0]["link_url"]:""; ?>" placeholder="Link URL" required >
+					<input type="text" id="link_url" name="link_url" class="form-control" value="<?php echo $information?$information[0]["link_url"]:""; ?>" placeholder="URL Enlace" required >
 				</div> 
 			</div>
 		
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="order">Orden : *</label>
+					<label class="control-label" for="order">Orden: *</label>
 					<select name="order" id="order" class="form-control" required>
 						<option value='' >Seleccione...</option>
 						<?php for ($i = 1; $i <= 25; $i++) { ?>
@@ -56,7 +56,7 @@
 		<div class="row">
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
-					<label class="control-label" for="link_state">Estado : *</label>
+					<label class="control-label" for="link_state">Estado: *</label>
 					<select name="link_state" id="link_state" class="form-control" required>
 						<option value=''>Seleccione...</option>
 						<option value=1 <?php if($information && $information[0]["link_state"] == 1) { echo "selected"; }  ?>>Activo</option>
@@ -67,8 +67,8 @@
 		
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="link_icon">Icono Enlace : *</label>
-					<input type="text" id="link_icon" name="link_icon" class="form-control" value="<?php echo $information?$information[0]["link_icon"]:""; ?>" placeholder="Link icon" >
+					<label class="control-label" for="link_icon">Icono Enlace: *</label>
+					<input type="text" id="link_icon" name="link_icon" class="form-control" value="<?php echo $information?$information[0]["link_icon"]:""; ?>" placeholder="Icono Enlace" >
 				</div> 
 			</div>
 		</div>
@@ -76,7 +76,7 @@
 		<div class="row">		
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
-					<label class="control-label" for="link_type">Tipo Enlace : *</label>
+					<label class="control-label" for="link_type">Tipo Enlace: *</label>
 					<select name="link_type" id="link_type" class="form-control" required>
 						<option value=''>Seleccione...</option>
 						<option value=1 <?php if($information && $information[0]["link_type"] == 1) { echo "selected"; }  ?>>URL interna</option>
@@ -93,7 +93,7 @@
 			<div class="row" align="center">
 				<div style="width:50%;" align="center">
 					<button type="button" id="btnSubmit" name="btnSubmit" class="btn btn-primary" >
-						Save <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+						Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
 					</button> 
 				</div>
 			</div>

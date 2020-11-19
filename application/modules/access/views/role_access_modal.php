@@ -3,8 +3,8 @@
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="exampleModalLabel">Role Access
-	<br><small>Add/Edit Role Access</small>
+	<h4 class="modal-title" id="exampleModalLabel">Acceso de Roles
+	<br><small>Adicionar/Editar Acceso de Roles</small>
 	</h4>
 </div>
 
@@ -15,9 +15,9 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="perfil">Menu name : *</label>
+					<label class="control-label" for="perfil">Nombre Menú : *</label>
 					<select name="id_menu" id="id_menu" class="form-control" required>
-						<option value="">Select...</option>
+						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($menuList); $i++) { ?>
 							<option value="<?php echo $menuList[$i]["id_menu"]; ?>" <?php if($information && $information[0]["fk_id_menu"] == $menuList[$i]["id_menu"]) { echo "selected"; }  ?>><?php echo $menuList[$i]["menu_name"]; ?></option>	
 						<?php } ?>
@@ -34,9 +34,9 @@
 		
 			<div class="col-sm-6" id="div_link" style="display:<?php echo $mostrar; ?>">
 				<div class="form-group text-left">
-					<label class="control-label" for="perfil">Link name : *</label>
+					<label class="control-label" for="perfil">Nombre Enlace : *</label>
 					<select name="id_link" id="id_link" class="form-control" >
-						<option value="">Select...</option>
+						<option value="">Seleccione...</option>
 						<?php 
 						if($linkList){
 							for ($i = 0; $i < count($linkList); $i++) { 
@@ -54,9 +54,9 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="id_role">Rol name : *</label>
+					<label class="control-label" for="id_role">Nombre Rol : *</label>
 					<select name="id_role" id="id_role" class="form-control" required>
-						<option value="">Select...</option>
+						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($roles); $i++) { ?>
 							<option value="<?php echo $roles[$i]["id_role"]; ?>" <?php if($information && $information[0]["fk_id_role"] == $roles[$i]["id_role"]) { echo "selected"; }  ?>><?php echo $roles[$i]["role_name"]; ?></option>	
 						<?php } ?>
@@ -70,7 +70,7 @@
 			<div class="row" align="center">
 				<div style="width:50%;" align="center">
 					<button type="button" id="btnSubmit" name="btnSubmit" class="btn btn-primary" >
-						Save <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+						Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
 					</button> 
 				</div>
 			</div>
