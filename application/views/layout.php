@@ -10,7 +10,7 @@
 	<meta name="baseurl" content="<?php echo base_url()?>" />
 
     <title>YELOS</title>
-	<link rel="icon" type="image/png" href="<?php echo base_url("images/favicon.png"); ?>" />
+	<link rel="icon" type="image/png" href="<?php echo base_url("images/favicon.ico"); ?>" />
 	
     <!-- Bootstrap Core CSS -->
 	<link href="<?php echo base_url("assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css"); ?>" rel="stylesheet">

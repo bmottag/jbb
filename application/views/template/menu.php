@@ -7,7 +7,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="<?php echo base_url("dashboard"); ?>"><img src="<?php echo base_url("images/logo.png"); ?>" class="img-rounded" width="87" height="32" /></a>
+		<a class="navbar-brand" href="<?php echo base_url("dashboard"); ?>"><img src="<?php echo base_url("images/logo_jardin_negro.png"); ?>" class="img-rounded" width="210" height="50" /></a>
 	</div>
 	<!-- /.navbar-header -->
 
@@ -33,7 +33,7 @@
 						<?php }else{?>
 						<i class="fa fa-child fa-fw"></i>
 						<?php } ?>
-						Hi <?php echo $this->session->firstname; ?>!!!<span class="fa arrow"></span>
+						Bienvenido <?php echo $this->session->firstname; ?>!<span class="fa arrow"></span>
 					</a>
 					<ul class="nav nav-second-level">
 						<li>
