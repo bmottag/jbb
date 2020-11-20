@@ -218,6 +218,31 @@ class General_model extends CI_Model {
 			return false;
 		}
 	}
+	
+		/**
+		 * Consulta lista de equipos
+		 * @since 19/11/2020
+		 */
+		public function get_equipos_info($arrData) 
+		{		
+				$this->db->select();
+				
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.id_equipo', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("estadoEquipo", $arrData)) {
+					$this->db->where('A.estado_equipo', $arrData["estadoEquipo"]);
+				}
+
+				$this->db->order_by('A.nombre_equipo', 'asc');
+				$query = $this->db->get('equipos A');
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
 
 
 }
