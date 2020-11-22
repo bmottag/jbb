@@ -7,7 +7,7 @@
 		 * Guardar equipo
 		 * @since 19/11/2020
 		 */
-		public function guardarEquipo() 
+		public function guardarEquipo($pass) 
 		{
 				$idEquipo = $this->input->post('hddId');
 				
@@ -22,9 +22,18 @@
 				);	
 
 				//revisar si es para adicionar o editar
-				if ($idEquipo == '') {							
+				if ($idEquipo == '') 
+				{							
 					$query = $this->db->insert('equipos', $data);
 					$idEquipo = $this->db->insert_id();
+					
+					//actualizo la url del codigo QR
+					$path = $idEquipo . $pass;
+					$rutaQRcode = "images/equipos/" . $idEquipo . "_qr_code.png";
+			
+					//actualizo campo con el path encriptado
+					$sql = "UPDATE equipos SET qr_code_encryption = '$path', qr_code_img = '$rutaQRcode'  WHERE id_equipo = $idEquipo";
+					$query = $this->db->query($sql);
 				} else {
 					$this->db->where('id_equipo', $idEquipo);
 					$query = $this->db->update('equipos', $data);
