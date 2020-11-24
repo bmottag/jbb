@@ -12,7 +12,7 @@
 		public function verifyUser($arrData) 
 		{
 				$this->db->where($arrData["column"], $arrData["value"]);
-				$query = $this->db->get("user");
+				$query = $this->db->get("usuarios");
 
 				if ($query->num_rows() >= 1) {
 					return true;
@@ -40,11 +40,11 @@
 				if ($idUser == '') {
 					$data['state'] = 0;//si es para adicionar se coloca estado inicial como usuario nuevo
 					$data['password'] = 'e10adc3949ba59abbe56e057f20f883e';//123456
-					$query = $this->db->insert('user', $data);
+					$query = $this->db->insert('usuarios', $data);
 				} else {
 					$data['state'] = $this->input->post('state');
 					$this->db->where('id_user', $idUser);
-					$query = $this->db->update('user', $data);
+					$query = $this->db->update('usuarios', $data);
 				}
 				if ($query) {
 					return true;
@@ -69,7 +69,7 @@
 				);
 
 				$this->db->where('id_user', $idUser);
-				$query = $this->db->update('user', $data);
+				$query = $this->db->update('usuarios', $data);
 
 				if ($query) {
 					return true;
