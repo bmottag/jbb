@@ -1,115 +1,11 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/buscar.js"); ?>"></script>
-
-<script>
-$(function(){ 
-	$(".btn-success").click(function () {	
-			var oID = $(this).attr("id");
-            $.ajax ({
-                type: 'POST',
-				url: base_url + 'equipos/cargarModalEquipo',
-                data: {'idVehicle': oID},
-                cache: false,
-                success: function (data) {
-                    $('#tablaDatos').html(data);
-                }
-            });
-	});	
-});
-</script>
-
-
 <div id="page-wrapper">
-	<br>	
-	<!-- /.row -->
-	<div class="row">
-		<div class="col-lg-8">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<i class="fa fa-search"></i> BUSCAR EQUIPOS
-				</div>
-				<div class="panel-body">
-					<div class="col-lg-12">
-						<p class="text-info"><span class="glyphicon glyphicon-pushpin " aria-hidden="true"></span> Seleccione por lo menos una opción</p>
-					</div>
-					<form  name="form" id="form" role="form" method="post" class="form-horizontal" >
-
-						<div class="form-group">
-							<div class="col-sm-5 col-sm-offset-1">
-								<label for="numero_unidad">Número Unidad</label>
-								<input type="text" id="numero_unidad" name="numero_unidad" class="form-control" placeholder="Número Unidad" >
-							</div>
-							
-							<div class="col-sm-5">
-								<label for="fabricante">Fabricante </label>
-								<input type="text" id="fabricante" name="fabricante" class="form-control" placeholder="Fabricante" >
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<div class="col-sm-5 col-sm-offset-1">
-								<label for="modelo">Modelo</label>
-								<input type="text" id="modelo" name="modelo" class="form-control" placeholder="Modelo" >
-							</div>
-							
-							<div class="col-sm-5">
-								<label for="numero_serial">Número Serial</label>
-								<input type="text" id="numero_serial" name="numero_serial" class="form-control" placeholder="Número Serial" >
-							</div>
-						</div>
-						
-						<div class="row"></div><br>
-						<div class="form-group">
-							<div class="row" align="center">
-								<div style="width80%;" align="center">
-									
-								 <button type="submit" class="btn btn-primary" id='btnSubmit' name='btnSubmit'><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar </button>
-									
-								</div>
-							</div>
-						</div>
-						
-					</form>
-
-				</div>
-				<!-- /.panel-body -->
-			</div>
-			<!-- /.panel -->
-		</div>
-		<!-- /.col-lg-12 -->
-		
-		<div class="col-lg-4">
-
-			<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Equipo
-			</button><br>
-			
-			<a class='btn btn-outline btn-danger btn-block' href='<?php echo base_url('equipos/inactivos'); ?>'>
-					<span class="glyphicon glyphicon-remove " aria-hidden="true"> </span>  Equipos Inactivos
-			</a>
-
-		</div>
-		<!-- /.col-lg-4 -->
-
-	</div>
-	<!-- /.row -->
-	
+	<br>		
 	<!-- /.row -->
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-				
-<?php
-	//DESHABILITAR EDICION
-	$deshabilitar = 'disabled';
-	$userRol = $this->session->rol;
-	
-	if($userRol == 99 || $userRol == 4){
-		$deshabilitar = '';
-	}
-?>			
-					
-					<i class="fa fa-truck"></i> ÚLTIMOS EQUIPOS REGISTRADOS
+			<div class="panel panel-danger">
+				<div class="panel-heading">					
+					<i class="fa fa-truck"></i> EQUIPOS INACTIVOS
 				</div>
 				<div class="panel-body">	
 				

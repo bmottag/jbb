@@ -145,6 +145,23 @@ class Equipos extends CI_Controller {
 			}
 			return $pass;
 	}	
+	
+	/**
+	 * Listado de equipos INACTVOS
+     * @since 23/11/2020
+     * @author BMOTTAG
+	 */
+	public function inactivos($estado=2)
+	{
+			$data['estadoEquipo'] = $estado;
+
+			$arrParam = array("estadoEquipo" => $estado);
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			
+			$data["view"] = 'equipos_inactivos';
+			$this->load->view("layout", $data);
+	}
 
 
 	
