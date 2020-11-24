@@ -17,11 +17,33 @@ class Equipos extends CI_Controller {
 	{
 			$data['estadoEquipo'] = $estado;
 
-			$arrParam = array(
-				"estadoEquipo" => $estado
-			);
+			if(!$_POST)
+			{
+				$arrParam = array("estadoEquipo" => $estado);
+				$data['info'] = $this->general_model->get_equipos_info($arrParam);
+			}elseif($this->input->post('numero_unidad') || $this->input->post('fabricante') || $this->input->post('modelo') || $this->input->post('numero_serial'))
+			{				
+				$data['numero_unidad'] =  $this->input->post('numero_unidad');
+				$data['fabricante'] =  $this->input->post('fabricante');
+				$data['modelo'] =  $this->input->post('modelo');
+				$data['numero_serial'] =  $this->input->post('numero_serial');
+						
+				$arrParam = array(
+					"numero_unidad" => $this->input->post('numero_unidad'),
+					"fabricante" => $this->input->post('fabricante'),
+					"modelo" => $this->input->post('modelo'),
+					"numero_serial" => $this->input->post('numero_serial'),
+					"estadoEquipo" => $estado
+				);
+
+//////////////guardo la informacion en la base de datos para el boton de regresar
+//////////////$this->workorders_model->saveInfoGoBack($arrParam);
+	
+				//informacion Work Order
+				$data['info'] = $this->general_model->get_equipos_info($arrParam);
+				
+			}
 			
-			$data['info'] = $this->general_model->get_equipos_info($arrParam);
 			$data["view"] = 'equipos';
 			$this->load->view("layout", $data);
 	}

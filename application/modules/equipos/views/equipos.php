@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/buscar.js"); ?>"></script>
 
 <script>
 $(function(){ 
@@ -20,24 +19,80 @@ $(function(){
 
 
 <div id="page-wrapper">
-	<br>
+	<br>	
+	<!-- /.row -->
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-lg-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h4 class="list-group-item-heading">
-					<i class="fa fa-gear fa-fw"></i> EQUIPOS
-					</h4>
+					<i class="fa fa-search"></i> BUSCAR EQUIPOS
 				</div>
+				<div class="panel-body">
+					<div class="col-lg-12">
+						<p class="text-info"><span class="glyphicon glyphicon-pushpin " aria-hidden="true"></span> Seleccione por lo menos una opción</p>
+					</div>
+					<form  name="form" id="form" role="form" method="post" class="form-horizontal" >
+
+						<div class="form-group">
+							<div class="col-sm-5 col-sm-offset-1">
+								<label for="numero_unidad">Número Unidad</label>
+								<input type="text" id="numero_unidad" name="numero_unidad" class="form-control" placeholder="Número Unidad" >
+							</div>
+							
+							<div class="col-sm-5">
+								<label for="fabricante">Fabricante </label>
+								<input type="text" id="fabricante" name="fabricante" class="form-control" placeholder="Fabricante" >
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-5 col-sm-offset-1">
+								<label for="modelo">Modelo</label>
+								<input type="text" id="modelo" name="modelo" class="form-control" placeholder="Modelo" >
+							</div>
+							
+							<div class="col-sm-5">
+								<label for="numero_serial">Número Serial</label>
+								<input type="text" id="numero_serial" name="numero_serial" class="form-control" placeholder="Número Serial" >
+							</div>
+						</div>
+						
+						<div class="row"></div><br>
+						<div class="form-group">
+							<div class="row" align="center">
+								<div style="width80%;" align="center">
+									
+								 <button type="submit" class="btn btn-primary" id='btnSubmit' name='btnSubmit'><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar </button>
+									
+								</div>
+							</div>
+						</div>
+						
+					</form>
+
+				</div>
+				<!-- /.panel-body -->
 			</div>
+			<!-- /.panel -->
 		</div>
-		<!-- /.col-lg-12 -->				
+		<!-- /.col-lg-12 -->
+		
+		<div class="col-lg-4">
+
+			<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Equipo
+			</button><br>
+
+		</div>
+		<!-- /.col-lg-4 -->
+
 	</div>
+	<!-- /.row -->
 	
 	<!-- /.row -->
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="panel panel-default">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
 				
 <?php
@@ -50,22 +105,12 @@ $(function(){
 	}
 ?>			
 					
-					<i class="fa fa-truck"></i> EQUIPOS
+					<i class="fa fa-truck"></i> ÚLTIMOS EQUIPOS REGISTRADOS
 				</div>
 				<div class="panel-body">	
-					<ul class="nav nav-pills">
-						<li <?php if($estadoEquipo == 1){ echo "class='active'";} ?>><a href="<?php echo base_url("admin/vehicle/2/x/1"); ?>">Equipos Activos</a>
-						</li>
-						<li <?php if($estadoEquipo == 2){ echo "class='active'";} ?>><a href="<?php echo base_url("admin/vehicle/2/x/2"); ?>">Equipos Inactivos</a>
-						</li>
-					</ul>
-
 				
 <br>
 
-					<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Equipo
-					</button><br>
 
 <?php
 $retornoExito = $this->session->flashdata('retornoExito');
@@ -182,6 +227,8 @@ if ($retornoError) {
 $(document).ready(function() {
 	$('#dataTables').DataTable({
 		responsive: true,
+		paging: false,
+		"searching": false,
 		"pageLength": 25
 	});
 });

@@ -4,8 +4,8 @@ $( document ).ready( function () {
 		rules: {
 			nombre_equipo: 		{ required: true, minlength: 3, maxlength:30 },
 			numero_unidad: 		{ required: true, minlength: 3, maxlength:10 },
-			fabricante:			{ required: true, minlength: 3, maxlength: 30 },
-			modelo: 			{ required: true, minlength: 3, maxlength: 30 },
+			fabricante:			{ required: true, minlength: 3, maxlength: 20 },
+			modelo: 			{ required: true, minlength: 3, maxlength: 20 },
 			numero_serial: 		{ required: true, minlength: 3, maxlength: 10 },
 			estado: 			{ required: true },
 			observacion: 		{ required: true }

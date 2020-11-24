@@ -226,12 +226,25 @@ class General_model extends CI_Model {
 		public function get_equipos_info($arrData) 
 		{		
 				$this->db->select();
-				
+
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.id_equipo', $arrData["idEquipo"]);
 				}
 				if (array_key_exists("estadoEquipo", $arrData)) {
 					$this->db->where('A.estado_equipo', $arrData["estadoEquipo"]);
+				}
+				
+				if (array_key_exists("numero_unidad", $arrData) && $arrData["numero_unidad"] != '') {
+					$this->db->like('A.numero_unidad', $arrData["numero_unidad"]); 
+				}
+				if (array_key_exists("fabricante", $arrData) && $arrData["fabricante"] != '') {
+					$this->db->like('A.fabricante', $arrData["fabricante"]); 
+				}
+				if (array_key_exists("modelo", $arrData) && $arrData["modelo"] != '') {
+					$this->db->like('A.modelo', $arrData["modelo"]); 
+				}
+				if (array_key_exists("numero_serial", $arrData) && $arrData["numero_serial"] != '') {
+					$this->db->like('A.numero_serial', $arrData["numero_serial"]); 
 				}
 
 				$this->db->order_by('A.nombre_equipo', 'asc');
