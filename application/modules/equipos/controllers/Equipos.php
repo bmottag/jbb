@@ -162,6 +162,21 @@ class Equipos extends CI_Controller {
 			$data["view"] = 'equipos_inactivos';
 			$this->load->view("layout", $data);
 	}
+	
+	/**
+	 * Detalle de un equipo
+     * @since 23/11/2020
+     * @author BMOTTAG
+	 */
+	public function detalle($idEquipo)
+	{
+			$arrParam = array("idEquipo" => $idEquipo);
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			
+			$data["view"] = 'equipos_detalle';
+			$this->load->view("layout", $data);
+	}
 
 
 	

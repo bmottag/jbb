@@ -167,7 +167,15 @@ if ($retornoError) {
 							foreach ($info as $lista):
 							
 									echo "<tr>";
-									echo "<td class='text-center'>" . $lista['nombre_equipo'];
+									echo "<td class='text-center'>";
+						?>
+						
+<a href='<?php echo base_url('equipos/detalle/' . $lista['id_equipo']); ?>'>
+		  <?php echo $lista['nombre_equipo'] ?>
+</a>
+
+						<?php
+									
 									
 									if(!$deshabilitar){
 						?>			<br>
