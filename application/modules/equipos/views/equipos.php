@@ -7,7 +7,7 @@ $(function(){
             $.ajax ({
                 type: 'POST',
 				url: base_url + 'equipos/cargarModalEquipo',
-                data: {'idVehicle': oID},
+                data: {'idEquipo': oID},
                 cache: false,
                 success: function (data) {
                     $('#tablaDatos').html(data);
@@ -31,7 +31,7 @@ $(function(){
 					<div class="col-lg-12">
 						<p class="text-info"><span class="glyphicon glyphicon-pushpin " aria-hidden="true"></span> Seleccione por lo menos una opción</p>
 					</div>
-					<form  name="form" id="form" role="form" method="post" class="form-horizontal" >
+					<form  name="formBuscar" id="formBuscar" role="form" method="post" class="form-horizontal" >
 
 						<div class="form-group">
 							<div class="col-sm-5 col-sm-offset-1">
@@ -62,7 +62,7 @@ $(function(){
 							<div class="row" align="center">
 								<div style="width80%;" align="center">
 									
-								 <button type="submit" class="btn btn-primary" id='btnSubmit' name='btnSubmit'><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar </button>
+								 <button type="submit" class="btn btn-primary" id='btnBuscar' name='btnBuscar'><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar </button>
 									
 								</div>
 							</div>
@@ -114,33 +114,6 @@ $(function(){
 				<div class="panel-body">	
 				
 <br>
-
-
-<?php
-$retornoExito = $this->session->flashdata('retornoExito');
-if ($retornoExito) {
-    ?>
-	<div class="col-lg-12">	
-		<div class="alert alert-success ">
-			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-			<?php echo $retornoExito ?>		
-		</div>
-	</div>
-    <?php
-}
-
-$retornoError = $this->session->flashdata('retornoError');
-if ($retornoError) {
-    ?>
-	<div class="col-lg-12">	
-		<div class="alert alert-danger ">
-			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-			<?php echo $retornoError ?>
-		</div>
-	</div>
-    <?php
-}
-?> 
 
 <?php 										
 	if(!$info){ 

@@ -12,7 +12,7 @@ $( document ).ready( function () {
 		}
 	}, "Debe indicar al menos un campo.");
 
-	$( "#form" ).validate( {
+	$( "#formBuscar" ).validate( {
 		rules: {
 			numero_unidad:	{ unCampo: true, maxlength: 10 },
 			fabricante:	{ unCampo: true, maxlength: 20 },
@@ -37,8 +37,8 @@ $( document ).ready( function () {
 		}
 	});
 	
-	$("#btnSubmit").click(function(){		
-		if ($("#form").valid() == true){
+	$("#btnBuscar").click(function(){		
+		if ($("#formBuscar").valid() == true){
 			var form = document.getElementById('form');
 			form.submit();	
 		}else

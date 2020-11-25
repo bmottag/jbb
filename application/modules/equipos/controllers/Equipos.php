@@ -57,14 +57,14 @@ class Equipos extends CI_Controller {
 			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
 			
 			$data['information'] = FALSE;
-			$idVehicle = $this->input->post("idVehicle");
+			$idEquipo = $this->input->post("idEquipo");
 						
-			if ($idVehicle != 'x') {
+			if ($idEquipo != 'x') {
 				$arrParam = array(
 					"table" => "param_vehicle",
 					"order" => "id_vehicle",
 					"column" => "id_vehicle",
-					"id" => $data["idVehicle"]
+					"id" => $data["idEquipo"]
 				);
 				$data['information'] = $this->general_model->get_basic_search($arrParam);
 			}
