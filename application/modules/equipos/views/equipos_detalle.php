@@ -1,3 +1,5 @@
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo.js"); ?>"></script>
+
 <div id="page-wrapper">
 	<br>
 	
@@ -33,41 +35,67 @@
 					<i class="fa fa-truck"></i> <strong>INFORMACIÓN DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
+
+<?php
+$retornoExito = $this->session->flashdata('retornoExito');
+if ($retornoExito) {
+    ?>
+	<div class="col-lg-12">
+		<p class="text-success">
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			<?php echo $retornoExito ?>	
+		</p>
+	</div>
+    <?php
+}
+
+$retornoError = $this->session->flashdata('retornoError');
+if ($retornoError) {
+    ?>
+	<div class="col-lg-12">
+		<p class="text-danger">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<?php echo $retornoError ?>	
+		</p>
+	</div>
+    <?php
+}
+?>
 				
 					<form  name="form" id="form" class="form-horizontal" method="post"  >
-						<input type="hidden" id="hddIdVehicle" name="hddIdVehicle" value="<?php echo $info[0]['id_equipo']; ?>"/>
+						<input type="hidden" id="hddId" name="hddId" value="<?php echo $info[0]['id_equipo']; ?>"/>
 
 						<div class="form-group">
-							<div class="col-sm-5 col-sm-offset-1">
+							<div class="col-sm-6">
 								<label for="from">Nombre Equipo: </label>
 								<input type="text" id="nombre_equipo" name="nombre_equipo" class="form-control" value="<?php echo $info?$info[0]["nombre_equipo"]:""; ?>" placeholder="Nombre Equipo" required >
 							</div>
 
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<label for="from">Número Unidad: </label>
 								<input type="text" id="numero_unidad" name="numero_unidad" class="form-control" value="<?php echo $info?$info[0]["numero_unidad"]:""; ?>" placeholder="Número Unidad" required >
 							</div>							
 						</div>
 												
 						<div class="form-group">
-							<div class="col-sm-5 col-sm-offset-1">
+							<div class="col-sm-6">
 								<label for="from">Fabricante: </label>
 								<input type="text" id="fabricante" name="fabricante" class="form-control" value="<?php echo $info?$info[0]["fabricante"]:""; ?>" placeholder="Fabricante" required >
 							</div>
 							
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<label for="modelo">Modelo: </label>
 								<input type="text" id="modelo" name="modelo" class="form-control" value="<?php echo $info?$info[0]["modelo"]:""; ?>" placeholder="Modelo" required >
 							</div>	
 						</div>
 						
 						<div class="form-group">
-							<div class="col-sm-5 col-sm-offset-1">
+							<div class="col-sm-6">
 								<label for="from">Número Serial: </label>
 								<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $info?$info[0]["numero_serial"]:""; ?>" placeholder="Número Serial" required >
 							</div>
 							
-							<div class="col-sm-5">
+							<div class="col-sm-6">
 								<label for="from">Estado: </label>
 								<select name="estado" id="estado" class="form-control" required>
 									<option value=''>Select...</option>
@@ -76,12 +104,19 @@
 								</select>
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label for="observacion">Observación: </label>
+								<textarea id="observacion" name="observacion" placeholder="Observación" class="form-control" rows="3"><?php echo $info?$info[0]["observacion"]:""; ?></textarea>
+							</div>
+						</div>
 
 						<div class="form-group">
 							<div class="row" align="center">
 								<div style="width:100%;" align="center">							
 									<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-info'>
-										Save <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+										Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
 									</button>
 								</div>
 							</div>

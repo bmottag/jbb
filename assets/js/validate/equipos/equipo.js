@@ -59,7 +59,7 @@ $( document ).ready( function () {
 							$("#div_load").css("display", "none");
 							$('#btnSubmit').removeAttr('disabled');
 
-							var url = base_url + "equipos";
+							var url = base_url + "equipos/detalle/" + data.idRecord;
 							$(location).attr("href", url);
 						}
 						else

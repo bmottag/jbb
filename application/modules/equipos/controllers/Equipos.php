@@ -113,7 +113,7 @@ class Equipos extends CI_Controller {
 					//FIN - genero imagen con la libreria y la subo
 				}
 				
-				
+				$data["idRecord"] = $idEquipo;
 				$data["result"] = true;		
 				$this->session->set_flashdata('retornoExito', $msj);
 			} else {
