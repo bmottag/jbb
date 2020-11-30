@@ -110,5 +110,164 @@ class Login extends CI_Controller {
 			}
 	}
 	
+	/**
+	 * Form to ask for a new password
+	 */
+	public function recover()
+	{
+		$this->load->view("form_email");
+	}
+	
+	/**
+	 * Se valida correo, se envia correo con enlace para cambiar contraseña y se guarda llave en la base de datos
+	 */	
+	public function validateEmail()
+	{
+			$email = $this->security->xss_clean($this->input->post("email"));
+			
+			$this->load->model("general_model");
+			//busco datos del usuario
+			$arrParam = array(
+				"table" => "usuarios",
+				"order" => "id_user",
+				"column" => "email",
+				"id" => $email
+			);
+			$userExist = $this->general_model->get_basic_search($arrParam);
+			
+			if ($userExist)
+			{
+				$idUsuario = $userExist[0]['id_user'];
+				
+				//eliminaos datos anteriroes de tabla recuperar
+				$arrParam = array(
+					"table" => "usuarios_llave_contraseña",
+					"primaryKey" => "fk_id_user_ulc",
+					"id" => $idUsuario
+				);
+				$this->general_model->deleteRecord($arrParam);
+				
+				//genero llave
+				$llave = $this->randomText();
+
+				//guardo llave en tabla recuperar
+				$this->login_model->saveKey($idUsuario, $email, $llave);
+				
+				//envio correo con url para cambio de contraseña
+				//$this->email($llave);
+
+				$data["msjSuccess"] = "Se envío correo a <strong>" . $email . "</strong> para recuperar la contraseña.";
+				$this->load->view('form_email', $data);
+				
+			}else{
+				$data["msj"] = "<strong>" . $email . "</strong> no existe.";
+				$this->session->sess_destroy();
+				$this->load->view('form_email', $data);
+			}
+	}
+	
+	//FUNCION PARA CREAR UNA CLAVE ALEATORIA
+	function randomText()
+	{ 		
+			$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+			$key = "";
+			//Reconstruimos la contraseña segun la longitud que se quiera
+			for($i=0;$i<20;$i++) {
+			  //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+			  $key .= substr($str,rand(0,62),1);
+			}
+
+			return $key; 
+	} 
+	
+	/**
+	 * Evio correo al usuario con llave para recuperar la contraseña
+     * @since 25/11/2020
+     * @author BMOTTAG
+	 */
+	public function email($key)
+	{
+			//busco informacion en la base de datos
+			$arrParam = array("key" => $key);
+			$information = $this->login_model->validateLoginKey($arrParam);//brings user information from user table
+										
+			$subjet = "Recuperar contrasela - JBB-APP";
+			$user = $information["firstname"] . ' ' . $information["lastname"];
+			$to = $information["email"];
+				
+			//mensaje del correo
+			$msj = "<p>Siga el enlace para recuperar su contraseña:</p>";
+			$msj .= "<a href='" . base_url("login/keyLogin/" . $key) . "'>Recuperar contraseña</a>";
+			
+			$mensaje = "<html>
+			<head>
+			  <title> $subjet </title>
+			</head>
+			<body>
+				<p>Señor(a)	$user:</p>
+				<p>$msj</p>
+				<p>Cordialmente,</p>
+				<p><strong>Administrador JBB-APP</strong></p>
+			</body>
+			</html>";
+			
+			$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+			$cabeceras .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$cabeceras .= 'To: ' . $user . '<' . $to . '>' . "\r\n";
+			$cabeceras .= 'From: JBB-APP <admin@tuapoyo.com.co>' . "\r\n";
+
+			//enviar correo al cliente
+			mail($to, $subjet, $mensaje, $cabeceras);
+			
+			return true;
+	}
+	
+	/**
+	 * Login por medio de LLAVE de recuperacion de contraseña
+	 * @param varchar $valor: llave de la tabla recuperar
+	 */
+	public function keyLogin($valor = 'x')
+	{
+			$this->load->model("general_model");
+
+			$arrParam = array("key" => $valor);
+			$user = $this->login_model->validateLoginKey($arrParam);//brings user information from user table
+
+			if (($user["valid"] == true)) 
+			{
+				$userRole = intval($user["role"]);
+				//busco url del dashboard de acuerdo al rol del usuario
+				$arrParam = array(
+					"idRole" => $userRole
+				);
+				$rolInfo = $this->general_model->get_roles($arrParam);
+				
+				$sessionData = array(
+					"auth" => "OK",
+					"id" => $user["id"],
+					"dashboardURL" => $rolInfo[0]['dashboard_url'],
+					"firstname" => $user["firstname"],
+					"lastname" => $user["lastname"],
+					"name" => $user["firstname"] . ' ' . $user["lastname"],
+					"logUser" => $user["logUser"],
+					"state" => 66,
+					"role" => $user["role"],
+					"idVehicle" => 'x',
+					"inspectionType" => FALSE,
+					"linkInspection" => FALSE,
+					"formInspection" => FALSE
+				);
+				$this->session->set_userdata($sessionData);
+				
+				$this->login_model->redireccionarUsuario();			
+			}else{					
+				$data["msj"] = "<strong>Error</strong> datos incorrectos.";
+				$this->load->view('login', $data);
+			}
+	}
+	
+	
+	
+	
 	
 }

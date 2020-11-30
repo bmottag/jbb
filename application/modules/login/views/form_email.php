@@ -29,7 +29,6 @@
 	<!-- jQuery validate-->
 	<script type="text/javascript" src="<?php echo base_url("assets/js/general/general.js"); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url("assets/js/general/jquery.validate.js"); ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url("assets/js/validate/login.js"); ?>"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,32 +46,59 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Autenticación</h3>
+                        <h3 class="panel-title">Recuper contraseña</h3>
                     </div>
                     <div class="panel-body">
-						<?php if(isset($msj)){?>
-								<div class="alert alert-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>
-									<?php echo $msj;//mensaje de error ?>
+						<?php if(isset($msjSuccess)){?>
+							<div class="row">
+								<div class="col-lg-12">
+									<p class="text-success">
+										<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+										<?php echo $msjSuccess ?>	
+									</p>
 								</div>
+							</div>	
 						<?php } ?>
-						<form  name="form" id="form" role="form" method="post" action="<?php echo base_url("login/validateUser"); ?>" >
-						<input type="hidden" id="hddId" name="hddId" value="<?php echo $idVehicle?$idVehicle:"x"; ?>"/>
-						<input type="hidden" id="hddInpectionType" name="hddInpectionType" value="<?php echo $inspectionType?$inspectionType:"x"; ?>"/>
-
-                            <fieldset>
-                                <div class="form-group">
-									<input type="text" id="inputLogin" name="inputLogin" class="form-control" placeholder="Usuario" value="<?php echo get_cookie('user'); ?>" required autofocus >
-                                </div>
-                                <div class="form-group">
-									<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Contraseña" value="<?php echo get_cookie('password'); ?>" >
-                                </div>
-
-								<button type="submit" class="btn btn-lg btn-success btn-block" id='btnSubmit' name='btnSubmit'>Ingresar </button>
-                            </fieldset>
-                        </form>
 						
-<br>
-						<a href="<?php echo base_url("login/recover"); ?>">¿Olvidó su contraseña?</a><br>
+						<?php if(isset($msj)){?>
+							<div class="row">
+								<div class="col-lg-12">
+									<p class="text-danger">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+										<?php echo $msj ?>	
+									</p>
+								</div>
+							</div>	
+						<?php } ?>
+						
+						<div class="row">
+							<div class="col-lg-12">
+								<p class="text-success">
+									<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+									Digite su correo electrónico para enviar las instrucciones de recuperación de contraseña.
+								</p>
+							</div>
+						</div>	
+												
+						<form  name="form" id="form" role="form" method="post" action="<?php echo base_url("login/validateEmail"); ?>" >
+						  <div class="form-group has-feedback">
+							<input type="text" id="email" name="email" class="form-control" placeholder="Correo electrónico" maxlength=50 required="required">
+							<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+						  </div>
+						  <div class="row">
+							<div class="col-xs-8">
+
+							</div>
+							<!-- /.col -->
+							<div class="col-xs-4">
+							  <button type="submit" class="btn btn-info btn-block" id='btnSubmit' name='btnSubmit'>Enviar</button>
+							</div>
+							<!-- /.col -->
+						  </div>
+						</form>
+											
+						<br>	
+						<a href="<?php echo base_url("login"); ?>">Ingresar</a><br>
 						
                     </div>
                 </div>

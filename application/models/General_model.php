@@ -26,6 +26,20 @@ class General_model extends CI_Model {
         } else
             return false;
     }
+	
+	/**
+	 * Delete Record
+	 * @since 25/5/2017
+	 */
+	public function deleteRecord($arrDatos) 
+	{
+			$query = $this->db->delete($arrDatos ["table"], array($arrDatos ["primaryKey"] => $arrDatos ["id"]));
+			if ($query) {
+				return true;
+			} else {
+				return false;
+			}
+	}
 
 	/**
 	 * Lista de menu
