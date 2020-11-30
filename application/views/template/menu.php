@@ -37,7 +37,10 @@
 					</a>
 					<ul class="nav nav-second-level">
 						<li>
-							<a href="<?php echo base_url("employee/photo"); ?>">User Photo</a>
+							<a href="<?php echo base_url("usuarios/detalle"); ?>">Perfil Usuario</a>
+						</li>
+						<li>
+							<a href="<?php echo base_url("usuarios"); ?>">Cambiar Contraseña</a>
 						</li>
 					</ul>
 					<!-- /.nav-second-level -->

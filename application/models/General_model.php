@@ -40,6 +40,23 @@ class General_model extends CI_Model {
 				return false;
 			}
 	}
+	
+	/**
+	 * Update field in a table
+	 * @since 11/12/2016
+	 */
+	public function updateRecord($arrDatos) {
+		$data = array(
+			$arrDatos ["column"] => $arrDatos ["value"]
+		);
+		$this->db->where($arrDatos ["primaryKey"], $arrDatos ["id"]);
+		$query = $this->db->update($arrDatos ["table"], $data);
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	/**
 	 * Lista de menu

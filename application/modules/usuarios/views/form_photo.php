@@ -5,7 +5,7 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4 class="list-group-item-heading">
-					<i class="fa fa-user fa-fw"></i> USER PROFILE
+					<i class="fa fa-user fa-fw"></i> PERFIL USUARIO
 					</h4>
 				</div>
 			</div>
@@ -18,20 +18,25 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-user"></i> USER PROFILE
+					<i class="fa fa-user"></i> FOTO DEL USUARIO
 				</div>
 				<div class="panel-body">
 				
-					<div class="alert alert-info">
-						Upload your photo
-					</div>				
+					<div class="row">
+						<div class="col-lg-12">
+							<p class="text-success">
+								<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+								Subir la foto del usuario
+							</p>
+						</div>
+					</div>	
+
 					
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
 								<th>Photo</th>
 								<th>Name</th>
-								<th>Date of birth</th>
 								<th>Movil number</th>
 								<th>Email</th>
 							</tr>
@@ -50,7 +55,6 @@
 
 								echo "</td>";
 								echo "<td>" . $this->session->userdata("name") . "</td>";
-								echo "<td class='text-center'>" . $UserInfo[0]["birthdate"] . "</td>";
 								
 $movil = $UserInfo[0]["movil"];
 // Separa en grupos de tres 

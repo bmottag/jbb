@@ -14,9 +14,7 @@ class Usuarios extends CI_Controller {
 	public function index()
 	{
 			$idUser = $this->session->userdata("id");
-						
-			$this->load->model("general_model");
-			
+									
 			$arrParam = array(
 				"idUser" => $idUser
 			);
@@ -65,29 +63,25 @@ class Usuarios extends CI_Controller {
 	/**
 	 * photo
 	 */
-	public function photo($error = '')
-	{
+	public function detalle($error = '')
+	{			
 			$idUser = $this->session->userdata("id");
 			
-			//busco datos del empleado
+			//busco datos del usuario
 			$arrParam = array(
-				"table" => "user",
-				"order" => "id_user",
-				"column" => "id_user",
-				"id" => $idUser
+				"idUser" => $idUser
 			);
-			$this->load->model("general_model");
-			$data['UserInfo'] = $this->general_model->get_basic_search($arrParam);
-						
+			$data['UserInfo'] = $this->general_model->get_user($arrParam);
+			
 			$data['error'] = $error; //se usa para mostrar los errores al cargar la imagen 
-			$data["view"] = 'form_photo';
+			$data["view"] = 'detalle_usuario';
 			$this->load->view("layout", $data);
 	}
 	
     //FUNCIÓN PARA SUBIR LA IMAGEN 
     function do_upload() 
 	{
-			$config['upload_path'] = './images/employee/';
+			$config['upload_path'] = './images/usuarios/';
 			$config['overwrite'] = true;
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size'] = '3000';
@@ -100,7 +94,7 @@ class Usuarios extends CI_Controller {
 			//SI LA IMAGEN FALLA AL SUBIR MOSTRAMOS EL ERROR EN LA VISTA 
 			if (!$this->upload->do_upload()) {
 				$error = $this->upload->display_errors();
-				$this->photo($error);
+				$this->detalle($error);
 			} else {
 				$file_info = $this->upload->data();//subimos la imagen
 				
@@ -109,11 +103,11 @@ class Usuarios extends CI_Controller {
 				$this->_create_thumbnail($file_info['file_name']);
 				$data = array('upload_data' => $this->upload->data());
 				$imagen = $file_info['file_name'];
-				$path = "images/employee/thumbs/" . $imagen;
+				$path = "images/usuarios/thumbs/" . $imagen;
 				
 				//actualizamos el campo photo
 				$arrParam = array(
-					"table" => "user",
+					"table" => "usuarios",
 					"primaryKey" => "id_user",
 					"id" => $idUser,
 					"column" => "photo",
@@ -121,13 +115,13 @@ class Usuarios extends CI_Controller {
 				);
 
 				$this->load->model("general_model");
-				$data['linkBack'] = "employee/photo";
-				$data['titulo'] = "<i class='fa fa-user fa-fw'></i>USER PROFILE";
+				$data['linkBack'] = "usuarios/detalle";
+				$data['titulo'] = "<i class='fa fa-user fa-fw'></i> FOTO USUARIO";
 				
 				if($this->general_model->updateRecord($arrParam))
 				{
 					$data['clase'] = "alert-success";
-					$data['msj'] = "Good job, you have update your photo.";			
+					$data['msj'] = "Se actualizó la foto del usuario.";			
 				}else{
 					$data['clase'] = "alert-danger";
 					$data['msj'] = "Ask for help.";
@@ -144,11 +138,11 @@ class Usuarios extends CI_Controller {
 	{
         $config['image_library'] = 'gd2';
         //CARPETA EN LA QUE ESTÁ LA IMAGEN A REDIMENSIONAR
-        $config['source_image'] = 'images/employee/' . $filename;
+        $config['source_image'] = 'images/usuarios/' . $filename;
         $config['create_thumb'] = TRUE;
         $config['maintain_ratio'] = TRUE;
         //CARPETA EN LA QUE GUARDAMOS LA MINIATURA
-        $config['new_image'] = 'images/employee/thumbs/';
+        $config['new_image'] = 'images/usuarios/thumbs/';
         $config['width'] = 150;
         $config['height'] = 150;
         $this->load->library('image_lib', $config);
