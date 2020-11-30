@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2020 a las 07:26:49
+-- Tiempo de generación: 30-11-2020 a las 23:54:00
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -20,6 +20,35 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `jbb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `equipos`
+--
+
+CREATE TABLE `equipos` (
+  `id_equipo` int(10) NOT NULL,
+  `numero_unidad` varchar(10) NOT NULL,
+  `nombre_equipo` varchar(50) NOT NULL,
+  `fabricante` varchar(50) NOT NULL,
+  `modelo` varchar(50) NOT NULL,
+  `numero_serial` varchar(30) NOT NULL,
+  `estado_equipo` tinyint(1) NOT NULL COMMENT '1:Activo;2:Inactivo',
+  `observacion` text NOT NULL,
+  `qr_code_img` varchar(250) NOT NULL,
+  `qr_code_encryption` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `equipos`
+--
+
+INSERT INTO `equipos` (`id_equipo`, `numero_unidad`, `nombre_equipo`, `fabricante`, `modelo`, `numero_serial`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`) VALUES
+(1, 'JBB-00001', 'Camioneta', 'FORD', '3500', '2020-ENERO', 1, 'PRIMER REGISTRO', 'rwetwer', 'wertwert'),
+(3, 'JBB-0002', 'Camion', 'Kenworth', '2006', '2345678', 1, 'Segundo registro con codigo QR', 'images/equipos/3_qr_code.png', '3vbLf5PhbRUxoKYGDuP6j7zjmfntN1kugggDWQtQpo1H9BP4rog'),
+(4, '', '', '', '', '', 0, '', 'images/equipos/4_qr_code.png', '4FzGjCI9HXLcc2B8Z9Segm2uQ6224CBJFmFWwUsM11o7VFV4lhQ'),
+(7, 'JB-0003', 'Impresoa', 'HP-3', 'JET450', '123445667', 1, 'Nuevo registro', 'images/equipos/7_qr_code.png', '7R7h0Bpms5c0ivbVDOOJ4bWB8Acsxy8QK1HJxK6BzXtFL44nALG');
 
 -- --------------------------------------------------------
 
@@ -44,7 +73,7 @@ CREATE TABLE `param_menu` (
 INSERT INTO `param_menu` (`id_menu`, `menu_name`, `menu_url`, `menu_icon`, `menu_order`, `menu_type`, `menu_state`) VALUES
 (1, 'Record Task(s)', '', 'fa-edit', 2, 1, 1),
 (2, 'Jobs Info', '', 'fa-briefcase', 3, 1, 1),
-(3, 'Incidences', '', 'fa-ambulance', 4, 1, 1),
+(3, 'Equipos', '', 'fa-truck', 4, 1, 1),
 (4, 'Day Off', '', 'fa-calendar', 5, 1, 1),
 (5, 'Work Orders', '', 'fa-money', 6, 1, 1),
 (6, 'Manage Day Off', '', 'fa-calendar', 1, 2, 1),
@@ -79,6 +108,7 @@ CREATE TABLE `param_menu_access` (
 --
 
 INSERT INTO `param_menu_access` (`id_access`, `fk_id_menu`, `fk_id_link`, `fk_id_role`) VALUES
+(8, 3, 7, 99),
 (4, 8, 4, 99),
 (6, 8, 5, 99),
 (7, 8, 6, 99),
@@ -115,7 +145,8 @@ INSERT INTO `param_menu_links` (`id_link`, `fk_id_menu`, `link_name`, `link_url`
 (3, 12, 'Acceso de roles', 'access/role_access', 'fa-puzzle-piece', 4, '2020-11-18 19:45:31', 1, 1),
 (4, 8, 'Usuarios', 'settings/employee/1', 'fa-users', 1, '2020-11-19 06:13:07', 1, 1),
 (5, 8, '----------', 'DIVIDER', 'fa-hand-o-up', 2, '2020-11-19 07:07:22', 1, 3),
-(6, 8, 'Proveedores', 'settings/company', 'fa-building', 3, '2020-11-19 07:08:43', 1, 1);
+(6, 8, 'Proveedores', 'settings/company', 'fa-building', 3, '2020-11-19 07:08:43', 1, 1),
+(7, 3, 'Buscar', 'equipos', 'fa-ambulance', 1, '2020-11-20 01:29:59', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -189,11 +220,40 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_user`, `first_name`, `last_name`, `log_user`, `movil`, `email`, `password`, `state`, `fk_id_user_role`, `photo`) VALUES
-(1, 'Benjamin', 'Motta', 'Bmottag', '4034089921', 'benmotta@gmail.com', '692ddae9648cb57da15cd58912131fed', 1, 99, 'images/employee/thumbs/1.jpg');
+(1, 'Benjamin', 'Motta', 'Bmottag', '4034089921', 'benmotta@gmail.com', '25446782e2ccaf0afdb03e5d61d0fbb9', 1, 99, 'images/usuarios/thumbs/1.JPG');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios_llave_contraseña`
+--
+
+CREATE TABLE `usuarios_llave_contraseña` (
+  `id_llave` int(10) NOT NULL,
+  `fk_id_user_ulc` int(10) NOT NULL,
+  `email_user` varchar(70) NOT NULL,
+  `llave` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios_llave_contraseña`
+--
+
+INSERT INTO `usuarios_llave_contraseña` (`id_llave`, `fk_id_user_ulc`, `email_user`, `llave`) VALUES
+(13, 1, 'benmotta@gmail.com', 'CrOwkwEH06WaqWdkH21I');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `equipos`
+--
+ALTER TABLE `equipos`
+  ADD PRIMARY KEY (`id_equipo`),
+  ADD UNIQUE KEY `numero_unidad` (`numero_unidad`),
+  ADD UNIQUE KEY `qr_code_encryption` (`qr_code_encryption`),
+  ADD KEY `estado_equipo` (`estado_equipo`);
 
 --
 -- Indices de la tabla `param_menu`
@@ -238,11 +298,25 @@ ALTER TABLE `param_role`
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_user`),
   ADD UNIQUE KEY `log_user` (`log_user`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `perfil` (`fk_id_user_role`);
+
+--
+-- Indices de la tabla `usuarios_llave_contraseña`
+--
+ALTER TABLE `usuarios_llave_contraseña`
+  ADD PRIMARY KEY (`id_llave`),
+  ADD KEY `fk_id_user_ulc` (`fk_id_user_ulc`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `equipos`
+--
+ALTER TABLE `equipos`
+  MODIFY `id_equipo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu`
@@ -254,13 +328,13 @@ ALTER TABLE `param_menu`
 -- AUTO_INCREMENT de la tabla `param_menu_access`
 --
 ALTER TABLE `param_menu_access`
-  MODIFY `id_access` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_access` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu_links`
 --
 ALTER TABLE `param_menu_links`
-  MODIFY `id_link` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_link` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `param_proveedores`
@@ -279,6 +353,12 @@ ALTER TABLE `param_role`
 --
 ALTER TABLE `usuarios`
   MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios_llave_contraseña`
+--
+ALTER TABLE `usuarios_llave_contraseña`
+  MODIFY `id_llave` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
