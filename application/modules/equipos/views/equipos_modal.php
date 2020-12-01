@@ -13,15 +13,20 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="nombre_equipo">Nombre Equipo: *</label>
-					<input type="text" id="nombre_equipo" name="nombre_equipo" class="form-control" value="<?php echo $information?$information[0]["nombre_equipo"]:""; ?>" placeholder="Nombre Equipo" required >
+					<label class="control-label" for="numero_inventario">No. Inventario Entidad: *</label>
+					<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" value="<?php echo $information?$information[0]["numero_inventario"]:""; ?>" placeholder="No. Inventario Entidad" required >
 				</div>
 			</div>
-
+			
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="numero_unidad">Número Unidad: *</label>
-					<input type="text" id="numero_unidad" name="numero_unidad" class="form-control" value="<?php echo $information?$information[0]["numero_unidad"]:""; ?>" placeholder="Número Unidad" required >
+					<label class="control-label" for="id_dependencia">Depedencia: *</label>
+					<select name="id_dependencia" id="id_dependencia" class="form-control" required>
+						<option value="">Seleccione...</option>
+						<?php for ($i = 0; $i < count($dependencias); $i++) { ?>
+							<option value="<?php echo $dependencias[$i]["id_dependencia"]; ?>" <?php if($information && $information[0]["fk_id_dependencia"] == $dependencias[$i]["id_dependencia"]) { echo "selected"; }  ?>><?php echo $dependencias[$i]["dependencia"]; ?></option>	
+						<?php } ?>
+					</select>
 				</div>
 			</div>
 		</div>
@@ -29,15 +34,15 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="fabricante">Fabricante: *</label>
-					<input type="text" id="fabricante" name="fabricante" class="form-control" value="<?php echo $information?$information[0]["fabricante"]:""; ?>" placeholder="Fabricante" required >
+					<label class="control-label" for="marca">Marca: *</label>
+					<input type="text" id="marca" name="marca" class="form-control" value="<?php echo $information?$information[0]["marca"]:""; ?>" placeholder="Marca" required >
 				</div>
 			</div>
 
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="modelo">Modelo: *</label>
-					<input type="text" id="modelo" name="modelo" class="form-control" value="<?php echo $information?$information[0]["modelo"]:""; ?>" placeholder="Make" required >
+					<input type="text" id="modelo" name="modelo" class="form-control" value="<?php echo $information?$information[0]["modelo"]:""; ?>" placeholder="Modelo" required >
 				</div>
 			</div>
 		</div>

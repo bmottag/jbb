@@ -35,13 +35,13 @@ $(function(){
 
 						<div class="form-group">
 							<div class="col-sm-5 col-sm-offset-1">
-								<label for="numero_unidad">Número Unidad</label>
-								<input type="text" id="numero_unidad" name="numero_unidad" class="form-control" placeholder="Número Unidad" >
+								<label for="numero_inventario">Número Inventario Entidad</label>
+								<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" placeholder="Número Inventario Entidad" >
 							</div>
 							
 							<div class="col-sm-5">
-								<label for="fabricante">Fabricante </label>
-								<input type="text" id="fabricante" name="fabricante" class="form-control" placeholder="Fabricante" >
+								<label for="marca">Marca </label>
+								<input type="text" id="marca" name="marca" class="form-control" placeholder="Marca" >
 							</div>
 						</div>
 						
@@ -126,9 +126,9 @@ $(function(){
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-								<th class="text-center">Nombre Equipo</th>
-								<th class="text-center">Número Unidad</th>
-								<th class="text-center">Fabricante</th>
+								<th class="text-center">No. Inventario Entidad</th>
+								<th class="text-center">Dependencia</th>
+								<th class="text-center">Marca</th>
 								<th class="text-center">Modelo</th>
 								<th class="text-center">Número Serial</th>
 								<th class="text-center">Estado</th>
@@ -144,7 +144,7 @@ $(function(){
 						?>
 						
 <a href='<?php echo base_url('equipos/detalle/' . $lista['id_equipo']); ?>'>
-		  <?php echo $lista['nombre_equipo'] ?>
+		  <?php echo $lista['numero_inventario'] ?>
 </a>
 
 						<?php
@@ -159,8 +159,8 @@ $(function(){
 									}
 									echo "</td>";
 
-									echo "<td class='text-center'>" . $lista['numero_unidad'] . "</td>";
-									echo "<td>" . $lista['fabricante'] . "</td>";
+									echo "<td class='text-center'>" . $lista['dependencia'] . "</td>";
+									echo "<td>" . $lista['marca'] . "</td>";
 									echo "<td>" . $lista['modelo'] . "</td>";
 									echo "<td class='text-center'>" . $lista['numero_serial'] . "</td>";
 									echo "<td class='text-center'>";

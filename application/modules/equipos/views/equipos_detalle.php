@@ -67,20 +67,25 @@ if ($retornoError) {
 
 						<div class="form-group">
 							<div class="col-sm-6">
-								<label for="from">Nombre Equipo: </label>
-								<input type="text" id="nombre_equipo" name="nombre_equipo" class="form-control" value="<?php echo $info?$info[0]["nombre_equipo"]:""; ?>" placeholder="Nombre Equipo" required >
+								<label for="numero_inventario">Número Inventario Entidad: </label>
+								<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" value="<?php echo $info?$info[0]["numero_inventario"]:""; ?>" placeholder="Número Inventario Entidad" required >
 							</div>
 
 							<div class="col-sm-6">
-								<label for="from">Número Unidad: </label>
-								<input type="text" id="numero_unidad" name="numero_unidad" class="form-control" value="<?php echo $info?$info[0]["numero_unidad"]:""; ?>" placeholder="Número Unidad" required >
+								<label for="dependencia">Dependencia: </label>
+								<select name="id_dependencia" id="id_dependencia" class="form-control" required>
+									<option value="">Seleccione...</option>
+									<?php for ($i = 0; $i < count($dependencias); $i++) { ?>
+										<option value="<?php echo $dependencias[$i]["id_dependencia"]; ?>" <?php if($info && $info[0]["fk_id_dependencia"] == $dependencias[$i]["id_dependencia"]) { echo "selected"; }  ?>><?php echo $dependencias[$i]["dependencia"]; ?></option>	
+									<?php } ?>
+								</select>
 							</div>							
 						</div>
 												
 						<div class="form-group">
 							<div class="col-sm-6">
-								<label for="from">Fabricante: </label>
-								<input type="text" id="fabricante" name="fabricante" class="form-control" value="<?php echo $info?$info[0]["fabricante"]:""; ?>" placeholder="Fabricante" required >
+								<label for="marca">Marca: </label>
+								<input type="text" id="marca" name="marca" class="form-control" value="<?php echo $info?$info[0]["marca"]:""; ?>" placeholder="Marca" required >
 							</div>
 							
 							<div class="col-sm-6">

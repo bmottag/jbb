@@ -49,10 +49,10 @@ if ($retornoError) {
 			
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
-							<tr>
-								<th class="text-center">Nombre Equipo</th>
-								<th class="text-center">Número Unidad</th>
-								<th class="text-center">Fabricante</th>
+							<tr>							
+								<th class="text-center">No. Inventario Entidad</th>
+								<th class="text-center">Dependencia</th>
+								<th class="text-center">Marca</th>
 								<th class="text-center">Modelo</th>
 								<th class="text-center">Número Serial</th>
 								<th class="text-center">Estado</th>
@@ -64,7 +64,7 @@ if ($retornoError) {
 							foreach ($info as $lista):
 							
 									echo "<tr>";
-									echo "<td class='text-center'>" . $lista['nombre_equipo'];
+									echo "<td class='text-center'>" . $lista['numero_inventario'];
 									
 									if(!$deshabilitar){
 						?>			<br>
@@ -75,8 +75,8 @@ if ($retornoError) {
 									}
 									echo "</td>";
 
-									echo "<td class='text-center'>" . $lista['numero_unidad'] . "</td>";
-									echo "<td>" . $lista['fabricante'] . "</td>";
+									echo "<td class='text-center'>" . $lista['dependencia'] . "</td>";
+									echo "<td>" . $lista['marca'] . "</td>";
 									echo "<td>" . $lista['modelo'] . "</td>";
 									echo "<td class='text-center'>" . $lista['numero_serial'] . "</td>";
 									echo "<td class='text-center'>";

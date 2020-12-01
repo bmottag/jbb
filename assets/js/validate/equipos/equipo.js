@@ -2,13 +2,13 @@ $( document ).ready( function () {
 	
 	$( "#form" ).validate( {
 		rules: {
-			nombre_equipo: 		{ required: true, minlength: 3, maxlength:30 },
-			numero_unidad: 		{ required: true, minlength: 3, maxlength:10 },
-			fabricante:			{ required: true, minlength: 3, maxlength: 20 },
-			modelo: 			{ required: true, minlength: 3, maxlength: 20 },
-			numero_serial: 		{ required: true, minlength: 3, maxlength: 10 },
-			estado: 			{ required: true },
-			observacion: 		{ required: true }
+			numero_inventario: 		{ required: true, minlength: 3, maxlength:10 },
+			id_dependencia: 		{ required: true },
+			marca:					{ required: true, minlength: 3, maxlength: 20 },
+			modelo: 				{ required: true, minlength: 3, maxlength: 20 },
+			numero_serial: 			{ required: true, minlength: 3, maxlength: 20 },
+			estado: 				{ required: true },
+			observacion: 			{ required: true }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

@@ -12,9 +12,9 @@
 				$idEquipo = $this->input->post('hddId');
 				
 				$data = array(
-					'numero_unidad' => $this->input->post('numero_unidad'),
-					'nombre_equipo' => $this->input->post('nombre_equipo'),
-					'fabricante' => $this->input->post('fabricante'),
+					'numero_inventario' => $this->input->post('numero_inventario'),
+					'fk_id_dependencia' => $this->input->post('id_dependencia'),
+					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
 					'numero_serial' => $this->input->post('numero_serial'),
 					'estado_equipo' => $this->input->post('estado'),

@@ -257,6 +257,7 @@ class General_model extends CI_Model {
 		public function get_equipos_info($arrData) 
 		{		
 				$this->db->select();
+				$this->db->join('param_dependencias D', 'D.id_dependencia = A.fk_id_dependencia', 'INNER');
 
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.id_equipo', $arrData["idEquipo"]);
@@ -265,11 +266,11 @@ class General_model extends CI_Model {
 					$this->db->where('A.estado_equipo', $arrData["estadoEquipo"]);
 				}
 				
-				if (array_key_exists("numero_unidad", $arrData) && $arrData["numero_unidad"] != '') {
-					$this->db->like('A.numero_unidad', $arrData["numero_unidad"]); 
+				if (array_key_exists("numero_inventario", $arrData) && $arrData["numero_inventario"] != '') {
+					$this->db->like('A.numero_inventario', $arrData["numero_inventario"]); 
 				}
-				if (array_key_exists("fabricante", $arrData) && $arrData["fabricante"] != '') {
-					$this->db->like('A.fabricante', $arrData["fabricante"]); 
+				if (array_key_exists("marca", $arrData) && $arrData["marca"] != '') {
+					$this->db->like('A.marca', $arrData["marca"]); 
 				}
 				if (array_key_exists("modelo", $arrData) && $arrData["modelo"] != '') {
 					$this->db->like('A.modelo', $arrData["modelo"]); 
@@ -278,7 +279,7 @@ class General_model extends CI_Model {
 					$this->db->like('A.numero_serial', $arrData["numero_serial"]); 
 				}
 
-				$this->db->order_by('A.nombre_equipo', 'asc');
+				$this->db->order_by('A.numero_inventario', 'asc');
 				$query = $this->db->get('equipos A');
 
 				if ($query->num_rows() > 0) {
