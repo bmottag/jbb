@@ -118,9 +118,9 @@ class Access extends CI_Controller {
 			
 			$idLink = $this->input->post('hddId');
 			
-			$msj = "Se adicionó un nuevo Enlace!";
+			$msj = "Se adicionó un nuevo Submenú!";
 			if ($idLink != '') {
-				$msj = "Se actualizó el Enlace!";
+				$msj = "Se actualizó el Submenú!";
 			}
 
 			if ($this->access_model->saveLink()) {

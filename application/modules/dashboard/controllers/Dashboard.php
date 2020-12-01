@@ -56,5 +56,16 @@ class Dashboard extends CI_Controller {
 			$this->load->view("layout", $data);
 	}
 	
+	/**
+	 * Informacion de los roles
+     * @since 1/12/2020
+     * @author BMOTTAG
+	 */
+	public function rol_info()
+	{		
+			$data["view"] ='rol_info';
+			$this->load->view("layout", $data);
+	}
+	
 	
 }
