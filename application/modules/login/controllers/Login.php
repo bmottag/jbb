@@ -228,10 +228,10 @@ class Login extends CI_Controller {
 	 */
 	public function keyLogin($valor = 'x')
 	{
-			$this->load->model("general_model");
-
 			$arrParam = array("key" => $valor);
 			$user = $this->login_model->validateLoginKey($arrParam);//brings user information from user table
+			$data['idVehicle'] = FALSE;
+			$data['inspectionType'] = FALSE;
 
 			if (($user["valid"] == true)) 
 			{
