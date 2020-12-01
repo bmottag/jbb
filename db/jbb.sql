@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2020 a las 23:54:00
+-- Tiempo de generación: 01-12-2020 a las 15:56:13
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -71,24 +71,12 @@ CREATE TABLE `param_menu` (
 --
 
 INSERT INTO `param_menu` (`id_menu`, `menu_name`, `menu_url`, `menu_icon`, `menu_order`, `menu_type`, `menu_state`) VALUES
-(1, 'Record Task(s)', '', 'fa-edit', 2, 1, 1),
-(2, 'Jobs Info', '', 'fa-briefcase', 3, 1, 1),
-(3, 'Equipos', '', 'fa-truck', 4, 1, 1),
-(4, 'Day Off', '', 'fa-calendar', 5, 1, 1),
-(5, 'Work Orders', '', 'fa-money', 6, 1, 1),
-(6, 'Manage Day Off', '', 'fa-calendar', 1, 2, 1),
-(7, 'Reports', '', 'fa-list-alt', 2, 2, 1),
-(8, 'Configuración', '', 'fa-gear', 3, 2, 1),
-(9, 'Manuals', '', 'fa-book ', 4, 2, 1),
-(10, 'Salir', 'menu/salir', 'fa-sign-out', 6, 2, 1),
-(11, 'Dashboard ADMIN', 'dashboard/admin', 'fa-dashboard', 1, 1, 1),
-(12, 'Administrar acceso sistema', '', 'fa-cogs', 5, 2, 1),
-(13, 'Dashboard', 'dashboard', 'fa-dashboard', 1, 1, 1),
-(14, 'Dashboard Supervisor', 'dashboard/supervisor', 'fa-dashboard', 1, 1, 1),
-(15, 'Dashboard Work order', 'dashboard/work_order', 'fa-dashboard', 1, 1, 1),
-(16, 'Dashboard Safety&Maintenance', 'dashboard/safety', 'fa-dashboard', 1, 1, 1),
-(17, 'Dashboard Accounting', 'dashboard/accounting', 'fa-dashboard', 1, 1, 1),
-(18, 'Dashboard Management', 'dashboard/management', 'fa-dashboard', 1, 1, 1);
+(1, 'Configuración', '', 'fa-gear', 1, 2, 1),
+(2, 'Salir', 'menu/salir', 'fa-sign-out', 6, 2, 1),
+(3, 'Equipos', '', 'fa-truck', 2, 1, 1),
+(4, 'Administrar acceso sistema', '', 'fa-cogs', 5, 2, 1),
+(5, 'Dashboard ADMIN', 'dashboard/admin', 'fa-dashboard', 1, 1, 1),
+(6, 'Manuales', '', 'fa-book ', 4, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -108,14 +96,14 @@ CREATE TABLE `param_menu_access` (
 --
 
 INSERT INTO `param_menu_access` (`id_access`, `fk_id_menu`, `fk_id_link`, `fk_id_role`) VALUES
-(8, 3, 7, 99),
-(4, 8, 4, 99),
-(6, 8, 5, 99),
-(7, 8, 6, 99),
-(5, 10, 0, 99),
-(1, 12, 1, 99),
-(2, 12, 2, 99),
-(3, 12, 3, 99);
+(1, 1, 4, 99),
+(2, 1, 5, 99),
+(3, 1, 6, 99),
+(8, 2, 0, 99),
+(7, 3, 7, 99),
+(4, 4, 1, 99),
+(5, 4, 2, 99),
+(6, 4, 3, 99);
 
 -- --------------------------------------------------------
 
@@ -140,12 +128,12 @@ CREATE TABLE `param_menu_links` (
 --
 
 INSERT INTO `param_menu_links` (`id_link`, `fk_id_menu`, `link_name`, `link_url`, `link_icon`, `order`, `date_issue`, `link_state`, `link_type`) VALUES
-(1, 12, 'Menu', 'access/menu', 'fa-link', 2, '2020-11-18 19:45:31', 1, 1),
-(2, 12, 'Enlaces', 'access/links', 'fa-link', 3, '2020-11-18 19:45:31', 1, 1),
-(3, 12, 'Acceso de roles', 'access/role_access', 'fa-puzzle-piece', 4, '2020-11-18 19:45:31', 1, 1),
-(4, 8, 'Usuarios', 'settings/employee/1', 'fa-users', 1, '2020-11-19 06:13:07', 1, 1),
-(5, 8, '----------', 'DIVIDER', 'fa-hand-o-up', 2, '2020-11-19 07:07:22', 1, 3),
-(6, 8, 'Proveedores', 'settings/company', 'fa-building', 3, '2020-11-19 07:08:43', 1, 1),
+(1, 4, 'Enlaces Menu', 'access/menu', 'fa-link', 2, '2020-11-18 19:45:31', 1, 1),
+(2, 4, 'Enlaces Submenu', 'access/links', 'fa-link', 3, '2020-11-18 19:45:31', 1, 1),
+(3, 4, 'Acceso de roles', 'access/role_access', 'fa-puzzle-piece', 4, '2020-11-18 19:45:31', 1, 1),
+(4, 1, 'Usuarios', 'settings/employee/1', 'fa-users', 1, '2020-11-19 06:13:07', 1, 1),
+(5, 1, '----------', 'DIVIDER', 'fa-hand-o-up', 2, '2020-11-19 07:07:22', 1, 3),
+(6, 1, 'Proveedores', 'settings/company', 'fa-building', 3, '2020-11-19 07:08:43', 1, 1),
 (7, 3, 'Buscar', 'equipos', 'fa-ambulance', 1, '2020-11-20 01:29:59', 1, 1);
 
 -- --------------------------------------------------------
@@ -188,13 +176,11 @@ CREATE TABLE `param_role` (
 --
 
 INSERT INTO `param_role` (`id_role`, `role_name`, `description`, `style`, `dashboard_url`) VALUES
-(2, 'Management user', 'Dashboard: timestam, lashauling recors, le quito safety y le quito inspecciones\nRecord Task: Hauling\n----------------------------\n* Work order:\n\n    Todo work orders\n    Fabian me especifica permisos en esta parte\n\n----------------------------\nReports: Incidences Report\nReports: Pickups & Trucks Inspection Report\nReports: Construction Equipment Inspection Report\nReports: Work Order Report\n----------------------------\nSettings: Employee ---> solo puede ver, no puede modificar\nSettings: Vehicles ---> solo puede ver, no puede modificar', 'text-green', 'dashboard/management'),
-(3, 'Accounting user', 'Dashboard: timestam, lashauling recors, le quito safety y le quito inspecciones\nRecord Task: Payroll\nIncidences\nDay off (Ask for)\n----------------------------\n* Work order:\n\n    Todo work orders\n    Solo puede editar work orders que estan en revised, sento to the client y close, de resto solo las ve\n\n----------------------------\nReports: Payroll Report\nReports: Incidences Report\nReports: Maintenace Report\nReports: FLHA Report\nReports: Hauling Report\nReports: Hauling Report\nReports: Pickups & Trucks Inspection Report\nReports: Construction Equipment Inspection Report\nReports: Work Order Report\n----------------------------\nSettings: Planning ---> solo puede ver, no puede modificar\nSettings: Company\nSettings: Vehicles ---> de mantenimiento solo puede verlo, no editarlo ni adicionar ', 'text-danger', 'dashboard/accounting'),
-(4, 'Safety&Maintenance user', 'Dashboard: Le muestro notificaciones de futuros mantenimientos\r\nRecord Task: Payroll\r\nRecord Task: PPE inspection\r\n* Jobs info\r\n----------------------------\r\nEn jha solo dar permisos a safety\r\n----------------------------\r\nIncidences\r\nDay off (Ask for)\r\n----------------------------\r\n* Work order:\r\n\r\n    Pueden solo crear workorders y ver las que crearon\r\n    No puede cambiar estado de la work order\r\n    No puede tener acceso a enlace search ni search income\r\n    Quitar boton save and send to the client\r\n    Quitar boton asign rate ----perfil work order y acounting\r\n\r\n----------------------------\r\nDay off (Approval)\r\nReports: Incidences Report\r\nReports: Maintenace Report\r\nReports: FLHA Report\r\nReports: Hauling Report\r\nReports: Pickups & Trucks Inspection Report\r\nReports: Construction Equipment Inspection Report\r\nReports: Special Equipment Inspection Report\r\n----------------------------\r\nSettings: Hazard\r\nSettings: Hazard activity\r\nSettings: Vehicles\r\nSettings: Link to videos\r\nSettings: Link to manuals\r\n----------------------------\r\nManuals', 'text-info', 'dashboard/safety'),
-(5, 'Work order user', ' Record Task: Payroll\r\nIncidences\r\nDay off (Ask for)\r\n----------------------------\r\n* Work order:\r\n\r\n    CAMBIA ESTADO A REVISADA\r\n    Workorders el estado solo puede cambiar de on field a in progress y de in progress a revised\r\n    Si esta revisada solo la puede ver no la puede editar\r\n\r\n----------------------------\r\nReports: Payroll Report\r\nReports: Hauling Report\r\nReports: Work Order Report', 'text-warning', 'dashboard/work_order'),
-(6, 'Supervisor user', 'Dashboard: payroll todos los registros, todas las inspecciones\r\nRecord Task: Payroll\r\nRecord Task: Hauling\r\nIncidences\r\nDay off (Ask for)\r\n----------------------------\r\n* Work order:\r\n\r\n    Puede buscar work orders\r\n    Puede editar cualquiera simpere y cuando este en on field\r\n    Si esta en otro estado solo la puede ver no la puede editar\r\n    No puede aign rate\r\n    No pueden descargar invoice\r\n    En settings puede ir a planning\r\n    Reportes no tiene acceso\r\n    No tienen accesos a ppe inspeccion\r\n\r\n----------------------------\r\nManuals', 'text-success', 'dashboard/supervisor'),
-(7, 'Basic user', 'Dashboard: payroll solo sus registros, inspecciones solo sus inspecciones\r\nRecord Task: Payroll\r\nRecord Task: Hauling\r\nIncidences\r\nDay off (Ask for)\r\n----------------------------\r\n* Work order:\r\n\r\n    Pueden solo crear workorders y ver las que crearon\r\n    No puede cambiar estado de la work order\r\n    No puede tener acceso a enlace search ni search income\r\n    Quitar boton save and send to the client\r\n    Quitar boton asign rate ----perfil work order y acounting\r\n\r\n----------------------------\r\nManuals', 'text-primary', 'dashboard'),
-(99, 'SUPER ADMIN', 'Con acceso a todo el sistema', 'text-success', 'dashboard/admin');
+(1, 'Administrador', 'Se encarga de comfiguracion del sistema. Cargar tabla de Usuarios, tabla de proveedores', 'text-warning', 'dashboard/administrador'),
+(2, 'Usuario Consulta', 'Solo tiene acceso a ver información en el sistema. No puede editar ni adicionar nada.', 'text-green', 'dashboard/encargado'),
+(3, 'Encargado', 'Usuarios que van a realizar el mantenimiento a los equipos.', 'text-danger', 'dashboard/encargado'),
+(4, 'Supervisor', 'Carga en el sistema el plan de mantenimiento, asigna los mantenimientos a los encargados y realiza control de los mantenimientos', 'text-info', 'dashboard/supervisor'),
+(99, 'SUPER ADMIN', 'Con acceso a todo el sistema, encargaado de tablas parametricas del sistema', 'text-success', 'dashboard/admin');
 
 -- --------------------------------------------------------
 
@@ -322,7 +308,7 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `param_menu`
 --
 ALTER TABLE `param_menu`
-  MODIFY `id_menu` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_menu` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu_access`
