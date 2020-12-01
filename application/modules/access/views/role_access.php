@@ -75,7 +75,7 @@ if ($retornoError) {
 						<thead>
 							<tr>
 								<th class="text-center">Nombre Menú</th>
-								<th class="text-center">Enlace Menú</th>
+								<th class="text-center">Nombre Submenú</th>
 								<th class="text-center">Nombre Rol</th>
 								<th class="text-center">Editar/Eliminar</th>
 								<th class="text-center">Tipo Menú</th>

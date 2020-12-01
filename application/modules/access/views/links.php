@@ -35,11 +35,11 @@ $(function(){
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-link"></i> ENLACES
+					<i class="fa fa-link"></i> ENLACES SUBMENÚ
 				</div>
 				<div class="panel-body">
 					<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Enlace
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Enlace Submenú
 					</button><br>
 <?php
 $retornoExito = $this->session->flashdata('retornoExito');
@@ -73,7 +73,7 @@ if ($retornoError) {
 						<thead>
 							<tr>
 								<th class="text-center">Nombre Menú</th>
-								<th class="text-center">Nombre Enlace</th>
+								<th class="text-center">Nombre Submenú</th>
 								<th class="text-center">URL Enlace</th>
 								<th class="text-center">Icono Enlace</th>
 								<th class="text-center">Orden</th>

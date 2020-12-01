@@ -15,7 +15,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="perfil">Nombre Menú : *</label>
+					<label class="control-label" for="perfil">Nombre Menú: *</label>
 					<select name="id_menu" id="id_menu" class="form-control" required>
 						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($menuList); $i++) { ?>
@@ -34,7 +34,7 @@
 		
 			<div class="col-sm-6" id="div_link" style="display:<?php echo $mostrar; ?>">
 				<div class="form-group text-left">
-					<label class="control-label" for="perfil">Nombre Enlace : *</label>
+					<label class="control-label" for="perfil">Nombre Submenú: *</label>
 					<select name="id_link" id="id_link" class="form-control" >
 						<option value="">Seleccione...</option>
 						<?php 
@@ -54,7 +54,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="id_role">Nombre Rol : *</label>
+					<label class="control-label" for="id_role">Nombre Rol: *</label>
 					<select name="id_role" id="id_role" class="form-control" required>
 						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($roles); $i++) { ?>

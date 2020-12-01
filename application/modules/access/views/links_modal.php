@@ -1,8 +1,8 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/access/links.js"); ?>"></script>
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="exampleModalLabel">Enlaces
-	<br><small>Adicionar/Editar Enlaces</small>
+	<h4 class="modal-title" id="exampleModalLabel">Enlaces Submenú
+	<br><small>Adicionar/Editar Submenú</small>
 	</h4>
 </div>
 
@@ -25,7 +25,7 @@
 		
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="link_name">Nombre Enlace: *</label>
+					<label class="control-label" for="link_name">Nombre Submenú: *</label>
 					<input type="text" id="link_name" name="link_name" class="form-control" value="<?php echo $information?$information[0]["link_name"]:""; ?>" placeholder="Nombre Enlace" required >
 				</div> 
 			</div>

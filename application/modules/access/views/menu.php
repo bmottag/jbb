@@ -35,11 +35,11 @@ $(function(){
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-link"></i> MENÚ
+					<i class="fa fa-link"></i> ENLACES MENÚ
 				</div>
 				<div class="panel-body">
 					<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar enlaces al Menú
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Enlace al Menú
 					</button><br>
 <?php
 $retornoExito = $this->session->flashdata('retornoExito');
