@@ -289,7 +289,7 @@ class Access extends CI_Controller {
 	
 	/**
 	 * Listado de enlaces para los manuales
-     * @since 27/4/2018
+     * @since 1/12/2020
      * @author BMOTTAG
 	 */
 	public function manuals()
@@ -302,8 +302,8 @@ class Access extends CI_Controller {
 	}
 	
 	/**
-	 * Form Upload Locates 
-     * @since 27/4/2018
+	 * Formulario para cargar manuales
+     * @since 1/12/2020
      * @author BMOTTAG
 	 */
 	public function manuals_form($idLink = 'x', $error = '')
@@ -349,7 +349,7 @@ class Access extends CI_Controller {
 			//insertar datos
 			if($this->access_model->saveManual($path))
 			{
-				$this->session->set_flashdata('retornoExito', 'You have upload the information.');
+				$this->session->set_flashdata('retornoExito', 'Se cargo la información.');
 			}else{
 				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
 			}

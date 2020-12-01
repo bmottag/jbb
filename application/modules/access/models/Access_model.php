@@ -39,11 +39,13 @@
 		
 		/**
 		 * Add/Edit MANUAL
-		 * @since 27/4/2018
+		 * @since 1/12/2020
 		 */
 		public function saveManual($path) 
 		{
 				$idLink = $this->input->post('hddId');
+				$idMenu = 6; //ID MENU manuales 
+				$linkType = 5; //TIPO 5 = URL Externa - Manual
 				
 				$data = array(
 					'link_name' => $this->input->post('link_name'),
@@ -54,10 +56,10 @@
 				
 				//revisar si es para adicionar o editar
 				if ($idLink == '') {
-					$data['fk_id_menu'] = 9;//menu manuals
+					$data['fk_id_menu'] = $idMenu;
 					$data['link_icon'] = 'fa-hand-o-up';
 					$data['date_issue'] = date("Y-m-d G:i:s");
-					$data['link_type'] = 5;//Complete URL; Manuals
+					$data['link_type'] = $linkType;
 
 					$query = $this->db->insert('param_menu_links', $data);			
 				} else {
