@@ -44,8 +44,8 @@
 					<label class="control-label" for="menu_type">Tipo Menú: *</label>
 					<select name="menu_type" id="menu_type" class="form-control" required>
 						<option value=''>Seleccione...</option>
-						<option value=1 <?php if($information && $information[0]["menu_type"] == 1) { echo "selected"; }  ?>>Lateral</option>
-						<option value=2 <?php if($information && $information[0]["menu_type"] == 2) { echo "selected"; }  ?>>Superior</option>
+						<option value=1 <?php if($information && $information[0]["menu_type"] == 1) { echo "selected"; }  ?>>Menú Lateral</option>
+						<option value=2 <?php if($information && $information[0]["menu_type"] == 2) { echo "selected"; }  ?>>Menú Superior</option>
 					</select>
 				</div>
 			</div>
@@ -72,16 +72,6 @@
 		</div>
 				
 		<div class="form-group">
-			<div class="row" align="center">
-				<div style="width:50%;" align="center">
-					<button type="button" id="btnSubmit" name="btnSubmit" class="btn btn-primary" >
-						Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
-					</button> 
-				</div>
-			</div>
-		</div>
-				
-		<div class="form-group">
 			<div id="div_load" style="display:none">		
 				<div class="progress progress-striped active">
 					<div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
@@ -93,6 +83,16 @@
 				<div class="alert alert-danger"><span class="glyphicon glyphicon-remove" id="span_msj">&nbsp;</span></div>
 			</div>	
 		</div>
-			
+				
+		<div class="form-group">
+			<div class="row" align="center">
+				<div style="width:50%;" align="center">
+					<button type="button" id="btnSubmit" name="btnSubmit" class="btn btn-primary" >
+						Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+					</button> 
+				</div>
+			</div>
+		</div>
+							
 	</form>
 </div>
