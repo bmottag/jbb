@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2020 a las 16:33:52
+-- Tiempo de generación: 02-12-2020 a las 21:06:16
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -34,6 +34,7 @@ CREATE TABLE `equipos` (
   `marca` varchar(50) NOT NULL,
   `modelo` varchar(50) NOT NULL,
   `numero_serial` varchar(30) NOT NULL,
+  `fk_id_tipo_equipo` int(1) NOT NULL,
   `estado_equipo` tinyint(1) NOT NULL COMMENT '1:Activo;2:Inactivo',
   `observacion` text NOT NULL,
   `qr_code_img` varchar(250) NOT NULL,
@@ -44,14 +45,14 @@ CREATE TABLE `equipos` (
 -- Volcado de datos para la tabla `equipos`
 --
 
-INSERT INTO `equipos` (`id_equipo`, `numero_inventario`, `fk_id_dependencia`, `marca`, `modelo`, `numero_serial`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`) VALUES
-(1, '14853', 7, 'Chevrolet ', '2017', '3GNFL7E51HS559955', 1, 'Inventario Yezid ', 'images/equipos/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc'),
-(2, '14854', 7, 'Nissan', '2017', '3N6CD33B2ZK365122', 1, 'Inventario Yezid ', 'images/equipos/2_qr_code.png', '2jnpWRXLbDdCG8v9QrKJGlR84UXIKqzkhNH9CLm7eScoSMxWn0k'),
-(3, '16901', 7, 'Toyota', '2007', '9FH11UJ9079012119', 1, 'Inventario Yezid', 'images/equipos/3_qr_code.png', '3e0L1EUhaZIM0OZ9tdkon8brO7Auo7jL58GE7wg6V1GvqFwinHb'),
-(4, '16989', 7, 'Toyota- Hilux', '1996', 'RN1067012769', 1, 'Inventario Yezid', 'images/equipos/4_qr_code.png', '4XnvRyFKtJVZPPzzyRdPYzr1QkgpYtoP0kENJh5D8mQHESej8y4'),
-(5, '17129', 7, 'Volkswagen', '2018', '9536G8247JR812344', 1, 'Inventario Yezid', 'images/equipos/5_qr_code.png', '5PiIEUliY7PzZdS0ZDyUCaMNPfv25S1wQ1AlKAwxMlrdNH3N4mM'),
-(6, '17710', 7, 'Renault', '2020', '93YMAF4CELJ079626', 1, 'Inventario Yezid', 'images/equipos/6_qr_code.png', '6jxt7Cevdl0j5MHgHuUZh93iOWBxbOTTyXG1FHKKaJuLBwasNvY'),
-(7, '17615', 7, 'Chevrolet ', '2020', '9GDFVR345LB008406', 1, 'Inventaro Yezid', 'images/equipos/7_qr_code.png', '7sVXiSAcnge43sw3X0d1p4N8IHCo4LLAlN5cfX5ZRz6kuvJgAc0');
+INSERT INTO `equipos` (`id_equipo`, `numero_inventario`, `fk_id_dependencia`, `marca`, `modelo`, `numero_serial`, `fk_id_tipo_equipo`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`) VALUES
+(1, '14853', 7, 'Chevrolet ', '2017', '3GNFL7E51HS559955', 1, 1, 'Inventario Yezid ', 'images/equipos/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc'),
+(2, '14854', 7, 'Nissan', '2017', '3N6CD33B2ZK365122', 1, 1, 'Inventario Yezid ', 'images/equipos/2_qr_code.png', '2jnpWRXLbDdCG8v9QrKJGlR84UXIKqzkhNH9CLm7eScoSMxWn0k'),
+(3, '16901', 7, 'Toyota', '2007', '9FH11UJ9079012119', 1, 1, 'Inventario Yezid', 'images/equipos/3_qr_code.png', '3e0L1EUhaZIM0OZ9tdkon8brO7Auo7jL58GE7wg6V1GvqFwinHb'),
+(4, '16989', 7, 'Toyota- Hilux', '1996', 'RN1067012769', 1, 1, 'Inventario Yezid', 'images/equipos/4_qr_code.png', '4XnvRyFKtJVZPPzzyRdPYzr1QkgpYtoP0kENJh5D8mQHESej8y4'),
+(5, '17129', 7, 'Volkswagen', '2018', '9536G8247JR812344', 1, 1, 'Inventario Yezid', 'images/equipos/5_qr_code.png', '5PiIEUliY7PzZdS0ZDyUCaMNPfv25S1wQ1AlKAwxMlrdNH3N4mM'),
+(6, '17710', 7, 'Renault', '2020', '93YMAF4CELJ079626', 1, 1, 'Inventario Yezid', 'images/equipos/6_qr_code.png', '6jxt7Cevdl0j5MHgHuUZh93iOWBxbOTTyXG1FHKKaJuLBwasNvY'),
+(7, '17615', 7, 'Chevrolet ', '2020', '9GDFVR345LB008406', 1, 1, 'Inventaro Yezid', 'images/equipos/7_qr_code.png', '7sVXiSAcnge43sw3X0d1p4N8IHCo4LLAlN5cfX5ZRz6kuvJgAc0');
 
 -- --------------------------------------------------------
 
@@ -224,6 +225,25 @@ INSERT INTO `param_role` (`id_role`, `role_name`, `description`, `style`, `dashb
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `param_tipo_equipos`
+--
+
+CREATE TABLE `param_tipo_equipos` (
+  `id_tipo_equipo` int(1) NOT NULL,
+  `tipo_equipo` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `param_tipo_equipos`
+--
+
+INSERT INTO `param_tipo_equipos` (`id_tipo_equipo`, `tipo_equipo`) VALUES
+(1, 'Vehículos'),
+(2, 'Maquinaria pesada');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -279,7 +299,8 @@ ALTER TABLE `equipos`
   ADD UNIQUE KEY `numero_unidad` (`numero_inventario`),
   ADD UNIQUE KEY `qr_code_encryption` (`qr_code_encryption`),
   ADD KEY `estado_equipo` (`estado_equipo`),
-  ADD KEY `fk_id_dependencia` (`fk_id_dependencia`) USING BTREE;
+  ADD KEY `fk_id_dependencia` (`fk_id_dependencia`) USING BTREE,
+  ADD KEY `fk_id_tipo_equipo` (`fk_id_tipo_equipo`);
 
 --
 -- Indices de la tabla `param_dependencias`
@@ -323,6 +344,12 @@ ALTER TABLE `param_proveedores`
 --
 ALTER TABLE `param_role`
   ADD PRIMARY KEY (`id_role`);
+
+--
+-- Indices de la tabla `param_tipo_equipos`
+--
+ALTER TABLE `param_tipo_equipos`
+  ADD PRIMARY KEY (`id_tipo_equipo`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -387,6 +414,12 @@ ALTER TABLE `param_role`
   MODIFY `id_role` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
+-- AUTO_INCREMENT de la tabla `param_tipo_equipos`
+--
+ALTER TABLE `param_tipo_equipos`
+  MODIFY `id_tipo_equipo` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -406,7 +439,8 @@ ALTER TABLE `usuarios_llave_contraseña`
 -- Filtros para la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`fk_id_dependencia`) REFERENCES `param_dependencias` (`id_dependencia`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`fk_id_dependencia`) REFERENCES `param_dependencias` (`id_dependencia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `equipos_ibfk_2` FOREIGN KEY (`fk_id_tipo_equipo`) REFERENCES `param_tipo_equipos` (`id_tipo_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `param_menu_access`
