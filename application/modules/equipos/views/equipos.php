@@ -36,24 +36,24 @@ $(function(){
 						<div class="form-group">
 							<div class="col-sm-5 col-sm-offset-1">
 								<label for="numero_inventario">Número Inventario Entidad</label>
-								<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" placeholder="Número Inventario Entidad" >
+								<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" value="<?php echo $_POST?$this->input->post('numero_inventario'):""; ?>" placeholder="Número Inventario Entidad" >
 							</div>
 							
 							<div class="col-sm-5">
 								<label for="marca">Marca </label>
-								<input type="text" id="marca" name="marca" class="form-control" placeholder="Marca" >
+								<input type="text" id="marca" name="marca" class="form-control" value="<?php echo $_POST?$this->input->post('marca'):""; ?>" placeholder="Marca" >
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-5 col-sm-offset-1">
 								<label for="modelo">Modelo</label>
-								<input type="text" id="modelo" name="modelo" class="form-control" placeholder="Modelo" >
+								<input type="text" id="modelo" name="modelo" class="form-control" value="<?php echo $_POST?$this->input->post('modelo'):""; ?>" placeholder="Modelo" >
 							</div>
 							
 							<div class="col-sm-5">
 								<label for="numero_serial">Número Serial</label>
-								<input type="text" id="numero_serial" name="numero_serial" class="form-control" placeholder="Número Serial" >
+								<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $_POST?$this->input->post('numero_serial'):""; ?>" placeholder="Número Serial" >
 							</div>
 						</div>
 						
@@ -109,7 +109,7 @@ $(function(){
 	}
 ?>			
 					
-					<i class="fa fa-truck"></i> ÚLTIMOS EQUIPOS REGISTRADOS
+					<i class="fa fa-truck"></i> <?php echo $tituloListado; ?>
 				</div>
 				<div class="panel-body">	
 				
