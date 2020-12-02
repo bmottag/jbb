@@ -279,8 +279,13 @@ class General_model extends CI_Model {
 					$this->db->like('A.numero_serial', $arrData["numero_serial"]); 
 				}
 
-				$this->db->order_by('A.numero_inventario', 'asc');
-				$query = $this->db->get('equipos A');
+				$this->db->order_by('id_equipo', 'desc');
+				
+				if (array_key_exists("limit", $arrData)) {
+					$query = $this->db->get('equipos A', $arrData["limit"]);
+				}else{
+					$query = $this->db->get('equipos A');
+				}
 
 				if ($query->num_rows() > 0) {
 					return $query->result_array();
