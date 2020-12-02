@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2020 a las 15:56:13
+-- Tiempo de generación: 02-12-2020 a las 16:33:52
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `equipos` (
   `id_equipo` int(10) NOT NULL,
-  `numero_unidad` varchar(10) NOT NULL,
-  `nombre_equipo` varchar(50) NOT NULL,
-  `fabricante` varchar(50) NOT NULL,
+  `numero_inventario` varchar(10) NOT NULL,
+  `fk_id_dependencia` int(10) NOT NULL,
+  `marca` varchar(50) NOT NULL,
   `modelo` varchar(50) NOT NULL,
   `numero_serial` varchar(30) NOT NULL,
   `estado_equipo` tinyint(1) NOT NULL COMMENT '1:Activo;2:Inactivo',
@@ -44,11 +44,40 @@ CREATE TABLE `equipos` (
 -- Volcado de datos para la tabla `equipos`
 --
 
-INSERT INTO `equipos` (`id_equipo`, `numero_unidad`, `nombre_equipo`, `fabricante`, `modelo`, `numero_serial`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`) VALUES
-(1, 'JBB-00001', 'Camioneta', 'FORD', '3500', '2020-ENERO', 1, 'PRIMER REGISTRO', 'rwetwer', 'wertwert'),
-(3, 'JBB-0002', 'Camion', 'Kenworth', '2006', '2345678', 1, 'Segundo registro con codigo QR', 'images/equipos/3_qr_code.png', '3vbLf5PhbRUxoKYGDuP6j7zjmfntN1kugggDWQtQpo1H9BP4rog'),
-(4, '', '', '', '', '', 0, '', 'images/equipos/4_qr_code.png', '4FzGjCI9HXLcc2B8Z9Segm2uQ6224CBJFmFWwUsM11o7VFV4lhQ'),
-(7, 'JB-0003', 'Impresoa', 'HP-3', 'JET450', '123445667', 1, 'Nuevo registro', 'images/equipos/7_qr_code.png', '7R7h0Bpms5c0ivbVDOOJ4bWB8Acsxy8QK1HJxK6BzXtFL44nALG');
+INSERT INTO `equipos` (`id_equipo`, `numero_inventario`, `fk_id_dependencia`, `marca`, `modelo`, `numero_serial`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`) VALUES
+(1, '14853', 7, 'Chevrolet ', '2017', '3GNFL7E51HS559955', 1, 'Inventario Yezid ', 'images/equipos/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc'),
+(2, '14854', 7, 'Nissan', '2017', '3N6CD33B2ZK365122', 1, 'Inventario Yezid ', 'images/equipos/2_qr_code.png', '2jnpWRXLbDdCG8v9QrKJGlR84UXIKqzkhNH9CLm7eScoSMxWn0k'),
+(3, '16901', 7, 'Toyota', '2007', '9FH11UJ9079012119', 1, 'Inventario Yezid', 'images/equipos/3_qr_code.png', '3e0L1EUhaZIM0OZ9tdkon8brO7Auo7jL58GE7wg6V1GvqFwinHb'),
+(4, '16989', 7, 'Toyota- Hilux', '1996', 'RN1067012769', 1, 'Inventario Yezid', 'images/equipos/4_qr_code.png', '4XnvRyFKtJVZPPzzyRdPYzr1QkgpYtoP0kENJh5D8mQHESej8y4'),
+(5, '17129', 7, 'Volkswagen', '2018', '9536G8247JR812344', 1, 'Inventario Yezid', 'images/equipos/5_qr_code.png', '5PiIEUliY7PzZdS0ZDyUCaMNPfv25S1wQ1AlKAwxMlrdNH3N4mM'),
+(6, '17710', 7, 'Renault', '2020', '93YMAF4CELJ079626', 1, 'Inventario Yezid', 'images/equipos/6_qr_code.png', '6jxt7Cevdl0j5MHgHuUZh93iOWBxbOTTyXG1FHKKaJuLBwasNvY'),
+(7, '17615', 7, 'Chevrolet ', '2020', '9GDFVR345LB008406', 1, 'Inventaro Yezid', 'images/equipos/7_qr_code.png', '7sVXiSAcnge43sw3X0d1p4N8IHCo4LLAlN5cfX5ZRz6kuvJgAc0');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `param_dependencias`
+--
+
+CREATE TABLE `param_dependencias` (
+  `id_dependencia` int(10) NOT NULL,
+  `dependencia` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `param_dependencias`
+--
+
+INSERT INTO `param_dependencias` (`id_dependencia`, `dependencia`) VALUES
+(1, 'Dirección'),
+(2, 'Oficina Asesora Jurídica'),
+(3, 'Oficina de Control Interno'),
+(4, 'Oficina Asesora de Planeación'),
+(5, 'Secretaría General y de Control Disciplinario'),
+(6, 'Subdirección Científica'),
+(7, 'Subdirección Técnica Operativa'),
+(8, 'Oficina de Arborización Urbana'),
+(9, 'Subdirección Educativa y Cultural');
 
 -- --------------------------------------------------------
 
@@ -103,7 +132,12 @@ INSERT INTO `param_menu_access` (`id_access`, `fk_id_menu`, `fk_id_link`, `fk_id
 (7, 3, 7, 99),
 (4, 4, 1, 99),
 (5, 4, 2, 99),
-(6, 4, 3, 99);
+(6, 4, 3, 99),
+(9, 4, 8, 99),
+(10, 4, 9, 99),
+(11, 6, 12, 99),
+(12, 6, 13, 99),
+(13, 6, 14, 99);
 
 -- --------------------------------------------------------
 
@@ -128,13 +162,18 @@ CREATE TABLE `param_menu_links` (
 --
 
 INSERT INTO `param_menu_links` (`id_link`, `fk_id_menu`, `link_name`, `link_url`, `link_icon`, `order`, `date_issue`, `link_state`, `link_type`) VALUES
-(1, 4, 'Enlaces Menu', 'access/menu', 'fa-link', 2, '2020-11-18 19:45:31', 1, 1),
-(2, 4, 'Enlaces Submenu', 'access/links', 'fa-link', 3, '2020-11-18 19:45:31', 1, 1),
-(3, 4, 'Acceso de roles', 'access/role_access', 'fa-puzzle-piece', 4, '2020-11-18 19:45:31', 1, 1),
+(1, 4, 'Enlaces Menú', 'access/menu', 'fa-link', 1, '2020-11-18 19:45:31', 1, 1),
+(2, 4, 'Enlaces Submenú', 'access/links', 'fa-link', 2, '2020-11-18 19:45:31', 1, 1),
+(3, 4, 'Acceso Roles', 'access/role_access', 'fa-puzzle-piece', 4, '2020-11-18 19:45:31', 1, 1),
 (4, 1, 'Usuarios', 'settings/employee/1', 'fa-users', 1, '2020-11-19 06:13:07', 1, 1),
 (5, 1, '----------', 'DIVIDER', 'fa-hand-o-up', 2, '2020-11-19 07:07:22', 1, 3),
 (6, 1, 'Proveedores', 'settings/company', 'fa-building', 3, '2020-11-19 07:08:43', 1, 1),
-(7, 3, 'Buscar', 'equipos', 'fa-ambulance', 1, '2020-11-20 01:29:59', 1, 1);
+(7, 3, 'Buscar', 'equipos', 'fa-ambulance', 1, '2020-11-20 01:29:59', 1, 1),
+(8, 4, '----------', 'DIVIDER', 'fa-pin', 3, '2020-12-01 17:19:46', 1, 3),
+(9, 4, 'Descripción Roles', 'dashboard/rol_info', 'fa-info', 5, '2020-12-01 17:22:23', 1, 1),
+(12, 6, 'Manual de Usuario', 'http://[::1]/jbb/files/doc_diana.pdf', 'fa-hand-o-up', 1, '2020-12-01 19:04:26', 1, 5),
+(13, 6, 'Cargar Manuales', 'access/manuals', 'fa-book', 25, '2020-12-01 19:10:25', 1, 1),
+(14, 6, 'DIVIDER', '----------', 'fa-pin', 24, '2020-12-01 19:11:24', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -226,7 +265,7 @@ CREATE TABLE `usuarios_llave_contraseña` (
 --
 
 INSERT INTO `usuarios_llave_contraseña` (`id_llave`, `fk_id_user_ulc`, `email_user`, `llave`) VALUES
-(13, 1, 'benmotta@gmail.com', 'CrOwkwEH06WaqWdkH21I');
+(14, 1, 'benmotta@gmail.com', 'BT3frkg19CO6RvHmUdY6');
 
 --
 -- Índices para tablas volcadas
@@ -237,9 +276,16 @@ INSERT INTO `usuarios_llave_contraseña` (`id_llave`, `fk_id_user_ulc`, `email_u
 --
 ALTER TABLE `equipos`
   ADD PRIMARY KEY (`id_equipo`),
-  ADD UNIQUE KEY `numero_unidad` (`numero_unidad`),
+  ADD UNIQUE KEY `numero_unidad` (`numero_inventario`),
   ADD UNIQUE KEY `qr_code_encryption` (`qr_code_encryption`),
-  ADD KEY `estado_equipo` (`estado_equipo`);
+  ADD KEY `estado_equipo` (`estado_equipo`),
+  ADD KEY `fk_id_dependencia` (`fk_id_dependencia`) USING BTREE;
+
+--
+-- Indices de la tabla `param_dependencias`
+--
+ALTER TABLE `param_dependencias`
+  ADD PRIMARY KEY (`id_dependencia`);
 
 --
 -- Indices de la tabla `param_menu`
@@ -305,6 +351,12 @@ ALTER TABLE `equipos`
   MODIFY `id_equipo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT de la tabla `param_dependencias`
+--
+ALTER TABLE `param_dependencias`
+  MODIFY `id_dependencia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT de la tabla `param_menu`
 --
 ALTER TABLE `param_menu`
@@ -314,13 +366,13 @@ ALTER TABLE `param_menu`
 -- AUTO_INCREMENT de la tabla `param_menu_access`
 --
 ALTER TABLE `param_menu_access`
-  MODIFY `id_access` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_access` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu_links`
 --
 ALTER TABLE `param_menu_links`
-  MODIFY `id_link` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_link` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `param_proveedores`
@@ -344,11 +396,17 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios_llave_contraseña`
 --
 ALTER TABLE `usuarios_llave_contraseña`
-  MODIFY `id_llave` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_llave` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `equipos`
+--
+ALTER TABLE `equipos`
+  ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`fk_id_dependencia`) REFERENCES `param_dependencias` (`id_dependencia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `param_menu_access`
