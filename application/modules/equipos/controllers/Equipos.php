@@ -16,13 +16,21 @@ class Equipos extends CI_Controller {
 	public function index($estado=1)
 	{
 			$data['estadoEquipo'] = $estado;
+			$data['tituloListado'] = FALSE;
 
 			if(!$_POST)
 			{
-				$arrParam = array("estadoEquipo" => $estado);
+				$data['tituloListado'] = 'LISTA DE ÚLTIMOS 10 EQUIPOS REGISTRADOS';
+				//busco los ultimos 10 equipos de la base de datos
+				$arrParam = array(
+							"estadoEquipo" => $estado,
+							'limit' => 10
+							);
 				$data['info'] = $this->general_model->get_equipos_info($arrParam);
 			}elseif($this->input->post('numero_inventario') || $this->input->post('marca') || $this->input->post('modelo') || $this->input->post('numero_serial'))
-			{				
+			{
+				$data['tituloListado'] = 'LISTA DE EQUIPOS QUE COINCIDEN CON SU BUSQUEDA';
+				
 				$data['numero_inventario'] =  $this->input->post('numero_inventario');
 				$data['marca'] =  $this->input->post('marca');
 				$data['modelo'] =  $this->input->post('modelo');
