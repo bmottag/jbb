@@ -17,6 +17,7 @@
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
 					'numero_serial' => $this->input->post('numero_serial'),
+					'fk_id_tipo_equipo' => $this->input->post('id_tipo_equipo'),
 					'estado_equipo' => $this->input->post('estado'),
 					'observacion' => $this->input->post('observacion')
 				);	

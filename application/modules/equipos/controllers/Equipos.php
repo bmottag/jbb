@@ -73,6 +73,13 @@ class Equipos extends CI_Controller {
 				"id" => "x"
 			);
 			$data['dependencias'] = $this->general_model->get_basic_search($arrParam);
+			
+			$arrParam = array(
+				"table" => "param_tipo_equipos",
+				"order" => "tipo_equipo",
+				"id" => "x"
+			);
+			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
 							
 			$this->load->view("equipos_modal", $data);
     }
@@ -184,6 +191,13 @@ class Equipos extends CI_Controller {
 				"id" => "x"
 			);
 			$data['dependencias'] = $this->general_model->get_basic_search($arrParam);
+			
+			$arrParam = array(
+				"table" => "param_tipo_equipos",
+				"order" => "tipo_equipo",
+				"id" => "x"
+			);
+			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
 			
 			$data["view"] = 'equipos_detalle';
 			$this->load->view("layout", $data);

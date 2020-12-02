@@ -58,6 +58,21 @@
 
 			<div class="col-sm-6">
 				<div class="form-group text-left">
+					<label class="control-label" for="id_tipo_equipo">Tipo Equipo: *</label>
+					<select name="id_tipo_equipo" id="id_tipo_equipo" class="form-control" required>
+						<option value="">Seleccione...</option>
+						<?php for ($i = 0; $i < count($tipoEquipo); $i++) { ?>
+							<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>" <?php if($information && $information[0]["fk_id_tipo_equipo"] == $tipoEquipo[$i]["id_tipo_equipo"]) { echo "selected"; }  ?>><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>	
+						<?php } ?>
+					</select>
+				</div>
+			</div>		
+ 
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group text-left">
 					<label class="control-label" for="estado">Estado: *</label>
 					<select name="estado" id="estado" class="form-control" required>
 						<option value=''>Select...</option>
@@ -65,12 +80,12 @@
 						<option value=2 <?php if($information && $information[0]["estado_equipo"] == 2) { echo "selected"; }  ?>>Inactivo</option>
 					</select>
 				</div>
-			</div>			
- 
+			</div>	
+
 		</div>
 		
 		<div class="form-group text-left">
-			<label class="control-label" for="observacion">Observación: *</label>
+			<label class="control-label" for="observacion">Observación: </label>
 			<textarea id="observacion" name="observacion" placeholder="Observación" class="form-control" rows="3"><?php echo $information?$information[0]["observacion"]:""; ?></textarea>
 		</div>
 						

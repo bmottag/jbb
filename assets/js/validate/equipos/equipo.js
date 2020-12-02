@@ -7,8 +7,8 @@ $( document ).ready( function () {
 			marca:					{ required: true, minlength: 3, maxlength: 20 },
 			modelo: 				{ required: true, minlength: 3, maxlength: 20 },
 			numero_serial: 			{ required: true, minlength: 3, maxlength: 20 },
-			estado: 				{ required: true },
-			observacion: 			{ required: true }
+			id_tipo_equipo: 		{ required: true },
+			estado: 				{ required: true }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

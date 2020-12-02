@@ -101,6 +101,18 @@ if ($retornoError) {
 							</div>
 							
 							<div class="col-sm-6">
+								<label for="from">Tipo Equipo: </label>
+								<select name="id_tipo_equipo" id="id_tipo_equipo" class="form-control" required>
+									<option value="">Seleccione...</option>
+									<?php for ($i = 0; $i < count($tipoEquipo); $i++) { ?>
+										<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>" <?php if($info && $info[0]["fk_id_tipo_equipo"] == $tipoEquipo[$i]["id_tipo_equipo"]) { echo "selected"; }  ?>><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>	
+									<?php } ?>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-6">
 								<label for="from">Estado: </label>
 								<select name="estado" id="estado" class="form-control" required>
 									<option value=''>Select...</option>
@@ -108,9 +120,7 @@ if ($retornoError) {
 									<option value=2 <?php if($info && $info[0]["estado_equipo"] == 2) { echo "selected"; }  ?>>Inactivo</option>
 								</select>
 							</div>
-						</div>
 						
-						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="observacion">Observación: </label>
 								<textarea id="observacion" name="observacion" placeholder="Observación" class="form-control" rows="3"><?php echo $info?$info[0]["observacion"]:""; ?></textarea>
