@@ -56,14 +56,14 @@ if ($retornoError) {
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">10</div>
-                                    <div>Time Stamp</div>
+                                    <div>Registros</div>
                                 </div>
                             </div>
                         </div>
 						
                         <a href="#anclaPayroll">
                             <div class="panel-footer">
-                                <span class="pull-left">Last Payroll Records</span>
+                                <span class="pull-left">Últimos registros</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -80,14 +80,14 @@ if ($retornoError) {
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">20</div>
-                                    <div>FLHA</div>
+                                    <div>Vehículos</div>
                                 </div>
                             </div>
                         </div>
 
                         <a href="#anclaSafety">
                             <div class="panel-footer">
-                                <span class="pull-left"> Last FLHA Records </span>
+                                <span class="pull-left"> Últimos registros </span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -104,14 +104,14 @@ if ($retornoError) {
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">30</div>
-                                    <div>JOBS</div>
+                                    <div>Mantenimientos</div>
                                 </div>
                             </div>
                         </div>
 
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left"> Jobs Info </span>
+                                <span class="pull-left"> Últimos registros </span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -133,9 +133,9 @@ if ($retornoError) {
                             </div>
                         </div>
 
-                        <a href="<?php echo base_url('dashboard/hauling'); ?>">
+                        <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Last Hauling Records </span>
+                                <span class="pull-left">Últimos registros </span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -145,78 +145,6 @@ if ($retornoError) {
 
 			</div>
 			
-			<div class="row">
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-search fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">7</div>
-                                    <div>Pickups & Trucks Inspections</div>
-                                </div>
-                            </div>
-                        </div>
-						<a href="<?php echo base_url('dashboard/pickups_inspection'); ?>">
-                            <div class="panel-footer">
-                                <span class="pull-left">Last Inspections</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-search fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">29</div>
-                                    <div>Construction Equipment Inspections</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="<?php echo base_url('dashboard/construction_equipment_inspection'); ?>">
-                            <div class="panel-footer">
-                                <span class="pull-left"> Last Inspections </span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-				
-            </div>
-            <!-- /.row -->
-            <div class="row">
-
-<a name="anclaPayroll" ></a>			
-				<div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <i class="fa fa-book fa-fw"></i> Last Payroll Records
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-
-
-<a class="btn btn-default btn-circle" href="#anclaUp"><i class="fa fa-arrow-up"></i> </a>
-
-					
-				</div>
-				<!-- /.panel-body -->
-			</div>
-
-		</div>
 	
-</div>		
 
 
