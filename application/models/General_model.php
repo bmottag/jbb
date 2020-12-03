@@ -129,6 +129,10 @@ class General_model extends CI_Model {
 		if (array_key_exists("filtroState", $arrData)) {
 			$this->db->where('U.state !=', 2);
 		}
+		
+		if (array_key_exists("idUser", $arrData)) {
+			$this->db->where('U.id_user', $arrData["idUser"]);
+		}
 
 		$this->db->order_by("first_name, last_name", "ASC");
 		$query = $this->db->get("usuarios U");
