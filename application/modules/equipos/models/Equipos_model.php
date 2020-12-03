@@ -46,6 +46,43 @@
 				}
 		}	
 		
+		/**
+		 * Guardar equipo
+		 * @since 3/12/2020
+		 */
+		public function guardarInfoEspecificaVehiculo() 
+		{
+				$idInfoEspecificaEquipo = $this->input->post('hddId');
+				
+				$data = array(
+					'fk_id_equipo' => $this->input->post('hddIdEquipo'),
+					'placa' => $this->input->post('placa'),
+					'linea' => $this->input->post('linea'),
+					'color' => $this->input->post('color'),
+					'fk_id_clase_vechiculo' => $this->input->post('id_clase_vechiculo'),
+					'fk_id_tipo_carroceria' => $this->input->post('id_tipo_carroceria'),
+					'combustible' => $this->input->post('combustible'),
+					'capacidad' => $this->input->post('capacidad'),
+					'servicio' => $this->input->post('servicio'),
+					'numero_motor' => $this->input->post('numero_motor'),
+					'multas' => $this->input->post('multas')
+				);	
+
+				//revisar si es para adicionar o editar
+				if ($idInfoEspecificaEquipo == '') 
+				{							
+					$query = $this->db->insert('equipos_detalle_vehiculo', $data);
+				} else {
+					$this->db->where('id_equipo_detalle_vehiculo', $idInfoEspecificaEquipo);
+					$query = $this->db->update('equipos_detalle_vehiculo', $data);
+				}
+				if ($query) {
+					return $idInfoEspecificaEquipo;
+				} else {
+					return false;
+				}
+		}
+		
 		
 		
 		

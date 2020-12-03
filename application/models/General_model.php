@@ -262,6 +262,7 @@ class General_model extends CI_Model {
 		{		
 				$this->db->select();
 				$this->db->join('param_dependencias D', 'D.id_dependencia = A.fk_id_dependencia', 'INNER');
+				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = A.fk_id_tipo_equipo', 'INNER');
 
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.id_equipo', $arrData["idEquipo"]);
@@ -290,6 +291,30 @@ class General_model extends CI_Model {
 				}else{
 					$query = $this->db->get('equipos A');
 				}
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+		
+		/**
+		 * Consulta lista de equipos
+		 * @since 3/12/2020
+		 */
+		public function equipos_detalle_vehiculo($arrData) 
+		{		
+				$this->db->select();				
+				$this->db->join('param_clase_vehiculo C', 'C.id_clase_vechiculo = A.fk_id_clase_vechiculo', 'LEFT');
+				$this->db->join('param_tipo_carroceria T', 'T.id_tipo_carroceria = A.fk_id_tipo_carroceria', 'LEFT');
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.fk_id_equipo', $arrData["idEquipo"]);
+				}
+				
+				$query = $this->db->get('equipos_detalle_vehiculo A');
+
 
 				if ($query->num_rows() > 0) {
 					return $query->result_array();

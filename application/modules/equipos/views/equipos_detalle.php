@@ -17,13 +17,11 @@
 			<?php } ?>
 		
 			<div class="list-group">
-				<a href="<?php echo base_url('equipos'); ?>" class="list-group-item">
-					<i class="fa fa-comment fa-reply-all"></i> Regresar
+				<a href="<?php echo base_url('equipos/detalle/' . $info[0]['id_equipo']); ?>" class="list-group-item">
+					<i class="fa fa-twitter fa-wrench"></i> Información General
 				</a>
-				<a href="#" class="list-group-item">
-					<i class="fa fa-twitter fa-wrench"></i> Mantenimientos
-					<span class="pull-right text-muted small"><em>12</em>
-					</span>
+				<a href="<?php echo base_url('equipos/especifico/' . $info[0]['id_equipo']); ?>" class="list-group-item">
+					<i class="fa fa-twitter fa-wrench"></i> Información Específica
 				</a>
 			</div>
 
@@ -129,16 +127,6 @@ if ($retornoError) {
 
 						<div class="form-group">
 							<div class="row" align="center">
-								<div style="width:100%;" align="center">							
-									<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-info'>
-										Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
-									</button>
-								</div>
-							</div>
-						</div>
-								
-						<div class="form-group">
-							<div class="row" align="center">
 								<div style="width:80%;" align="center">
 									<div id="div_load" style="display:none">		
 										<div class="progress progress-striped active">
@@ -152,8 +140,18 @@ if ($retornoError) {
 									</div>
 								</div>
 							</div>
-						</div>								
+						</div>	
 
+						<div class="form-group">
+							<div class="row" align="center">
+								<div style="width:100%;" align="center">							
+									<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-info'>
+										Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+									</button>
+								</div>
+							</div>
+						</div>
+															
 					</form>
 
 				</div>

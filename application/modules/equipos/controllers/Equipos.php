@@ -86,7 +86,7 @@ class Equipos extends CI_Controller {
 
 	/**
 	 * Guardar equipos
-	 * @review 19/11/2020
+	 * @since 19/11/2020
      * @author BMOTTAG
 	 */
 	public function guardar_equipos()
@@ -202,6 +202,64 @@ class Equipos extends CI_Controller {
 			$data["view"] = 'equipos_detalle';
 			$this->load->view("layout", $data);
 	}
+	
+	/**
+	 * Detalle de un equipo
+     * @since 3/12/2020
+     * @author BMOTTAG
+	 */
+	public function especifico($idEquipo)
+	{
+			$arrParam = array("idEquipo" => $idEquipo);
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+			
+			$consulta = $data['info'][0]['formulario_especifico'];
+
+			$data['infoEspecifica'] = $this->general_model->$consulta($arrParam);
+					
+			$arrParam = array(
+				"table" => "param_clase_vehiculo",
+				"order" => "clase_vechiculo",
+				"id" => "x"
+			);
+			$data['claseVehiculo'] = $this->general_model->get_basic_search($arrParam);
+			
+			$arrParam = array(
+				"table" => "param_tipo_carroceria",
+				"order" => "tipo_carroceria",
+				"id" => "x"
+			);
+			$data['tipoCarroceria'] = $this->general_model->get_basic_search($arrParam);
+			
+			$data["view"] = $consulta;
+			$this->load->view("layout", $data);
+	}
+	
+	/**
+	 * Guardar Informacion Especifica
+	 * @since 3/12/2020
+     * @author BMOTTAG
+	 */
+	public function guardar_info_especifica_vehiculo()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			
+			$idInfoEspecificaEquipo = $this->input->post('hddId');
+			$data["idRecord"] = $this->input->post('hddIdEquipo');
+		
+			$msj = "Se guardo la información!";
+
+			if ($idInfoEspecificaEquipo = $this->equipos_model->guardarInfoEspecificaVehiculo()) 
+			{				
+				$data["result"] = true;		
+				$this->session->set_flashdata('retornoExito', $msj);
+			} else {
+				$data["result"] = "error";
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+			}
+			echo json_encode($data);
+    }
 
 
 	
