@@ -54,17 +54,12 @@ $(function(){
 <?php
 	//DESHABILITAR EDICION
 	$deshabilitar = '';
-	$userRole = $this->session->role;
-	
-	if($userRole != 99){
-		$deshabilitar = 'disabled';
-	}
 ?>
-				<?php if(!$deshabilitar){ ?>
+
 					<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Usuario
 					</button><br>
-				<?php } ?>
+
 					
 <?php
 $retornoExito = $this->session->flashdata('retornoExito');
