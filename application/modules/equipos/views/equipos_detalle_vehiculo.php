@@ -63,6 +63,7 @@ if ($retornoError) {
 					<form  name="form" id="form" class="form-horizontal" method="post"  >
 						<input type="hidden" id="hddId" name="hddId" value="<?php echo $infoEspecifica?$infoEspecifica[0]["id_equipo_detalle_vehiculo"]:""; ?>"/>
 						<input type="hidden" id="hddIdEquipo" name="hddIdEquipo" value="<?php echo $info[0]['id_equipo']; ?>"/>
+						<input type="hidden" id="hddMetodoGuardar" name="hddMetodoGuardar" value="<?php echo $info[0]['metodo_guardar']; ?>"/>
 
 						<div class="form-group">
 							<div class="col-sm-6">

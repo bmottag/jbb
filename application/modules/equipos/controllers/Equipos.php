@@ -216,7 +216,7 @@ class Equipos extends CI_Controller {
 			$consulta = $data['info'][0]['formulario_especifico'];
 
 			$data['infoEspecifica'] = $this->general_model->$consulta($arrParam);
-					
+
 			$arrParam = array(
 				"table" => "param_clase_vehiculo",
 				"order" => "clase_vehiculo",
@@ -230,7 +230,7 @@ class Equipos extends CI_Controller {
 				"id" => "x"
 			);
 			$data['tipoCarroceria'] = $this->general_model->get_basic_search($arrParam);
-			
+
 			$data["view"] = $consulta;
 			$this->load->view("layout", $data);
 	}
@@ -240,17 +240,18 @@ class Equipos extends CI_Controller {
 	 * @since 3/12/2020
      * @author BMOTTAG
 	 */
-	public function guardar_info_especifica_vehiculo()
+	public function guardar_info_especifica()
 	{			
 			header('Content-Type: application/json');
 			$data = array();
 			
 			$idInfoEspecificaEquipo = $this->input->post('hddId');
 			$data["idRecord"] = $this->input->post('hddIdEquipo');
+			$MetodoGuardar = $this->input->post('hddMetodoGuardar');
 		
 			$msj = "Se guardo la información!";
 
-			if ($idInfoEspecificaEquipo = $this->equipos_model->guardarInfoEspecificaVehiculo()) 
+			if ($idInfoEspecificaEquipo = $this->equipos_model->$MetodoGuardar()) 
 			{				
 				$data["result"] = true;		
 				$this->session->set_flashdata('retornoExito', $msj);
@@ -258,6 +259,7 @@ class Equipos extends CI_Controller {
 				$data["result"] = "error";
 				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
 			}
+		
 			echo json_encode($data);
     }
 

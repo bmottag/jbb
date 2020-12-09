@@ -77,7 +77,47 @@
 					$query = $this->db->update('equipos_detalle_vehiculo', $data);
 				}
 				if ($query) {
-					return $idInfoEspecificaEquipo;
+					return true;
+				} else {
+					return false;
+				}
+		}
+		
+		/**
+		 * Guardar equipo
+		 * @since 9/12/2020
+		 */
+		public function guardarInfoEspecificaBomba() 
+		{
+				$idInfoEspecificaEquipo = $this->input->post('hddId');
+				
+				$data = array(
+					'fk_id_equipo_bomba' => $this->input->post('hddIdEquipo'),
+					'dimension' => $this->input->post('dimension'),
+					'motor_frecuencia' => $this->input->post('motor_frecuencia'),
+					'motor_velocidad' => $this->input->post('motor_velocidad'),
+					'motor_voltaje' => $this->input->post('motor_voltaje'),
+					'potencia' => $this->input->post('potencia'),
+					'consumo' => $this->input->post('consumo'),
+					'hmax' => $this->input->post('hmax'),
+					'succion' => $this->input->post('succion'),
+					'qmax' => $this->input->post('qmax'),
+					'color' => $this->input->post('color'),
+					'peso' => $this->input->post('peso'),
+					'caracteristicas' => $this->input->post('caracteristicas'),
+					'condiciones_operacion' => $this->input->post('condiciones_operacion')
+				);	
+
+				//revisar si es para adicionar o editar
+				if ($idInfoEspecificaEquipo == '') 
+				{							
+					$query = $this->db->insert('equipos_detalle_bomba', $data);
+				} else {
+					$this->db->where('id_equipo_detalle_bomba', $idInfoEspecificaEquipo);
+					$query = $this->db->update('equipos_detalle_bomba', $data);
+				}
+				if ($query) {
+					return true;
 				} else {
 					return false;
 				}

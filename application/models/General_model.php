@@ -300,7 +300,7 @@ class General_model extends CI_Model {
 		}
 		
 		/**
-		 * Consulta lista de equipos
+		 * Consulta detalles de quipos tipo vehiculos
 		 * @since 3/12/2020
 		 */
 		public function equipos_detalle_vehiculo($arrData) 
@@ -314,6 +314,28 @@ class General_model extends CI_Model {
 				}
 				
 				$query = $this->db->get('equipos_detalle_vehiculo A');
+
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+		
+		/**
+		 * Consulta detalles de quipos tipo bombas
+		 * @since 9/12/2020
+		 */
+		public function equipos_detalle_bomba($arrData) 
+		{		
+				$this->db->select();				
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.fk_id_equipo_bomba', $arrData["idEquipo"]);
+				}
+				
+				$query = $this->db->get('equipos_detalle_bomba A');
 
 
 				if ($query->num_rows() > 0) {
