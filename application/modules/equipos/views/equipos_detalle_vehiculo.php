@@ -28,9 +28,9 @@
 		</div>
 
 		<div class="col-lg-9">
-			<div class="panel panel-info">
+			<div class="panel panel-success">
 				<div class="panel-heading">
-					<i class="fa fa-truck"></i> <strong>INFORMACIÓN DEL EQUIPO</strong>
+					<i class="fa fa-truck"></i> <strong>INFORMACIÓN ESPECÍFICA</strong>
 				</div>
 				<div class="panel-body">
 
@@ -164,7 +164,7 @@ if ($retornoError) {
 						<div class="form-group">
 							<div class="row" align="center">
 								<div style="width:100%;" align="center">							
-									<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-info'>
+									<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-success'>
 										Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
 									</button>
 								</div>

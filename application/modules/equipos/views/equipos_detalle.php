@@ -30,7 +30,7 @@
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-truck"></i> <strong>INFORMACIÓN DEL EQUIPO</strong>
+					<i class="fa fa-truck"></i> <strong>INFORMACIÓN GENERAL DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 
