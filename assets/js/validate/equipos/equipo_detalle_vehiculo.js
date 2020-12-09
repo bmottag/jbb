@@ -1,8 +1,16 @@
 $( document ).ready( function () {
 	
+	$("#placa").convertirMayuscula().maxlength(8);
+	$("#color").bloquearNumeros().maxlength(20);
+	
 	$( "#form" ).validate( {
 		rules: {
-			placa: 		{ required: true, minlength: 4, maxlength:8 }
+			placa: 				{ required: true, minlength: 4, maxlength:8 },
+			linea: 				{ maxlength: 20 },
+			color: 				{ maxlength: 20 },
+			capacidad: 			{ maxlength: 20 },
+			servicio: 			{ maxlength: 20 },
+			numero_motor: 		{ maxlength: 25 }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

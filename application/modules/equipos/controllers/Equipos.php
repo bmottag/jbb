@@ -219,7 +219,7 @@ class Equipos extends CI_Controller {
 					
 			$arrParam = array(
 				"table" => "param_clase_vehiculo",
-				"order" => "clase_vechiculo",
+				"order" => "clase_vehiculo",
 				"id" => "x"
 			);
 			$data['claseVehiculo'] = $this->general_model->get_basic_search($arrParam);

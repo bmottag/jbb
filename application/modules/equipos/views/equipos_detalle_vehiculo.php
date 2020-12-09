@@ -86,7 +86,8 @@ if ($retornoError) {
 								<label for="from">Clase Vehículo: </label>
 								<select name="id_clase_vechiculo" id="id_clase_vechiculo" class="form-control" >
 									<option value="">Seleccione...</option>
-									<?php for ($i = 0; $i < count($claseVehiculo); $i++) { ?>
+									<?php 									
+									for ($i = 0; $i < count($claseVehiculo); $i++) { ?>
 										<option value="<?php echo $claseVehiculo[$i]["id_clase_vechiculo"]; ?>" <?php if($infoEspecifica && $infoEspecifica[0]["fk_id_clase_vechiculo"] == $claseVehiculo[$i]["id_clase_vechiculo"]) { echo "selected"; }  ?>><?php echo $claseVehiculo[$i]["clase_vehiculo"]; ?></option>	
 									<?php } ?>
 								</select>
