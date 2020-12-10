@@ -79,24 +79,26 @@ class Settings extends CI_Controller {
 			
 			$result_user = false;
 			$result_email = false;
+			
+			//verificar si ya existe el usuario
+			$arrParam = array(
+				"idUser" => $idUser,
+				"column" => "log_user",
+				"value" => $log_user
+			);
+			$result_user = $this->settings_model->verifyUser($arrParam);
+			
+			//verificar si ya existe el correo
+			$arrParam = array(
+				"idUser" => $idUser,
+				"column" => "email",
+				"value" => $email_user
+			);
+			$result_email = $this->settings_model->verifyUser($arrParam);
 
 			$data["state"] = $this->input->post('state');
 			if ($idUser == '') {
 				$data["state"] = 1;//para el direccionamiento del JS, cuando es usuario nuevo no se envia state
-				
-				//Verify if the user already exist by the user name
-				$arrParam = array(
-					"column" => "log_user",
-					"value" => $log_user
-				);
-				$result_user = $this->settings_model->verifyUser($arrParam);
-				
-				//Verify if the user already exist by the email
-				$arrParam = array(
-					"column" => "email",
-					"value" => $email_user
-				);
-				$result_email = $this->settings_model->verifyUser($arrParam);
 			}
 
 			if ($result_user || $result_email)

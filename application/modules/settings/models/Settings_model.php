@@ -7,10 +7,14 @@
 		 * Verify if the user already exist by the social insurance number
 		 * @author BMOTTAG
 		 * @since  8/11/2016
-		 * @review 27/11/2016
+		 * @review 10/12/2020
 		 */
 		public function verifyUser($arrData) 
 		{
+				if (array_key_exists("idUser", $arrData)) {
+					$this->db->where('id_user !=', $arrData["idUser"]);
+				}			
+
 				$this->db->where($arrData["column"], $arrData["value"]);
 				$query = $this->db->get("usuarios");
 
