@@ -1,4 +1,6 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo.js"); ?>"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <div id="page-wrapper">
 	<br>
@@ -117,6 +119,27 @@ if ($retornoError) {
 									<option value=1 <?php if($info && $info[0]["estado_equipo"] == 1) { echo "selected"; }  ?>>Activo</option>
 									<option value=2 <?php if($info && $info[0]["estado_equipo"] == 2) { echo "selected"; }  ?>>Inactivo</option>
 								</select>
+							</div>
+						
+							<div class="col-sm-6">
+								<label for="valor_comercial">Valor Comercial: </label>
+								<input type="text" id="valor_comercial" name="valor_comercial" class="form-control" value="<?php echo $info?$info[0]["valor_comercial"]:""; ?>" placeholder="Valor Comercial" >
+							</div>
+						</div>
+												
+<script>
+	$( function() {
+		$( "#fecha_adquisicion" ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'yy-mm-dd'
+		});
+	});
+</script>
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label for="fecha_adquisicion">Fecha Adquisición: </label>
+								<input type="text" class="form-control" id="fecha_adquisicion" name="fecha_adquisicion" value="<?php echo $info?$info[0]["fecha_adquisicion"]:""; ?>" placeholder="Fecha Adquisición" />
 							</div>
 						
 							<div class="col-sm-6">

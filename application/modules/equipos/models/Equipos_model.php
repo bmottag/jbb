@@ -19,6 +19,8 @@
 					'numero_serial' => $this->input->post('numero_serial'),
 					'fk_id_tipo_equipo' => $this->input->post('id_tipo_equipo'),
 					'estado_equipo' => $this->input->post('estado'),
+					'valor_comercial' => $this->input->post('valor_comercial'),
+					'fecha_adquisicion' => $this->input->post('fecha_adquisicion'),
 					'observacion' => $this->input->post('observacion')
 				);	
 

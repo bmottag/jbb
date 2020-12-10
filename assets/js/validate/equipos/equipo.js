@@ -1,5 +1,7 @@
 $( document ).ready( function () {
 	
+	$("#valor_comercial").bloquearTexto().maxlength(10);
+	
 	$( "#form" ).validate( {
 		rules: {
 			numero_inventario: 		{ required: true, minlength: 3, maxlength:10 },
@@ -8,7 +10,8 @@ $( document ).ready( function () {
 			modelo: 				{ required: true, minlength: 3, maxlength: 20 },
 			numero_serial: 			{ required: true, minlength: 3, maxlength: 20 },
 			id_tipo_equipo: 		{ required: true },
-			estado: 				{ required: true }
+			estado: 				{ required: true },
+			valor_comercial: 		{ number: true, maxlength:10 }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

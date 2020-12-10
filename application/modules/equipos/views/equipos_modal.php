@@ -81,6 +81,13 @@
 					</select>
 				</div>
 			</div>	
+			
+			<div class="col-sm-6">		
+				<div class="form-group text-left">
+					<label class="control-label" for="valor_comercial">Valor Comercial: </label>
+					<input type="text" id="valor_comercial" name="valor_comercial" class="form-control" value="<?php echo $information?$information[0]["valor_comercial"]:""; ?>" placeholder="Valor Comercial" >
+				</div>
+			</div>
 
 		</div>
 		
