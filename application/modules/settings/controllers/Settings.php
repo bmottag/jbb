@@ -75,8 +75,10 @@ class Settings extends CI_Controller {
 			}			
 
 			$log_user = $this->input->post('user');
+			$email_user = $this->input->post('email');
 			
 			$result_user = false;
+			$result_email = false;
 
 			$data["state"] = $this->input->post('state');
 			if ($idUser == '') {
@@ -88,13 +90,33 @@ class Settings extends CI_Controller {
 					"value" => $log_user
 				);
 				$result_user = $this->settings_model->verifyUser($arrParam);
+				
+				//Verify if the user already exist by the email
+				$arrParam = array(
+					"column" => "email",
+					"value" => $email_user
+				);
+				$result_email = $this->settings_model->verifyUser($arrParam);
 			}
 
-			if ($result_user) 
+			if ($result_user || $result_email)
 			{
 				$data["result"] = "error";
-				$data["mensaje"] = " Error. El Usuario ya existe.";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> El Usuario ya existe.');
+				if($result_user)
+				{
+					$data["mensaje"] = " Error. El Usuario ya existe.";
+					$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> El Usuario ya existe.');
+				}
+				if($result_email)
+				{
+					$data["mensaje"] = " Error. El correo ya existe.";
+					$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> El correo ya existe.');
+				}
+				if($result_user && $result_email)
+				{
+					$data["mensaje"] = " Error. El Usuario y el Correo ya existen.";
+					$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> El Usuario y el Correo ya existen.');
+				}
 			} else {
 					if ($this->settings_model->saveEmployee()) {
 						$data["result"] = true;					
