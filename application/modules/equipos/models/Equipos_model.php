@@ -123,6 +123,25 @@
 				}
 		}
 		
+		/**
+		 * Verificar si el equipo ya existe por el numero de inventario
+		 * @author BMOTTAG
+		 * @since  10/12/2020
+		 */
+		public function verificarEquipo($arrData) 
+		{
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('id_equipo !=', $arrData["idEquipo"]);
+				}			
+
+				$this->db->where($arrData["column"], $arrData["value"]);
+				$query = $this->db->get("equipos");
+
+				if ($query->num_rows() >= 1) {
+					return true;
+				} else{ return false; }
+		}
+		
 		
 		
 		

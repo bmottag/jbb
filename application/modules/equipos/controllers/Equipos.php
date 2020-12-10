@@ -87,6 +87,7 @@ class Equipos extends CI_Controller {
 	/**
 	 * Guardar equipos
 	 * @since 19/11/2020
+	 * @review 10/12/2020
      * @author BMOTTAG
 	 */
 	public function guardar_equipos()
@@ -104,33 +105,52 @@ class Equipos extends CI_Controller {
 				$msj = "Se actualizó equipo!";
 				$flag = false;
 			}
+			
+			$numeroInventario = $this->input->post('numero_inventario');
+			
+			$result_numero_inventario = false;
+			
+			//verificar si ya el numero de inventario
+			$arrParam = array(
+				"idEquipo" => $idEquipo,
+				"column" => "numero_inventario",
+				"value" => $numeroInventario
+			);
+			$result_numero_inventario = $this->equipos_model->verificarEquipo($arrParam);
 
-			if ($idEquipo = $this->equipos_model->guardarEquipo($pass)) 
+			if ($result_numero_inventario)
 			{
-				if($flag)
-				{
-					//si es un registro nuevo genero el codigo QR y subo la imagen
-					//INCIO - genero imagen con la libreria y la subo 
-					$this->load->library('ciqrcode');
-
-					$valorQRcode = base_url("login/index/" . $idEquipo . $pass);
-					$rutaImagen = "images/equipos/" . $idEquipo . "_qr_code.png";
-					
-					$params['data'] = $valorQRcode;
-					$params['level'] = 'H';
-					$params['size'] = 10;
-					$params['savename'] = FCPATH.$rutaImagen;
-									
-					$this->ciqrcode->generate($params);
-					//FIN - genero imagen con la libreria y la subo
-				}
-				
-				$data["idRecord"] = $idEquipo;
-				$data["result"] = true;		
-				$this->session->set_flashdata('retornoExito', $msj);
-			} else {
 				$data["result"] = "error";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				$data["mensaje"] = " Error. El Número de Inventario ya existe.";
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> El Número de Inventario ya existe.');
+			} else {
+				if ($idEquipo = $this->equipos_model->guardarEquipo($pass)) 
+				{
+					if($flag)
+					{
+						//si es un registro nuevo genero el codigo QR y subo la imagen
+						//INCIO - genero imagen con la libreria y la subo 
+						$this->load->library('ciqrcode');
+
+						$valorQRcode = base_url("login/index/" . $idEquipo . $pass);
+						$rutaImagen = "images/equipos/" . $idEquipo . "_qr_code.png";
+						
+						$params['data'] = $valorQRcode;
+						$params['level'] = 'H';
+						$params['size'] = 10;
+						$params['savename'] = FCPATH.$rutaImagen;
+										
+						$this->ciqrcode->generate($params);
+						//FIN - genero imagen con la libreria y la subo
+					}
+					
+					$data["idRecord"] = $idEquipo;
+					$data["result"] = true;		
+					$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
+				} else {
+					$data["result"] = "error";
+					$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				}
 			}
 			echo json_encode($data);
     }	
@@ -254,10 +274,10 @@ class Equipos extends CI_Controller {
 			if ($idInfoEspecificaEquipo = $this->equipos_model->$MetodoGuardar()) 
 			{				
 				$data["result"] = true;		
-				$this->session->set_flashdata('retornoExito', $msj);
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 			} else {
 				$data["result"] = "error";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
 		
 			echo json_encode($data);
