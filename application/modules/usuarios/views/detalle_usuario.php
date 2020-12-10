@@ -13,64 +13,59 @@
 				</div>
 				<div class="panel-body">
 		
-					<?php if($UserInfo[0]["photo"]){ ?>
-						<div class="form-group">
-							<div class="row" align="center">
-								<img src="<?php echo base_url($UserInfo[0]["photo"]); ?>" class="img-rounded" alt="Foto usuario" width="200" height="200" />
-							</div>
-						</div>
-					<?php }else{ ?>
-						<div class="form-group">
-							<div class="row" align="center">
-								<i class="fa fa-child fa-user"></i>
-							</div>
-						</div>
-					<?php } ?>
-			
-			
-			
-			<form  name="form" id="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url("usuarios/do_upload"); ?>">
-
-				<div class="form-group">
-					<div class="col-sm-5">
-						 <input type="file" name="userfile" />
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<div class="row" align="center">
-						<div style="width:50%;" align="center">							
-							<button type="submit" id="btnFoto" name="btnFoto" class="btn btn-info" >
-								Enviar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
-							</button> 
-						</div>
-					</div>
-				</div>
-					
-				<?php if($error){ ?>
-				<div class="alert alert-danger">
 					<?php 
-						echo "<strong>Error :</strong>";
-						pr($error); 
-					?><!--$ERROR MUESTRA LOS ERRORES QUE PUEDAN HABER AL SUBIR LA IMAGEN-->
-				</div>
-				<?php } ?>
-				<div class="alert alert-danger">
-						<strong>Nota :</strong><br>
-						Formato permitido: gif - jpg - png<br>
-						Tamaño máximo: 3000 KB<br>
-						Ancho máximo: 2024 pixels<br>
-						Altura máxima: 2008 pixels<br>
-
-				</div>
-				
-			</form>
+						if($UserInfo[0]["photo"]){
+							$URLimagen = base_url($UserInfo[0]["photo"]);
+						}else{ 
+							$URLimagen = base_url('images/avatar.png');
+						}
+					?>
+					
+					<div class="form-group">
+						<div class="row" align="center">
+							<img src="<?php echo $URLimagen; ?>" class="img-rounded" alt="Foto usuario" width="200" height="200" />
+						</div>
+					</div>
+								
 			
-		</div></div>
-			<div class="list-group">
-				<a href="<?php echo base_url("usuarios"); ?>" class="list-group-item">
-					<i class="fa fa-lock"></i> Cambiar Contraseña
-				</a>
+					<form  name="form" id="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url("usuarios/do_upload"); ?>">
+
+						<div class="form-group">
+							<div class="col-sm-5">
+								 <input type="file" name="userfile" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="row" align="center">
+								<div style="width:50%;" align="center">							
+									<button type="submit" id="btnFoto" name="btnFoto" class="btn btn-info" >
+										Enviar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+									</button> 
+								</div>
+							</div>
+						</div>
+							
+						<?php if($error){ ?>
+						<div class="alert alert-danger">
+							<?php 
+								echo "<strong>Error :</strong>";
+								pr($error); 
+							?><!--$ERROR MUESTRA LOS ERRORES QUE PUEDAN HABER AL SUBIR LA IMAGEN-->
+						</div>
+						<?php } ?>
+						<div class="alert alert-danger">
+								<strong>Nota :</strong><br>
+								Formato permitido: gif - jpg - png<br>
+								Tamaño máximo: 3000 KB<br>
+								Ancho máximo: 2024 pixels<br>
+								Altura máxima: 2008 pixels<br>
+
+						</div>
+						
+					</form>
+			
+				</div>
 			</div>
 
 		</div>
