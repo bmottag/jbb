@@ -122,10 +122,10 @@ class Settings extends CI_Controller {
 			} else {
 					if ($this->settings_model->saveEmployee()) {
 						$data["result"] = true;					
-						$this->session->set_flashdata('retornoExito', $msj);
+						$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 					} else {
 						$data["result"] = "error";					
-						$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+						$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 					}
 			}
 
@@ -142,9 +142,9 @@ class Settings extends CI_Controller {
 	public function resetPassword($idUser)
 	{
 			if ($this->settings_model->resetEmployeePassword($idUser)) {
-				$this->session->set_flashdata('retornoExito', 'You have reset the Employee pasword to: 123456');
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> You have reset the Employee pasword to: 123456');
 			} else {
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
 			
 			redirect("/settings/employee/",'refresh');
@@ -279,12 +279,12 @@ class Settings extends CI_Controller {
 				$data["result"] = true;
 				$data["idRecord"] = $idCompany;
 				
-				$this->session->set_flashdata('retornoExito', $msj);
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 			} else {
 				$data["result"] = "error";
 				$data["idRecord"] = "";
 				
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
 
 			echo json_encode($data);	

@@ -61,10 +61,10 @@ class Access extends CI_Controller {
 
 			if ($this->access_model->saveMenu()) {
 				$data["result"] = true;
-				$this->session->set_flashdata('retornoExito', $msj);
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 			} else {
 				$data["result"] = "error";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
 
 			echo json_encode($data);
@@ -125,10 +125,10 @@ class Access extends CI_Controller {
 
 			if ($this->access_model->saveLink()) {
 				$data["result"] = true;
-				$this->session->set_flashdata('retornoExito', $msj);
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 			} else {
 				$data["result"] = "error";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
 
 			echo json_encode($data);
@@ -215,11 +215,11 @@ class Access extends CI_Controller {
 			} else {
 				if ($this->access_model->saveRoleAccess()) {
 					$data["result"] = true;
-					$this->session->set_flashdata('retornoExito', $msj);
+					$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 				} else {
 					$data["result"] = "error";
 					$data["mensaje"] = " Error. Ask for help.";
-					$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+					$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 				}
 			}
 			
@@ -278,10 +278,10 @@ class Access extends CI_Controller {
 
 			if ($this->access_model->saveVideo()) {
 				$data["result"] = true;
-				$this->session->set_flashdata('retornoExito', $msj);
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 			} else {
 				$data["result"] = "error";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
 
 			echo json_encode($data);
@@ -349,9 +349,9 @@ class Access extends CI_Controller {
 			//insertar datos
 			if($this->access_model->saveManual($path))
 			{
-				$this->session->set_flashdata('retornoExito', 'Se cargo la información.');
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> Se cargo la información.');
 			}else{
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
 
 			redirect('access/manuals');
@@ -374,9 +374,9 @@ class Access extends CI_Controller {
 			);
 			
 			if ($this->general_model->deleteRecord($arrParam)) {
-				$this->session->set_flashdata('retornoExito', 'You have delete the image.');
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> You have delete the image.');
 			} else {
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
 			redirect(base_url('jobs/locates/' . $idJob), 'refresh');
     }
@@ -425,11 +425,11 @@ class Access extends CI_Controller {
 			if ($this->general_model->deleteRecord($arrParam)) 
 			{
 				$data["result"] = true;
-				$this->session->set_flashdata('retornoExito', 'You have delete the role access.');
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> You have delete the role access.');
 			} else {
 				$data["result"] = "error";
 				$data["mensaje"] = "Error!!! Ask for help.";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
 			
 			echo json_encode($data);
