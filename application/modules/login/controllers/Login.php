@@ -139,7 +139,7 @@ class Login extends CI_Controller {
 			{
 				$idUsuario = $userExist[0]['id_user'];
 				
-				//eliminaos datos anteriroes de tabla recuperar
+				//elimino datos anteriores de tabla recuperar
 				$arrParam = array(
 					"table" => "usuarios_llave_contraseña",
 					"primaryKey" => "fk_id_user_ulc",

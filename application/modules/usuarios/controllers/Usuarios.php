@@ -31,11 +31,11 @@ class Usuarios extends CI_Controller {
 	public function updatePassword()
 	{
 			$data = array();			
-			$data["titulo"] = "UPDATE PASSWORD";
 			
 			$newPassword = $this->input->post("inputPassword");
 			$confirm = $this->input->post("inputConfirm");
 			$passwd = str_replace(array("<",">","[","]","*","^","-","'","="),"",$newPassword); 
+			$idUser = $this->input->post("hddId");
 			
 			$data['linkBack'] = $this->session->userdata("dashboardURL");
 			$data['titulo'] = "<i class='fa fa-unlock fa-fw'></i> CAMBIAR CONTRASEÑA";
@@ -43,6 +43,15 @@ class Usuarios extends CI_Controller {
 			if($newPassword == $confirm)
 			{					
 					if ($this->usuarios_model->updatePassword()) {
+						
+						//elimino datos anteriores de tabla recuperar
+						$arrParam = array(
+							"table" => "usuarios_llave_contraseña",
+							"primaryKey" => "fk_id_user_ulc",
+							"id" => $idUser
+						);
+						$this->general_model->deleteRecord($arrParam);
+						
 						$data["msj"] = "Se actualizó la contraseña.";
 						$data["msj"] .= "<br><strong>Nombre Usuario: </strong>" . $this->input->post("hddUser");
 						$data["msj"] .= "<br><strong>Contraseña: </strong>" . $passwd;
