@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2020 a las 21:06:16
+-- Tiempo de generación: 11-12-2020 a las 05:56:49
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -38,21 +38,107 @@ CREATE TABLE `equipos` (
   `estado_equipo` tinyint(1) NOT NULL COMMENT '1:Activo;2:Inactivo',
   `observacion` text NOT NULL,
   `qr_code_img` varchar(250) NOT NULL,
-  `qr_code_encryption` varchar(60) NOT NULL
+  `qr_code_encryption` varchar(60) NOT NULL,
+  `foto_equipo` varchar(250) NOT NULL,
+  `fecha_adquisicion` date NOT NULL,
+  `valor_comercial` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `equipos`
 --
 
-INSERT INTO `equipos` (`id_equipo`, `numero_inventario`, `fk_id_dependencia`, `marca`, `modelo`, `numero_serial`, `fk_id_tipo_equipo`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`) VALUES
-(1, '14853', 7, 'Chevrolet ', '2017', '3GNFL7E51HS559955', 1, 1, 'Inventario Yezid ', 'images/equipos/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc'),
-(2, '14854', 7, 'Nissan', '2017', '3N6CD33B2ZK365122', 1, 1, 'Inventario Yezid ', 'images/equipos/2_qr_code.png', '2jnpWRXLbDdCG8v9QrKJGlR84UXIKqzkhNH9CLm7eScoSMxWn0k'),
-(3, '16901', 7, 'Toyota', '2007', '9FH11UJ9079012119', 1, 1, 'Inventario Yezid', 'images/equipos/3_qr_code.png', '3e0L1EUhaZIM0OZ9tdkon8brO7Auo7jL58GE7wg6V1GvqFwinHb'),
-(4, '16989', 7, 'Toyota- Hilux', '1996', 'RN1067012769', 1, 1, 'Inventario Yezid', 'images/equipos/4_qr_code.png', '4XnvRyFKtJVZPPzzyRdPYzr1QkgpYtoP0kENJh5D8mQHESej8y4'),
-(5, '17129', 7, 'Volkswagen', '2018', '9536G8247JR812344', 1, 1, 'Inventario Yezid', 'images/equipos/5_qr_code.png', '5PiIEUliY7PzZdS0ZDyUCaMNPfv25S1wQ1AlKAwxMlrdNH3N4mM'),
-(6, '17710', 7, 'Renault', '2020', '93YMAF4CELJ079626', 1, 1, 'Inventario Yezid', 'images/equipos/6_qr_code.png', '6jxt7Cevdl0j5MHgHuUZh93iOWBxbOTTyXG1FHKKaJuLBwasNvY'),
-(7, '17615', 7, 'Chevrolet ', '2020', '9GDFVR345LB008406', 1, 1, 'Inventaro Yezid', 'images/equipos/7_qr_code.png', '7sVXiSAcnge43sw3X0d1p4N8IHCo4LLAlN5cfX5ZRz6kuvJgAc0');
+INSERT INTO `equipos` (`id_equipo`, `numero_inventario`, `fk_id_dependencia`, `marca`, `modelo`, `numero_serial`, `fk_id_tipo_equipo`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`, `foto_equipo`, `fecha_adquisicion`, `valor_comercial`) VALUES
+(1, '14853', 7, 'Chevrolet ', '2019', '3GNFL7E51HS559955', 1, 1, 'Inventario Yezid ', 'images/equipos/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc', '', '1979-10-12', 10300500),
+(2, '14854', 7, 'Nissan', '2017', '3N6CD33B2ZK365122', 1, 1, 'Inventario Yezid ', 'images/equipos/2_qr_code.png', '2jnpWRXLbDdCG8v9QrKJGlR84UXIKqzkhNH9CLm7eScoSMxWn0k', '', '0000-00-00', 0),
+(3, '16901', 7, 'Toyota', '2007', '9FH11UJ9079012119', 1, 1, 'Inventario Yezid', 'images/equipos/3_qr_code.png', '3e0L1EUhaZIM0OZ9tdkon8brO7Auo7jL58GE7wg6V1GvqFwinHb', '', '0000-00-00', 0),
+(4, '16989', 7, 'Toyota- Hilux', '1996', 'RN1067012769', 1, 1, 'Inventario Yezid', 'images/equipos/4_qr_code.png', '4XnvRyFKtJVZPPzzyRdPYzr1QkgpYtoP0kENJh5D8mQHESej8y4', '', '0000-00-00', 0),
+(5, '17129', 7, 'Volkswagen', '2018', '9536G8247JR812344', 1, 1, 'Inventario Yezid', 'images/equipos/5_qr_code.png', '5PiIEUliY7PzZdS0ZDyUCaMNPfv25S1wQ1AlKAwxMlrdNH3N4mM', '', '0000-00-00', 0),
+(6, '17710', 7, 'Renault', '2020', '93YMAF4CELJ079626', 1, 1, 'Inventario Yezid', 'images/equipos/6_qr_code.png', '6jxt7Cevdl0j5MHgHuUZh93iOWBxbOTTyXG1FHKKaJuLBwasNvY', '', '0000-00-00', 0),
+(7, '17615', 7, 'Chevrolet ', '2020', '9GDFVR345LB008406', 1, 1, 'Inventaro Yezid', 'images/equipos/7_qr_code.png', '7sVXiSAcnge43sw3X0d1p4N8IHCo4LLAlN5cfX5ZRz6kuvJgAc0', '', '0000-00-00', 0),
+(8, 'JBB.210001', 7, 'Pedrollo', 'JC Rm 1B', '00000', 2, 1, 'Bomba Autocebante centrífuga', 'images/equipos/8_qr_code.png', '8o55FZnUiVhnFLtO0Jjvg22gMuuvdhVNuo5ukma8YWP2Ba9Plpq', '', '0000-00-00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `equipos_detalle_bomba`
+--
+
+CREATE TABLE `equipos_detalle_bomba` (
+  `id_equipo_detalle_bomba` int(10) NOT NULL,
+  `fk_id_equipo_bomba` int(10) NOT NULL,
+  `dimension` varchar(50) NOT NULL,
+  `motor_frecuencia` varchar(20) NOT NULL,
+  `motor_velocidad` varchar(20) NOT NULL,
+  `motor_voltaje` varchar(10) NOT NULL,
+  `potencia` varchar(10) NOT NULL,
+  `consumo` varchar(10) NOT NULL,
+  `hmax` varchar(10) NOT NULL,
+  `succion` varchar(10) NOT NULL,
+  `salida` varchar(10) NOT NULL,
+  `qmax` varchar(10) NOT NULL,
+  `color` varchar(30) NOT NULL,
+  `peso` varchar(10) NOT NULL,
+  `caracteristicas` text NOT NULL,
+  `condiciones_operacion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `equipos_detalle_bomba`
+--
+
+INSERT INTO `equipos_detalle_bomba` (`id_equipo_detalle_bomba`, `fk_id_equipo_bomba`, `dimension`, `motor_frecuencia`, `motor_velocidad`, `motor_voltaje`, `potencia`, `consumo`, `hmax`, `succion`, `salida`, `qmax`, `color`, `peso`, `caracteristicas`, `condiciones_operacion`) VALUES
+(1, 8, '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `equipos_detalle_vehiculo`
+--
+
+CREATE TABLE `equipos_detalle_vehiculo` (
+  `id_equipo_detalle_vehiculo` int(10) NOT NULL,
+  `fk_id_equipo` int(10) NOT NULL,
+  `placa` varchar(10) NOT NULL,
+  `linea` varchar(50) NOT NULL,
+  `color` varchar(30) NOT NULL,
+  `fk_id_clase_vechiculo` int(1) NOT NULL,
+  `fk_id_tipo_carroceria` int(1) NOT NULL,
+  `combustible` tinyint(1) NOT NULL COMMENT '1:Gasolina; 2: Diesel',
+  `capacidad` varchar(20) NOT NULL,
+  `servicio` varchar(20) NOT NULL,
+  `numero_motor` varchar(30) NOT NULL,
+  `multas` tinyint(1) NOT NULL COMMENT '1:Si; 2:No'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `equipos_detalle_vehiculo`
+--
+
+INSERT INTO `equipos_detalle_vehiculo` (`id_equipo_detalle_vehiculo`, `fk_id_equipo`, `placa`, `linea`, `color`, `fk_id_clase_vechiculo`, `fk_id_tipo_carroceria`, `combustible`, `capacidad`, `servicio`, `numero_motor`, `multas`) VALUES
+(2, 3, 'dbh 923', 'nose', 'amarillo', 5, 3, 1, '5 personas', 'publico', 'sferqwer234234', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `param_clase_vehiculo`
+--
+
+CREATE TABLE `param_clase_vehiculo` (
+  `id_clase_vechiculo` tinyint(1) NOT NULL,
+  `clase_vehiculo` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `param_clase_vehiculo`
+--
+
+INSERT INTO `param_clase_vehiculo` (`id_clase_vechiculo`, `clase_vehiculo`) VALUES
+(1, 'Camioneta'),
+(2, 'Campero'),
+(3, 'Volqueta '),
+(4, 'Van'),
+(5, 'Camión');
 
 -- --------------------------------------------------------
 
@@ -172,7 +258,7 @@ INSERT INTO `param_menu_links` (`id_link`, `fk_id_menu`, `link_name`, `link_url`
 (7, 3, 'Buscar', 'equipos', 'fa-ambulance', 1, '2020-11-20 01:29:59', 1, 1),
 (8, 4, '----------', 'DIVIDER', 'fa-pin', 3, '2020-12-01 17:19:46', 1, 3),
 (9, 4, 'Descripción Roles', 'dashboard/rol_info', 'fa-info', 5, '2020-12-01 17:22:23', 1, 1),
-(12, 6, 'Manual de Usuario', 'http://[::1]/jbb/files/doc_diana.pdf', 'fa-hand-o-up', 1, '2020-12-01 19:04:26', 1, 5),
+(12, 6, 'Manual de Usuario', 'http://[::1]/jbb/files/MANUAL_DE_USUARIO.pdf', 'fa-hand-o-up', 1, '2020-12-01 19:04:26', 1, 5),
 (13, 6, 'Cargar Manuales', 'access/manuals', 'fa-book', 25, '2020-12-01 19:10:25', 1, 1),
 (14, 6, 'DIVIDER', '----------', 'fa-pin', 24, '2020-12-01 19:11:24', 1, 3);
 
@@ -195,7 +281,7 @@ CREATE TABLE `param_proveedores` (
 --
 
 INSERT INTO `param_proveedores` (`id_proveedor`, `nombre_proveedor`, `contacto`, `numero_celular`, `email`) VALUES
-(1, 'DANE', 'Fabian Jaimes', '3156953740', 'fjaimes@dane.gov.co');
+(1, 'Proveedor', 'Xxxxx Xxxxxxx', '3156666666', 'xxxxxx@xxxx.gov.co');
 
 -- --------------------------------------------------------
 
@@ -225,21 +311,46 @@ INSERT INTO `param_role` (`id_role`, `role_name`, `description`, `style`, `dashb
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `param_tipo_carroceria`
+--
+
+CREATE TABLE `param_tipo_carroceria` (
+  `id_tipo_carroceria` tinyint(1) NOT NULL,
+  `tipo_carroceria` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `param_tipo_carroceria`
+--
+
+INSERT INTO `param_tipo_carroceria` (`id_tipo_carroceria`, `tipo_carroceria`) VALUES
+(1, 'Wagon'),
+(2, 'Doble cabina'),
+(3, 'Cabinado'),
+(4, 'Platon'),
+(5, 'Station Wagon'),
+(6, 'Volco');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `param_tipo_equipos`
 --
 
 CREATE TABLE `param_tipo_equipos` (
   `id_tipo_equipo` int(1) NOT NULL,
-  `tipo_equipo` varchar(50) NOT NULL
+  `tipo_equipo` varchar(50) NOT NULL,
+  `formulario_especifico` varchar(50) NOT NULL,
+  `metodo_guardar` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `param_tipo_equipos`
 --
 
-INSERT INTO `param_tipo_equipos` (`id_tipo_equipo`, `tipo_equipo`) VALUES
-(1, 'Vehículos'),
-(2, 'Maquinaria pesada');
+INSERT INTO `param_tipo_equipos` (`id_tipo_equipo`, `tipo_equipo`, `formulario_especifico`, `metodo_guardar`) VALUES
+(1, 'Vehículos', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo'),
+(2, 'Bomba', 'equipos_detalle_bomba', 'guardarInfoEspecificaBomba');
 
 -- --------------------------------------------------------
 
@@ -281,13 +392,6 @@ CREATE TABLE `usuarios_llave_contraseña` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `usuarios_llave_contraseña`
---
-
-INSERT INTO `usuarios_llave_contraseña` (`id_llave`, `fk_id_user_ulc`, `email_user`, `llave`) VALUES
-(14, 1, 'benmotta@gmail.com', 'BT3frkg19CO6RvHmUdY6');
-
---
 -- Índices para tablas volcadas
 --
 
@@ -301,6 +405,28 @@ ALTER TABLE `equipos`
   ADD KEY `estado_equipo` (`estado_equipo`),
   ADD KEY `fk_id_dependencia` (`fk_id_dependencia`) USING BTREE,
   ADD KEY `fk_id_tipo_equipo` (`fk_id_tipo_equipo`);
+
+--
+-- Indices de la tabla `equipos_detalle_bomba`
+--
+ALTER TABLE `equipos_detalle_bomba`
+  ADD PRIMARY KEY (`id_equipo_detalle_bomba`),
+  ADD KEY `fk_id_equipo_bomba` (`fk_id_equipo_bomba`);
+
+--
+-- Indices de la tabla `equipos_detalle_vehiculo`
+--
+ALTER TABLE `equipos_detalle_vehiculo`
+  ADD PRIMARY KEY (`id_equipo_detalle_vehiculo`),
+  ADD KEY `fk_id_clase_vechiculo` (`fk_id_clase_vechiculo`),
+  ADD KEY `fk_id_tipo_carroceria` (`fk_id_tipo_carroceria`),
+  ADD KEY `fk_id_equipo` (`fk_id_equipo`);
+
+--
+-- Indices de la tabla `param_clase_vehiculo`
+--
+ALTER TABLE `param_clase_vehiculo`
+  ADD PRIMARY KEY (`id_clase_vechiculo`);
 
 --
 -- Indices de la tabla `param_dependencias`
@@ -346,6 +472,12 @@ ALTER TABLE `param_role`
   ADD PRIMARY KEY (`id_role`);
 
 --
+-- Indices de la tabla `param_tipo_carroceria`
+--
+ALTER TABLE `param_tipo_carroceria`
+  ADD PRIMARY KEY (`id_tipo_carroceria`);
+
+--
 -- Indices de la tabla `param_tipo_equipos`
 --
 ALTER TABLE `param_tipo_equipos`
@@ -375,7 +507,25 @@ ALTER TABLE `usuarios_llave_contraseña`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id_equipo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_equipo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `equipos_detalle_bomba`
+--
+ALTER TABLE `equipos_detalle_bomba`
+  MODIFY `id_equipo_detalle_bomba` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `equipos_detalle_vehiculo`
+--
+ALTER TABLE `equipos_detalle_vehiculo`
+  MODIFY `id_equipo_detalle_vehiculo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `param_clase_vehiculo`
+--
+ALTER TABLE `param_clase_vehiculo`
+  MODIFY `id_clase_vechiculo` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `param_dependencias`
@@ -414,6 +564,12 @@ ALTER TABLE `param_role`
   MODIFY `id_role` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
+-- AUTO_INCREMENT de la tabla `param_tipo_carroceria`
+--
+ALTER TABLE `param_tipo_carroceria`
+  MODIFY `id_tipo_carroceria` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `param_tipo_equipos`
 --
 ALTER TABLE `param_tipo_equipos`
@@ -441,6 +597,12 @@ ALTER TABLE `usuarios_llave_contraseña`
 ALTER TABLE `equipos`
   ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`fk_id_dependencia`) REFERENCES `param_dependencias` (`id_dependencia`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `equipos_ibfk_2` FOREIGN KEY (`fk_id_tipo_equipo`) REFERENCES `param_tipo_equipos` (`id_tipo_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `equipos_detalle_vehiculo`
+--
+ALTER TABLE `equipos_detalle_vehiculo`
+  ADD CONSTRAINT `equipos_detalle_vehiculo_ibfk_1` FOREIGN KEY (`fk_id_equipo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `param_menu_access`
