@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-12-2020 a las 05:56:49
+-- Tiempo de generación: 11-12-2020 a las 13:23:26
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -192,7 +192,8 @@ INSERT INTO `param_menu` (`id_menu`, `menu_name`, `menu_url`, `menu_icon`, `menu
 (3, 'Equipos', '', 'fa-truck', 2, 1, 1),
 (4, 'Administrar acceso sistema', '', 'fa-cogs', 5, 2, 1),
 (5, 'Dashboard ADMIN', 'dashboard/admin', 'fa-dashboard', 1, 1, 1),
-(6, 'Manuales', '', 'fa-book ', 4, 2, 1);
+(6, 'Manuales', '', 'fa-book ', 4, 2, 1),
+(7, 'Mantenimiento', '', 'fa-wrench', 3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -212,19 +213,31 @@ CREATE TABLE `param_menu_access` (
 --
 
 INSERT INTO `param_menu_access` (`id_access`, `fk_id_menu`, `fk_id_link`, `fk_id_role`) VALUES
+(14, 1, 4, 1),
 (1, 1, 4, 99),
+(15, 1, 5, 1),
 (2, 1, 5, 99),
+(16, 1, 6, 1),
 (3, 1, 6, 99),
+(19, 2, 0, 1),
 (8, 2, 0, 99),
+(18, 3, 7, 1),
 (7, 3, 7, 99),
 (4, 4, 1, 99),
 (5, 4, 2, 99),
 (6, 4, 3, 99),
 (9, 4, 8, 99),
 (10, 4, 9, 99),
+(17, 5, 0, 1),
+(20, 5, 0, 99),
+(25, 6, 12, 1),
 (11, 6, 12, 99),
 (12, 6, 13, 99),
-(13, 6, 14, 99);
+(13, 6, 14, 99),
+(23, 7, 15, 1),
+(21, 7, 15, 99),
+(24, 7, 16, 1),
+(22, 7, 16, 99);
 
 -- --------------------------------------------------------
 
@@ -260,7 +273,9 @@ INSERT INTO `param_menu_links` (`id_link`, `fk_id_menu`, `link_name`, `link_url`
 (9, 4, 'Descripción Roles', 'dashboard/rol_info', 'fa-info', 5, '2020-12-01 17:22:23', 1, 1),
 (12, 6, 'Manual de Usuario', 'http://[::1]/jbb/files/MANUAL_DE_USUARIO.pdf', 'fa-hand-o-up', 1, '2020-12-01 19:04:26', 1, 5),
 (13, 6, 'Cargar Manuales', 'access/manuals', 'fa-book', 25, '2020-12-01 19:10:25', 1, 1),
-(14, 6, 'DIVIDER', '----------', 'fa-pin', 24, '2020-12-01 19:11:24', 1, 3);
+(14, 6, 'DIVIDER', '----------', 'fa-pin', 24, '2020-12-01 19:11:24', 1, 3),
+(15, 7, 'Preventivo', 'mantenimiento/preventivo', 'fa-wrench', 1, '2020-12-11 12:13:55', 1, 1),
+(16, 7, 'Correctivo', 'mantenimiento/correctivo', 'fa-wrench', 2, '2020-12-11 12:14:41', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -302,7 +317,7 @@ CREATE TABLE `param_role` (
 --
 
 INSERT INTO `param_role` (`id_role`, `role_name`, `description`, `style`, `dashboard_url`) VALUES
-(1, 'Administrador', 'Se encarga de comfiguracion del sistema. Cargar tabla de Usuarios, tabla de proveedores', 'text-warning', 'dashboard/administrador'),
+(1, 'Administrador', 'Se encarga de comfiguracion del sistema. Cargar tabla de Usuarios, tabla de proveedores', 'text-warning', 'dashboard/admin'),
 (2, 'Usuario Consulta', 'Solo tiene acceso a ver información en el sistema. No puede editar ni adicionar nada.', 'text-green', 'dashboard/encargado'),
 (3, 'Encargado', 'Usuarios que van a realizar el mantenimiento a los equipos.', 'text-danger', 'dashboard/encargado'),
 (4, 'Supervisor', 'Carga en el sistema el plan de mantenimiento, asigna los mantenimientos a los encargados y realiza control de los mantenimientos', 'text-info', 'dashboard/supervisor'),
@@ -376,7 +391,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_user`, `first_name`, `last_name`, `log_user`, `movil`, `email`, `password`, `state`, `fk_id_user_role`, `photo`) VALUES
-(1, 'Benjamin', 'Motta', 'Bmottag', '4034089921', 'benmotta@gmail.com', '25446782e2ccaf0afdb03e5d61d0fbb9', 1, 99, 'images/usuarios/thumbs/1.JPG');
+(1, 'Benjamin', 'Motta', 'Bmottag', '4034089921', 'benmotta@gmail.com', '25446782e2ccaf0afdb03e5d61d0fbb9', 1, 99, 'images/usuarios/thumbs/1.JPG'),
+(2, 'Administrador', 'Administrador', 'admin', '234523425', 'admin@gmail.com', '25f9e794323b453885f5181f1b624d0b', 1, 1, '');
 
 -- --------------------------------------------------------
 
@@ -537,19 +553,19 @@ ALTER TABLE `param_dependencias`
 -- AUTO_INCREMENT de la tabla `param_menu`
 --
 ALTER TABLE `param_menu`
-  MODIFY `id_menu` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_menu` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu_access`
 --
 ALTER TABLE `param_menu_access`
-  MODIFY `id_access` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_access` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu_links`
 --
 ALTER TABLE `param_menu_links`
-  MODIFY `id_link` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_link` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `param_proveedores`
@@ -579,7 +595,7 @@ ALTER TABLE `param_tipo_equipos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_llave_contraseña`
