@@ -32,7 +32,7 @@
 					
 					//actualizo la url del codigo QR
 					$path = $idEquipo . $pass;
-					$rutaQRcode = "images/equipos/" . $idEquipo . "_qr_code.png";
+					$rutaQRcode = "images/equipos/QR/" . $idEquipo . "_qr_code.png";
 			
 					//actualizo campo con el path encriptado
 					$sql = "UPDATE equipos SET qr_code_encryption = '$path', qr_code_img = '$rutaQRcode'  WHERE id_equipo = $idEquipo";

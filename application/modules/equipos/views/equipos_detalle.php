@@ -20,10 +20,13 @@
 		
 			<div class="list-group">
 				<a href="<?php echo base_url('equipos/detalle/' . $info[0]['id_equipo']); ?>" class="list-group-item">
-					<i class="fa fa-twitter fa-wrench"></i> Información General
+					<i class="fa fa-tag"></i> Información General
 				</a>
 				<a href="<?php echo base_url('equipos/especifico/' . $info[0]['id_equipo']); ?>" class="list-group-item">
-					<i class="fa fa-twitter fa-wrench"></i> Información Específica
+					<i class="fa fa-tags"></i> Información Específica
+				</a>
+				<a href="<?php echo base_url('equipos/foto/' . $info[0]['id_equipo']); ?>" class="list-group-item">
+					<i class="fa fa-photo"></i> Foto Equipo
 				</a>
 			</div>
 
@@ -32,7 +35,7 @@
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-truck"></i> <strong>INFORMACIÓN GENERAL DEL EQUIPO</strong>
+					<i class="fa fa-tag"></i> <strong>INFORMACIÓN GENERAL DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 
