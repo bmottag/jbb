@@ -1,3 +1,5 @@
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/foto.js"); ?>"></script>
+
 <div id="page-wrapper">
 	<br>
 	
@@ -34,50 +36,52 @@
 					<i class="fa fa-image"></i> <strong>FOTO EQUIPO</strong>
 				</div>
 				<div class="panel-body">
-					<div class="col-lg-12">
+					<div class="col-lg-7">
 						<p class="text-success">
 							<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
 							<strong>Nota:</strong> Subir foto del equipo
 						</p>
-					</div>
-					<form  name="form" id="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url("equipos/do_upload_equipo"); ?>">
+					
+						<form  name="form" id="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url("equipos/do_upload_equipo"); ?>">
 
-						<input type="hidden" id="hddId" name="hddId" value="<?php echo $info[0]['id_equipo']; ?>"/>
-						<div class="form-group">
-							<div class="col-sm-5">
-								 <input type="file" name="userfile" />
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<div class="row" align="center">
-								<div style="width:50%;" align="center">							
-									<button type="submit" id="btnFoto" name="btnFoto" class="btn btn-info" >
-										Enviar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
-									</button> 
+							<input type="hidden" id="hddId" name="hddId" value="<?php echo $info[0]['id_equipo']; ?>"/>
+							<div class="form-group">
+								<div class="col-sm-5">
+									 <input type="file" name="userfile" />
 								</div>
 							</div>
-						</div>
 							
-						<?php if($error){ ?>
-						<div class="alert alert-danger">
-							<?php 
-								echo "<strong>Error :</strong>";
-								pr($error); 
-							?><!--$ERROR MUESTRA LOS ERRORES QUE PUEDAN HABER AL SUBIR LA IMAGEN-->
-						</div>
-						<?php } ?>
+							<div class="form-group">
+								<div class="row" align="center">
+									<div style="width:50%;" align="center">							
+										<button type="submit" id="btnFoto" name="btnFoto" class="btn btn-info" >
+											Enviar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+										</button> 
+									</div>
+								</div>
+							</div>
+								
+							<?php if($error){ ?>
+							<div class="alert alert-danger">
+								<?php 
+									echo "<strong>Error :</strong>";
+									pr($error); 
+								?><!--$ERROR MUESTRA LOS ERRORES QUE PUEDAN HABER AL SUBIR LA IMAGEN-->
+							</div>
+							<?php } ?>
+						</form>
+					</div>
+					
+					<div class="col-lg-5">
 						<div class="alert alert-danger">
 								<strong>Nota :</strong><br>
 								Formato permitido: gif - jpg - png<br>
 								Tamaño máximo: 3000 KB<br>
 								Ancho máximo: 2024 pixels<br>
 								Altura máxima: 2008 pixels<br>
-
 						</div>
-						
-					</form>
-			
+					</div>
+								
 				</div>
 			</div>
 			<!--INICIO FOTOS -->
@@ -87,7 +91,7 @@
 			<table class="table table-bordered table-striped table-hover table-condensed">
 				<tr class="dafault">
 					<td><p class="text-center"><strong>Foto</strong></p></td>
-					<td><p class="text-center"><strong>Delete</strong></p></td>
+					<td><p class="text-center"><strong>Eliminar</strong></p></td>
 				</tr>
 				<?php
 					foreach ($fotosEquipos as $data):
@@ -95,17 +99,15 @@
 						echo "<td class='text-center'><center>";
 
 ?>
-<a href="<?php echo base_url( $data['equipo_foto']) ?>" target="_blank">Foto</a>
+<img src="<?php echo base_url($data['equipo_foto']); ?>" class="img-rounded" alt="Foto usuario" width="150" height="150" />
 <?php 
 
 						echo "</center></td>";
 						echo "<td class='text-center'><small>";
-				?>
-					<center>
-					<a class='btn btn-danger' href='<?php echo base_url('jobs/deleteJobLocate/' . $data['id_equipo_foto'] . '/' . $data['fk_id_job']) ?>' id="btn-delete">
-							<span class="glyphicon glyphicon-remove" aria-hidden="true"> </span>  Delete
-					</a>
-					</center>
+				?>					
+			<button type="button" id="<?php echo $data['id_equipo_foto']; ?>" class='btn btn-danger' title="Eliminar">
+					<i class="fa fa-trash-o"></i>
+			</button>
 				<?php
 						echo "</small></td>";                     
 						echo "</tr>";

@@ -166,17 +166,25 @@
 					return false;
 				}
 		}
-		
+				
 		/**
 		 * Lista de fotos por equipo
 		 * @since 14/12/2020
 		 */
-		public function get_fotos_equipos($idEquipo) 
+		public function get_fotos_equipos($arrData) 
 		{		
-				$this->db->select();
-				$this->db->where('L.fk_id_equipo_foto', $idEquipo); 
-				$this->db->order_by('L.id_equipo_foto', 'asc');
-				$query = $this->db->get('equipos_fotos L');
+				$this->db->select();				
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.fk_id_equipo_foto', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idEquipoFoto", $arrData)) {
+					$this->db->where('A.id_equipo_foto', $arrData["idEquipoFoto"]);
+				}
+				
+				$this->db->order_by('A.id_equipo_foto', 'asc');
+				$query = $this->db->get('equipos_fotos A');
+
 
 				if ($query->num_rows() > 0) {
 					return $query->result_array();

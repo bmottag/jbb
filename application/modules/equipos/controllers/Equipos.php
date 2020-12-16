@@ -295,8 +295,8 @@ class Equipos extends CI_Controller {
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
 			
 			//Lista fotos de equipo
-			$data['fotosEquipos'] = $this->equipos_model->get_fotos_equipos($idEquipo);
-			
+			$data['fotosEquipos'] = $this->equipos_model->get_fotos_equipos($arrParam);
+						
 			$data['error'] = $error; //se usa para mostrar los errores al cargar la imagen 
 			$data["view"] = 'foto_equipo';
 			$this->load->view("layout", $data);
@@ -339,6 +339,45 @@ class Equipos extends CI_Controller {
 						
 			redirect('equipos/foto/' . $idEquipo);
         }
+    }
+	
+	/**
+	 * Eliminar foto
+     * @since 16/12/2020
+	 */
+	public function eliminar_foto()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			
+			$idEquipoFoto = $this->input->post('identificador');
+			
+			//busco el ID del equipo
+			$arrParam = array("idEquipoFoto" => $idEquipoFoto);
+			$fotosEquipos = $this->equipos_model->get_fotos_equipos($arrParam);
+			
+			$data["idRecord"] = $fotosEquipos[0]['fk_id_equipo_foto']; //$idEquipo
+			
+			unlink($fotosEquipos[0]['equipo_foto']);//elimino archivo 
+			
+			//elimino registro de la base de datos
+			$arrParam = array(
+				"table" => "equipos_fotos",
+				"primaryKey" => "id_equipo_foto",
+				"id" => $idEquipoFoto
+			);
+			
+			if ($this->general_model->deleteRecord($arrParam))
+			{				
+				$data["result"] = true;
+				$this->session->set_flashdata('retornoExito', 'Se eliminó la foto del equipo.');
+			} else {
+				$data["result"] = "error";
+				$data["mensaje"] = "Error!!! Contactarse con el Administrador.";
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+			}				
+
+			echo json_encode($data);
     }
 
 
