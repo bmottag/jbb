@@ -28,29 +28,19 @@
 
 		</div>
 
-		<div class="col-lg-5">
+		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-image"></i> <strong>FOTO EQUIPO</strong>
 				</div>
 				<div class="panel-body">
-		
-					<?php 
-						if($info[0]["foto_equipo"]){
-							$URLimagen = base_url($info[0]["foto_equipo"]);
-						}else{ 
-							$URLimagen = base_url('images/avatar.png');
-						}
-					?>
-					
-					<div class="form-group">
-						<div class="row" align="center">
-							<img src="<?php echo $URLimagen; ?>" class="img-rounded" alt="Foto Equipo" width="200" height="200" />
-						</div>
+					<div class="col-lg-12">
+						<p class="text-success">
+							<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+							<strong>Nota:</strong> Subir foto del equipo
+						</p>
 					</div>
-								
-			
-					<form  name="form" id="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url("equipos/do_upload"); ?>">
+					<form  name="form" id="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="<?php echo base_url("equipos/do_upload_equipo"); ?>">
 
 						<input type="hidden" id="hddId" name="hddId" value="<?php echo $info[0]['id_equipo']; ?>"/>
 						<div class="form-group">
@@ -90,8 +80,44 @@
 			
 				</div>
 			</div>
+			<!--INICIO FOTOS -->
+			<?php 
+				if($fotosEquipos){
+			?>
+			<table class="table table-bordered table-striped table-hover table-condensed">
+				<tr class="dafault">
+					<td><p class="text-center"><strong>Foto</strong></p></td>
+					<td><p class="text-center"><strong>Delete</strong></p></td>
+				</tr>
+				<?php
+					foreach ($fotosEquipos as $data):
+						echo "<tr>";					
+						echo "<td class='text-center'><center>";
+
+?>
+<a href="<?php echo base_url( $data['equipo_foto']) ?>" target="_blank">Foto</a>
+<?php 
+
+						echo "</center></td>";
+						echo "<td class='text-center'><small>";
+				?>
+					<center>
+					<a class='btn btn-danger' href='<?php echo base_url('jobs/deleteJobLocate/' . $data['id_equipo_foto'] . '/' . $data['fk_id_job']) ?>' id="btn-delete">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"> </span>  Delete
+					</a>
+					</center>
+				<?php
+						echo "</small></td>";                     
+						echo "</tr>";
+					endforeach;
+				?>
+			</table>
+			<?php } ?>
+			<!--FIN FOTOS -->
 
 		</div>
+		
+
 		
 	</div>
 	

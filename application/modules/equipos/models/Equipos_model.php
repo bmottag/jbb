@@ -144,6 +144,47 @@
 				} else{ return false; }
 		}
 		
+		/**
+		 * Add fotos
+		 * @since 14/12/2020
+		 */
+		public function add_fotos($path) 
+		{							
+				$idUser = $this->session->userdata("id");
+		
+				$data = array(
+					'fk_id_equipo_foto' => $this->input->post('hddId'),
+					'equipo_foto' => $path,
+					'fecha_foto' => date("Y-m-d")
+				);			
+
+				$query = $this->db->insert('equipos_fotos', $data);
+
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
+		
+		/**
+		 * Lista de fotos por equipo
+		 * @since 14/12/2020
+		 */
+		public function get_fotos_equipos($idEquipo) 
+		{		
+				$this->db->select();
+				$this->db->where('L.fk_id_equipo_foto', $idEquipo); 
+				$this->db->order_by('L.id_equipo_foto', 'asc');
+				$query = $this->db->get('equipos_fotos L');
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+		
 		
 		
 		

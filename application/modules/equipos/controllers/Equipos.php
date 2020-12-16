@@ -294,63 +294,51 @@ class Equipos extends CI_Controller {
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
 			
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->equipos_model->get_fotos_equipos($idEquipo);
+			
 			$data['error'] = $error; //se usa para mostrar los errores al cargar la imagen 
 			$data["view"] = 'foto_equipo';
 			$this->load->view("layout", $data);
 	}
-	
+		
 	/**
 	 * Subir Foto del equipo
 	 * @since 12/12/2020
      * @author BMOTTAG
 	 */
-    function do_upload() 
+    function do_upload_equipo() 
 	{
-			$config['upload_path'] = './images/equipos/';
-			$config['overwrite'] = true;
-			$config['allowed_types'] = 'gif|jpg|png|jpeg';
-			$config['max_size'] = '3000';
-			$config['max_width'] = '2024';
-			$config['max_height'] = '2008';
-			$idEquipo = $this->input->post('hddId');
-			$config['file_name'] = $idEquipo;
+		$config['upload_path'] = './images/equipos/';
+        $config['overwrite'] = false;
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size'] = '3000';
+        $config['max_width'] = '3200';
+        $config['max_height'] = '2400';
+		$idEquipo = $this->input->post('hddId');
 
-			$this->load->library('upload', $config);
-			//SI LA IMAGEN FALLA AL SUBIR MOSTRAMOS EL ERROR EN LA VISTA 
-			if (!$this->upload->do_upload()) {
-				$error = $this->upload->display_errors();
-				$this->foto($idEquipo, $error);
-			} else {
-				$file_info = $this->upload->data();//subimos la imagen
-				
-				$imagen = $file_info['file_name'];
-				$path = "images/equipos/" . $imagen;
-								
-				//actualizamos el campo photo
-				$arrParam = array(
-					"table" => "equipos",
-					"primaryKey" => "id_equipo",
-					"id" => $idEquipo,
-					"column" => "foto_equipo",
-					"value" => $path
-				);
-
-				$data['linkBack'] = "equipos/foto/" . $idEquipo;
-				$data['titulo'] = "<i class='fa fa-user fa-fw'></i> FOTO EQUIPO";
-				
-				if($this->general_model->updateRecord($arrParam))
-				{
-					$data['clase'] = "alert-success";
-					$data['msj'] = "Se actualizó la foto del Equipo.";
-				}else{
-					$data['clase'] = "alert-danger";
-					$data['msj'] = "Ask for help.";
-				}
-							
-				$data["view"] = 'template/answer';
-				$this->load->view("layout", $data);
-				//redirect('employee/photo');
+        $this->load->library('upload', $config);
+        //SI LA IMAGEN FALLA AL SUBIR MOSTRAMOS EL ERROR EN LA VISTA 
+        if (!$this->upload->do_upload()) {
+            $error = $this->upload->display_errors();
+			$this->foto($idEquipo, $error);
+        } else {
+            $file_info = $this->upload->data();//subimos la imagen
+			
+			$data = array('upload_data' => $this->upload->data());
+			$imagen = $file_info['file_name'];
+			$path = "images/equipos/" . $imagen;
+			
+			//insertar datos
+			if($this->equipos_model->add_fotos($path))
+			{
+				$this->session->set_flashdata('retornoExito', 'Se cargó la foto del Equipo.');
+			}else{
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
 			}
+						
+			redirect('equipos/foto/' . $idEquipo);
+        }
     }
 
 
