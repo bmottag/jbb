@@ -93,8 +93,8 @@
 			?>
 			<table class="table table-bordered table-striped table-hover table-condensed">
 				<tr class="dafault">
-					<td><p class="text-center"><strong>Foto</strong></p></td>
-					<td><p class="text-center"><strong>Eliminar</strong></p></td>
+					<th class="text-center">Foto</th>
+					<th class="text-center">Eliminar</th>
 				</tr>
 				<?php
 					foreach ($fotosEquipos as $data):

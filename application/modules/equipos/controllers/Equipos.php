@@ -385,13 +385,22 @@ class Equipos extends CI_Controller {
      * @since 17/12/2020
      * @author BMOTTAG
 	 */
-	public function localizacion($idEquipo)
+	public function localizacion($idEquipo, $idLocalizacion = 'x')
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
 			
-			$data['infolocalizacion'] = $this->equipos_model->get_localizacion($arrParam);
-						
+			$data['listadoLocalizacion'] = $this->equipos_model->get_localizacion($arrParam);
+			
+			$data['infoLocalizacion'] = FALSE;
+			if ($idLocalizacion != 'x') {
+				$arrParam = array(
+					"idEquipoLocalizacion" => $idLocalizacion,
+					"idEquipo" => $idEquipo
+				);
+				$data['infoLocalizacion'] = $this->equipos_model->get_localizacion($arrParam);
+			}
+			
 			$data["view"] = 'equipos_localizacion';
 			$this->load->view("layout", $data);
 	}

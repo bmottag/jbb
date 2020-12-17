@@ -69,7 +69,7 @@ if ($retornoError) {
 ?>
 				
 					<form  name="form" id="form" class="form-horizontal" method="post"  >
-						<input type="hidden" id="hddId" name="hddId" value="<?php echo $infolocalizacion?$infolocalizacion[0]["id_equipo_localizacion"]:""; ?>"/>
+						<input type="hidden" id="hddId" name="hddId" value="<?php echo $infoLocalizacion?$infoLocalizacion[0]["id_equipo_localizacion"]:""; ?>"/>
 						<input type="hidden" id="hddIdEquipo" name="hddIdEquipo" value="<?php echo $info[0]['id_equipo']; ?>"/>
 
 <script>
@@ -82,15 +82,27 @@ if ($retornoError) {
 	});
 </script>
 						<div class="form-group">
-							<div class="col-sm-3">
+							<div class="col-sm-2">
 								<label for="fecha">Fecha: *</label>
-								<input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo $infolocalizacion?$infolocalizacion[0]["fecha_localizacion"]:""; ?>" placeholder="Fecha" required />
+								<input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo $infoLocalizacion?$infoLocalizacion[0]["fecha_localizacion"]:""; ?>" placeholder="Fecha" required />
 							</div>
 						
-							<div class="col-sm-9">
+							<div class="col-sm-8">
 								<label for="localizacion">Localización: *</label>
-								<input type="text" id="localizacion" name="localizacion" class="form-control" value="<?php echo $infolocalizacion?$infolocalizacion[0]["localizacion"]:""; ?>" placeholder="Localización" required >
+								<input type="text" id="localizacion" name="localizacion" class="form-control" value="<?php echo $infoLocalizacion?$infoLocalizacion[0]["localizacion"]:""; ?>" placeholder="Localización" required >
 							</div>
+							
+							<div class="col-sm-2">
+								<div class="row" align="center">
+									<div style="width:100%;" align="center">
+										<br>
+										<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-danger btn-xs'>
+											Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+										</button>
+									</div>
+								</div>
+							</div>
+	
 						</div>
 
 						<div class="form-group">
@@ -109,24 +121,43 @@ if ($retornoError) {
 								</div>
 							</div>
 						</div>	
-
-						<div class="form-group">
-							<div class="row" align="center">
-								<div style="width:100%;" align="center">							
-									<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-info'>
-										Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
-									</button>
-								</div>
-							</div>
-						</div>
 															
 					</form>
 
 				</div>
 			</div>
+			
+			<!--INICIO TABLA LOCALIZACIÓN -->
+			<?php 
+				if($listadoLocalizacion){
+			?>
+			<table class="table table-bordered table-striped table-hover table-condensed">
+				<tr class="dafault">
+					<th class="text-center">Fecha</th>
+					<th class="text-center">Localización</th>
+					<th class="text-center">Editar</th>
+				</tr>
+				<?php
+					foreach ($listadoLocalizacion as $data):
+						echo "<tr>";					
+						echo "<td class='text-center'>" . $data['fecha_localizacion'] . "</td>";
+						echo "<td>" . $data['localizacion'] . "</td>";
+						echo "<td class='text-center'>";
+				?>					
+						<a class='btn btn-danger btn-xs' href='<?php echo base_url('equipos/localizacion/' . $info[0]['id_equipo'] . '/' . $data['id_equipo_localizacion']); ?>'>
+							Editar <span class="fa fa-edit" aria-hidden="true">
+						</a>
+				<?php
+						echo "</td>";                     
+						echo "</tr>";
+					endforeach;
+				?>
+			</table>
+			<?php } ?>
+			<!--FIN TABLA LOCALIZACIÓN -->
+			
 		</div>
 		
-					
 	</div>
 	
 </div>
