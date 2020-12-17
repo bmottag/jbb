@@ -31,6 +31,9 @@
 				<a href="<?php echo base_url('equipos/localizacion/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-thumb-tack"></i> Localización
 				</a>
+				<a href="<?php echo base_url('equipos/combustible/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-tint"></i> Control Combustible
+				</a>
 			</div>
 
 		</div>

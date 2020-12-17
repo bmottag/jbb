@@ -431,6 +431,58 @@ class Equipos extends CI_Controller {
 		
 			echo json_encode($data);
     }
+	
+	/**
+	 * Control de combustible del equipo
+     * @since 17/12/2020
+     * @author BMOTTAG
+	 */
+	public function combustible($idEquipo, $idControlCombustible = 'x')
+	{
+			$arrParam = array("idEquipo" => $idEquipo);
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+			
+			$data['listadoControlCombustible'] = $this->equipos_model->get_control_combustible($arrParam);
+			
+			$data['infoControlCombustible'] = FALSE;
+			if ($idControlCombustible != 'x') {
+				$arrParam = array(
+					"idControlCombustible" => $idControlCombustible,
+					"idEquipo" => $idEquipo
+				);
+				$data['infoControlCombustible'] = $this->equipos_model->get_control_combustible($arrParam);
+			}
+			
+			$data["view"] = 'equipos_combustible';
+			$this->load->view("layout", $data);
+	}
+	
+	/**
+	 * Guardar Control del combustible
+	 * @since 17/12/2020
+     * @author BMOTTAG
+	 */
+	public function guardar_combustible()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			
+			$idControlCombustible = $this->input->post('hddId');
+			$data["idRecord"] = $this->input->post('hddIdEquipo');
+		
+			$msj = "Se guardo la información!";
+
+			if ($idControlCombustible = $this->equipos_model->guardarControlCombustible()) 
+			{				
+				$data["result"] = true;		
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
+			} else {
+				$data["result"] = "error";
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
+			}
+		
+			echo json_encode($data);
+    }
 
 
 	

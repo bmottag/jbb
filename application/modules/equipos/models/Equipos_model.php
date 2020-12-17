@@ -249,6 +249,66 @@
 				}
 		}
 		
+		/**
+		 * Lista de control combustile por equipo
+		 * @since 17/12/2020
+		 */
+		public function get_control_combustible($arrData) 
+		{		
+				$this->db->select();				
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.fk_id_equipo_combustible', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idControlCombustible", $arrData)) {
+					$this->db->where('A.id_equipo_control_combustible', $arrData["idControlCombustible"]);
+				}
+				
+				$this->db->order_by('A.id_equipo_control_combustible', 'desc');
+				$query = $this->db->get('equipos_control_combustible A');
+
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+	
+		/**
+		 * Guardar localizacion
+		 * @since 17/12/2020
+		 */
+		public function guardarControlCombustible() 
+		{
+				$idControlCombustible = $this->input->post('hddId');
+				$idEquipo = $this->input->post('hddIdEquipo');
+				
+				$data = array(
+					'fk_id_equipo_combustible' => $idEquipo,
+					'kilometros_actuales' => $this->input->post('kilometros_actuales'),
+					'cantidad' => $this->input->post('cantidad'),
+					'fecha_combustible' => date("Y-m-d G:i:s"),
+					'fk_id_conductor_combustible ' => 1,
+					'valor' => $this->input->post('valor'),
+					'observacion' => $this->input->post('observacion')
+				);	
+
+				//revisar si es para adicionar o editar
+				if ($idControlCombustible == '') 
+				{							
+					$query = $this->db->insert('equipos_control_combustible', $data);
+				} else {
+					$this->db->where('id_equipo_control_combustible', $idControlCombustible);
+					$query = $this->db->update('equipos_control_combustible', $data);
+				}
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
+		
 		
 		
 		
