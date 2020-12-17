@@ -19,14 +19,17 @@
 			<?php } ?>
 		
 			<div class="list-group">
-				<a href="<?php echo base_url('equipos/detalle/' . $info[0]['id_equipo']); ?>" class="list-group-item">
+				<a href="<?php echo base_url('equipos/detalle/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
 					<i class="fa fa-tag"></i> Información General
 				</a>
-				<a href="<?php echo base_url('equipos/especifico/' . $info[0]['id_equipo']); ?>" class="list-group-item">
+				<a href="<?php echo base_url('equipos/especifico/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tags"></i> Información Específica
 				</a>
-				<a href="<?php echo base_url('equipos/foto/' . $info[0]['id_equipo']); ?>" class="list-group-item">
+				<a href="<?php echo base_url('equipos/foto/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-photo"></i> Foto Equipo
+				</a>
+				<a href="<?php echo base_url('equipos/localizacion/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-thumb-tack"></i> Localización
 				</a>
 			</div>
 

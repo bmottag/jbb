@@ -17,21 +17,24 @@
 			<?php } ?>
 		
 			<div class="list-group">
-				<a href="<?php echo base_url('equipos/detalle/' . $info[0]['id_equipo']); ?>" class="list-group-item">
+				<a href="<?php echo base_url('equipos/detalle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tag"></i> Información General
 				</a>
-				<a href="<?php echo base_url('equipos/especifico/' . $info[0]['id_equipo']); ?>" class="list-group-item">
+				<a href="<?php echo base_url('equipos/especifico/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tags"></i> Información Específica
 				</a>
-				<a href="<?php echo base_url('equipos/foto/' . $info[0]['id_equipo']); ?>" class="list-group-item">
+				<a href="<?php echo base_url('equipos/foto/' . $info[0]['id_equipo']); ?>" class="btn btn-warning btn-block">
 					<i class="fa fa-photo"></i> Foto Equipo
+				</a>
+				<a href="<?php echo base_url('equipos/localizacion/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-thumb-tack"></i> Localización
 				</a>
 			</div>
 
 		</div>
 
 		<div class="col-lg-9">
-			<div class="panel panel-info">
+			<div class="panel panel-warning">
 				<div class="panel-heading">
 					<i class="fa fa-image"></i> <strong>FOTO EQUIPO</strong>
 				</div>
@@ -54,7 +57,7 @@
 							<div class="form-group">
 								<div class="row" align="center">
 									<div style="width:50%;" align="center">							
-										<button type="submit" id="btnFoto" name="btnFoto" class="btn btn-info" >
+										<button type="submit" id="btnFoto" name="btnFoto" class="btn btn-warning" >
 											Enviar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
 										</button> 
 									</div>
