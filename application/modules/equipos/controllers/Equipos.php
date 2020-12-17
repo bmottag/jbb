@@ -379,6 +379,49 @@ class Equipos extends CI_Controller {
 
 			echo json_encode($data);
     }
+	
+	/**
+	 * Localizacion del equipo
+     * @since 17/12/2020
+     * @author BMOTTAG
+	 */
+	public function localizacion($idEquipo)
+	{
+			$arrParam = array("idEquipo" => $idEquipo);
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+			
+			$data['infolocalizacion'] = $this->equipos_model->get_localizacion($arrParam);
+						
+			$data["view"] = 'equipos_localizacion';
+			$this->load->view("layout", $data);
+	}
+	
+	/**
+	 * Guardar Localizacion
+	 * @since 17/12/2020
+     * @author BMOTTAG
+	 */
+	public function guardar_localizacion()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			
+			$idLocalizacion = $this->input->post('hddId');
+			$data["idRecord"] = $this->input->post('hddIdEquipo');
+		
+			$msj = "Se guardo la información!";
+
+			if ($idLocalizacion = $this->equipos_model->guardarLocalizacion()) 
+			{				
+				$data["result"] = true;		
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
+			} else {
+				$data["result"] = "error";
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
+			}
+		
+			echo json_encode($data);
+    }
 
 
 	

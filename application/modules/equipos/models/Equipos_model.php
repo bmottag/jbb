@@ -193,6 +193,61 @@
 				}
 		}
 		
+		/**
+		 * Lista de localizacion por equipo
+		 * @since 17/12/2020
+		 */
+		public function get_localizacion($arrData) 
+		{		
+				$this->db->select();				
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.fk_id_equipo_localizacion', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idEquipoLocalizacion", $arrData)) {
+					$this->db->where('A.id_equipo_localizacion', $arrData["idEquipoLocalizacion"]);
+				}
+				
+				$this->db->order_by('A.id_equipo_localizacion', 'desc');
+				$query = $this->db->get('equipos_localizacion A');
+
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+	
+		/**
+		 * Guardar localizacion
+		 * @since 17/12/2020
+		 */
+		public function guardarLocalizacion() 
+		{
+				$idLocalizacion = $this->input->post('hddId');
+				$idEquipo = $this->input->post('hddIdEquipo');
+				
+				$data = array(
+					'fk_id_equipo_localizacion' => $idEquipo,
+					'localizacion' => $this->input->post('localizacion'),
+					'fecha_localizacion' => $this->input->post('fecha')
+				);	
+
+				//revisar si es para adicionar o editar
+				if ($idLocalizacion == '') 
+				{							
+					$query = $this->db->insert('equipos_localizacion', $data);
+				} else {
+					$this->db->where('id_equipo_localizacion', $idLocalizacion);
+					$query = $this->db->update('equipos_localizacion', $data);
+				}
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
 		
 		
 		
