@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-12-2020 a las 13:23:26
+-- Tiempo de generación: 17-12-2020 a las 22:21:52
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -39,7 +39,6 @@ CREATE TABLE `equipos` (
   `observacion` text NOT NULL,
   `qr_code_img` varchar(250) NOT NULL,
   `qr_code_encryption` varchar(60) NOT NULL,
-  `foto_equipo` varchar(250) NOT NULL,
   `fecha_adquisicion` date NOT NULL,
   `valor_comercial` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -48,15 +47,39 @@ CREATE TABLE `equipos` (
 -- Volcado de datos para la tabla `equipos`
 --
 
-INSERT INTO `equipos` (`id_equipo`, `numero_inventario`, `fk_id_dependencia`, `marca`, `modelo`, `numero_serial`, `fk_id_tipo_equipo`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`, `foto_equipo`, `fecha_adquisicion`, `valor_comercial`) VALUES
-(1, '14853', 7, 'Chevrolet ', '2019', '3GNFL7E51HS559955', 1, 1, 'Inventario Yezid ', 'images/equipos/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc', '', '1979-10-12', 10300500),
-(2, '14854', 7, 'Nissan', '2017', '3N6CD33B2ZK365122', 1, 1, 'Inventario Yezid ', 'images/equipos/2_qr_code.png', '2jnpWRXLbDdCG8v9QrKJGlR84UXIKqzkhNH9CLm7eScoSMxWn0k', '', '0000-00-00', 0),
-(3, '16901', 7, 'Toyota', '2007', '9FH11UJ9079012119', 1, 1, 'Inventario Yezid', 'images/equipos/3_qr_code.png', '3e0L1EUhaZIM0OZ9tdkon8brO7Auo7jL58GE7wg6V1GvqFwinHb', '', '0000-00-00', 0),
-(4, '16989', 7, 'Toyota- Hilux', '1996', 'RN1067012769', 1, 1, 'Inventario Yezid', 'images/equipos/4_qr_code.png', '4XnvRyFKtJVZPPzzyRdPYzr1QkgpYtoP0kENJh5D8mQHESej8y4', '', '0000-00-00', 0),
-(5, '17129', 7, 'Volkswagen', '2018', '9536G8247JR812344', 1, 1, 'Inventario Yezid', 'images/equipos/5_qr_code.png', '5PiIEUliY7PzZdS0ZDyUCaMNPfv25S1wQ1AlKAwxMlrdNH3N4mM', '', '0000-00-00', 0),
-(6, '17710', 7, 'Renault', '2020', '93YMAF4CELJ079626', 1, 1, 'Inventario Yezid', 'images/equipos/6_qr_code.png', '6jxt7Cevdl0j5MHgHuUZh93iOWBxbOTTyXG1FHKKaJuLBwasNvY', '', '0000-00-00', 0),
-(7, '17615', 7, 'Chevrolet ', '2020', '9GDFVR345LB008406', 1, 1, 'Inventaro Yezid', 'images/equipos/7_qr_code.png', '7sVXiSAcnge43sw3X0d1p4N8IHCo4LLAlN5cfX5ZRz6kuvJgAc0', '', '0000-00-00', 0),
-(8, 'JBB.210001', 7, 'Pedrollo', 'JC Rm 1B', '00000', 2, 1, 'Bomba Autocebante centrífuga', 'images/equipos/8_qr_code.png', '8o55FZnUiVhnFLtO0Jjvg22gMuuvdhVNuo5ukma8YWP2Ba9Plpq', '', '0000-00-00', 0);
+INSERT INTO `equipos` (`id_equipo`, `numero_inventario`, `fk_id_dependencia`, `marca`, `modelo`, `numero_serial`, `fk_id_tipo_equipo`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`, `fecha_adquisicion`, `valor_comercial`) VALUES
+(1, '14853', 7, 'Chevrolet ', '2019', '3GNFL7E51HS559955', 2, 1, 'Inventario Yezid ', 'images/equipos/QR/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc', '1979-10-12', 10300500),
+(2, '14854', 7, 'Nissan', '2017', '3N6CD33B2ZK365122', 1, 1, 'Inventario Yezid ', 'images/equipos/QR/2_qr_code.png', '2jnpWRXLbDdCG8v9QrKJGlR84UXIKqzkhNH9CLm7eScoSMxWn0k', '0000-00-00', 0),
+(3, '16901', 7, 'Toyota', '2007', '9FH11UJ9079012119', 1, 1, 'Inventario Yezid', 'images/equipos/QR/3_qr_code.png', '3e0L1EUhaZIM0OZ9tdkon8brO7Auo7jL58GE7wg6V1GvqFwinHb', '0000-00-00', 0),
+(4, '16989', 7, 'Toyota- Hilux', '1996', 'RN1067012769', 1, 1, 'Inventario Yezid', 'images/equipos/QR/4_qr_code.png', '4XnvRyFKtJVZPPzzyRdPYzr1QkgpYtoP0kENJh5D8mQHESej8y4', '0000-00-00', 0),
+(5, '17129', 7, 'Volkswagen', '2018', '9536G8247JR812344', 1, 1, 'Inventario Yezid', 'images/equipos/QR/5_qr_code.png', '5PiIEUliY7PzZdS0ZDyUCaMNPfv25S1wQ1AlKAwxMlrdNH3N4mM', '0000-00-00', 0),
+(6, '17710', 7, 'Renault', '2020', '93YMAF4CELJ079626', 1, 1, 'Inventario Yezid', 'images/equipos/QR/6_qr_code.png', '6jxt7Cevdl0j5MHgHuUZh93iOWBxbOTTyXG1FHKKaJuLBwasNvY', '0000-00-00', 0),
+(7, '17615', 7, 'Chevrolet ', '2020', '9GDFVR345LB008406', 1, 1, 'Inventaro Yezid', 'images/equipos/QR/7_qr_code.png', '7sVXiSAcnge43sw3X0d1p4N8IHCo4LLAlN5cfX5ZRz6kuvJgAc0', '0000-00-00', 0),
+(8, 'JBB.210001', 7, 'Pedrollo', 'JC Rm 1B', '00000', 2, 1, 'Bomba Autocebante centrífuga', 'images/equipos/QR/8_qr_code.png', '8o55FZnUiVhnFLtO0Jjvg22gMuuvdhVNuo5ukma8YWP2Ba9Plpq', '0000-00-00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `equipos_control_combustible`
+--
+
+CREATE TABLE `equipos_control_combustible` (
+  `id_equipo_control_combustible` int(10) NOT NULL,
+  `fk_id_equipo_combustible` int(10) NOT NULL,
+  `kilometros_actuales` varchar(10) NOT NULL,
+  `cantidad` varchar(20) NOT NULL,
+  `fecha_combustible` datetime NOT NULL,
+  `fk_id_conductor_combustible` int(10) NOT NULL,
+  `valor` float NOT NULL,
+  `observacion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `equipos_control_combustible`
+--
+
+INSERT INTO `equipos_control_combustible` (`id_equipo_control_combustible`, `fk_id_equipo_combustible`, `kilometros_actuales`, `cantidad`, `fecha_combustible`, `fk_id_conductor_combustible`, `valor`, `observacion`) VALUES
+(1, 1, '48000', '100 Litros', '2020-12-17 22:04:30', 1, 150000, 'Falto dinero para llenar los tanques, solicitar la tarjeta');
 
 -- --------------------------------------------------------
 
@@ -102,8 +125,8 @@ CREATE TABLE `equipos_detalle_vehiculo` (
   `placa` varchar(10) NOT NULL,
   `linea` varchar(50) NOT NULL,
   `color` varchar(30) NOT NULL,
-  `fk_id_clase_vechiculo` int(1) NOT NULL,
-  `fk_id_tipo_carroceria` int(1) NOT NULL,
+  `fk_id_clase_vechiculo` tinyint(1) NOT NULL,
+  `fk_id_tipo_carroceria` tinyint(1) NOT NULL,
   `combustible` tinyint(1) NOT NULL COMMENT '1:Gasolina; 2: Diesel',
   `capacidad` varchar(20) NOT NULL,
   `servicio` varchar(20) NOT NULL,
@@ -117,6 +140,47 @@ CREATE TABLE `equipos_detalle_vehiculo` (
 
 INSERT INTO `equipos_detalle_vehiculo` (`id_equipo_detalle_vehiculo`, `fk_id_equipo`, `placa`, `linea`, `color`, `fk_id_clase_vechiculo`, `fk_id_tipo_carroceria`, `combustible`, `capacidad`, `servicio`, `numero_motor`, `multas`) VALUES
 (2, 3, 'dbh 923', 'nose', 'amarillo', 5, 3, 1, '5 personas', 'publico', 'sferqwer234234', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `equipos_fotos`
+--
+
+CREATE TABLE `equipos_fotos` (
+  `id_equipo_foto` int(10) NOT NULL,
+  `fk_id_equipo_foto` int(10) NOT NULL,
+  `equipo_foto` varchar(250) NOT NULL,
+  `fecha_foto` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `equipos_fotos`
+--
+
+INSERT INTO `equipos_fotos` (`id_equipo_foto`, `fk_id_equipo_foto`, `equipo_foto`, `fecha_foto`) VALUES
+(2, 1, 'images/equipos/1.PNG', '2020-12-16');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `equipos_localizacion`
+--
+
+CREATE TABLE `equipos_localizacion` (
+  `id_equipo_localizacion` int(10) NOT NULL,
+  `fk_id_equipo_localizacion` int(10) NOT NULL,
+  `localizacion` varchar(200) NOT NULL,
+  `fecha_localizacion` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `equipos_localizacion`
+--
+
+INSERT INTO `equipos_localizacion` (`id_equipo_localizacion`, `fk_id_equipo_localizacion`, `localizacion`, `fecha_localizacion`) VALUES
+(1, 1, 'Ibague- Barrio palermo - Manzana 8', '2020-12-24'),
+(2, 1, 'Bogotá - Jardin Botanico', '2020-12-18');
 
 -- --------------------------------------------------------
 
@@ -423,6 +487,14 @@ ALTER TABLE `equipos`
   ADD KEY `fk_id_tipo_equipo` (`fk_id_tipo_equipo`);
 
 --
+-- Indices de la tabla `equipos_control_combustible`
+--
+ALTER TABLE `equipos_control_combustible`
+  ADD PRIMARY KEY (`id_equipo_control_combustible`),
+  ADD KEY `fk_id_equipo_combustible` (`fk_id_equipo_combustible`),
+  ADD KEY `fk_id_conductor_combustible` (`fk_id_conductor_combustible`);
+
+--
 -- Indices de la tabla `equipos_detalle_bomba`
 --
 ALTER TABLE `equipos_detalle_bomba`
@@ -437,6 +509,20 @@ ALTER TABLE `equipos_detalle_vehiculo`
   ADD KEY `fk_id_clase_vechiculo` (`fk_id_clase_vechiculo`),
   ADD KEY `fk_id_tipo_carroceria` (`fk_id_tipo_carroceria`),
   ADD KEY `fk_id_equipo` (`fk_id_equipo`);
+
+--
+-- Indices de la tabla `equipos_fotos`
+--
+ALTER TABLE `equipos_fotos`
+  ADD PRIMARY KEY (`id_equipo_foto`),
+  ADD KEY `fk_id_equipo_foto` (`fk_id_equipo_foto`);
+
+--
+-- Indices de la tabla `equipos_localizacion`
+--
+ALTER TABLE `equipos_localizacion`
+  ADD PRIMARY KEY (`id_equipo_localizacion`),
+  ADD KEY `fk_id_equipo_localizacion` (`fk_id_equipo_localizacion`);
 
 --
 -- Indices de la tabla `param_clase_vehiculo`
@@ -526,6 +612,12 @@ ALTER TABLE `equipos`
   MODIFY `id_equipo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT de la tabla `equipos_control_combustible`
+--
+ALTER TABLE `equipos_control_combustible`
+  MODIFY `id_equipo_control_combustible` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `equipos_detalle_bomba`
 --
 ALTER TABLE `equipos_detalle_bomba`
@@ -536,6 +628,18 @@ ALTER TABLE `equipos_detalle_bomba`
 --
 ALTER TABLE `equipos_detalle_vehiculo`
   MODIFY `id_equipo_detalle_vehiculo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `equipos_fotos`
+--
+ALTER TABLE `equipos_fotos`
+  MODIFY `id_equipo_foto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `equipos_localizacion`
+--
+ALTER TABLE `equipos_localizacion`
+  MODIFY `id_equipo_localizacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `param_clase_vehiculo`
@@ -615,10 +719,30 @@ ALTER TABLE `equipos`
   ADD CONSTRAINT `equipos_ibfk_2` FOREIGN KEY (`fk_id_tipo_equipo`) REFERENCES `param_tipo_equipos` (`id_tipo_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `equipos_detalle_bomba`
+--
+ALTER TABLE `equipos_detalle_bomba`
+  ADD CONSTRAINT `equipos_detalle_bomba_ibfk_1` FOREIGN KEY (`fk_id_equipo_bomba`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `equipos_detalle_vehiculo`
 --
 ALTER TABLE `equipos_detalle_vehiculo`
-  ADD CONSTRAINT `equipos_detalle_vehiculo_ibfk_1` FOREIGN KEY (`fk_id_equipo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `equipos_detalle_vehiculo_ibfk_1` FOREIGN KEY (`fk_id_equipo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `equipos_detalle_vehiculo_ibfk_2` FOREIGN KEY (`fk_id_tipo_carroceria`) REFERENCES `param_tipo_carroceria` (`id_tipo_carroceria`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `equipos_detalle_vehiculo_ibfk_3` FOREIGN KEY (`fk_id_clase_vechiculo`) REFERENCES `param_clase_vehiculo` (`id_clase_vechiculo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `equipos_fotos`
+--
+ALTER TABLE `equipos_fotos`
+  ADD CONSTRAINT `equipos_fotos_ibfk_1` FOREIGN KEY (`fk_id_equipo_foto`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `equipos_localizacion`
+--
+ALTER TABLE `equipos_localizacion`
+  ADD CONSTRAINT `equipos_localizacion_ibfk_1` FOREIGN KEY (`fk_id_equipo_localizacion`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `param_menu_access`
