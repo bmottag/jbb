@@ -105,7 +105,7 @@
 						echo "<td class='text-center'><center>";
 
 ?>
-<img src="<?php echo base_url($data['equipo_foto']); ?>" class="img-rounded" alt="Foto usuario" width="150" height="150" />
+<img src="<?php echo base_url($data['equipo_foto']); ?>" class="img-rounded" alt="Foto Equipo" width="150" height="150" />
 <?php 
 
 						echo "</center></td>";
