@@ -136,17 +136,23 @@ if ($retornoError) {
 			<table class="table table-bordered table-striped table-hover table-condensed">
 				<tr class="dafault">
 					<th class="text-center">Fecha</th>
-					<th class="text-center">Localización</th>
+					<th class="text-center">Kilometros Actuales</th>
+					<th class="text-center">Cantidad</th>
+					<th class="text-center">Valor</th>
+					<th class="text-center">Observación</th>
 					<th class="text-center">Editar</th>
 				</tr>
 				<?php
 					foreach ($listadoControlCombustible as $data):
 						echo "<tr>";					
-						echo "<td class='text-center'>" . $data['fecha_localizacion'] . "</td>";
-						echo "<td>" . $data['localizacion'] . "</td>";
+						echo "<td class='text-center'>" . $data['fecha_combustible'] . "</td>";
+						echo "<td class='text-right'>" . number_format($data['kilometros_actuales']) . "</td>";
+						echo "<td>" . $data['cantidad'] . "</td>";
+						echo "<td class='text-right'>$" . number_format($data['valor'], 2) . "</td>";
+						echo "<td>" . $data['observacion'] . "</td>";
 						echo "<td class='text-center'>";
 				?>					
-						<a class='btn btn-danger btn-xs' href='<?php echo base_url('equipos/localizacion/' . $info[0]['id_equipo'] . '/' . $data['id_equipo_localizacion']); ?>'>
+						<a class='btn btn-danger btn-xs' href='<?php echo base_url('equipos/combustible/' . $info[0]['id_equipo'] . '/' . $data['id_equipo_control_combustible']); ?>'>
 							Editar <span class="fa fa-edit" aria-hidden="true">
 						</a>
 				<?php

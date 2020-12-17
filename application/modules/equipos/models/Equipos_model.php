@@ -288,7 +288,6 @@
 					'fk_id_equipo_combustible' => $idEquipo,
 					'kilometros_actuales' => $this->input->post('kilometros_actuales'),
 					'cantidad' => $this->input->post('cantidad'),
-					'fecha_combustible' => date("Y-m-d G:i:s"),
 					'fk_id_conductor_combustible ' => 1,
 					'valor' => $this->input->post('valor'),
 					'observacion' => $this->input->post('observacion')
@@ -296,7 +295,8 @@
 
 				//revisar si es para adicionar o editar
 				if ($idControlCombustible == '') 
-				{							
+				{
+					$data['fecha_combustible'] = date("Y-m-d G:i:s");
 					$query = $this->db->insert('equipos_control_combustible', $data);
 				} else {
 					$this->db->where('id_equipo_control_combustible', $idControlCombustible);
