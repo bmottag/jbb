@@ -203,11 +203,9 @@ if($infoPoliza){
 				<?php
 					foreach ($listadoPolizas as $data):
 						echo "<tr>";					
-						echo "<td class='text-center'>" . date('F j, Y', strtotime($data['fecha_inicio'])) . "</td>";
-						echo "<td class='text-center'>" . date('F j, Y', strtotime($data['fecha_vencimiento'])) . "</td>";
-						echo "<td>";
-						echo $data['numero_poliza'];
-						echo "</td>";
+						echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($data['fecha_inicio'])) . "</td>";
+						echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($data['fecha_vencimiento'])) . "</td>";
+						echo "<td class='text-center'>" . $data['numero_poliza'] . "</td>";
 						echo "<td>" . $data['descripcion'] . "</td>";
 						echo "<td class='text-center'>";
 				?>					
