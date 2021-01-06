@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+setlocale(LC_ALL, 'es_ES');
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
