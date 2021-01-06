@@ -344,6 +344,33 @@ class General_model extends CI_Model {
 					return false;
 				}
 		}
+		
+		/**
+		 * Lista de polizas
+		 * Modules: Dashboard 
+		 * @since 6/1/2021
+		 */
+		public function get_polizas($arrData) 
+		{		
+				$this->db->select();
+				$this->db->join('equipos E', 'E.id_equipo = P.fk_id_equipo_poliza ', 'INNER');
+				
+				if (array_key_exists("from", $arrData) && $arrData["from"] != '') {
+					$this->db->where('P.fecha_vencimiento >=', $arrData["from"]);
+				}				
+				if (array_key_exists("to", $arrData) && $arrData["to"] != '' && $arrData["from"] != '') {
+					$this->db->where('P.fecha_vencimiento <', $arrData["to"]);
+				}
+				
+				$this->db->order_by('P.id_equipo_poliza', 'desc');
+				$query = $this->db->get('equipos_poliza P');
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}			
+		}
 
 
 }
