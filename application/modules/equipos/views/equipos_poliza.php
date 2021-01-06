@@ -110,18 +110,44 @@ return date;
 });
 </script>
 
+
+<?php 
+
+if($infoPoliza){
+	$fechaInicio = date('m/d/Y', strtotime($infoPoliza[0]['fecha_inicio']));
+	$fechaVencimiento = date('m/d/Y', strtotime($infoPoliza[0]['fecha_vencimiento']));
+}
+
+?>
+
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="fecha_inicio">Fecha Inicio: </label>
-								<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo $infoPoliza?$infoPoliza[0]["fecha_inicio"]:""; ?>" placeholder="Fecha Inicio" />
+								<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo $infoPoliza?$fechaInicio:""; ?>" placeholder="Fecha Inicio" />
 							</div>
 						
 							<div class="col-sm-6">
 								<label for="fecha_inicio">Fecha Vencimieno: </label>
-								<input type="text" class="form-control" id="fecha_vencimiento" name="fecha_vencimiento" value="<?php echo $infoPoliza?$infoPoliza[0]["fecha_vencimiento"]:""; ?>" placeholder="Fecha Vencimiento" />
+								<input type="text" class="form-control" id="fecha_vencimiento" name="fecha_vencimiento" value="<?php echo $infoPoliza?$fechaVencimiento:""; ?>" placeholder="Fecha Vencimiento" />
 							</div>
 						</div>
 						
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label for="numero_poliza">No. Póliza: </label>
+								<input type="text" class="form-control" id="numero_poliza" name="numero_poliza" value="<?php echo $infoPoliza?$infoPoliza[0]["numero_poliza"]:""; ?>" placeholder="No. Póliza" />
+							</div>
+						
+							<div class="col-sm-6">
+								<label for="estado">Estado: </label>
+								<select name="estado" id="estado" class="form-control" required>
+									<option value=''>Select...</option>
+									<option value=1 <?php if($infoPoliza && $infoPoliza[0]["estado_poliza"] == 1) { echo "selected"; }  ?>>Activo</option>
+									<option value=2 <?php if($infoPoliza && $infoPoliza[0]["estado_poliza"] == 2) { echo "selected"; }  ?>>Inactivo</option>
+								</select>
+							</div>
+						</div>
+
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="descripcion">Descripción: </label>
@@ -169,6 +195,7 @@ return date;
 				<tr class="dafault">
 					<th class="text-center">Fecha Inicio</th>
 					<th class="text-center">Fecha Vencimiento</th>
+					<th class="text-center">No. Póliza</th>
 					<th class="text-center">Descripción</th>
 <!--					<th class="text-center">Proveedor</th> -->
 					<th class="text-center">Editar</th>
@@ -176,8 +203,11 @@ return date;
 				<?php
 					foreach ($listadoPolizas as $data):
 						echo "<tr>";					
-						echo "<td class='text-center'>" . $data['fecha_inicio'] . "</td>";
-						echo "<td class='text-center'>" . $data['fecha_vencimiento'] . "</td>";
+						echo "<td class='text-center'>" . date('F j, Y', strtotime($data['fecha_inicio'])) . "</td>";
+						echo "<td class='text-center'>" . date('F j, Y', strtotime($data['fecha_vencimiento'])) . "</td>";
+						echo "<td>";
+						echo $data['numero_poliza'];
+						echo "</td>";
 						echo "<td>" . $data['descripcion'] . "</td>";
 						echo "<td class='text-center'>";
 				?>					

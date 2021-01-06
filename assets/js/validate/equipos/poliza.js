@@ -1,9 +1,12 @@
 $( document ).ready( function () {
 	
+	$("#numero_poliza").convertirMayuscula().maxlength(15);
+	
 	$( "#form" ).validate( {
 		rules: {
 			fecha_inicio: 			{ required: true },
 			fecha_vencimiento:		{ required: true },
+			numero_poliza:			{ required: true, minlength:3, maxlength:15 },
 			descripcion:		 	{ required: true }
 		},
 		errorElement: "em",
