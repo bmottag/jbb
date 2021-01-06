@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-12-2020 a las 22:21:52
+-- Tiempo de generación: 06-01-2021 a las 13:54:16
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -48,7 +48,7 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`id_equipo`, `numero_inventario`, `fk_id_dependencia`, `marca`, `modelo`, `numero_serial`, `fk_id_tipo_equipo`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`, `fecha_adquisicion`, `valor_comercial`) VALUES
-(1, '14853', 7, 'Chevrolet ', '2019', '3GNFL7E51HS559955', 2, 1, 'Inventario Yezid ', 'images/equipos/QR/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc', '1979-10-12', 10300500),
+(1, '14853', 7, 'Chevrolet ', '2019', '3GNFL7E51HS559955', 1, 1, 'Inventario Yezid ', 'images/equipos/QR/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc', '1979-10-12', 10300500),
 (2, '14854', 7, 'Nissan', '2017', '3N6CD33B2ZK365122', 1, 1, 'Inventario Yezid ', 'images/equipos/QR/2_qr_code.png', '2jnpWRXLbDdCG8v9QrKJGlR84UXIKqzkhNH9CLm7eScoSMxWn0k', '0000-00-00', 0),
 (3, '16901', 7, 'Toyota', '2007', '9FH11UJ9079012119', 1, 1, 'Inventario Yezid', 'images/equipos/QR/3_qr_code.png', '3e0L1EUhaZIM0OZ9tdkon8brO7Auo7jL58GE7wg6V1GvqFwinHb', '0000-00-00', 0),
 (4, '16989', 7, 'Toyota- Hilux', '1996', 'RN1067012769', 1, 1, 'Inventario Yezid', 'images/equipos/QR/4_qr_code.png', '4XnvRyFKtJVZPPzzyRdPYzr1QkgpYtoP0kENJh5D8mQHESej8y4', '0000-00-00', 0),
@@ -185,6 +185,57 @@ INSERT INTO `equipos_localizacion` (`id_equipo_localizacion`, `fk_id_equipo_loca
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mantenimiento_correctivo`
+--
+
+CREATE TABLE `mantenimiento_correctivo` (
+  `id_correctivo` int(10) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fk_id_equipo` int(10) NOT NULL,
+  `descripcion` text CHARACTER SET latin1 NOT NULL,
+  `estado` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mantenimiento_correctivo`
+--
+
+INSERT INTO `mantenimiento_correctivo` (`id_correctivo`, `fecha_inicio`, `fk_id_equipo`, `descripcion`, `estado`) VALUES
+(1, '2020-12-01', 1, 'pruebas', 1),
+(2, '2020-12-31', 1, 'pruebas hoy', 1),
+(3, '2020-12-31', 8, 'otra prueba', 1),
+(4, '2020-12-15', 1, 'ultima prueba', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mantenimiento_preventivo`
+--
+
+CREATE TABLE `mantenimiento_preventivo` (
+  `id_preventivo` int(10) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fk_id_tipo_equipo` int(1) NOT NULL,
+  `fk_id_frecuencia` int(10) NOT NULL,
+  `descripcion` text CHARACTER SET latin1 NOT NULL,
+  `estado` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mantenimiento_preventivo`
+--
+
+INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fecha_inicio`, `fk_id_tipo_equipo`, `fk_id_frecuencia`, `descripcion`, `estado`) VALUES
+(1, '2020-12-01', 1, 1, 'algo', 1),
+(2, '2020-12-01', 2, 1, 'algo mas', 1),
+(3, '2010-01-01', 2, 4, 'pruebas de guardado', 1),
+(4, '2010-01-01', 1, 7, 'mas pruebas', 1),
+(5, '2020-12-01', 2, 5, 'ultima prueba', 1),
+(6, '2020-12-01', 1, 7, 'otra mas', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `param_clase_vehiculo`
 --
 
@@ -229,6 +280,31 @@ INSERT INTO `param_dependencias` (`id_dependencia`, `dependencia`) VALUES
 (7, 'Subdirección Técnica Operativa'),
 (8, 'Oficina de Arborización Urbana'),
 (9, 'Subdirección Educativa y Cultural');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `param_frecuencia`
+--
+
+CREATE TABLE `param_frecuencia` (
+  `id_frecuencia` int(10) NOT NULL,
+  `frecuencia` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `estado` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `param_frecuencia`
+--
+
+INSERT INTO `param_frecuencia` (`id_frecuencia`, `frecuencia`, `estado`) VALUES
+(1, 'Diaria', 1),
+(2, 'Semanal', 1),
+(3, 'Quincenal', 1),
+(4, 'Mensual', 1),
+(5, 'Trimestral', 1),
+(6, 'Semestral', 1),
+(7, 'Anual', 1);
 
 -- --------------------------------------------------------
 
@@ -385,7 +461,8 @@ INSERT INTO `param_role` (`id_role`, `role_name`, `description`, `style`, `dashb
 (2, 'Usuario Consulta', 'Solo tiene acceso a ver información en el sistema. No puede editar ni adicionar nada.', 'text-green', 'dashboard/encargado'),
 (3, 'Encargado', 'Usuarios que van a realizar el mantenimiento a los equipos.', 'text-danger', 'dashboard/encargado'),
 (4, 'Supervisor', 'Carga en el sistema el plan de mantenimiento, asigna los mantenimientos a los encargados y realiza control de los mantenimientos', 'text-info', 'dashboard/supervisor'),
-(99, 'SUPER ADMIN', 'Con acceso a todo el sistema, encargaado de tablas parametricas del sistema', 'text-success', 'dashboard/admin');
+(99, 'SUPER ADMIN', 'Con acceso a todo el sistema, encargaado de tablas parametricas del sistema', 'text-success', 'dashboard/admin'),
+(100, 'Conductor', 'Conductores de vehículos, falta definir su rol en el sistema', 'text-purpura', 'dashboard/conductor');
 
 -- --------------------------------------------------------
 
@@ -456,7 +533,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_user`, `first_name`, `last_name`, `log_user`, `movil`, `email`, `password`, `state`, `fk_id_user_role`, `photo`) VALUES
 (1, 'Benjamin', 'Motta', 'Bmottag', '4034089921', 'benmotta@gmail.com', '25446782e2ccaf0afdb03e5d61d0fbb9', 1, 99, 'images/usuarios/thumbs/1.JPG'),
-(2, 'Administrador', 'Administrador', 'admin', '234523425', 'admin@gmail.com', '25f9e794323b453885f5181f1b624d0b', 1, 1, '');
+(2, 'Administrador', 'Administrador', 'admin', '234523425', 'admin@gmail.com', '25f9e794323b453885f5181f1b624d0b', 1, 1, ''),
+(3, 'Pedro', 'Manrrique', 'pmanrrique', '3015549911', 'pmanrrique@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 100, '');
 
 -- --------------------------------------------------------
 
@@ -525,6 +603,18 @@ ALTER TABLE `equipos_localizacion`
   ADD KEY `fk_id_equipo_localizacion` (`fk_id_equipo_localizacion`);
 
 --
+-- Indices de la tabla `mantenimiento_correctivo`
+--
+ALTER TABLE `mantenimiento_correctivo`
+  ADD PRIMARY KEY (`id_correctivo`);
+
+--
+-- Indices de la tabla `mantenimiento_preventivo`
+--
+ALTER TABLE `mantenimiento_preventivo`
+  ADD PRIMARY KEY (`id_preventivo`);
+
+--
 -- Indices de la tabla `param_clase_vehiculo`
 --
 ALTER TABLE `param_clase_vehiculo`
@@ -535,6 +625,12 @@ ALTER TABLE `param_clase_vehiculo`
 --
 ALTER TABLE `param_dependencias`
   ADD PRIMARY KEY (`id_dependencia`);
+
+--
+-- Indices de la tabla `param_frecuencia`
+--
+ALTER TABLE `param_frecuencia`
+  ADD PRIMARY KEY (`id_frecuencia`);
 
 --
 -- Indices de la tabla `param_menu`
@@ -642,6 +738,18 @@ ALTER TABLE `equipos_localizacion`
   MODIFY `id_equipo_localizacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `mantenimiento_correctivo`
+--
+ALTER TABLE `mantenimiento_correctivo`
+  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `mantenimiento_preventivo`
+--
+ALTER TABLE `mantenimiento_preventivo`
+  MODIFY `id_preventivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `param_clase_vehiculo`
 --
 ALTER TABLE `param_clase_vehiculo`
@@ -652,6 +760,12 @@ ALTER TABLE `param_clase_vehiculo`
 --
 ALTER TABLE `param_dependencias`
   MODIFY `id_dependencia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `param_frecuencia`
+--
+ALTER TABLE `param_frecuencia`
+  MODIFY `id_frecuencia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu`
@@ -681,7 +795,7 @@ ALTER TABLE `param_proveedores`
 -- AUTO_INCREMENT de la tabla `param_role`
 --
 ALTER TABLE `param_role`
-  MODIFY `id_role` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id_role` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT de la tabla `param_tipo_carroceria`
@@ -699,7 +813,7 @@ ALTER TABLE `param_tipo_equipos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_llave_contraseña`
