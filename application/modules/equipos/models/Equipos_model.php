@@ -309,6 +309,62 @@
 				}
 		}
 		
+		/**
+		 * Lista de Polizas por equipo
+		 * @since 6/1/2021
+		 */
+		public function get_poliza($arrData) 
+		{		
+				$this->db->select();				
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.fk_id_equipo_poliza', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idPoliza", $arrData)) {
+					$this->db->where('A.id_equipo_poliza', $arrData["idPoliza"]);
+				}
+				
+				$this->db->order_by('A.id_equipo_poliza', 'desc');
+				$query = $this->db->get('equipos_poliza A');
+
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+	
+		/**
+		 * Guardar Poliza
+		 * @since 6/1/2021
+		 */
+		public function guardarPoliza() 
+		{
+				$idPoliza = $this->input->post('hddId');
+				$idEquipo = $this->input->post('hddIdEquipo');
+				
+				$data = array(
+					'fk_id_equipo_poliza' => $idEquipo,
+					'fecha_inicio' => formatear_fecha($this->input->post('fecha_inicio')),
+					'fecha_vencimiento' => formatear_fecha($this->input->post('fecha_vencimiento')),
+					'descripcion' => $this->input->post('descripcion')
+				);	
+
+				//revisar si es para adicionar o editar
+				if ($idPoliza == '') 
+				{
+					$query = $this->db->insert('equipos_poliza', $data);
+				} else {
+					$this->db->where('id_equipo_poliza', $idPoliza);
+					$query = $this->db->update('equipos_poliza', $data);
+				}
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
 		
 		
 		

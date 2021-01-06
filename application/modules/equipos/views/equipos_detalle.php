@@ -34,6 +34,9 @@
 				<a href="<?php echo base_url('equipos/combustible/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tint"></i> Control Combustible
 				</a>
+				<a href="<?php echo base_url('equipos/poliza/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-book"></i> Pólizas
+				</a>
 			</div>
 
 		</div>
