@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-01-2021 a las 13:54:16
+-- Tiempo de generación: 13-01-2021 a las 21:12:53
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -181,6 +181,30 @@ CREATE TABLE `equipos_localizacion` (
 INSERT INTO `equipos_localizacion` (`id_equipo_localizacion`, `fk_id_equipo_localizacion`, `localizacion`, `fecha_localizacion`) VALUES
 (1, 1, 'Ibague- Barrio palermo - Manzana 8', '2020-12-24'),
 (2, 1, 'Bogotá - Jardin Botanico', '2020-12-18');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `equipos_poliza`
+--
+
+CREATE TABLE `equipos_poliza` (
+  `id_equipo_poliza` int(10) NOT NULL,
+  `fk_id_equipo_poliza` int(10) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_vencimiento` date NOT NULL,
+  `numero_poliza` varchar(30) NOT NULL,
+  `estado_poliza` tinyint(4) NOT NULL,
+  `descripcion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `equipos_poliza`
+--
+
+INSERT INTO `equipos_poliza` (`id_equipo_poliza`, `fk_id_equipo_poliza`, `fecha_inicio`, `fecha_vencimiento`, `numero_poliza`, `estado_poliza`, `descripcion`) VALUES
+(3, 1, '2021-01-01', '2022-01-19', 'AC-34-X', 1, 'Primer poliza'),
+(4, 1, '2021-01-06', '2021-01-06', 'ASDFASDFADS', 1, 'ultima poliza');
 
 -- --------------------------------------------------------
 
@@ -497,16 +521,20 @@ CREATE TABLE `param_tipo_equipos` (
   `id_tipo_equipo` int(1) NOT NULL,
   `tipo_equipo` varchar(50) NOT NULL,
   `formulario_especifico` varchar(50) NOT NULL,
-  `metodo_guardar` varchar(50) NOT NULL
+  `metodo_guardar` varchar(50) NOT NULL,
+  `enlace_inspeccion` varchar(100) NOT NULL,
+  `formulario_inspeccion` varchar(100) NOT NULL,
+  `tabla_inspeccion` varchar(100) NOT NULL,
+  `id_tabla_inspeccion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `param_tipo_equipos`
 --
 
-INSERT INTO `param_tipo_equipos` (`id_tipo_equipo`, `tipo_equipo`, `formulario_especifico`, `metodo_guardar`) VALUES
-(1, 'Vehículos', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo'),
-(2, 'Bomba', 'equipos_detalle_bomba', 'guardarInfoEspecificaBomba');
+INSERT INTO `param_tipo_equipos` (`id_tipo_equipo`, `tipo_equipo`, `formulario_especifico`, `metodo_guardar`, `enlace_inspeccion`, `formulario_inspeccion`, `tabla_inspeccion`, `id_tabla_inspeccion`) VALUES
+(1, 'Vehículos', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo', '/inspection/vehiculos', 'form_1_vehiculos', 'inpection_vehiculos', 'id_inspection_vehiculos'),
+(2, 'Bomba', 'equipos_detalle_bomba', 'guardarInfoEspecificaBomba', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -601,6 +629,13 @@ ALTER TABLE `equipos_fotos`
 ALTER TABLE `equipos_localizacion`
   ADD PRIMARY KEY (`id_equipo_localizacion`),
   ADD KEY `fk_id_equipo_localizacion` (`fk_id_equipo_localizacion`);
+
+--
+-- Indices de la tabla `equipos_poliza`
+--
+ALTER TABLE `equipos_poliza`
+  ADD PRIMARY KEY (`id_equipo_poliza`),
+  ADD KEY `fk_id_equipo_poliza` (`fk_id_equipo_poliza`);
 
 --
 -- Indices de la tabla `mantenimiento_correctivo`
@@ -738,6 +773,12 @@ ALTER TABLE `equipos_localizacion`
   MODIFY `id_equipo_localizacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `equipos_poliza`
+--
+ALTER TABLE `equipos_poliza`
+  MODIFY `id_equipo_poliza` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo`
 --
 ALTER TABLE `mantenimiento_correctivo`
@@ -833,6 +874,12 @@ ALTER TABLE `equipos`
   ADD CONSTRAINT `equipos_ibfk_2` FOREIGN KEY (`fk_id_tipo_equipo`) REFERENCES `param_tipo_equipos` (`id_tipo_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `equipos_control_combustible`
+--
+ALTER TABLE `equipos_control_combustible`
+  ADD CONSTRAINT `equipos_control_combustible_ibfk_1` FOREIGN KEY (`fk_id_equipo_combustible`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `equipos_detalle_bomba`
 --
 ALTER TABLE `equipos_detalle_bomba`
@@ -857,6 +904,12 @@ ALTER TABLE `equipos_fotos`
 --
 ALTER TABLE `equipos_localizacion`
   ADD CONSTRAINT `equipos_localizacion_ibfk_1` FOREIGN KEY (`fk_id_equipo_localizacion`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `equipos_poliza`
+--
+ALTER TABLE `equipos_poliza`
+  ADD CONSTRAINT `equipos_poliza_ibfk_1` FOREIGN KEY (`fk_id_equipo_poliza`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `param_menu_access`
