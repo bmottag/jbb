@@ -2,7 +2,6 @@ $( document ).ready( function () {
 	
 	$( "#form" ).validate( {
 		rules: {
-			fecha_inicio: 			{ required: true, minlength: 10, maxlength:10 },
 			descripcion: 			{ required: true, minlength: 3, maxlength:5000 }
 		},
 		errorElement: "em",
@@ -23,7 +22,6 @@ $( document ).ready( function () {
 	
 	$("#btnSubmit").click(function(){		
 		if ($("#form").valid() == true){
-			var idEquipo = $('#hddId').val();
 			$('#btnSubmit').attr('disabled','-1');
 			$("#div_error").css("display", "none");
 			$("#div_load").css("display", "inline");
@@ -47,7 +45,7 @@ $( document ).ready( function () {
 					{	                                                        
 						$("#div_load").css("display", "none");
 						$('#btnSubmit').removeAttr('disabled');
-						var url = base_url + "mantenimiento/detalleCorrectivo/" + idEquipo;
+						var url = base_url + "mantenimiento/correctivo/" + data.idRecord;
 						$(location).attr("href", url);
 					}
 					else

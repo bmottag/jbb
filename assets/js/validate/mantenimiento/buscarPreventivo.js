@@ -1,10 +1,9 @@
 $( document ).ready( function () {
 	
 	jQuery.validator.addMethod("unCampo", function(value, element, param) {
-		var fecha_inicio = $('#fecha_inicio').val();
 		var tipo_equipo = $('#tipo_equipo').val();
 		var frecuencia = $('#frecuencia').val();
-		if ( fecha_inicio == "" && tipo_equipo == "" && frecuencia == "" ) {
+		if ( tipo_equipo == "" && frecuencia == "" ) {
 			return false;
 		} else {
 			return true;
@@ -13,7 +12,6 @@ $( document ).ready( function () {
 
 	$( "#formBuscar" ).validate( {
 		rules: {
-			fecha_inicio:	{ unCampo: true, maxlength: 10 },
 			tipo_equipo:	{ unCampo: true, maxlength: 1 },
 			frecuencia:		{ unCampo: true, maxlength: 10 }
 		},

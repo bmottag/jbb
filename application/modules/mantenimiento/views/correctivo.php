@@ -1,142 +1,144 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/mantenimiento/buscarCorrectivo.js"); ?>"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-$(function(){ 
-	$(".btn-success").click(function () {
-		var oID = $(this).attr("id");
-        $.ajax ({
-            type: 'POST',
-			url: base_url + 'mantenimiento/equipoCorrectivo',
-            data: {'id_correctivo': oID},
-            cache: false,
-            success: function (data) {
-                $('#tablaDatos').html(data);
-            }
-        });
-	});	
-});
-</script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/mantenimiento/correctivo.js"); ?>"></script>
+
 <div id="page-wrapper">
-	<br>	
+	<br>
 	<div class="row">
-		<div class="col-lg-8">
-			<div class="panel panel-primary">
+		<div class="col-lg-3">
+			<?php if($info[0]["qr_code_img"]){ ?>
+				<div class="form-group">
+					<div class="row" align="center">
+						<img src="<?php echo base_url($info[0]["qr_code_img"]); ?>" class="img-rounded" width="200" height="200" alt="QR CODE" />
+					</div>
+				</div>
+			<?php } ?>
+			<div class="list-group">
+				<a href="<?php echo base_url('equipos/detalle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-tag"></i> Información General
+				</a>
+				<a href="<?php echo base_url('equipos/especifico/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-tags"></i> Información Específica
+				</a>
+				<a href="<?php echo base_url('equipos/foto/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-photo"></i> Foto Equipo
+				</a>
+				<a href="<?php echo base_url('equipos/localizacion/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-thumb-tack"></i> Localización
+				</a>
+				<a href="<?php echo base_url('equipos/combustible/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-tint"></i> Control Combustible
+				</a>
+				<a href="<?php echo base_url('equipos/poliza/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-book"></i> Pólizas
+				</a>
+				<a href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
+					<i class="fa fa-wrench"></i> Mantenimiento Correctivo
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-9">
+			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-search"></i> BUSCAR MANTENIMIENTOS CORRECTIVOS
+					<i class="fa fa-wrench"></i> <strong>MANTENIMIENTOS CORRECTIVOS DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
+				<?php
+				$retornoExito = $this->session->flashdata('retornoExito');
+				if ($retornoExito) {
+				    ?>
 					<div class="col-lg-12">
-						<p class="text-info"><span class="glyphicon glyphicon-pushpin " aria-hidden="true"></span> Seleccione por lo menos una opción</p>
+						<p class="text-success">
+							<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+							<?php echo $retornoExito ?>	
+						</p>
 					</div>
-					<form name="formBuscar" id="formBuscar" role="form" method="post" class="form-horizontal" >
-						<script>
-							$( function() {
-								$("#fecha_inicio").datepicker({
-									changeMonth: true,
-									changeYear: true,
-									dateFormat: 'yy-mm-dd'
-								});
-							});
-						</script>
+				    <?php
+				}
+				$retornoError = $this->session->flashdata('retornoError');
+				if ($retornoError) { ?>
+					<div class="col-lg-12">
+						<p class="text-danger">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							<?php echo $retornoError ?>	
+						</p>
+					</div>
+				    <?php
+				} ?>
+					<form  name="form" id="form" class="form-horizontal" method="post"  >
+						<input type="hidden" id="hddId" name="hddId" value="<?php echo $infoCorrectivo?$infoCorrectivo[0]["id_correctivo"]:""; ?>"/>
+						<input type="hidden" id="hddIdEquipo" name="hddIdEquipo" value="<?php echo $info[0]['id_equipo']; ?>"/>
 						<div class="form-group">
-							<div class="col-sm-5 col-sm-offset-1">
-								<label for="fecha_inicio">Fecha de Inicio</label>
-								<input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control" value="" placeholder="Fecha de Inicio" >
-							</div>
-							<div class="col-sm-5">
-								<label for="numero_inventario">Número Inventario Entidad</label>
-								<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" placeholder="Número Inventario Entidad" >
+							<div class="col-sm-12">
+								<label for="descripcion">Descripción: </label>
+								<textarea id="descripcion" name="descripcion" placeholder="Descripción" class="form-control" rows="3"><?php echo $infoCorrectivo?$infoCorrectivo[0]["descripcion"]:""; ?></textarea>
 							</div>
 						</div>
-						<div class="row"></div><br>
 						<div class="form-group">
 							<div class="row" align="center">
-								<div style="width80%;" align="center">
-								<button type="submit" class="btn btn-primary" id='btnBuscar' name='btnBuscar'><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar </button>
+								<div style="width:80%;" align="center">
+									<div id="div_load" style="display:none">		
+										<div class="progress progress-striped active">
+											<div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+												<span class="sr-only">45% completado</span>
+											</div>
+										</div>
+									</div>
+									<div id="div_error" style="display:none">			
+										<div class="alert alert-danger"><span class="glyphicon glyphicon-remove" id="span_msj">&nbsp;</span></div>
+									</div>
+								</div>
+							</div>
+						</div>	
+						<div class="form-group">
+							<div class="row" align="center">
+								<div style="width:100%;" align="center">							
+									<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-info'>
+										Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+									</button>
 								</div>
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
-		</div>
-		<div class="col-lg-4">
-			<a class="btn btn-success btn-block" href='<?php echo base_url('mantenimiento/equipoCorrectivo'); ?>'>
-				<span class="glyphicon glyphicon-plus " aria-hidden="true"> </span> Programar Mantenimiento Correctivo
-			</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-				<i class="fa fa-truck"></i> <?php echo $tituloListado; ?>
-				</div>
-				<div class="panel-body">	
-				<br>
-				<?php 										
-					if(!$info){ 
-						echo '<div class="col-lg-12">
-						<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en el sistema.</p>
-						</div>';
-					} else {
-				?>
-					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
-						<thead>
-							<tr>
-								<th class="text-center">Id Mantenimiento</th>
-								<th class="text-center">Fecha Inicio</th>
-								<th class="text-center">No. Inventario Entidad</th>
-								<th class="text-center">Estado</th>
-								<th class="text-center">Descripción</th>
-							</tr>
-						</thead>
-						<tbody>							
+			<?php 
+				if($listadoCorrectivos){
+			?>
+			<table class="table table-bordered table-striped table-hover table-condensed">
+				<tr class="dafault">
+					<th class="text-center">Fecha</th>
+					<th class="text-center">Descripción</th>
+					<th class="text-center">Estado</th>
+					<th class="text-center">Editar</th>
+				</tr>
+				<?php
+					foreach ($listadoCorrectivos as $data):
+						echo "<tr>";					
+						echo "<td class='text-center'>" . $data['fecha'] . "</td>";
+						echo "<td>" . $data['descripcion'] . "</td>";
+						echo "<td class='text-center'>";
+						switch ($data['estado']) {
+							case 1:
+								$valor = 'Activo';
+								$clase = "text-success";
+								break;
+							case 2:
+								$valor = 'Inactivo';
+								$clase = "text-danger";
+								break;
+						}
+						echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+						echo "</td>";
+						echo "<td class='text-center'>";
+						?>					
+						<a class='btn btn-danger btn-xs' href='<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo'] . '/' . $data['id_correctivo']); ?>'> Editar <span class="fa fa-edit" aria-hidden="true">
+						</a>
 						<?php
-							foreach ($info as $lista):
-								echo "<tr>";
-								echo "<td class='text-center'>" . $lista['id_correctivo'] . "</td>";
-								echo "<td>" . $lista['fecha_inicio'] . "</td>";
-								echo "<td>" . $lista['numero_inventario'] . "</td>";
-								echo "<td class='text-center'>";
-								switch ($lista['estado']) {
-									case 1:
-										$valor = 'Activo';
-										$clase = "text-success";
-										break;
-									case 2:
-										$valor = 'Inactivo';
-										$clase = "text-danger";
-										break;
-								}
-								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
-								echo "</td>";
-								echo "<td>" . $lista['descripcion'] . "</td>";
-								echo "</tr>";
-							endforeach;
-						?>
-						</tbody>
-					</table>
-				<?php } ?>
-				</div>
-			</div>
+						echo "</td>";                     
+						echo "</tr>";
+					endforeach;
+				?>
+			</table>
+			<?php } ?>
 		</div>
 	</div>
 </div>
-<div class="modal fade text-center" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">    
-	<div class="modal-dialog" role="document">
-		<div class="modal-content" id="tablaDatos">
-		</div>
-	</div>
-</div>
-<script>
-$(document).ready(function() {
-	$('#dataTables').DataTable({
-		responsive: true,
-		paging: false,
-		"searching": false,
-		"pageLength": 25
-	});
-});
-</script>

@@ -1,6 +1,4 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/mantenimiento/preventivo.js"); ?>"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	<h4 class="modal-title" id="exampleModalLabel">Formulario de Mantenimientos Preventivos
@@ -9,23 +7,6 @@
 </div>
 <div class="modal-body">
 	<form name="form" id="form" role="form" method="post" >
-		<script>
-			$(function() {
-				$("#fecha_inicio").datepicker({
-					changeMonth: true,
-					changeYear: true,
-					dateFormat: 'yy-mm-dd'
-				});
-			});
-		</script>
-		<div class="row">
-			<div class="col-sm-6">
-				<div class="form-group text-left">
-					<label for="fecha_inicio">Fecha de Inicio: *</label>
-					<input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control" value="" placeholder="Fecha de Inicio" required >
-				</div>
-			</div>
-		</div>
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">

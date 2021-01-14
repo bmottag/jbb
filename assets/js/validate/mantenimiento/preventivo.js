@@ -2,7 +2,6 @@ $( document ).ready( function () {
 	
 	$( "#form" ).validate( {
 		rules: {
-			fecha_inicio: 			{ required: true, minlength: 10, maxlength:10 },
 			id_tipo_equipo: 		{ required: true, minlength: 1, maxlength:1 },
 			frecuencia:				{ required: true, minlength: 1, maxlength:10 },
 			descripcion: 			{ required: true, minlength: 3, maxlength:5000 }

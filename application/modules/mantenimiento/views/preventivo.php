@@ -1,6 +1,4 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/mantenimiento/buscarPreventivo.js"); ?>"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $(function(){ 
 	$(".btn-success").click(function () {
@@ -30,21 +28,6 @@ $(function(){
 						<p class="text-info"><span class="glyphicon glyphicon-pushpin " aria-hidden="true"></span> Seleccione por lo menos una opción</p>
 					</div>
 					<form name="formBuscar" id="formBuscar" role="form" method="post" class="form-horizontal" >
-						<script>
-							$( function() {
-								$("#fecha_inicio").datepicker({
-									changeMonth: true,
-									changeYear: true,
-									dateFormat: 'yy-mm-dd'
-								});
-							});
-						</script>
-						<div class="form-group">
-							<div class="col-sm-5 col-sm-offset-1">
-								<label for="fecha_inicio">Fecha de Inicio</label>
-								<input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control" value="" placeholder="Fecha de Inicio" >
-							</div>
-						</div>
 						<div class="form-group">
 							<div class="col-sm-5 col-sm-offset-1">
 								<label for="from">Tipo Equipo</label>
@@ -92,8 +75,8 @@ $(function(){
 				</div>
 				<div class="panel-body">	
 				<br>
-				<?php 										
-					if(!$info){ 
+				<?php
+					if(!$info){
 						echo '<div class="col-lg-12">
 						<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en el sistema.</p>
 						</div>';
@@ -103,7 +86,6 @@ $(function(){
 						<thead>
 							<tr>
 								<th class="text-center">Id Mantenimiento</th>
-								<th class="text-center">Fecha Inicio</th>
 								<th class="text-center">Tipo Equipo</th>
 								<th class="text-center">Frecuencia</th>
 								<th class="text-center">Estado</th>
@@ -115,7 +97,6 @@ $(function(){
 							foreach ($info as $lista):
 								echo "<tr>";
 								echo "<td class='text-center'>" . $lista['id_preventivo'] . "</td>";
-								echo "<td>" . $lista['fecha_inicio'] . "</td>";
 								echo "<td>" . $lista['tipo_equipo'] . "</td>";
 								echo "<td>" . $lista['frecuencia'] . "</td>";
 								echo "<td class='text-center'>";
