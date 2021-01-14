@@ -295,7 +295,7 @@ class Equipos extends CI_Controller {
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
 			
 			//Lista fotos de equipo
-			$data['fotosEquipos'] = $this->equipos_model->get_fotos_equipos($arrParam);
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 						
 			$data['error'] = $error; //se usa para mostrar los errores al cargar la imagen 
 			$data["view"] = 'foto_equipo';
@@ -354,7 +354,7 @@ class Equipos extends CI_Controller {
 			
 			//busco el ID del equipo
 			$arrParam = array("idEquipoFoto" => $idEquipoFoto);
-			$fotosEquipos = $this->equipos_model->get_fotos_equipos($arrParam);
+			$fotosEquipos = $this->general_model->get_fotos_equipos($arrParam);
 			
 			$data["idRecord"] = $fotosEquipos[0]['fk_id_equipo_foto']; //$idEquipo
 			

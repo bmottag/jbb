@@ -56,8 +56,8 @@
 								</div>
 						<?php } ?>
 						<form  name="form" id="form" role="form" method="post" action="<?php echo base_url("login/validateUser"); ?>" >
-						<input type="hidden" id="hddId" name="hddId" value="<?php echo $idVehicle?$idVehicle:"x"; ?>"/>
-						<input type="hidden" id="hddInpectionType" name="hddInpectionType" value="<?php echo $inspectionType?$inspectionType:"x"; ?>"/>
+						<input type="hidden" id="hddId" name="hddId" value="<?php echo $idEquipo?$idEquipo:"x"; ?>"/>
+						<input type="hidden" id="hddidTipoEquipo" name="hddidTipoEquipo" value="<?php echo $idTipoEquipo?$idTipoEquipo:"x"; ?>"/>
 
                             <fieldset>
                                 <div class="form-group">

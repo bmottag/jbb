@@ -16,15 +16,15 @@ class Login extends CI_Controller {
 	public function index($id = 'x')
 	{
 			$this->session->sess_destroy();
-			$data['idVehicle'] = FALSE;
-			$data['inspectionType'] = FALSE;
-			//si envio llave encriptada, entonces busco el ID del vehiculo para pasarlo a la vista
+			$data['idEquipo'] = FALSE;
+			$data['idTipoEquipo'] = FALSE;
+			//si envio llave encriptada, entonces busco el ID del equipo para pasarlo a la vista
 			if ($id != 'x') {				
 				$arrParam['encryption'] = $id;
-				$data['vehicleInfo'] = $this->general_model->get_vehicle_by($arrParam);
+				$data['equipoInfo'] = $this->general_model->get_equipos_info($arrParam);
 
-				$data['idVehicle'] = $data['vehicleInfo'][0]['id_vehicle'];	
-				$data['inspectionType'] = $data['vehicleInfo'][0]['inspection_type'];					
+				$data['idEquipo'] = $data['equipoInfo'][0]['id_equipo'];	
+				$data['idTipoEquipo'] = $data['equipoInfo'][0]['fk_id_tipo_equipo'];					
 			}
 			$this->load->view('login', $data);
 	}
@@ -33,29 +33,28 @@ class Login extends CI_Controller {
 	{
 			$login = $this->security->xss_clean($this->input->post("inputLogin"));
 			$passwd = $this->security->xss_clean($this->input->post("inputPassword"));
-			$data['idVehicle'] = $this->input->post("hddId");
-			$data['inspectionType'] = $this->input->post("hddInpectionType");
+			$data['idEquipo'] = $this->input->post("hddId");
+			$data['idTipoEquipo'] = $this->input->post("hddidTipoEquipo");
 						
 			//busco informacion del vehiculo si existe
 			$data['linkInspection'] = FALSE;
 			$data['formInspection'] = FALSE;
 			
-			if ($data['idVehicle'] != 'x') {				
-				$arrParam['idVehicle'] = $data['idVehicle'];
-				$data['vehicleInfo'] = $this->general_model->get_vehicle_by($arrParam);
+			if ($data['idEquipo'] != 'x') {				
+				$arrParam['idEquipo'] = $data['idEquipo'];
+				$data['equipoInfo'] = $this->general_model->get_equipos_info($arrParam);
 
-				$data['linkInspection'] = $data['vehicleInfo'][0]['link_inspection'];	
-				$data['formInspection'] = $data['vehicleInfo'][0]['form'];					
+				$data['linkInspection'] = $data['equipoInfo'][0]['enlace_inspeccion'];	
+				$data['formInspection'] = $data['equipoInfo'][0]['formulario_inspeccion'];					
 			}
 
-			//busco datos del vehiculo
+			//busco datos del usuario
 			$arrParam = array(
 				"table" => "usuarios",
 				"order" => "id_user",
 				"column" => "log_user",
 				"id" => $login
 			);
-			
 			$userExist = $this->general_model->get_basic_search($arrParam);
 
 			if ($userExist)
@@ -86,8 +85,8 @@ class Login extends CI_Controller {
 							"state" => $user["state"],
 							"role" => $user["role"],
 							"photo" => $user["photo"],
-							"idVehicle" => $data['idVehicle'],
-							"inspectionType" => $data['inspectionType'],
+							"idEquipo" => $data['idEquipo'],
+							"idTipoEquipo" => $data['idTipoEquipo'],
 							"linkInspection" => $data['linkInspection'],
 							"formInspection" => $data['formInspection']
 						);

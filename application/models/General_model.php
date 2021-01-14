@@ -270,7 +270,9 @@ class General_model extends CI_Model {
 				if (array_key_exists("estadoEquipo", $arrData)) {
 					$this->db->where('A.estado_equipo', $arrData["estadoEquipo"]);
 				}
-				
+				if (array_key_exists("encryption", $arrData)) {
+					$this->db->where('A.qr_code_encryption ', $arrData["encryption"]);
+				}
 				if (array_key_exists("numero_inventario", $arrData) && $arrData["numero_inventario"] != '') {
 					$this->db->like('A.numero_inventario', $arrData["numero_inventario"]); 
 				}
@@ -370,6 +372,32 @@ class General_model extends CI_Model {
 				} else {
 					return false;
 				}			
+		}
+
+		/**
+		 * Lista de fotos por equipo
+		 * @since 14/12/2020
+		 */
+		public function get_fotos_equipos($arrData) 
+		{		
+				$this->db->select();				
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.fk_id_equipo_foto', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idEquipoFoto", $arrData)) {
+					$this->db->where('A.id_equipo_foto', $arrData["idEquipoFoto"]);
+				}
+				
+				$this->db->order_by('A.id_equipo_foto', 'asc');
+				$query = $this->db->get('equipos_fotos A');
+
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
 		}
 
 

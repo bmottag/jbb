@@ -55,15 +55,15 @@
 	     */
 	    public function redireccionarUsuario()
 		{
-			$idVehicle = $this->session->userdata("idVehicle");
-			$inspectionType = $this->session->userdata("inspectionType");
+			$idEquipo = $this->session->userdata("idEquipo");
+			$idTipoEquipo = $this->session->userdata("idTipoEquipo");
 			$linkInspection = $this->session->userdata("linkInspection");
 			$state = $this->session->userdata("state");
 			$userRole = $this->session->userdata("rol");
 			$dashboardURL = $this->session->userdata("dashboardURL");
-
-			if($idVehicle != "x"){				
-				if($inspectionType == 99 || $linkInspection == "NA"){
+pr($this->session->userdata()); exit;
+			if($idEquipo != "x"){				
+				if($idTipoEquipo == 99 || $linkInspection == "NA"){
 					$state = 99;//NO HAY FORMATO DE INSPECTION
 				}else{
 					$state = 88;

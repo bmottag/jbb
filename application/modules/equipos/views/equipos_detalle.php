@@ -38,7 +38,10 @@
 					<i class="fa fa-book"></i> Pólizas
 				</a>
 				<a href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
-					<i class="fa fa-book"></i> Mantenimiento Correctivo
+					<i class="fa fa-wrench"></i> Mantenimiento Correctivo
+				</a>
+				<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+					<i class="fa fa-book"></i> Inspección
 				</a>
 			</div>
 
