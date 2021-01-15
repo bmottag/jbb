@@ -1,9 +1,9 @@
 $( document ).ready( function () {
-	
+
 	$("#kilometros_actuales").bloquearTexto().maxlength(7);
 	$("#valor").bloquearTexto().maxlength(7);
 	
-	$( "#form" ).validate( {
+	$( "#formCombustible" ).validate( {
 		rules: {
 			kilometros_actuales: 		{ required: true, minlength: 2, maxlength:7 },
 			cantidad:					{ required: true, minlength: 3, maxlength: 20 },
@@ -27,19 +27,19 @@ $( document ).ready( function () {
 		}
 	});
 	
-	$("#btnSubmit").click(function(){		
+	$("#btnSubmitCombustible").click(function(){		
 	
-		if ($("#form").valid() == true){
+		if ($("#formCombustible").valid() == true){
 		
 				//Activa icono guardando
-				$('#btnSubmit').attr('disabled','-1');
+				$('#btnSubmitCombustible').attr('disabled','-1');
 				$("#div_error").css("display", "none");
 				$("#div_load").css("display", "inline");
 			
 				$.ajax({
 					type: "POST",	
 					url: base_url + "equipos/guardar_combustible",	
-					data: $("#form").serialize(),
+					data: $("#formCombustible").serialize(),
 					dataType: "json",
 					contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 					cache: false,
@@ -49,16 +49,14 @@ $( document ).ready( function () {
 						if( data.result == "error" )
 						{
 							$("#div_load").css("display", "none");
-							$("#div_error").css("display", "inline");
-							$("#span_msj").html(data.mensaje);
-							$('#btnSubmit').removeAttr('disabled');
+							$('#btnSubmitCombustible').removeAttr('disabled');							
 							return false;
 						} 
 
 						if( data.result )//true
 						{	                                                        
 							$("#div_load").css("display", "none");
-							$('#btnSubmit').removeAttr('disabled');
+							$('#btnSubmitCombustible').removeAttr('disabled');
 
 							var url = base_url + "equipos/combustible/" + data.idRecord;
 							$(location).attr("href", url);
@@ -68,14 +66,14 @@ $( document ).ready( function () {
 							alert('Error. Reload the web page.');
 							$("#div_load").css("display", "none");
 							$("#div_error").css("display", "inline");
-							$('#btnSubmit').removeAttr('disabled');
+							$('#btnSubmitCombustible').removeAttr('disabled');
 						}	
 					},
 					error: function(result) {
 						alert('Error. Reload the web page.');
 						$("#div_load").css("display", "none");
 						$("#div_error").css("display", "inline");
-						$('#btnSubmit').removeAttr('disabled');
+						$('#btnSubmitCombustible').removeAttr('disabled');
 					}
 					
 		

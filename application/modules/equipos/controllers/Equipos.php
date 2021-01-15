@@ -437,22 +437,13 @@ class Equipos extends CI_Controller {
      * @since 17/12/2020
      * @author BMOTTAG
 	 */
-	public function combustible($idEquipo, $idControlCombustible = 'x')
+	public function combustible($idEquipo)
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
 			
 			$data['listadoControlCombustible'] = $this->equipos_model->get_control_combustible($arrParam);
-			
-			$data['infoControlCombustible'] = FALSE;
-			if ($idControlCombustible != 'x') {
-				$arrParam = array(
-					"idControlCombustible" => $idControlCombustible,
-					"idEquipo" => $idEquipo
-				);
-				$data['infoControlCombustible'] = $this->equipos_model->get_control_combustible($arrParam);
-			}
-			
+						
 			$data["view"] = 'equipos_combustible';
 			$this->load->view("layout_calendar", $data);
 	}
@@ -463,12 +454,12 @@ class Equipos extends CI_Controller {
      * @author BMOTTAG
 	 */
 	public function guardar_combustible()
-	{			
+	{		
 			header('Content-Type: application/json');
 			$data = array();
-			
-			$idControlCombustible = $this->input->post('hddId');
-			$data["idRecord"] = $this->input->post('hddIdEquipo');
+
+			$idControlCombustible = $this->input->post('hddidControlCombustibler');
+			$data["idRecord"] = $this->input->post('hddidEquipo');
 		
 			$msj = "Se guardo la información!";
 
@@ -534,6 +525,28 @@ class Equipos extends CI_Controller {
 			}
 		
 			echo json_encode($data);
+    }
+
+    /**
+     * Cargo modal- formulario de consumo combustible
+     * @since 15/1/2021
+     */
+    public function cargarModalCombustible() 
+	{
+			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+			
+			$data['information'] = FALSE;
+			$data["idEquipo"] = $this->input->post("idEquipo");
+			$data["idControlCombustible"] = $this->input->post("idControlCombustible");
+			
+			if ($data["idControlCombustible"] != 'x') {
+				$arrParam = array("idControlCombustible" => $data["idControlCombustible"]);
+				$data['information'] = $this->equipos_model->get_control_combustible($arrParam);//info bloques
+				
+				$data["idEquipo"] = $data['information'][0]['fk_id_equipo_combustible'];
+			}
+			
+			$this->load->view("combustible_modal", $data);
     }
 
 

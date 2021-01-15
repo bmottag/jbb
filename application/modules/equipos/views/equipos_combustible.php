@@ -1,4 +1,33 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/control_combustible.js"); ?>"></script>
+<script>
+$(function(){ 
+	$(".btn-primary").click(function () {	
+			var oID = $(this).attr("id");
+            $.ajax ({
+                type: 'POST',
+				url: base_url + 'equipos/cargarModalCombustible',
+				data: {'idEquipo': oID, 'idControlCombustible': 'x'},
+                cache: false,
+                success: function (data) {
+                    $('#tablaDatos').html(data);
+                }
+            });
+	});	
+
+	$(".btn-success").click(function () {	
+			var oID = $(this).attr("id");
+            $.ajax ({
+                type: 'POST',
+				url: base_url + 'equipos/cargarModalCombustible',
+				data: {'idEquipo': '', 'idControlCombustible': oID},
+                cache: false,
+                success: function (data) {
+                    $('#tablaDatos').html(data);
+                }
+            });
+	});	
+});
+</script>
+
 
 <div id="page-wrapper">
 	<br>
@@ -30,7 +59,7 @@
 					<i class="fa fa-thumb-tack"></i> Localización
 				</a>
 				<a href="<?php echo base_url('equipos/combustible/' . $info[0]['id_equipo']); ?>" class="btn btn-primary btn-block">
-					<i class="fa fa-tint"></i> Control Combustible
+					<i class="fa fa-tint"></i> Seguimiento Operación
 				</a>
 				<a href="<?php echo base_url('equipos/poliza/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-book"></i> Pólizas
@@ -45,19 +74,24 @@
 		<div class="col-lg-9">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<i class="fa fa-tint"></i> <strong>CONTROL COMBUSTIBLE DEL EQUIPO</strong>
+					<i class="fa fa-tint"></i> SEGUIMIENTO DE OPERACIÓN DE EQUIPO
 				</div>
 				<div class="panel-body">
+				
+					<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Seguimiento
+					</button><br>
 
+					
 <?php
 $retornoExito = $this->session->flashdata('retornoExito');
 if ($retornoExito) {
     ?>
-	<div class="col-lg-12">
-		<p class="text-success">
+	<div class="col-lg-12">	
+		<div class="alert alert-success ">
 			<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
-			<?php echo $retornoExito ?>	
-		</p>
+			<?php echo $retornoExito ?>		
+		</div>
 	</div>
     <?php
 }
@@ -65,114 +99,88 @@ if ($retornoExito) {
 $retornoError = $this->session->flashdata('retornoError');
 if ($retornoError) {
     ?>
-	<div class="col-lg-12">
-		<p class="text-danger">
+	<div class="col-lg-12">	
+		<div class="alert alert-danger ">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-			<?php echo $retornoError ?>	
-		</p>
+			<?php echo $retornoError ?>
+		</div>
 	</div>
     <?php
 }
+?> 
+
+<?php 										
+	if(!$listadoControlCombustible){ 
+		echo '<div class="col-lg-12">
+				<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en el sistema.</p>
+			</div>';
+	}else{
 ?>
-				
-					<form  name="form" id="form" class="form-horizontal" method="post"  >
-						<input type="hidden" id="hddId" name="hddId" value="<?php echo $infoControlCombustible?$infoControlCombustible[0]["id_equipo_control_combustible"]:""; ?>"/>
-						<input type="hidden" id="hddIdEquipo" name="hddIdEquipo" value="<?php echo $info[0]['id_equipo']; ?>"/>
-
-						<div class="form-group">
-							<div class="col-sm-6">
-								<label for="kilometros_actuales">Kilometros Actuales: *</label>
-								<input type="text" id="kilometros_actuales" name="kilometros_actuales" class="form-control" value="<?php echo $infoControlCombustible?$infoControlCombustible[0]["kilometros_actuales"]:""; ?>" placeholder="Kilometros Actuales" required >
-							</div>
-						
-							<div class="col-sm-6">
-								<label for="cantidad">Cantidad: *</label>
-								<input type="text" id="cantidad" name="cantidad" class="form-control" value="<?php echo $infoControlCombustible?$infoControlCombustible[0]["cantidad"]:""; ?>" placeholder="Cantidad" required >
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<div class="col-sm-6">
-								<label for="valor">Valor: *</label>
-								<input type="text" id="valor" name="valor" class="form-control" value="<?php echo $infoControlCombustible?$infoControlCombustible[0]["valor"]:""; ?>" placeholder="Valor" required >
-							</div>
-						
-							<div class="col-sm-6">
-								<label for="observacion">Observación: </label>
-								<textarea id="observacion" name="observacion" placeholder="Observación" class="form-control" rows="3"><?php echo $infoControlCombustible?$infoControlCombustible[0]["observacion"]:""; ?></textarea>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="row" align="center">
-								<div style="width:80%;" align="center">
-									<div id="div_load" style="display:none">		
-										<div class="progress progress-striped active">
-											<div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-												<span class="sr-only">45% completado</span>
-											</div>
-										</div>
-									</div>
-									<div id="div_error" style="display:none">			
-										<div class="alert alert-danger"><span class="glyphicon glyphicon-remove" id="span_msj">&nbsp;</span></div>
-									</div>
-								</div>
-							</div>
-						</div>	
-						
-						<div class="form-group">
-							<div class="row" align="center">
-								<div style="width:100%;" align="center">							
-									<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-primary'>
-										Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+						<thead>
+							<tr>
+								<th class="text-center">Fecha</th>
+								<th class="text-center">Kilometros Actuales</th>
+								<th class="text-center">Cantidad</th>
+								<th class="text-center">Valor</th>
+								<th class="text-center">Observación</th>
+								<th class="text-center">Editar</th>
+							</tr>
+						</thead>
+						<tbody>							
+						<?php
+							foreach ($listadoControlCombustible as $lista):
+									echo "<tr>";
+									echo "<td class='text-center'>" . $lista['fecha_combustible'] . "</td>";
+									echo "<td class='text-right'>" . number_format($lista['kilometros_actuales']) . "</td>";
+									echo "<td>" . $lista['cantidad'] . "</td>";
+									echo "<td class='text-right'>$" . number_format($lista['valor'], 2) . "</td>";
+									echo "<td>" . $lista['observacion'] . "</td>";
+									
+									echo "<td class='text-center'>";
+						?>
+									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo_control_combustible']; ?>" >
+										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 									</button>
-								</div>
-							</div>
-						</div>
-															
-					</form>
-
+						<?php
+									echo "</td>";
+									echo "</tr>";
+							endforeach;
+						?>
+						</tbody>
+					</table>
+				<?php } ?>
 				</div>
+				<!-- /.panel-body -->
 			</div>
-			
-			<!--INICIO TABLA CONTROL COMBUSTIBLE -->
-			<?php 
-				if($listadoControlCombustible){
-			?>
-			<table class="table table-bordered table-striped table-hover table-condensed">
-				<tr class="dafault">
-					<th class="text-center">Fecha</th>
-					<th class="text-center">Kilometros Actuales</th>
-					<th class="text-center">Cantidad</th>
-					<th class="text-center">Valor</th>
-					<th class="text-center">Observación</th>
-					<th class="text-center">Editar</th>
-				</tr>
-				<?php
-					foreach ($listadoControlCombustible as $data):
-						echo "<tr>";					
-						echo "<td class='text-center'>" . $data['fecha_combustible'] . "</td>";
-						echo "<td class='text-right'>" . number_format($data['kilometros_actuales']) . "</td>";
-						echo "<td>" . $data['cantidad'] . "</td>";
-						echo "<td class='text-right'>$" . number_format($data['valor'], 2) . "</td>";
-						echo "<td>" . $data['observacion'] . "</td>";
-						echo "<td class='text-center'>";
-				?>					
-						<a class='btn btn-danger btn-xs' href='<?php echo base_url('equipos/combustible/' . $info[0]['id_equipo'] . '/' . $data['id_equipo_control_combustible']); ?>'>
-							Editar <span class="fa fa-edit" aria-hidden="true">
-						</a>
-				<?php
-						echo "</td>";                     
-						echo "</tr>";
-					endforeach;
-				?>
-			</table>
-			<?php } ?>
-			<!--FIN TABLA CONTROL COMBUSTIBLE -->
-			
+			<!-- /.panel -->
 		</div>
-		
+		<!-- /.col-lg-12 -->
 	</div>
-	
+	<!-- /.row -->
 </div>
 <!-- /#page-wrapper -->
+		
+				
+<!--INICIO Modal para adicionar HAZARDS -->
+<div class="modal fade text-center" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">    
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" id="tablaDatos">
+
+		</div>
+	</div>
+</div>                       
+<!--FIN Modal para adicionar HAZARDS -->
+
+<!-- Tables -->
+<script>
+$(document).ready(function() {
+    $('#dataTables').DataTable({
+        responsive: true,
+		 "ordering": false,
+		 paging: false,
+		"searching": false,
+		"info": false
+    });
+});
+</script>

@@ -255,11 +255,9 @@
 		 */
 		public function guardarControlCombustible() 
 		{
-				$idControlCombustible = $this->input->post('hddId');
-				$idEquipo = $this->input->post('hddIdEquipo');
+				$idControlCombustible = $this->input->post('hddidControlCombustibler');
 				
 				$data = array(
-					'fk_id_equipo_combustible' => $idEquipo,
 					'kilometros_actuales' => $this->input->post('kilometros_actuales'),
 					'cantidad' => $this->input->post('cantidad'),
 					'fk_id_conductor_combustible ' => 1,
@@ -270,6 +268,7 @@
 				//revisar si es para adicionar o editar
 				if ($idControlCombustible == '') 
 				{
+					$data['fk_id_equipo_combustible'] = $this->input->post('hddidEquipo');
 					$data['fecha_combustible'] = date("Y-m-d G:i:s");
 					$query = $this->db->insert('equipos_control_combustible', $data);
 				} else {
