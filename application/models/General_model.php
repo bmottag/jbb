@@ -133,6 +133,9 @@ class General_model extends CI_Model {
 		if (array_key_exists("idUser", $arrData)) {
 			$this->db->where('U.id_user', $arrData["idUser"]);
 		}
+		if (array_key_exists("idRole", $arrData)) {
+			$this->db->where('U.fk_id_user_role', $arrData["idRole"]);
+		}
 
 		$this->db->order_by("first_name, last_name", "ASC");
 		$query = $this->db->get("usuarios U");

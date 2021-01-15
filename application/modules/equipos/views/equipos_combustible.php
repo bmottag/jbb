@@ -120,10 +120,12 @@ if ($retornoError) {
 						<thead>
 							<tr>
 								<th class="text-center">Fecha</th>
-								<th class="text-center">Kilometros Actuales</th>
+								<th class="text-center">Horas o Kilometros Actuales</th>
+								<th class="text-center">Operador</th>
+								<th class="text-center">Tipo de Consumo</th>
 								<th class="text-center">Cantidad</th>
 								<th class="text-center">Valor</th>
-								<th class="text-center">Observación</th>
+								<th class="text-center">Labor Realizada</th>
 								<th class="text-center">Editar</th>
 							</tr>
 						</thead>
@@ -133,9 +135,36 @@ if ($retornoError) {
 									echo "<tr>";
 									echo "<td class='text-center'>" . $lista['fecha_combustible'] . "</td>";
 									echo "<td class='text-right'>" . number_format($lista['kilometros_actuales']) . "</td>";
+									echo "<td>" . $lista['name'] . "</td>";
+									echo "<td class='text-center'>";
+									switch ($lista['tipo_consumo']) {
+										case 1:
+											$valor = 'Combustible';
+											$clase = "text-danger";
+											break;
+										case 2:
+											$valor = 'Grasa';
+											$clase = "text-success";
+											break;
+										case 3:
+											$valor = 'Aceite de Transmisión';
+											$clase = "text-warning";
+											break;
+										case 4:
+											$valor = 'Aceite Hidráulico';
+											$clase = "text-primary";
+											break;
+										case 5:
+											$valor = 'Aceite Motor';
+											$clase = "text-violeta";
+											break;
+									}
+									echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+									echo "</td>";
+
 									echo "<td>" . $lista['cantidad'] . "</td>";
 									echo "<td class='text-right'>$" . number_format($lista['valor'], 2) . "</td>";
-									echo "<td>" . $lista['observacion'] . "</td>";
+									echo "<td>" . $lista['labor_realizada'] . "</td>";
 									
 									echo "<td class='text-center'>";
 						?>

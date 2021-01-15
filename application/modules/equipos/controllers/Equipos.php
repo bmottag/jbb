@@ -538,6 +538,13 @@ class Equipos extends CI_Controller {
 			$data['information'] = FALSE;
 			$data["idEquipo"] = $this->input->post("idEquipo");
 			$data["idControlCombustible"] = $this->input->post("idControlCombustible");
+
+			//Lista de operadores activos
+			$arrParam = array(
+						"filtroState" => TRUE,
+						'idRole' => 5
+						);
+			$data['listaOperadores'] = $this->general_model->get_user($arrParam);//workers list
 			
 			if ($data["idControlCombustible"] != 'x') {
 				$arrParam = array("idControlCombustible" => $data["idControlCombustible"]);

@@ -229,8 +229,8 @@
 		 */
 		public function get_control_combustible($arrData) 
 		{		
-				$this->db->select();				
-
+				$this->db->select('A.*, CONCAT(first_name, " ", last_name) name');				
+				$this->db->join('usuarios U', 'U.id_user = A.fk_id_operador_combustible', 'INNER');
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.fk_id_equipo_combustible', $arrData["idEquipo"]);
 				}
@@ -259,10 +259,11 @@
 				
 				$data = array(
 					'kilometros_actuales' => $this->input->post('kilometros_actuales'),
+					'fk_id_operador_combustible' => $this->input->post('id_operador'),
+					'tipo_consumo' => $this->input->post('tipo_consumo'),
 					'cantidad' => $this->input->post('cantidad'),
-					'fk_id_conductor_combustible ' => 1,
 					'valor' => $this->input->post('valor'),
-					'observacion' => $this->input->post('observacion')
+					'labor_realizada' => $this->input->post('labor_realizada')
 				);	
 
 				//revisar si es para adicionar o editar

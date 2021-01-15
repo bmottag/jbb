@@ -6,8 +6,11 @@ $( document ).ready( function () {
 	$( "#formCombustible" ).validate( {
 		rules: {
 			kilometros_actuales: 		{ required: true, minlength: 2, maxlength:7 },
-			cantidad:					{ required: true, minlength: 3, maxlength: 20 },
-			valor:		 				{ required: true, minlength: 3, maxlength: 7 }
+			id_operador:				{ required: true },
+			tipo_consumo:				{ required: true },
+			cantidad:					{ required: true, maxlength: 20 },
+			valor:		 				{ required: true, minlength: 3, maxlength: 7 },
+			labor_realizada:		 	{ required: true }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
