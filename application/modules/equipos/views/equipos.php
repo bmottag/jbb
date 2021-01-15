@@ -22,36 +22,44 @@ $(function(){
 	<br>	
 	<!-- /.row -->
 	<div class="row">
-		<div class="col-lg-8">
+		<div class="col-lg-3">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<i class="fa fa-search"></i> BUSCAR EQUIPOS
 				</div>
 				<div class="panel-body">
-					<div class="col-lg-12">
-						<p class="text-info"><span class="glyphicon glyphicon-pushpin " aria-hidden="true"></span> Seleccione por lo menos una opción</p>
-					</div>
+
 					<form  name="formBuscar" id="formBuscar" role="form" method="post" class="form-horizontal" >
 
 						<div class="form-group">
-							<div class="col-sm-5 col-sm-offset-1">
+							<div class="col-lg-12">
+								<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Seleccionar mínimo una opción</p>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-12">
 								<label for="numero_inventario">Número Inventario Entidad</label>
 								<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" value="<?php echo $_POST?$this->input->post('numero_inventario'):""; ?>" placeholder="Número Inventario Entidad" >
 							</div>
-							
-							<div class="col-sm-5">
+						</div>
+
+						<div class="form-group">	
+							<div class="col-sm-12">
 								<label for="marca">Marca </label>
 								<input type="text" id="marca" name="marca" class="form-control" value="<?php echo $_POST?$this->input->post('marca'):""; ?>" placeholder="Marca" >
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<div class="col-sm-5 col-sm-offset-1">
+							<div class="col-sm-12">
 								<label for="modelo">Modelo</label>
 								<input type="text" id="modelo" name="modelo" class="form-control" value="<?php echo $_POST?$this->input->post('modelo'):""; ?>" placeholder="Modelo" >
 							</div>
+						</div>
 							
-							<div class="col-sm-5">
+						<div class="form-group">
+							<div class="col-sm-12">
 								<label for="numero_serial">Número Serial</label>
 								<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $_POST?$this->input->post('numero_serial'):""; ?>" placeholder="Número Serial" >
 							</div>
@@ -76,29 +84,12 @@ $(function(){
 			<!-- /.panel -->
 		</div>
 		<!-- /.col-lg-12 -->
-		
-		<div class="col-lg-4">
 
-			<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Equipo
-			</button><br>
-			
-			<a class='btn btn-outline btn-danger btn-block' href='<?php echo base_url('equipos/inactivos'); ?>'>
-					<span class="glyphicon glyphicon-remove " aria-hidden="true"> </span>  Equipos Inactivos
-			</a>
-
-		</div>
-		<!-- /.col-lg-4 -->
-
-	</div>
-	<!-- /.row -->
-	
-	<!-- /.row -->
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="panel panel-primary">
+		<div class="col-lg-9">
+			<div class="panel panel-success">
 				<div class="panel-heading">
-				
+					<?php $dashboardURL = $this->session->userdata("dashboardURL"); ?>
+					<a class="btn btn-success btn-xs" href="<?php echo base_url($dashboardURL); ?> "><span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Dashboard </a> 
 <?php
 	//DESHABILITAR EDICION
 	$deshabilitar = 'disabled';
@@ -113,7 +104,9 @@ $(function(){
 				</div>
 				<div class="panel-body">	
 				
-<br>
+			<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Equipo
+			</button><br>
 
 <?php 										
 	if(!$info){ 

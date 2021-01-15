@@ -61,7 +61,7 @@
 			$state = $this->session->userdata("state");
 			$userRole = $this->session->userdata("rol");
 			$dashboardURL = $this->session->userdata("dashboardURL");
-pr($this->session->userdata()); exit;
+
 			if($idEquipo != "x"){				
 				if($idTipoEquipo == 99 || $linkInspection == "NA"){
 					$state = 99;//NO HAY FORMATO DE INSPECTION

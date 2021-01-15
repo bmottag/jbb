@@ -25,18 +25,15 @@
 				</div>
 				<div class="panel-body">
 				
-					<div class="row">
-						<div class="col-lg-12">
-							<p class="text-success">
-								<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
-								Ingrese su nueva contraseña y confirmela.
-							</p>
-						</div>
-					</div>	
-
 					<form  name="form" id="form" class="form-horizontal" method="post" action="<?php echo base_url("usuarios/updatePassword"); ?>" >
 						<input type="hidden" id="hddId" name="hddId" value="<?php echo $information[0]["id_user"]; ?>"/>
 						<input type="hidden" id="hddUser" name="hddUser" value="<?php echo $information[0]["log_user"]; ?>"/>
+
+						<div class="form-group">
+							<div class="col-lg-12">
+								<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Ingrese su nueva contraseña y confirmar</p>
+							</div>
+						</div>
 						
 						<div class="form-group">
 							<label class="col-sm-4 control-label" for="firstName">Nombre: </label>

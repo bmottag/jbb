@@ -7,7 +7,8 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="<?php echo base_url("dashboard"); ?>"><img src="<?php echo base_url("images/logo_jardin_negro.png"); ?>" class="img-rounded" width="210" height="50" /></a>
+		<?php $dashboardURL = $this->session->userdata("dashboardURL"); ?>
+		<a class="navbar-brand" href="<?php echo base_url($dashboardURL); ?>"><img src="<?php echo base_url("images/logo_jardin_negro.png"); ?>" class="img-rounded" width="210" height="50" /></a>
 	</div>
 	<!-- /.navbar-header -->
 
@@ -26,25 +27,6 @@
 	<div class="navbar-default sidebar" role="navigation">
 		<div class="sidebar-nav navbar-collapse">
 			<ul class="nav" id="side-menu">
-				<li>
-					<a href="#">
-						<?php if($this->session->photo){ ?>
-						<img src="<?php echo base_url($this->session->photo); ?>" class="img-rounded" width="26" height="26" />
-						<?php }else{?>
-						<i class="fa fa-child fa-fw"></i>
-						<?php } ?>
-						Bienvenido <?php echo $this->session->firstname; ?>!<span class="fa arrow"></span>
-					</a>
-					<ul class="nav nav-second-level">
-						<li>
-							<a href="<?php echo base_url("usuarios/detalle"); ?>">Perfil Usuario</a>
-						</li>
-						<li>
-							<a href="<?php echo base_url("usuarios"); ?>">Cambiar Contraseña</a>
-						</li>
-					</ul>
-					<!-- /.nav-second-level -->
-				</li>
 				<?php
 					if($leftMenu){
 						echo $leftMenu;

@@ -5,7 +5,6 @@
 		<div class="col-lg-12">
 			<div class="panel panel-danger">
 				<div class="panel-heading">	
-					<a class="btn btn-danger btn-xs" href="<?php echo base_url().'equipos'; ?> "><span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Regresar </a> 
 					<i class="fa fa-truck"></i> EQUIPOS INACTIVOS
 				</div>
 				<div class="panel-body">	

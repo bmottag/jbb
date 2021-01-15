@@ -10,7 +10,7 @@
 	<meta name="baseurl" content="<?php echo base_url()?>" />
 
     <title>JBB-APP</title>
-	<link rel="icon" type="image/png" href="<?php echo base_url("images/favicon.png"); ?>" />
+	<link rel="icon" type="image/png" href="<?php echo base_url("images/favicon.ico"); ?>" />
 	
     <!-- Bootstrap Core CSS -->
 	<link href="<?php echo base_url("assets/bootstrap/vendor/bootstrap/css/bootstrap.min.css"); ?>" rel="stylesheet">
@@ -51,18 +51,19 @@
 			
 			$topMenu = '';
 			$itemsTopMenu = FALSE;
-		
-			$userRol = $this->session->rol;
+
+			$userRole = $this->session->role;
+
 			//Top MENU 
 			$arrParam = array(
-				"idRole" => $userRol,
+				"idRole" => $userRole,
 				"menuType" => 2,
 				"menuState" => 1
 			);
 			$itemsTopMenu = $this->general_model->get_role_menu($arrParam);		
 			
 			if($itemsTopMenu)
-			{
+			{						
 				foreach ($itemsTopMenu as $item):
 								
 					if($item['menu_url'] && $item['menu_url'] != '')
@@ -76,7 +77,7 @@
 					}else{
 						//enlaces del menu
 						$arrParam = array(
-							"idRole" => $userRol,
+							"idRole" => $userRole,
 							"idMenu" => $item['fk_id_menu'],
 							"linkState" => 1,
 							"menuType" => 2

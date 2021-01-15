@@ -53,7 +53,7 @@ class Equipos extends CI_Controller {
 			}
 			
 			$data["view"] = 'equipos';
-			$this->load->view("layout", $data);
+			$this->load->view("layout_calendar", $data);
 	}
 	
     /**
