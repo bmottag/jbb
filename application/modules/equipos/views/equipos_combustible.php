@@ -147,7 +147,7 @@ if ($retornoError) {
 											$clase = "text-success";
 											break;
 										case 3:
-											$valor = 'Aceite de Transmisión';
+											$valor = 'Aceite Transmisión';
 											$clase = "text-warning";
 											break;
 										case 4:
