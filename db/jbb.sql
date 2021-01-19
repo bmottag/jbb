@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-01-2021 a las 21:12:53
+-- Tiempo de generación: 19-01-2021 a las 13:42:35
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -39,7 +39,7 @@ CREATE TABLE `equipos` (
   `observacion` text NOT NULL,
   `qr_code_img` varchar(250) NOT NULL,
   `qr_code_encryption` varchar(60) NOT NULL,
-  `fecha_adquisicion` date NOT NULL,
+  `fecha_adquisicion` date DEFAULT NULL,
   `valor_comercial` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -69,17 +69,19 @@ CREATE TABLE `equipos_control_combustible` (
   `kilometros_actuales` varchar(10) NOT NULL,
   `cantidad` varchar(20) NOT NULL,
   `fecha_combustible` datetime NOT NULL,
-  `fk_id_conductor_combustible` int(10) NOT NULL,
+  `fk_id_operador_combustible` int(10) NOT NULL,
+  `tipo_consumo` tinyint(4) NOT NULL,
   `valor` float NOT NULL,
-  `observacion` text NOT NULL
+  `labor_realizada` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `equipos_control_combustible`
 --
 
-INSERT INTO `equipos_control_combustible` (`id_equipo_control_combustible`, `fk_id_equipo_combustible`, `kilometros_actuales`, `cantidad`, `fecha_combustible`, `fk_id_conductor_combustible`, `valor`, `observacion`) VALUES
-(1, 1, '48000', '100 Litros', '2020-12-17 22:04:30', 1, 150000, 'Falto dinero para llenar los tanques, solicitar la tarjeta');
+INSERT INTO `equipos_control_combustible` (`id_equipo_control_combustible`, `fk_id_equipo_combustible`, `kilometros_actuales`, `cantidad`, `fecha_combustible`, `fk_id_operador_combustible`, `tipo_consumo`, `valor`, `labor_realizada`) VALUES
+(1, 1, '48000', '100 Litros', '2020-12-17 22:04:30', 3, 5, 150000, 'Falto dinero para llenar los tanques, solicitar la tarjeta'),
+(2, 1, '16000', '15 galones', '2021-01-15 18:52:39', 1, 2, 150000, 'nuevo registro, mas datos');
 
 -- --------------------------------------------------------
 
@@ -209,12 +211,119 @@ INSERT INTO `equipos_poliza` (`id_equipo_poliza`, `fk_id_equipo_poliza`, `fecha_
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `inspection_vehiculos`
+--
+
+CREATE TABLE `inspection_vehiculos` (
+  `id_inspection_vehiculos` int(10) NOT NULL,
+  `fk_id_user_responsable` int(10) NOT NULL,
+  `fk_id_equipo_vehiculo` int(10) NOT NULL,
+  `fecha_registro` datetime NOT NULL,
+  `horas_actuales_vehiculo` int(10) NOT NULL,
+  `radiador` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tapa` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `nivel_refrigeracion` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tension_correa_ventilacion` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `manometro_temperatura` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `persiana` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `signature` varchar(100) NOT NULL,
+  `comments` text NOT NULL,
+  `tanque_combustible` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `indicador` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tuberia_baja_presion` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `grifo` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `vaso_sedimentacion` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `filtro_aire` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `filtro_combustible` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `prefiltro` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `filtro_aire_tipo_seco` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `pre_calentador` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `acelerador_manual` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `acelerador_aire` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `ahogador` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `consumo_acpm` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tapon_carter` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `nivel_aceite_motor` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `bayoneta` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `presion_aceite_motor` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `indicador_presion` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tapa_drenaje_caja` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `bombillo_tablero` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `nivel_aceite_direccion` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `bomba_hidraulica` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `bateria` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `nivel_electrolito` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `bornes_bateria` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `terminales` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `seguro_bateria` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `caja` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tapa_celdas` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `conexiones_alternador` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `regulador_corriente` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `indicador_tablero` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `luz_testigo` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `horometro` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `interruptor` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `farolas_delanteras` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `farolas_traseras` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `pedal_embrague` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tolerancia_pedal` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `engrase_sistema` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `nivel_aceite` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `palanca_baja` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `palanca_alta` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `selector_velocidad` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `esfera_palanca` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `palanca` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `barra_tiro` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `bloqueador` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `nivel_aceite_diferencial` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `bayoneta_diferencial` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `pesas_delanteras` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `pesas_traseras` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `pernos_delanteros` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `palanca_control_posicion` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `palanca_control_automatico` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `nivel_aceite_hidraulico` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `bayoneta_hidraulico` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tuberia_conduccion` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `radiador_enfriado` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `brazos_levante` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `cadenas_tensoras` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `mangueras` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tonillo_nivelados` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `guardafangos` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `asiento` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `capot` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `caja_direccion` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `brazo_direccion` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `barra_principal` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `soporte_delantero` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tolerancia_frenos` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `freno_mano` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `tapa_rueda_delantera` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `rines_traseros` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A',
+  `rines_delanteros` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `inspection_vehiculos`
+--
+
+INSERT INTO `inspection_vehiculos` (`id_inspection_vehiculos`, `fk_id_user_responsable`, `fk_id_equipo_vehiculo`, `fecha_registro`, `horas_actuales_vehiculo`, `radiador`, `tapa`, `nivel_refrigeracion`, `tension_correa_ventilacion`, `manometro_temperatura`, `persiana`, `signature`, `comments`, `tanque_combustible`, `indicador`, `tuberia_baja_presion`, `grifo`, `vaso_sedimentacion`, `filtro_aire`, `filtro_combustible`, `prefiltro`, `filtro_aire_tipo_seco`, `pre_calentador`, `acelerador_manual`, `acelerador_aire`, `ahogador`, `consumo_acpm`, `tapon_carter`, `nivel_aceite_motor`, `bayoneta`, `presion_aceite_motor`, `indicador_presion`, `tapa_drenaje_caja`, `bombillo_tablero`, `nivel_aceite_direccion`, `bomba_hidraulica`, `bateria`, `nivel_electrolito`, `bornes_bateria`, `terminales`, `seguro_bateria`, `caja`, `tapa_celdas`, `conexiones_alternador`, `regulador_corriente`, `indicador_tablero`, `luz_testigo`, `horometro`, `interruptor`, `farolas_delanteras`, `farolas_traseras`, `pedal_embrague`, `tolerancia_pedal`, `engrase_sistema`, `nivel_aceite`, `palanca_baja`, `palanca_alta`, `selector_velocidad`, `esfera_palanca`, `palanca`, `barra_tiro`, `bloqueador`, `nivel_aceite_diferencial`, `bayoneta_diferencial`, `pesas_delanteras`, `pesas_traseras`, `pernos_delanteros`, `palanca_control_posicion`, `palanca_control_automatico`, `nivel_aceite_hidraulico`, `bayoneta_hidraulico`, `tuberia_conduccion`, `radiador_enfriado`, `brazos_levante`, `cadenas_tensoras`, `mangueras`, `tonillo_nivelados`, `guardafangos`, `asiento`, `capot`, `caja_direccion`, `brazo_direccion`, `barra_principal`, `soporte_delantero`, `tolerancia_frenos`, `freno_mano`, `tapa_rueda_delantera`, `rines_traseros`, `rines_delanteros`) VALUES
+(1, 1, 1, '2021-01-18 20:40:50', 15000, 0, 1, 99, 1, 0, 1, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(2, 1, 1, '2021-01-18 20:41:22', 15000, 0, 1, 99, 1, 0, 1, 'images/signature/inspection/vehiculos_2.png', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(3, 1, 1, '2021-01-19 13:20:20', 20000, 0, 0, 0, 0, 0, 0, '', '', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 99, 99, 99, 99, 99, 99, 99, 99, 99, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 99, 99, 99, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mantenimiento_correctivo`
 --
 
 CREATE TABLE `mantenimiento_correctivo` (
   `id_correctivo` int(10) NOT NULL,
-  `fecha_inicio` date NOT NULL,
+  `fecha` datetime NOT NULL,
   `fk_id_equipo` int(10) NOT NULL,
   `descripcion` text CHARACTER SET latin1 NOT NULL,
   `estado` int(1) NOT NULL
@@ -224,11 +333,12 @@ CREATE TABLE `mantenimiento_correctivo` (
 -- Volcado de datos para la tabla `mantenimiento_correctivo`
 --
 
-INSERT INTO `mantenimiento_correctivo` (`id_correctivo`, `fecha_inicio`, `fk_id_equipo`, `descripcion`, `estado`) VALUES
-(1, '2020-12-01', 1, 'pruebas', 1),
-(2, '2020-12-31', 1, 'pruebas hoy', 1),
-(3, '2020-12-31', 8, 'otra prueba', 1),
-(4, '2020-12-15', 1, 'ultima prueba', 1);
+INSERT INTO `mantenimiento_correctivo` (`id_correctivo`, `fecha`, `fk_id_equipo`, `descripcion`, `estado`) VALUES
+(1, '2020-12-01 00:00:00', 1, 'pruebas', 1),
+(2, '2020-12-31 00:00:00', 1, 'pruebas hoy', 1),
+(3, '2020-12-31 00:00:00', 8, 'otra prueba', 1),
+(4, '2020-12-15 00:00:00', 1, 'ultima prueba', 1),
+(5, '2021-01-14 04:04:01', 1, 'cambio de aceite', 1);
 
 -- --------------------------------------------------------
 
@@ -238,7 +348,6 @@ INSERT INTO `mantenimiento_correctivo` (`id_correctivo`, `fecha_inicio`, `fk_id_
 
 CREATE TABLE `mantenimiento_preventivo` (
   `id_preventivo` int(10) NOT NULL,
-  `fecha_inicio` date NOT NULL,
   `fk_id_tipo_equipo` int(1) NOT NULL,
   `fk_id_frecuencia` int(10) NOT NULL,
   `descripcion` text CHARACTER SET latin1 NOT NULL,
@@ -249,13 +358,13 @@ CREATE TABLE `mantenimiento_preventivo` (
 -- Volcado de datos para la tabla `mantenimiento_preventivo`
 --
 
-INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fecha_inicio`, `fk_id_tipo_equipo`, `fk_id_frecuencia`, `descripcion`, `estado`) VALUES
-(1, '2020-12-01', 1, 1, 'algo', 1),
-(2, '2020-12-01', 2, 1, 'algo mas', 1),
-(3, '2010-01-01', 2, 4, 'pruebas de guardado', 1),
-(4, '2010-01-01', 1, 7, 'mas pruebas', 1),
-(5, '2020-12-01', 2, 5, 'ultima prueba', 1),
-(6, '2020-12-01', 1, 7, 'otra mas', 1);
+INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fk_id_tipo_equipo`, `fk_id_frecuencia`, `descripcion`, `estado`) VALUES
+(1, 1, 1, 'algo', 1),
+(2, 2, 1, 'algo mas', 1),
+(3, 2, 4, 'pruebas de guardado', 1),
+(4, 1, 7, 'mas pruebas', 1),
+(5, 2, 5, 'ultima prueba', 1),
+(6, 1, 7, 'otra mas', 1);
 
 -- --------------------------------------------------------
 
@@ -351,13 +460,14 @@ CREATE TABLE `param_menu` (
 --
 
 INSERT INTO `param_menu` (`id_menu`, `menu_name`, `menu_url`, `menu_icon`, `menu_order`, `menu_type`, `menu_state`) VALUES
-(1, 'Configuración', '', 'fa-gear', 1, 2, 1),
-(2, 'Salir', 'menu/salir', 'fa-sign-out', 6, 2, 1),
-(3, 'Equipos', '', 'fa-truck', 2, 1, 1),
+(1, 'Configuración', '', 'fa-gear', 2, 2, 1),
+(2, '', '', 'fa-user', 6, 2, 1),
+(3, 'Equipos', '', 'fa-truck', 1, 2, 1),
 (4, 'Administrar acceso sistema', '', 'fa-cogs', 5, 2, 1),
 (5, 'Dashboard ADMIN', 'dashboard/admin', 'fa-dashboard', 1, 1, 1),
 (6, 'Manuales', '', 'fa-book ', 4, 2, 1),
-(7, 'Mantenimiento', '', 'fa-wrench', 3, 1, 1);
+(7, 'Mantenimiento', '', 'fa-wrench', 3, 1, 1),
+(8, 'Calendario', 'dashboard/calendar', 'fa-calendar', 3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -383,10 +493,14 @@ INSERT INTO `param_menu_access` (`id_access`, `fk_id_menu`, `fk_id_link`, `fk_id
 (2, 1, 5, 99),
 (16, 1, 6, 1),
 (3, 1, 6, 99),
-(19, 2, 0, 1),
-(8, 2, 0, 99),
+(28, 2, 19, 99),
+(29, 2, 20, 99),
+(30, 2, 21, 99),
+(31, 2, 22, 99),
 (18, 3, 7, 1),
 (7, 3, 7, 99),
+(26, 3, 17, 99),
+(27, 3, 18, 99),
 (4, 4, 1, 99),
 (5, 4, 2, 99),
 (6, 4, 3, 99),
@@ -400,8 +514,7 @@ INSERT INTO `param_menu_access` (`id_access`, `fk_id_menu`, `fk_id_link`, `fk_id
 (13, 6, 14, 99),
 (23, 7, 15, 1),
 (21, 7, 15, 99),
-(24, 7, 16, 1),
-(22, 7, 16, 99);
+(32, 8, 0, 99);
 
 -- --------------------------------------------------------
 
@@ -432,14 +545,20 @@ INSERT INTO `param_menu_links` (`id_link`, `fk_id_menu`, `link_name`, `link_url`
 (4, 1, 'Usuarios', 'settings/employee/1', 'fa-users', 1, '2020-11-19 06:13:07', 1, 1),
 (5, 1, '----------', 'DIVIDER', 'fa-hand-o-up', 2, '2020-11-19 07:07:22', 1, 3),
 (6, 1, 'Proveedores', 'settings/company', 'fa-building', 3, '2020-11-19 07:08:43', 1, 1),
-(7, 3, 'Buscar', 'equipos', 'fa-ambulance', 1, '2020-11-20 01:29:59', 1, 1),
+(7, 3, 'Buscar', 'equipos', 'fa-search', 1, '2020-11-20 01:29:59', 1, 1),
 (8, 4, '----------', 'DIVIDER', 'fa-pin', 3, '2020-12-01 17:19:46', 1, 3),
 (9, 4, 'Descripción Roles', 'dashboard/rol_info', 'fa-info', 5, '2020-12-01 17:22:23', 1, 1),
 (12, 6, 'Manual de Usuario', 'http://[::1]/jbb/files/MANUAL_DE_USUARIO.pdf', 'fa-hand-o-up', 1, '2020-12-01 19:04:26', 1, 5),
 (13, 6, 'Cargar Manuales', 'access/manuals', 'fa-book', 25, '2020-12-01 19:10:25', 1, 1),
 (14, 6, 'DIVIDER', '----------', 'fa-pin', 24, '2020-12-01 19:11:24', 1, 3),
 (15, 7, 'Preventivo', 'mantenimiento/preventivo', 'fa-wrench', 1, '2020-12-11 12:13:55', 1, 1),
-(16, 7, 'Correctivo', 'mantenimiento/correctivo', 'fa-wrench', 2, '2020-12-11 12:14:41', 1, 1);
+(16, 7, 'Correctivo', 'mantenimiento/correctivo', 'fa-wrench', 2, '2020-12-11 12:14:41', 2, 1),
+(17, 3, '----------', 'DIVIDER', 'fa_pruebas', 2, '2021-01-15 02:29:48', 1, 3),
+(18, 3, 'Equipos Inactivos', 'equipos/inactivos', 'fa-unlink', 3, '2021-01-15 02:32:20', 1, 1),
+(19, 2, 'Perfil Usuario', 'usuarios/detalle', 'fa-user', 1, '2021-01-15 03:02:00', 1, 1),
+(20, 2, 'Cambiar Contraseña', 'usuarios', 'fa-lock', 2, '2021-01-15 03:07:14', 1, 1),
+(21, 2, '----------', 'DIVIDER', 'fa-borrar', 3, '2021-01-15 03:09:40', 1, 3),
+(22, 2, 'Salir', 'menu/salir', 'fa-sign-out', 4, '2021-01-15 03:10:36', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -485,8 +604,8 @@ INSERT INTO `param_role` (`id_role`, `role_name`, `description`, `style`, `dashb
 (2, 'Usuario Consulta', 'Solo tiene acceso a ver información en el sistema. No puede editar ni adicionar nada.', 'text-green', 'dashboard/encargado'),
 (3, 'Encargado', 'Usuarios que van a realizar el mantenimiento a los equipos.', 'text-danger', 'dashboard/encargado'),
 (4, 'Supervisor', 'Carga en el sistema el plan de mantenimiento, asigna los mantenimientos a los encargados y realiza control de los mantenimientos', 'text-info', 'dashboard/supervisor'),
-(99, 'SUPER ADMIN', 'Con acceso a todo el sistema, encargaado de tablas parametricas del sistema', 'text-success', 'dashboard/admin'),
-(100, 'Conductor', 'Conductores de vehículos, falta definir su rol en el sistema', 'text-purpura', 'dashboard/conductor');
+(5, 'Operador - Conductor', 'Conductores de vehículos, falta definir su rol en el sistema', 'text-violeta', 'dashboard/conductor'),
+(99, 'SUPER ADMIN', 'Con acceso a todo el sistema, encargaado de tablas parametricas del sistema', 'text-success', 'dashboard/admin');
 
 -- --------------------------------------------------------
 
@@ -533,8 +652,10 @@ CREATE TABLE `param_tipo_equipos` (
 --
 
 INSERT INTO `param_tipo_equipos` (`id_tipo_equipo`, `tipo_equipo`, `formulario_especifico`, `metodo_guardar`, `enlace_inspeccion`, `formulario_inspeccion`, `tabla_inspeccion`, `id_tabla_inspeccion`) VALUES
-(1, 'Vehículos', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo', '/inspection/vehiculos', 'form_1_vehiculos', 'inpection_vehiculos', 'id_inspection_vehiculos'),
-(2, 'Bomba', 'equipos_detalle_bomba', 'guardarInfoEspecificaBomba', '', '', '', '');
+(1, 'Vehículos', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo', '/inspection/add_vehiculos_inspection', 'form_1_vehiculos', 'inspection_vehiculos', 'id_inspection_vehiculos'),
+(2, 'Bomba', 'equipos_detalle_bomba', 'guardarInfoEspecificaBomba', '', '', '', ''),
+(3, 'Maquinaria', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo', '/inspection/vehiculos', 'form_1_vehiculos', 'inpection_vehiculos', 'id_inspection_vehiculos'),
+(4, 'Equipo', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -561,8 +682,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_user`, `first_name`, `last_name`, `log_user`, `movil`, `email`, `password`, `state`, `fk_id_user_role`, `photo`) VALUES
 (1, 'Benjamin', 'Motta', 'Bmottag', '4034089921', 'benmotta@gmail.com', '25446782e2ccaf0afdb03e5d61d0fbb9', 1, 99, 'images/usuarios/thumbs/1.JPG'),
-(2, 'Administrador', 'Administrador', 'admin', '234523425', 'admin@gmail.com', '25f9e794323b453885f5181f1b624d0b', 1, 1, ''),
-(3, 'Pedro', 'Manrrique', 'pmanrrique', '3015549911', 'pmanrrique@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 100, '');
+(2, 'Administrador', 'Administrador', 'admin', '234523425', 'admin@gmail.com', '25f9e794323b453885f5181f1b624d0b', 1, 3, ''),
+(3, 'Pedro', 'Manrrique', 'pmanrrique', '3015549911', 'pmanrrique@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 5, '');
 
 -- --------------------------------------------------------
 
@@ -598,7 +719,7 @@ ALTER TABLE `equipos`
 ALTER TABLE `equipos_control_combustible`
   ADD PRIMARY KEY (`id_equipo_control_combustible`),
   ADD KEY `fk_id_equipo_combustible` (`fk_id_equipo_combustible`),
-  ADD KEY `fk_id_conductor_combustible` (`fk_id_conductor_combustible`);
+  ADD KEY `fk_id_conductor_combustible` (`fk_id_operador_combustible`);
 
 --
 -- Indices de la tabla `equipos_detalle_bomba`
@@ -636,6 +757,14 @@ ALTER TABLE `equipos_localizacion`
 ALTER TABLE `equipos_poliza`
   ADD PRIMARY KEY (`id_equipo_poliza`),
   ADD KEY `fk_id_equipo_poliza` (`fk_id_equipo_poliza`);
+
+--
+-- Indices de la tabla `inspection_vehiculos`
+--
+ALTER TABLE `inspection_vehiculos`
+  ADD PRIMARY KEY (`id_inspection_vehiculos`),
+  ADD KEY `fk_id_user_responsable` (`fk_id_user_responsable`),
+  ADD KEY `fk_id_equipo_vehiculo` (`fk_id_equipo_vehiculo`);
 
 --
 -- Indices de la tabla `mantenimiento_correctivo`
@@ -746,7 +875,7 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `equipos_control_combustible`
 --
 ALTER TABLE `equipos_control_combustible`
-  MODIFY `id_equipo_control_combustible` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_equipo_control_combustible` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_detalle_bomba`
@@ -779,10 +908,16 @@ ALTER TABLE `equipos_poliza`
   MODIFY `id_equipo_poliza` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `inspection_vehiculos`
+--
+ALTER TABLE `inspection_vehiculos`
+  MODIFY `id_inspection_vehiculos` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo`
 --
 ALTER TABLE `mantenimiento_correctivo`
-  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimiento_preventivo`
@@ -812,19 +947,19 @@ ALTER TABLE `param_frecuencia`
 -- AUTO_INCREMENT de la tabla `param_menu`
 --
 ALTER TABLE `param_menu`
-  MODIFY `id_menu` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_menu` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu_access`
 --
 ALTER TABLE `param_menu_access`
-  MODIFY `id_access` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_access` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu_links`
 --
 ALTER TABLE `param_menu_links`
-  MODIFY `id_link` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_link` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `param_proveedores`
@@ -848,7 +983,7 @@ ALTER TABLE `param_tipo_carroceria`
 -- AUTO_INCREMENT de la tabla `param_tipo_equipos`
 --
 ALTER TABLE `param_tipo_equipos`
-  MODIFY `id_tipo_equipo` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tipo_equipo` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
