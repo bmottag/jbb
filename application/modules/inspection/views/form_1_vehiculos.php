@@ -266,211 +266,211 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="headLamps">Tanque de combustible</label>
+						<label class="col-sm-4 control-label" for="tanque_combustible">Tanque de combustible</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="headLamps" id="headLamps1" value=0 <?php if($information && $information[0]["head_lamps"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="tanque_combustible" id="tanque_combustible1" value=0 <?php if($information && $information[0]["tanque_combustible"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="headLamps" id="headLamps2" value=1 <?php if($information && $information[0]["head_lamps"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="tanque_combustible" id="tanque_combustible2" value=1 <?php if($information && $information[0]["tanque_combustible"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="headLamps" id="headLamps3" value=99 <?php if($information && $information[0]["head_lamps"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="tanque_combustible" id="tanque_combustible3" value=99 <?php if($information && $information[0]["tanque_combustible"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="hazardLights">Indicador</label>
+						<label class="col-sm-4 control-label" for="indicador">Indicador</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="hazardLights" id="hazardLights1" value=0 <?php if($information && $information[0]["hazard_lights"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="indicador" id="indicador1" value=0 <?php if($information && $information[0]["indicador"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="hazardLights" id="hazardLights2" value=1 <?php if($information && $information[0]["hazard_lights"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="indicador" id="indicador2" value=1 <?php if($information && $information[0]["indicador"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="hazardLights" id="hazardLights3" value=99 <?php if($information && $information[0]["hazard_lights"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="indicador" id="indicador3" value=99 <?php if($information && $information[0]["indicador"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="bakeLights">Tubería de baja presión</label>
+						<label class="col-sm-4 control-label" for="tuberia_baja_presion">Tubería de baja presión</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="bakeLights" id="bakeLights1" value=0 <?php if($information && $information[0]["bake_lights"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="tuberia_baja_presion" id="tuberia_baja_presion1" value=0 <?php if($information && $information[0]["tuberia_baja_presion"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="bakeLights" id="bakeLights2" value=1 <?php if($information && $information[0]["bake_lights"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="tuberia_baja_presion" id="tuberia_baja_presion2" value=1 <?php if($information && $information[0]["tuberia_baja_presion"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="bakeLights" id="bakeLights3" value=99 <?php if($information && $information[0]["bake_lights"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="tuberia_baja_presion" id="tuberia_baja_presion3" value=99 <?php if($information && $information[0]["tuberia_baja_presion"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="workLights">Grifo</label>
+						<label class="col-sm-4 control-label" for="grifo">Grifo</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="workLights" id="workLights1" value=0 <?php if($information && $information[0]["work_lights"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="grifo" id="grifo1" value=0 <?php if($information && $information[0]["grifo"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="workLights" id="workLights2" value=1 <?php if($information && $information[0]["work_lights"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="grifo" id="grifo2" value=1 <?php if($information && $information[0]["grifo"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="workLights" id="workLights3" value=99 <?php if($information && $information[0]["work_lights"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="grifo" id="grifo3" value=99 <?php if($information && $information[0]["grifo"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="turnSignals">Vaso de sedimentación</label>
+						<label class="col-sm-4 control-label" for="vaso_sedimentacion">Vaso de sedimentación</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals1" value=0 <?php if($information && $information[0]["turn_signals"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="vaso_sedimentacion" id="vaso_sedimentacion1" value=0 <?php if($information && $information[0]["vaso_sedimentacion"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals2" value=1 <?php if($information && $information[0]["turn_signals"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="vaso_sedimentacion" id="vaso_sedimentacion2" value=1 <?php if($information && $information[0]["vaso_sedimentacion"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals3" value=99 <?php if($information && $information[0]["turn_signals"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="vaso_sedimentacion" id="vaso_sedimentacion3" value=99 <?php if($information && $information[0]["vaso_sedimentacion"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="turnSignals">Filtro de aire</label>
+						<label class="col-sm-4 control-label" for="filtro_aire">Filtro de aire</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals1" value=0 <?php if($information && $information[0]["turn_signals"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="filtro_aire" id="filtro_aire1" value=0 <?php if($information && $information[0]["filtro_aire"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals2" value=1 <?php if($information && $information[0]["turn_signals"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="filtro_aire" id="filtro_aire2" value=1 <?php if($information && $information[0]["filtro_aire"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals3" value=99 <?php if($information && $information[0]["turn_signals"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="filtro_aire" id="filtro_aire3" value=99 <?php if($information && $information[0]["filtro_aire"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="turnSignals">Filtros de combustible</label>
+						<label class="col-sm-4 control-label" for="filtro_combustible">Filtros de combustible</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals1" value=0 <?php if($information && $information[0]["turn_signals"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="filtro_combustible" id="filtro_combustible1" value=0 <?php if($information && $information[0]["filtro_combustible"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals2" value=1 <?php if($information && $information[0]["turn_signals"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="filtro_combustible" id="filtro_combustible2" value=1 <?php if($information && $information[0]["filtro_combustible"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals3" value=99 <?php if($information && $information[0]["turn_signals"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="filtro_combustible" id="filtro_combustible3" value=99 <?php if($information && $information[0]["filtro_combustible"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="turnSignals">Prefiltro</label>
+						<label class="col-sm-4 control-label" for="prefiltro">Prefiltro</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals1" value=0 <?php if($information && $information[0]["turn_signals"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="prefiltro" id="prefiltro1" value=0 <?php if($information && $information[0]["prefiltro"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals2" value=1 <?php if($information && $information[0]["turn_signals"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="prefiltro" id="prefiltro2" value=1 <?php if($information && $information[0]["prefiltro"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals3" value=99 <?php if($information && $information[0]["turn_signals"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="prefiltro" id="prefiltro3" value=99 <?php if($information && $information[0]["prefiltro"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="turnSignals">Filtro de aire tipo seco</label>
+						<label class="col-sm-4 control-label" for="filtro_aire_tipo_seco">Filtro de aire tipo seco</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals1" value=0 <?php if($information && $information[0]["turn_signals"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="filtro_aire_tipo_seco" id="filtro_aire_tipo_seco1" value=0 <?php if($information && $information[0]["filtro_aire_tipo_seco"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals2" value=1 <?php if($information && $information[0]["turn_signals"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="filtro_aire_tipo_seco" id="filtro_aire_tipo_seco2" value=1 <?php if($information && $information[0]["filtro_aire_tipo_seco"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals3" value=99 <?php if($information && $information[0]["turn_signals"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="filtro_aire_tipo_seco" id="filtro_aire_tipo_seco3" value=99 <?php if($information && $information[0]["filtro_aire_tipo_seco"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="turnSignals">Pre-calentador</label>
+						<label class="col-sm-4 control-label" for="pre_calentador">Pre-calentador</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals1" value=0 <?php if($information && $information[0]["turn_signals"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="pre_calentador" id="pre_calentador1" value=0 <?php if($information && $information[0]["pre_calentador"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals2" value=1 <?php if($information && $information[0]["turn_signals"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="pre_calentador" id="pre_calentador2" value=1 <?php if($information && $information[0]["pre_calentador"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals3" value=99 <?php if($information && $information[0]["turn_signals"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="pre_calentador" id="pre_calentador3" value=99 <?php if($information && $information[0]["pre_calentador"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="turnSignals">Acelerador manual</label>
+						<label class="col-sm-4 control-label" for="acelerador_manual">Acelerador manual</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals1" value=0 <?php if($information && $information[0]["turn_signals"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="acelerador_manual" id="acelerador_manual1" value=0 <?php if($information && $information[0]["acelerador_manual"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals2" value=1 <?php if($information && $information[0]["turn_signals"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="acelerador_manual" id="acelerador_manual2" value=1 <?php if($information && $information[0]["acelerador_manual"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals3" value=99 <?php if($information && $information[0]["turn_signals"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="acelerador_manual" id="acelerador_manual3" value=99 <?php if($information && $information[0]["acelerador_manual"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="turnSignals">Acelerador de aire</label>
+						<label class="col-sm-4 control-label" for="acelerador_aire">Acelerador de aire</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals1" value=0 <?php if($information && $information[0]["turn_signals"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="acelerador_aire" id="acelerador_aire1" value=0 <?php if($information && $information[0]["acelerador_aire"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals2" value=1 <?php if($information && $information[0]["turn_signals"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="acelerador_aire" id="acelerador_aire2" value=1 <?php if($information && $information[0]["acelerador_aire"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals3" value=99 <?php if($information && $information[0]["turn_signals"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="acelerador_aire" id="acelerador_aire3" value=99 <?php if($information && $information[0]["acelerador_aire"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="turnSignals">Ahogador estrangulador</label>
+						<label class="col-sm-4 control-label" for="ahogador">Ahogador estrangulador</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals1" value=0 <?php if($information && $information[0]["turn_signals"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="ahogador" id="ahogador1" value=0 <?php if($information && $information[0]["ahogador"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals2" value=1 <?php if($information && $information[0]["turn_signals"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="ahogador" id="ahogador2" value=1 <?php if($information && $information[0]["ahogador"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals3" value=99 <?php if($information && $information[0]["turn_signals"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="ahogador" id="ahogador3" value=99 <?php if($information && $information[0]["ahogador"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="turnSignals">Consumo ACPM</label>
+						<label class="col-sm-4 control-label" for="consumo_acpm">Consumo ACPM</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals1" value=0 <?php if($information && $information[0]["turn_signals"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="consumo_acpm" id="consumo_acpm1" value=0 <?php if($information && $information[0]["consumo_acpm"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals2" value=1 <?php if($information && $information[0]["turn_signals"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="consumo_acpm" id="consumo_acpm2" value=1 <?php if($information && $information[0]["consumo_acpm"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="turnSignals" id="turnSignals3" value=99 <?php if($information && $information[0]["turn_signals"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="consumo_acpm" id="consumo_acpm3" value=99 <?php if($information && $information[0]["consumo_acpm"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
@@ -489,136 +489,136 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="nuts">Ajuste del tapón del cárter</label>
+						<label class="col-sm-4 control-label" for="tapon_carter">Ajuste del tapón del cárter</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="nuts" id="nuts1" value=0 <?php if($information && $information[0]["nuts"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="tapon_carter" id="tapon_carter1" value=0 <?php if($information && $information[0]["tapon_carter"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="nuts" id="nuts2" value=1 <?php if($information && $information[0]["nuts"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="tapon_carter" id="tapon_carter2" value=1 <?php if($information && $information[0]["tapon_carter"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="nuts" id="nuts3" value=99 <?php if($information && $information[0]["nuts"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="tapon_carter" id="tapon_carter3" value=99 <?php if($information && $information[0]["tapon_carter"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="glass">Nivel de aceite del motor</label>
+						<label class="col-sm-4 control-label" for="nivel_aceite_motor">Nivel de aceite del motor</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="glass" id="glass1" value=0 <?php if($information && $information[0]["glass"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="nivel_aceite_motor" id="nivel_aceite_motor1" value=0 <?php if($information && $information[0]["nivel_aceite_motor"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="glass" id="glass2" value=1 <?php if($information && $information[0]["glass"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="nivel_aceite_motor" id="nivel_aceite_motor2" value=1 <?php if($information && $information[0]["nivel_aceite_motor"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="glass" id="glass3" value=99 <?php if($information && $information[0]["glass"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="nivel_aceite_motor" id="nivel_aceite_motor3" value=99 <?php if($information && $information[0]["nivel_aceite_motor"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="cleanExterior">Bayoneta</label>
+						<label class="col-sm-4 control-label" for="bayoneta">Bayoneta</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="cleanExterior" id="cleanExterior1" value=0 <?php if($information && $information[0]["clean_exterior"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="bayoneta" id="bayoneta1" value=0 <?php if($information && $information[0]["bayoneta"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="cleanExterior" id="cleanExterior2" value=1 <?php if($information && $information[0]["clean_exterior"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="bayoneta" id="bayoneta2" value=1 <?php if($information && $information[0]["bayoneta"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="cleanExterior" id="cleanExterior3" value=99 <?php if($information && $information[0]["clean_exterior"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="bayoneta" id="bayoneta3" value=99 <?php if($information && $information[0]["bayoneta"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="wipers">Presión de aceite del motor</label>
+						<label class="col-sm-4 control-label" for="presion_aceite_motor">Presión de aceite del motor</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="wipers" id="wipers1" value=0 <?php if($information && $information[0]["wipers"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="presion_aceite_motor" id="presion_aceite_motor1" value=0 <?php if($information && $information[0]["presion_aceite_motor"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="wipers" id="wipers2" value=1 <?php if($information && $information[0]["wipers"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="presion_aceite_motor" id="presion_aceite_motor2" value=1 <?php if($information && $information[0]["presion_aceite_motor"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="wipers" id="wipers3" value=99 <?php if($information && $information[0]["wipers"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="presion_aceite_motor" id="presion_aceite_motor3" value=99 <?php if($information && $information[0]["presion_aceite_motor"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="backupBeeper">Indicador de presión</label>
+						<label class="col-sm-4 control-label" for="indicador_presion">Indicador de presión</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="backupBeeper" id="backupBeeper1" value=0 <?php if($information && $information[0]["backup_beeper"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="indicador_presion" id="indicador_presion1" value=0 <?php if($information && $information[0]["indicador_presion"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="backupBeeper" id="backupBeeper2" value=1 <?php if($information && $information[0]["backup_beeper"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="indicador_presion" id="indicador_presion2" value=1 <?php if($information && $information[0]["indicador_presion"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="backupBeeper" id="backupBeeper3" value=99 <?php if($information && $information[0]["backup_beeper"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="indicador_presion" id="indicador_presion3" value=99 <?php if($information && $information[0]["indicador_presion"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="Buen EstadoengerDoor">Tapa de drenaje de la caja</label>
+						<label class="col-sm-4 control-label" for="tapa_drenaje_caja">Tapa de drenaje de la caja</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor1" value=0 <?php if($information && $information[0]["Buen Estadoenger_door"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="tapa_drenaje_caja" id="tapa_drenaje_caja1" value=0 <?php if($information && $information[0]["tapa_drenaje_caja"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor2" value=1 <?php if($information && $information[0]["Buen Estadoenger_door"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="tapa_drenaje_caja" id="tapa_drenaje_caja2" value=1 <?php if($information && $information[0]["tapa_drenaje_caja"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor3" value=99 <?php if($information && $information[0]["Buen Estadoenger_door"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="tapa_drenaje_caja" id="tapa_drenaje_caja3" value=99 <?php if($information && $information[0]["tapa_drenaje_caja"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="Buen EstadoengerDoor">Bombillo de tablero en todos los puntos</label>
+						<label class="col-sm-4 control-label" for="bombillo_tablero">Bombillo de tablero en todos los puntos</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor1" value=0 <?php if($information && $information[0]["Buen Estadoenger_door"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="bombillo_tablero" id="bombillo_tablero1" value=0 <?php if($information && $information[0]["bombillo_tablero"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor2" value=1 <?php if($information && $information[0]["Buen Estadoenger_door"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="bombillo_tablero" id="bombillo_tablero2" value=1 <?php if($information && $information[0]["bombillo_tablero"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor3" value=99 <?php if($information && $information[0]["Buen Estadoenger_door"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="bombillo_tablero" id="bombillo_tablero3" value=99 <?php if($information && $information[0]["bombillo_tablero"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="Buen EstadoengerDoor">Nivel de aceite de la dirección</label>
+						<label class="col-sm-4 control-label" for="nivel_aceite_direccion">Nivel de aceite de la dirección</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor1" value=0 <?php if($information && $information[0]["Buen Estadoenger_door"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="nivel_aceite_direccion" id="nivel_aceite_direccion1" value=0 <?php if($information && $information[0]["nivel_aceite_direccion"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor2" value=1 <?php if($information && $information[0]["Buen Estadoenger_door"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="nivel_aceite_direccion" id="nivel_aceite_direccion2" value=1 <?php if($information && $information[0]["nivel_aceite_direccion"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor3" value=99 <?php if($information && $information[0]["Buen Estadoenger_door"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="nivel_aceite_direccion" id="nivel_aceite_direccion3" value=99 <?php if($information && $information[0]["nivel_aceite_direccion"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="Buen EstadoengerDoor">Depósito de la bomba hidráulica</label>
+						<label class="col-sm-4 control-label" for="bomba_hidraulica">Depósito de la bomba hidráulica</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor1" value=0 <?php if($information && $information[0]["Buen Estadoenger_door"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="bomba_hidraulica" id="bomba_hidraulica1" value=0 <?php if($information && $information[0]["bomba_hidraulica"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor2" value=1 <?php if($information && $information[0]["Buen Estadoenger_door"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="bomba_hidraulica" id="bomba_hidraulica2" value=1 <?php if($information && $information[0]["bomba_hidraulica"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="Buen EstadoengerDoor" id="Buen EstadoengerDoor3" value=99 <?php if($information && $information[0]["Buen Estadoenger_door"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="bomba_hidraulica" id="bomba_hidraulica3" value=99 <?php if($information && $information[0]["bomba_hidraulica"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
@@ -637,106 +637,106 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="brakePedal">Batería</label>
+						<label class="col-sm-4 control-label" for="bateria">Batería</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal1" value=0 <?php if($information && $information[0]["brake_pedal"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="bateria" id="bateria1" value=0 <?php if($information && $information[0]["bateria"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal2" value=1 <?php if($information && $information[0]["brake_pedal"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="bateria" id="bateria2" value=1 <?php if($information && $information[0]["bateria"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal3" value=99 <?php if($information && $information[0]["brake_pedal"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="bateria" id="bateria3" value=99 <?php if($information && $information[0]["bateria"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="emergencyBrake">Nivel de electrolito</label>
+						<label class="col-sm-4 control-label" for="nivel_electrolito">Nivel de electrolito</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake1" value=0 <?php if($information && $information[0]["emergency_brake"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="nivel_electrolito" id="nivel_electrolito1" value=0 <?php if($information && $information[0]["nivel_electrolito"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake2" value=1 <?php if($information && $information[0]["emergency_brake"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="nivel_electrolito" id="nivel_electrolito2" value=1 <?php if($information && $information[0]["nivel_electrolito"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake3" value=99 <?php if($information && $information[0]["emergency_brake"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="nivel_electrolito" id="nivel_electrolito3" value=99 <?php if($information && $information[0]["nivel_electrolito"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="gauges">Bornes de la batería</label>
+						<label class="col-sm-4 control-label" for="bornes_bateria">Bornes de la batería</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges1" value=0 <?php if($information && $information[0]["gauges"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="bornes_bateria" id="bornes_bateria1" value=0 <?php if($information && $information[0]["bornes_bateria"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges2" value=1 <?php if($information && $information[0]["gauges"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="bornes_bateria" id="bornes_bateria2" value=1 <?php if($information && $information[0]["bornes_bateria"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges3" value=99 <?php if($information && $information[0]["gauges"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="bornes_bateria" id="bornes_bateria3" value=99 <?php if($information && $information[0]["bornes_bateria"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="horn">Terminales de Iso cables</label>
+						<label class="col-sm-4 control-label" for="terminales">Terminales de Iso cables</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn1" value=0 <?php if($information && $information[0]["horn"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="terminales" id="terminales1" value=0 <?php if($information && $information[0]["terminales"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn2" value=1 <?php if($information && $information[0]["horn"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="terminales" id="terminales2" value=1 <?php if($information && $information[0]["terminales"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn3" value=99 <?php if($information && $information[0]["horn"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="terminales" id="terminales3" value=99 <?php if($information && $information[0]["terminales"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="seatbelts">Seguro de batería</label>
+						<label class="col-sm-4 control-label" for="seguro_bateria">Seguro de batería</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts1" value=0 <?php if($information && $information[0]["seatbelts"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="seguro_bateria" id="seguro_bateria1" value=0 <?php if($information && $information[0]["seguro_bateria"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts2" value=1 <?php if($information && $information[0]["seatbelts"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="seguro_bateria" id="seguro_bateria2" value=1 <?php if($information && $information[0]["seguro_bateria"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts3" value=99 <?php if($information && $information[0]["seatbelts"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="seguro_bateria" id="seguro_bateria3" value=99 <?php if($information && $information[0]["seguro_bateria"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="driverSeat">Caja</label>
+						<label class="col-sm-4 control-label" for="caja">Caja</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat1" value=0 <?php if($information && $information[0]["driver_seat"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="caja" id="caja1" value=0 <?php if($information && $information[0]["caja"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat2" value=1 <?php if($information && $information[0]["driver_seat"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="caja" id="caja2" value=1 <?php if($information && $information[0]["caja"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat3" value=99 <?php if($information && $information[0]["driver_seat"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="caja" id="caja3" value=99 <?php if($information && $information[0]["caja"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Tapa para las celdas</label>
+						<label class="col-sm-4 control-label" for="tapa_celdas">Tapa para las celdas</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="tapa_celdas" id="tapa_celdas1" value=0 <?php if($information && $information[0]["tapa_celdas"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="tapa_celdas" id="tapa_celdas2" value=1 <?php if($information && $information[0]["tapa_celdas"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="tapa_celdas" id="tapa_celdas3" value=99 <?php if($information && $information[0]["tapa_celdas"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
@@ -755,76 +755,76 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="brakePedal">Conexiones del alternador</label>
+						<label class="col-sm-4 control-label" for="conexiones_alternador">Conexiones del alternador</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal1" value=0 <?php if($information && $information[0]["brake_pedal"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="conexiones_alternador" id="conexiones_alternador1" value=0 <?php if($information && $information[0]["conexiones_alternador"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal2" value=1 <?php if($information && $information[0]["brake_pedal"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="conexiones_alternador" id="conexiones_alternador2" value=1 <?php if($information && $information[0]["conexiones_alternador"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal3" value=99 <?php if($information && $information[0]["brake_pedal"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="conexiones_alternador" id="conexiones_alternador3" value=99 <?php if($information && $information[0]["conexiones_alternador"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="emergencyBrake">Regulador de corriente</label>
+						<label class="col-sm-4 control-label" for="regulador_corriente">Regulador de corriente</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake1" value=0 <?php if($information && $information[0]["emergency_brake"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="regulador_corriente" id="regulador_corriente1" value=0 <?php if($information && $information[0]["regulador_corriente"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake2" value=1 <?php if($information && $information[0]["emergency_brake"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="regulador_corriente" id="regulador_corriente2" value=1 <?php if($information && $information[0]["regulador_corriente"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake3" value=99 <?php if($information && $information[0]["emergency_brake"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="regulador_corriente" id="regulador_corriente3" value=99 <?php if($information && $information[0]["regulador_corriente"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="gauges">Indicador del tablero</label>
+						<label class="col-sm-4 control-label" for="indicador_tablero">Indicador del tablero</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges1" value=0 <?php if($information && $information[0]["gauges"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="indicador_tablero" id="indicador_tablero1" value=0 <?php if($information && $information[0]["indicador_tablero"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges2" value=1 <?php if($information && $information[0]["gauges"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="indicador_tablero" id="indicador_tablero2" value=1 <?php if($information && $information[0]["indicador_tablero"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges3" value=99 <?php if($information && $information[0]["gauges"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="indicador_tablero" id="indicador_tablero3" value=99 <?php if($information && $information[0]["indicador_tablero"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="horn">Luz testigo</label>
+						<label class="col-sm-4 control-label" for="luz_testigo">Luz testigo</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn1" value=0 <?php if($information && $information[0]["horn"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="luz_testigo" id="luz_testigo1" value=0 <?php if($information && $information[0]["luz_testigo"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn2" value=1 <?php if($information && $information[0]["horn"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="luz_testigo" id="luz_testigo2" value=1 <?php if($information && $information[0]["luz_testigo"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn3" value=99 <?php if($information && $information[0]["horn"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="luz_testigo" id="luz_testigo3" value=99 <?php if($information && $information[0]["luz_testigo"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="seatbelts">Horómetro</label>
+						<label class="col-sm-4 control-label" for="horometro">Horómetro</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts1" value=0 <?php if($information && $information[0]["seatbelts"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="horometro" id="horometro1" value=0 <?php if($information && $information[0]["horometro"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts2" value=1 <?php if($information && $information[0]["seatbelts"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="horometro" id="horometro2" value=1 <?php if($information && $information[0]["horometro"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts3" value=99 <?php if($information && $information[0]["seatbelts"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="horometro" id="horometro3" value=99 <?php if($information && $information[0]["horometro"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
@@ -843,46 +843,46 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="brakePedal">Interruptor</label>
+						<label class="col-sm-4 control-label" for="interruptor">Interruptor</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal1" value=0 <?php if($information && $information[0]["brake_pedal"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="interruptor" id="interruptor1" value=0 <?php if($information && $information[0]["interruptor"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal2" value=1 <?php if($information && $information[0]["brake_pedal"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="interruptor" id="interruptor2" value=1 <?php if($information && $information[0]["interruptor"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal3" value=99 <?php if($information && $information[0]["brake_pedal"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="interruptor" id="interruptor3" value=99 <?php if($information && $information[0]["interruptor"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="emergencyBrake">Conexiones farolas delanteras</label>
+						<label class="col-sm-4 control-label" for="farolas_delanteras">Conexiones farolas delanteras</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake1" value=0 <?php if($information && $information[0]["emergency_brake"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="farolas_delanteras" id="farolas_delanteras1" value=0 <?php if($information && $information[0]["farolas_delanteras"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake2" value=1 <?php if($information && $information[0]["emergency_brake"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="farolas_delanteras" id="farolas_delanteras2" value=1 <?php if($information && $information[0]["farolas_delanteras"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake3" value=99 <?php if($information && $information[0]["emergency_brake"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="farolas_delanteras" id="farolas_delanteras3" value=99 <?php if($information && $information[0]["farolas_delanteras"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="gauges">Farolas traseras</label>
+						<label class="col-sm-4 control-label" for="farolas_traseras">Farolas traseras</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges1" value=0 <?php if($information && $information[0]["gauges"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="farolas_traseras" id="farolas_traseras1" value=0 <?php if($information && $information[0]["farolas_traseras"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges2" value=1 <?php if($information && $information[0]["gauges"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="farolas_traseras" id="farolas_traseras2" value=1 <?php if($information && $information[0]["farolas_traseras"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges3" value=99 <?php if($information && $information[0]["gauges"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="farolas_traseras" id="farolas_traseras3" value=99 <?php if($information && $information[0]["farolas_traseras"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>					
@@ -901,46 +901,46 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="brakePedal">Pedal de embrague</label>
+						<label class="col-sm-4 control-label" for="pedal_embrague">Pedal de embrague</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal1" value=0 <?php if($information && $information[0]["brake_pedal"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="pedal_embrague" id="pedal_embrague1" value=0 <?php if($information && $information[0]["pedal_embrague"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal2" value=1 <?php if($information && $information[0]["brake_pedal"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="pedal_embrague" id="pedal_embrague2" value=1 <?php if($information && $information[0]["pedal_embrague"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal3" value=99 <?php if($information && $information[0]["brake_pedal"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="pedal_embrague" id="pedal_embrague3" value=99 <?php if($information && $information[0]["pedal_embrague"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="emergencyBrake">Tolerancia del pedal</label>
+						<label class="col-sm-4 control-label" for="tolerancia_pedal">Tolerancia del pedal</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake1" value=0 <?php if($information && $information[0]["emergency_brake"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="tolerancia_pedal" id="tolerancia_pedal1" value=0 <?php if($information && $information[0]["tolerancia_pedal"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake2" value=1 <?php if($information && $information[0]["emergency_brake"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="tolerancia_pedal" id="tolerancia_pedal2" value=1 <?php if($information && $information[0]["tolerancia_pedal"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake3" value=99 <?php if($information && $information[0]["emergency_brake"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="tolerancia_pedal" id="tolerancia_pedal3" value=99 <?php if($information && $information[0]["tolerancia_pedal"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="gauges">Engrase del sistema</label>
+						<label class="col-sm-4 control-label" for="engrase_sistema">Engrase del sistema</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges1" value=0 <?php if($information && $information[0]["gauges"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="engrase_sistema" id="engrase_sistema1" value=0 <?php if($information && $information[0]["engrase_sistema"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges2" value=1 <?php if($information && $information[0]["gauges"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="engrase_sistema" id="engrase_sistema2" value=1 <?php if($information && $information[0]["engrase_sistema"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges3" value=99 <?php if($information && $information[0]["gauges"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="engrase_sistema" id="engrase_sistema3" value=99 <?php if($information && $information[0]["engrase_sistema"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
@@ -959,76 +959,76 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="brakePedal">Nivel de aceite</label>
+						<label class="col-sm-4 control-label" for="nivel_aceite">Nivel de aceite</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal1" value=0 <?php if($information && $information[0]["brake_pedal"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="nivel_aceite" id="nivel_aceite1" value=0 <?php if($information && $information[0]["nivel_aceite"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal2" value=1 <?php if($information && $information[0]["brake_pedal"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="nivel_aceite" id="nivel_aceite2" value=1 <?php if($information && $information[0]["nivel_aceite"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal3" value=99 <?php if($information && $information[0]["brake_pedal"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="nivel_aceite" id="nivel_aceite3" value=99 <?php if($information && $information[0]["nivel_aceite"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="emergencyBrake">Palanca de baja</label>
+						<label class="col-sm-4 control-label" for="palanca_baja">Palanca de baja</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake1" value=0 <?php if($information && $information[0]["emergency_brake"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="palanca_baja" id="palanca_baja1" value=0 <?php if($information && $information[0]["palanca_baja"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake2" value=1 <?php if($information && $information[0]["emergency_brake"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="palanca_baja" id="palanca_baja2" value=1 <?php if($information && $information[0]["palanca_baja"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake3" value=99 <?php if($information && $information[0]["emergency_brake"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="palanca_baja" id="palanca_baja3" value=99 <?php if($information && $information[0]["palanca_baja"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="gauges">Palanca de alta</label>
+						<label class="col-sm-4 control-label" for="palanca_alta">Palanca de alta</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges1" value=0 <?php if($information && $information[0]["gauges"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="palanca_alta" id="palanca_alta1" value=0 <?php if($information && $information[0]["palanca_alta"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges2" value=1 <?php if($information && $information[0]["gauges"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="palanca_alta" id="palanca_alta2" value=1 <?php if($information && $information[0]["palanca_alta"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges3" value=99 <?php if($information && $information[0]["gauges"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="palanca_alta" id="palanca_alta3" value=99 <?php if($information && $information[0]["palanca_alta"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="horn">Selector de velocidad</label>
+						<label class="col-sm-4 control-label" for="selector_velocidad">Selector de velocidad</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn1" value=0 <?php if($information && $information[0]["horn"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="selector_velocidad" id="selector_velocidad1" value=0 <?php if($information && $information[0]["selector_velocidad"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn2" value=1 <?php if($information && $information[0]["horn"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="selector_velocidad" id="selector_velocidad2" value=1 <?php if($information && $information[0]["selector_velocidad"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn3" value=99 <?php if($information && $information[0]["horn"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="selector_velocidad" id="selector_velocidad3" value=99 <?php if($information && $information[0]["selector_velocidad"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="seatbelts">Esfera de la palanca</label>
+						<label class="col-sm-4 control-label" for="esfera_palanca">Esfera de la palanca</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts1" value=0 <?php if($information && $information[0]["seatbelts"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="esfera_palanca" id="esfera_palanca1" value=0 <?php if($information && $information[0]["esfera_palanca"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts2" value=1 <?php if($information && $information[0]["seatbelts"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="esfera_palanca" id="esfera_palanca2" value=1 <?php if($information && $information[0]["esfera_palanca"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts3" value=99 <?php if($information && $information[0]["seatbelts"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="esfera_palanca" id="esfera_palanca3" value=99 <?php if($information && $information[0]["esfera_palanca"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>										
@@ -1047,31 +1047,31 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="brakePedal">Palanca</label>
+						<label class="col-sm-4 control-label" for="palanca">Palanca</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal1" value=0 <?php if($information && $information[0]["brake_pedal"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="palanca" id="palanca1" value=0 <?php if($information && $information[0]["palanca"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal2" value=1 <?php if($information && $information[0]["brake_pedal"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="palanca" id="palanca2" value=1 <?php if($information && $information[0]["palanca"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal3" value=99 <?php if($information && $information[0]["brake_pedal"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="palanca" id="palanca3" value=99 <?php if($information && $information[0]["palanca"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="emergencyBrake">Barra de tiro, ajuste de partes</label>
+						<label class="col-sm-4 control-label" for="barra_tiro">Barra de tiro, ajuste de partes</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake1" value=0 <?php if($information && $information[0]["emergency_brake"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="barra_tiro" id="barra_tiro1" value=0 <?php if($information && $information[0]["barra_tiro"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake2" value=1 <?php if($information && $information[0]["emergency_brake"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="barra_tiro" id="barra_tiro2" value=1 <?php if($information && $information[0]["barra_tiro"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake3" value=99 <?php if($information && $information[0]["emergency_brake"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="barra_tiro" id="barra_tiro3" value=99 <?php if($information && $information[0]["barra_tiro"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>										
@@ -1090,91 +1090,91 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="brakePedal">Bloqueador</label>
+						<label class="col-sm-4 control-label" for="bloqueador">Bloqueador</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal1" value=0 <?php if($information && $information[0]["brake_pedal"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="bloqueador" id="bloqueador1" value=0 <?php if($information && $information[0]["bloqueador"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal2" value=1 <?php if($information && $information[0]["brake_pedal"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="bloqueador" id="bloqueador2" value=1 <?php if($information && $information[0]["bloqueador"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal3" value=99 <?php if($information && $information[0]["brake_pedal"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="bloqueador" id="bloqueador3" value=99 <?php if($information && $information[0]["bloqueador"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="emergencyBrake">Nivel de aceite</label>
+						<label class="col-sm-4 control-label" for="nivel_aceite_diferencial">Nivel de aceite</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake1" value=0 <?php if($information && $information[0]["emergency_brake"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="nivel_aceite_diferencial" id="nivel_aceite_diferencial1" value=0 <?php if($information && $information[0]["nivel_aceite_diferencial"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake2" value=1 <?php if($information && $information[0]["emergency_brake"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="nivel_aceite_diferencial" id="nivel_aceite_diferencial2" value=1 <?php if($information && $information[0]["nivel_aceite_diferencial"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake3" value=99 <?php if($information && $information[0]["emergency_brake"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="nivel_aceite_diferencial" id="nivel_aceite_diferencial3" value=99 <?php if($information && $information[0]["nivel_aceite_diferencial"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="gauges">Bayoneta</label>
+						<label class="col-sm-4 control-label" for="bayoneta_diferencial">Bayoneta</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges1" value=0 <?php if($information && $information[0]["gauges"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="bayoneta_diferencial" id="bayoneta_diferencial1" value=0 <?php if($information && $information[0]["bayoneta_diferencial"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges2" value=1 <?php if($information && $information[0]["gauges"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="bayoneta_diferencial" id="bayoneta_diferencial2" value=1 <?php if($information && $information[0]["bayoneta_diferencial"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges3" value=99 <?php if($information && $information[0]["gauges"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="bayoneta_diferencial" id="bayoneta_diferencial3" value=99 <?php if($information && $information[0]["bayoneta_diferencial"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="horn">Soporte y pesas delanteras</label>
+						<label class="col-sm-4 control-label" for="pesas_delanteras">Soporte y pesas delanteras</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn1" value=0 <?php if($information && $information[0]["horn"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="pesas_delanteras" id="pesas_delanteras1" value=0 <?php if($information && $information[0]["pesas_delanteras"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn2" value=1 <?php if($information && $information[0]["horn"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="pesas_delanteras" id="pesas_delanteras2" value=1 <?php if($information && $information[0]["pesas_delanteras"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn3" value=99 <?php if($information && $information[0]["horn"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="pesas_delanteras" id="pesas_delanteras3" value=99 <?php if($information && $information[0]["pesas_delanteras"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="seatbelts">Pesas traseras y ajuste</label>
+						<label class="col-sm-4 control-label" for="pesas_traseras">Pesas traseras y ajuste</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts1" value=0 <?php if($information && $information[0]["seatbelts"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="pesas_traseras" id="pesas_traseras1" value=0 <?php if($information && $information[0]["pesas_traseras"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts2" value=1 <?php if($information && $information[0]["seatbelts"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="pesas_traseras" id="pesas_traseras2" value=1 <?php if($information && $information[0]["pesas_traseras"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts3" value=99 <?php if($information && $information[0]["seatbelts"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="pesas_traseras" id="pesas_traseras3" value=99 <?php if($information && $information[0]["pesas_traseras"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="driverSeat">Pernos delanteros y ajuste</label>
+						<label class="col-sm-4 control-label" for="pernos_delanteros">Pernos delanteros y ajuste</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat1" value=0 <?php if($information && $information[0]["driver_seat"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="pernos_delanteros" id="pernos_delanteros1" value=0 <?php if($information && $information[0]["pernos_delanteros"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat2" value=1 <?php if($information && $information[0]["driver_seat"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="pernos_delanteros" id="pernos_delanteros2" value=1 <?php if($information && $information[0]["pernos_delanteros"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat3" value=99 <?php if($information && $information[0]["driver_seat"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="pernos_delanteros" id="pernos_delanteros3" value=99 <?php if($information && $information[0]["pernos_delanteros"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
@@ -1193,151 +1193,151 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="brakePedal">Palanca de control de posición de ajuste</label>
+						<label class="col-sm-4 control-label" for="palanca_control_posicion">Palanca de control de posición de ajuste</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal1" value=0 <?php if($information && $information[0]["brake_pedal"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="palanca_control_posicion" id="palanca_control_posicion1" value=0 <?php if($information && $information[0]["palanca_control_posicion"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal2" value=1 <?php if($information && $information[0]["brake_pedal"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="palanca_control_posicion" id="palanca_control_posicion2" value=1 <?php if($information && $information[0]["palanca_control_posicion"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal3" value=99 <?php if($information && $information[0]["brake_pedal"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="palanca_control_posicion" id="palanca_control_posicion3" value=99 <?php if($information && $information[0]["palanca_control_posicion"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="emergencyBrake">Palanca de control automático de ajuste</label>
+						<label class="col-sm-4 control-label" for="palanca_control_automatico">Palanca de control automático de ajuste</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake1" value=0 <?php if($information && $information[0]["emergency_brake"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="palanca_control_automatico" id="palanca_control_automatico1" value=0 <?php if($information && $information[0]["palanca_control_automatico"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake2" value=1 <?php if($information && $information[0]["emergency_brake"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="palanca_control_automatico" id="palanca_control_automatico2" value=1 <?php if($information && $information[0]["palanca_control_automatico"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake3" value=99 <?php if($information && $information[0]["emergency_brake"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="palanca_control_automatico" id="palanca_control_automatico3" value=99 <?php if($information && $information[0]["palanca_control_automatico"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="gauges">Nivel de aceite</label>
+						<label class="col-sm-4 control-label" for="nivel_aceite_hidraulico">Nivel de aceite</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges1" value=0 <?php if($information && $information[0]["gauges"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="nivel_aceite_hidraulico" id="nivel_aceite_hidraulico1" value=0 <?php if($information && $information[0]["nivel_aceite_hidraulico"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges2" value=1 <?php if($information && $information[0]["gauges"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="nivel_aceite_hidraulico" id="nivel_aceite_hidraulico2" value=1 <?php if($information && $information[0]["nivel_aceite_hidraulico"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges3" value=99 <?php if($information && $information[0]["gauges"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="nivel_aceite_hidraulico" id="nivel_aceite_hidraulico3" value=99 <?php if($information && $information[0]["nivel_aceite_hidraulico"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="horn">Bayoneta</label>
+						<label class="col-sm-4 control-label" for="bayoneta_hidraulico">Bayoneta</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn1" value=0 <?php if($information && $information[0]["horn"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="bayoneta_hidraulico" id="bayoneta_hidraulico1" value=0 <?php if($information && $information[0]["bayoneta_hidraulico"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn2" value=1 <?php if($information && $information[0]["horn"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="bayoneta_hidraulico" id="bayoneta_hidraulico2" value=1 <?php if($information && $information[0]["bayoneta_hidraulico"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn3" value=99 <?php if($information && $information[0]["horn"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="bayoneta_hidraulico" id="bayoneta_hidraulico3" value=99 <?php if($information && $information[0]["bayoneta_hidraulico"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="seatbelts">Tubería de conducción</label>
+						<label class="col-sm-4 control-label" for="tuberia_conduccion">Tubería de conducción</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts1" value=0 <?php if($information && $information[0]["seatbelts"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="tuberia_conduccion" id="tuberia_conduccion1" value=0 <?php if($information && $information[0]["tuberia_conduccion"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts2" value=1 <?php if($information && $information[0]["seatbelts"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="tuberia_conduccion" id="tuberia_conduccion2" value=1 <?php if($information && $information[0]["tuberia_conduccion"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts3" value=99 <?php if($information && $information[0]["seatbelts"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="tuberia_conduccion" id="tuberia_conduccion3" value=99 <?php if($information && $information[0]["tuberia_conduccion"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="driverSeat">Radiador enfriado de aceite</label>
+						<label class="col-sm-4 control-label" for="radiador_enfriado">Radiador enfriado de aceite</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat1" value=0 <?php if($information && $information[0]["driver_seat"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="radiador_enfriado" id="radiador_enfriado1" value=0 <?php if($information && $information[0]["radiador_enfriado"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat2" value=1 <?php if($information && $information[0]["driver_seat"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="radiador_enfriado" id="radiador_enfriado2" value=1 <?php if($information && $information[0]["radiador_enfriado"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat3" value=99 <?php if($information && $information[0]["driver_seat"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="radiador_enfriado" id="radiador_enfriado3" value=99 <?php if($information && $information[0]["radiador_enfriado"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Brazos de levante</label>
+						<label class="col-sm-4 control-label" for="brazos_levante">Brazos de levante</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="brazos_levante" id="brazos_levante1" value=0 <?php if($information && $information[0]["brazos_levante"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="brazos_levante" id="brazos_levante2" value=1 <?php if($information && $information[0]["brazos_levante"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="brazos_levante" id="brazos_levante3" value=99 <?php if($information && $information[0]["brazos_levante"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Cadenas tensoras</label>
+						<label class="col-sm-4 control-label" for="cadenas_tensoras">Cadenas tensoras</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="cadenas_tensoras" id="cadenas_tensoras1" value=0 <?php if($information && $information[0]["cadenas_tensoras"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="cadenas_tensoras" id="cadenas_tensoras2" value=1 <?php if($information && $information[0]["cadenas_tensoras"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="cadenas_tensoras" id="cadenas_tensoras3" value=99 <?php if($information && $information[0]["cadenas_tensoras"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Mangueras para control remoto</label>
+						<label class="col-sm-4 control-label" for="mangueras">Mangueras para control remoto</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="mangueras" id="mangueras1" value=0 <?php if($information && $information[0]["mangueras"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="mangueras" id="mangueras2" value=1 <?php if($information && $information[0]["mangueras"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="mangueras" id="mangueras3" value=99 <?php if($information && $information[0]["mangueras"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Tornillo nivelados</label>
+						<label class="col-sm-4 control-label" for="tonillo_nivelados">Tornillo nivelados</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="tonillo_nivelados" id="tonillo_nivelados1" value=0 <?php if($information && $information[0]["tonillo_nivelados"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="tonillo_nivelados" id="tonillo_nivelados2" value=1 <?php if($information && $information[0]["tonillo_nivelados"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="tonillo_nivelados" id="tonillo_nivelados3" value=99 <?php if($information && $information[0]["tonillo_nivelados"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
@@ -1356,181 +1356,181 @@ if($information)
 				<div class="panel-body">
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="brakePedal">Guardafangos</label>
+						<label class="col-sm-4 control-label" for="guardafangos">Guardafangos</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal1" value=0 <?php if($information && $information[0]["brake_pedal"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="guardafangos" id="guardafangos1" value=0 <?php if($information && $information[0]["guardafangos"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal2" value=1 <?php if($information && $information[0]["brake_pedal"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="guardafangos" id="guardafangos2" value=1 <?php if($information && $information[0]["guardafangos"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="brakePedal" id="brakePedal3" value=99 <?php if($information && $information[0]["brake_pedal"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="guardafangos" id="guardafangos3" value=99 <?php if($information && $information[0]["guardafangos"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="emergencyBrake">Asiento y cojines</label>
+						<label class="col-sm-4 control-label" for="asiento">Asiento y cojines</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake1" value=0 <?php if($information && $information[0]["emergency_brake"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="asiento" id="asiento1" value=0 <?php if($information && $information[0]["asiento"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake2" value=1 <?php if($information && $information[0]["emergency_brake"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="asiento" id="asiento2" value=1 <?php if($information && $information[0]["asiento"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="emergencyBrake" id="emergencyBrake3" value=99 <?php if($information && $information[0]["emergency_brake"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="asiento" id="asiento3" value=99 <?php if($information && $information[0]["asiento"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="gauges">Capot - ajuste</label>
+						<label class="col-sm-4 control-label" for="capot">Capot - ajuste</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges1" value=0 <?php if($information && $information[0]["gauges"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="capot" id="capot1" value=0 <?php if($information && $information[0]["capot"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges2" value=1 <?php if($information && $information[0]["gauges"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="capot" id="capot2" value=1 <?php if($information && $information[0]["capot"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="gauges" id="gauges3" value=99 <?php if($information && $information[0]["gauges"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="capot" id="capot3" value=99 <?php if($information && $information[0]["capot"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="horn">Caja de la dirección - ajuste </label>
+						<label class="col-sm-4 control-label" for="caja_direccion">Caja de la dirección - ajuste </label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn1" value=0 <?php if($information && $information[0]["horn"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="caja_direccion" id="caja_direccion1" value=0 <?php if($information && $information[0]["caja_direccion"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn2" value=1 <?php if($information && $information[0]["horn"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="caja_direccion" id="caja_direccion2" value=1 <?php if($information && $information[0]["caja_direccion"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="horn" id="horn3" value=99 <?php if($information && $information[0]["horn"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="caja_direccion" id="caja_direccion3" value=99 <?php if($information && $information[0]["caja_direccion"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="seatbelts">Brazo de la dirección - ajuste</label>
+						<label class="col-sm-4 control-label" for="brazo_direccion">Brazo de la dirección - ajuste</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts1" value=0 <?php if($information && $information[0]["seatbelts"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="brazo_direccion" id="brazo_direccion1" value=0 <?php if($information && $information[0]["brazo_direccion"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts2" value=1 <?php if($information && $information[0]["seatbelts"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="brazo_direccion" id="brazo_direccion2" value=1 <?php if($information && $information[0]["brazo_direccion"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="seatbelts" id="seatbelts3" value=99 <?php if($information && $information[0]["seatbelts"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="brazo_direccion" id="brazo_direccion3" value=99 <?php if($information && $information[0]["brazo_direccion"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 										
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="driverSeat">Barra principal de la dirección</label>
+						<label class="col-sm-4 control-label" for="barra_principal">Barra principal de la dirección</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat1" value=0 <?php if($information && $information[0]["driver_seat"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="barra_principal" id="barra_principal1" value=0 <?php if($information && $information[0]["barra_principal"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat2" value=1 <?php if($information && $information[0]["driver_seat"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="barra_principal" id="barra_principal2" value=1 <?php if($information && $information[0]["barra_principal"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="driverSeat" id="driverSeat3" value=99 <?php if($information && $information[0]["driver_seat"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="barra_principal" id="barra_principal3" value=99 <?php if($information && $information[0]["barra_principal"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Soporte delantero - ajuste</label>
+						<label class="col-sm-4 control-label" for="soporte_delantero">Soporte delantero - ajuste</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="soporte_delantero" id="soporte_delantero1" value=0 <?php if($information && $information[0]["soporte_delantero"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="soporte_delantero" id="soporte_delantero2" value=1 <?php if($information && $information[0]["soporte_delantero"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="soporte_delantero" id="soporte_delantero3" value=99 <?php if($information && $information[0]["soporte_delantero"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Tolerancia de los frenos</label>
+						<label class="col-sm-4 control-label" for="tolerancia_frenos">Tolerancia de los frenos</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="tolerancia_frenos" id="tolerancia_frenos1" value=0 <?php if($information && $information[0]["tolerancia_frenos"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="tolerancia_frenos" id="tolerancia_frenos2" value=1 <?php if($information && $information[0]["tolerancia_frenos"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="tolerancia_frenos" id="tolerancia_frenos3" value=99 <?php if($information && $information[0]["tolerancia_frenos"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Freno de mano</label>
+						<label class="col-sm-4 control-label" for="freno_mano">Freno de mano</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="freno_mano" id="freno_mano1" value=0 <?php if($information && $information[0]["freno_mano"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="freno_mano" id="freno_mano2" value=1 <?php if($information && $information[0]["freno_mano"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="freno_mano" id="freno_mano3" value=99 <?php if($information && $information[0]["freno_mano"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Tapas de rueda delantera en grasa</label>
+						<label class="col-sm-4 control-label" for="tapa_rueda_delantera">Tapas de rueda delantera en grasa</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="tapa_rueda_delantera" id="tapa_rueda_delantera1" value=0 <?php if($information && $information[0]["tapa_rueda_delantera"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="tapa_rueda_delantera" id="tapa_rueda_delantera2" value=1 <?php if($information && $information[0]["tapa_rueda_delantera"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="tapa_rueda_delantera" id="tapa_rueda_delantera3" value=99 <?php if($information && $information[0]["tapa_rueda_delantera"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Rines traseros ajuste y estado</label>
+						<label class="col-sm-4 control-label" for="rines_traseros">Rines traseros ajuste y estado</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="rines_traseros" id="rines_traseros1" value=0 <?php if($information && $information[0]["rines_traseros"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="rines_traseros" id="rines_traseros2" value=1 <?php if($information && $information[0]["rines_traseros"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="rines_traseros" id="rines_traseros3" value=99 <?php if($information && $information[0]["rines_traseros"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label" for="insurance">Rines delanteros ajuste y estado</label>
+						<label class="col-sm-4 control-label" for="rines_delanteros">Rines delanteros ajuste y estado</label>
 						<div class="col-sm-5">
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance1" value=0 <?php if($information && $information[0]["insurance"] == 0) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="rines_delanteros" id="rines_delanteros1" value=0 <?php if($information && $information[0]["rines_delanteros"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance2" value=1 <?php if($information && $information[0]["insurance"] == 1) { echo "checked"; }  ?>>Buen Estado
+								<input type="radio" name="rines_delanteros" id="rines_delanteros2" value=1 <?php if($information && $information[0]["rines_delanteros"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="insurance" id="insurance3" value=99 <?php if($information && $information[0]["insurance"] == 99) { echo "checked"; }  ?>>N/A
+								<input type="radio" name="rines_delanteros" id="rines_delanteros3" value=99 <?php if($information && $information[0]["rines_delanteros"] == 99) { echo "checked"; }  ?>>N/A
 							</label>
 						</div>
 					</div>
