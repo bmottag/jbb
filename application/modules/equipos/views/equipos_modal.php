@@ -1,4 +1,5 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo.js"); ?>"></script>
+
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	<h4 class="modal-title" id="exampleModalLabel">Formulario de Equipos
@@ -69,6 +70,16 @@
 			</div>		
  
 		</div>
+
+<script>
+	$( function() {
+		$( "#fecha_adquisicion" ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'yy-mm-dd'
+		});
+	});
+</script>
 		
 		<div class="row">
 			<div class="col-sm-6">
@@ -81,19 +92,30 @@
 					</select>
 				</div>
 			</div>	
-			
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="estado">Fecha Adquisición: *</label>
+					<input type="text" class="form-control" id="fecha_adquisicion" name="fecha_adquisicion" value="" placeholder="Fecha Adquisición" required />
+				</div>
+			</div>
+
+		</div>
+		
+		<div class="row">
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
 					<label class="control-label" for="valor_comercial">Valor Comercial: </label>
 					<input type="text" id="valor_comercial" name="valor_comercial" class="form-control" value="<?php echo $information?$information[0]["valor_comercial"]:""; ?>" placeholder="Valor Comercial" >
 				</div>
 			</div>
+			
+			<div class="col-sm-6">		
+				<div class="form-group text-left">
+					<label class="control-label" for="observacion">Observación: </label>
+					<textarea id="observacion" name="observacion" placeholder="Observación" class="form-control" rows="3"><?php echo $information?$information[0]["observacion"]:""; ?></textarea>
+				</div>
+			</div>
 
-		</div>
-		
-		<div class="form-group text-left">
-			<label class="control-label" for="observacion">Observación: </label>
-			<textarea id="observacion" name="observacion" placeholder="Observación" class="form-control" rows="3"><?php echo $information?$information[0]["observacion"]:""; ?></textarea>
 		</div>
 						
 		<div class="form-group">

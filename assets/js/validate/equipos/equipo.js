@@ -11,7 +11,8 @@ $( document ).ready( function () {
 			numero_serial: 			{ required: true, minlength: 3, maxlength: 20 },
 			id_tipo_equipo: 		{ required: true },
 			estado: 				{ required: true },
-			valor_comercial: 		{ number: true, maxlength:10 }
+			valor_comercial: 		{ number: true, maxlength:10 },
+			fecha_adquisicion: 		{ required: true }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
