@@ -383,7 +383,8 @@ class General_model extends CI_Model {
 		 */
 		public function get_fotos_equipos($arrData) 
 		{		
-				$this->db->select();				
+				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name");
+				$this->db->join('usuarios U', 'U.id_user = A.fk_id_user_ef', 'INNER');
 
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.fk_id_equipo_foto', $arrData["idEquipo"]);

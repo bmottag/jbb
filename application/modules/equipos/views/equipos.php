@@ -35,7 +35,9 @@ $(function(){
 
 						<div class="form-group">
 							<div class="col-lg-12">
-								<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Seleccionar mínimo una opción</p>
+								<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> 
+									<strong>Seleccionar</strong> mínimo una opción
+								</p>
 							</div>
 						</div>
 

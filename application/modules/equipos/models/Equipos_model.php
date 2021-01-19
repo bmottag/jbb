@@ -154,6 +154,8 @@
 		
 				$data = array(
 					'fk_id_equipo_foto' => $this->input->post('hddId'),
+					'fk_id_user_ef' => $idUser,
+					'descripcion' => $this->input->post('descripcion'),
 					'equipo_foto' => $path,
 					'fecha_foto' => date("Y-m-d")
 				);			
