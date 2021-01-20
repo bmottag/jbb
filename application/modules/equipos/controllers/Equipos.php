@@ -385,25 +385,41 @@ class Equipos extends CI_Controller {
      * @since 17/12/2020
      * @author BMOTTAG
 	 */
-	public function localizacion($idEquipo, $idLocalizacion = 'x')
+	public function localizacion($idEquipo)
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
 			
 			$data['listadoLocalizacion'] = $this->equipos_model->get_localizacion($arrParam);
 			
-			$data['infoLocalizacion'] = FALSE;
-			if ($idLocalizacion != 'x') {
-				$arrParam = array(
-					"idEquipoLocalizacion" => $idLocalizacion,
-					"idEquipo" => $idEquipo
-				);
-				$data['infoLocalizacion'] = $this->equipos_model->get_localizacion($arrParam);
-			}
-			
 			$data["view"] = 'equipos_localizacion';
 			$this->load->view("layout_calendar", $data);
 	}
+
+    /**
+     * Cargo modal - formulario equipos
+     * @since 19/1/2021
+     */
+    public function cargarModalLocalizacion() 
+	{
+			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+			
+			$data['information'] = FALSE;
+			$data["idEquipo"] = $this->input->post("idEquipo");
+			$data["idLocalizacion"] = $this->input->post("idLocalizacion");
+			
+			if ($data["idLocalizacion"] != 'x') 
+			{
+				$arrParam = array(
+					"idEquipoLocalizacion" => $data["idLocalizacion"]
+				);
+				$data['information'] = $this->equipos_model->get_localizacion($arrParam);
+				
+				$data["idEquipo"] = $data['information'][0]['fk_id_equipo_localizacion'];
+			}
+			
+			$this->load->view("localizacion_modal", $data);
+    }
 	
 	/**
 	 * Guardar Localizacion
