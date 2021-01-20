@@ -175,7 +175,8 @@
 		 */
 		public function get_localizacion($arrData) 
 		{		
-				$this->db->select();				
+				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name");
+				$this->db->join('usuarios U', 'U.id_user = A.fk_id_user_localizacion', 'INNER');
 
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.fk_id_equipo_localizacion', $arrData["idEquipo"]);
@@ -203,7 +204,8 @@
 		{
 				$idLocalizacion = $this->input->post('hddId');
 				$idEquipo = $this->input->post('hddIdEquipo');
-				
+				$idUser = $this->session->userdata("id");
+		
 				$data = array(
 					'fk_id_equipo_localizacion' => $idEquipo,
 					'localizacion' => $this->input->post('localizacion'),
@@ -212,7 +214,8 @@
 
 				//revisar si es para adicionar o editar
 				if ($idLocalizacion == '') 
-				{							
+				{
+					$data['fk_id_user_localizacion'] = $idUser;
 					$query = $this->db->insert('equipos_localizacion', $data);
 				} else {
 					$this->db->where('id_equipo_localizacion', $idLocalizacion);

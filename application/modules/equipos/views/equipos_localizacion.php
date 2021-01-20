@@ -124,6 +124,7 @@ if ($retornoError) {
 							<tr>
 								<th class="text-center">Fecha</th>
 								<th class="text-center">Localización</th>
+								<th class="text-center">Usuario</th>
 								<th class="text-center">Editar</th>
 							</tr>
 						</thead>
@@ -132,7 +133,8 @@ if ($retornoError) {
 							foreach ($listadoLocalizacion as $lista):
 									echo "<tr>";
 									echo "<td class='text-center'>" . $lista['fecha_localizacion'] . "</td>";
-									echo "<td>" . $lista['localizacion'] . "</td>";									
+									echo "<td>" . $lista['localizacion'] . "</td>";
+									echo "<td class='text-center'>" . $lista['name'] . "</td>";
 									echo "<td class='text-center'>";
 						?>
 									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo_localizacion']; ?>" >
