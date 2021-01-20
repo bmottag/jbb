@@ -18,6 +18,13 @@ class Equipos extends CI_Controller {
 			$data['estadoEquipo'] = $estado;
 			$data['tituloListado'] = FALSE;
 
+			$arrParam = array(
+				"table" => "param_tipo_equipos",
+				"order" => "tipo_equipo",
+				"id" => "x"
+			);
+			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
+
 			if(!$_POST)
 			{
 				$data['tituloListado'] = 'LISTA DE ÚLTIMOS 10 EQUIPOS REGISTRADOS';
@@ -27,19 +34,19 @@ class Equipos extends CI_Controller {
 							'limit' => 10
 							);
 				$data['info'] = $this->general_model->get_equipos_info($arrParam);
-			}elseif($this->input->post('numero_inventario') || $this->input->post('marca') || $this->input->post('modelo') || $this->input->post('numero_serial'))
+			}elseif($this->input->post('id_tipo_equipo') || $this->input->post('numero_inventario') || $this->input->post('marca') ||  $this->input->post('numero_serial'))
 			{
 				$data['tituloListado'] = 'LISTA DE EQUIPOS QUE COINCIDEN CON SU BUSQUEDA';
 				
+				$data['idTipoEquipo'] =  $this->input->post('id_tipo_equipo');
 				$data['numero_inventario'] =  $this->input->post('numero_inventario');
 				$data['marca'] =  $this->input->post('marca');
-				$data['modelo'] =  $this->input->post('modelo');
 				$data['numero_serial'] =  $this->input->post('numero_serial');
 						
 				$arrParam = array(
+					"idTipoEquipo" => $this->input->post('id_tipo_equipo'),
 					"numero_inventario" => $this->input->post('numero_inventario'),
 					"marca" => $this->input->post('marca'),
-					"modelo" => $this->input->post('modelo'),
 					"numero_serial" => $this->input->post('numero_serial'),
 					"estadoEquipo" => $estado
 				);

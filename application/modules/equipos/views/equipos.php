@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/buscar.js"); ?>"></script>
 
@@ -43,28 +43,30 @@ $(function(){
 
 						<div class="form-group">
 							<div class="col-sm-12">
-								<label for="numero_inventario">Número Inventario Entidad</label>
+								<label for="numero_serial">Tipo Equipo:</label>
+								<select name="id_tipo_equipo" id="id_tipo_equipo" class="form-control" >
+									<option value="">Seleccione...</option>
+									<?php for ($i = 0; $i < count($tipoEquipo); $i++) { ?>
+										<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>" <?php if($_POST && $_POST["id_tipo_equipo"] == $tipoEquipo[$i]["id_tipo_equipo"]) { echo "selected"; }  ?>><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>	
+									<?php } ?>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-12">
 								<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" value="<?php echo $_POST?$this->input->post('numero_inventario'):""; ?>" placeholder="Número Inventario Entidad" >
 							</div>
 						</div>
 
 						<div class="form-group">	
 							<div class="col-sm-12">
-								<label for="marca">Marca </label>
 								<input type="text" id="marca" name="marca" class="form-control" value="<?php echo $_POST?$this->input->post('marca'):""; ?>" placeholder="Marca" >
 							</div>
 						</div>
-						
+													
 						<div class="form-group">
 							<div class="col-sm-12">
-								<label for="modelo">Modelo</label>
-								<input type="text" id="modelo" name="modelo" class="form-control" value="<?php echo $_POST?$this->input->post('modelo'):""; ?>" placeholder="Modelo" >
-							</div>
-						</div>
-							
-						<div class="form-group">
-							<div class="col-sm-12">
-								<label for="numero_serial">Número Serial</label>
 								<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $_POST?$this->input->post('numero_serial'):""; ?>" placeholder="Número Serial" >
 							</div>
 						</div>

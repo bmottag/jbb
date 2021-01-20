@@ -276,6 +276,9 @@ class General_model extends CI_Model {
 				if (array_key_exists("encryption", $arrData)) {
 					$this->db->where('A.qr_code_encryption ', $arrData["encryption"]);
 				}
+				if (array_key_exists("idTipoEquipo", $arrData) && $arrData["idTipoEquipo"] != '') {
+					$this->db->like('A.fk_id_tipo_equipo', $arrData["idTipoEquipo"]); 
+				}
 				if (array_key_exists("numero_inventario", $arrData) && $arrData["numero_inventario"] != '') {
 					$this->db->like('A.numero_inventario', $arrData["numero_inventario"]); 
 				}

@@ -1,11 +1,11 @@
 $( document ).ready( function () {
 	
 	jQuery.validator.addMethod("unCampo", function(value, element, param) {
+		var idTipoEquipo = $('#id_tipo_equipo').val();
 		var numero_inventario = $('#numero_inventario').val();
 		var marca = $('#marca').val();
-		var modelo = $('#modelo').val();
 		var numero_serial = $('#numero_serial').val();
-		if ( numero_inventario == "" && marca == "" && modelo == "" && numero_serial == "" ) {
+		if ( idTipoEquipo == "" && numero_inventario == "" && marca == "" && numero_serial == "" ) {
 			return false;
 		}else{
 			return true;
@@ -14,9 +14,9 @@ $( document ).ready( function () {
 
 	$( "#formBuscar" ).validate( {
 		rules: {
+			id_tipo_equipo:	{ unCampo: true },
 			numero_inventario:	{ unCampo: true, maxlength: 10 },
 			marca:	{ unCampo: true, maxlength: 20 },
-			modelo:	{ unCampo: true, maxlength: 20 },
 			numero_serial:	{ unCampo: true, maxlength: 10 }
 		},
 		errorElement: "em",
