@@ -294,7 +294,8 @@
 		 */
 		public function get_poliza($arrData) 
 		{		
-				$this->db->select();				
+				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name");
+				$this->db->join('usuarios U', 'U.id_user = A.fk_id_user_poliza', 'INNER');			
 
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.fk_id_equipo_poliza', $arrData["idEquipo"]);
@@ -322,19 +323,20 @@
 		{
 				$idPoliza = $this->input->post('hddId');
 				$idEquipo = $this->input->post('hddIdEquipo');
+				$idUser = $this->session->userdata("id");
 				
 				$data = array(
 					'fk_id_equipo_poliza' => $idEquipo,
 					'fecha_inicio' => formatear_fecha($this->input->post('fecha_inicio')),
 					'fecha_vencimiento' => formatear_fecha($this->input->post('fecha_vencimiento')),
 					'numero_poliza' => $this->input->post('numero_poliza'),
-					'estado_poliza' => $this->input->post('estado'),
 					'descripcion' => $this->input->post('descripcion')
 				);	
 
 				//revisar si es para adicionar o editar
 				if ($idPoliza == '') 
 				{
+					$data['fk_id_user_poliza'] = $idUser;
 					$query = $this->db->insert('equipos_poliza', $data);
 				} else {
 					$this->db->where('id_equipo_poliza', $idPoliza);

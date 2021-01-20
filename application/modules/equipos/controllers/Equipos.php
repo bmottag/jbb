@@ -496,25 +496,41 @@ class Equipos extends CI_Controller {
      * @since 6/1/2021
      * @author BMOTTAG
 	 */
-	public function poliza($idEquipo, $idPoliza = 'x')
+	public function poliza($idEquipo)
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
 			
 			$data['listadoPolizas'] = $this->equipos_model->get_poliza($arrParam);
-			
-			$data['infoPoliza'] = FALSE;
-			if ($idPoliza != 'x') {
-				$arrParam = array(
-					"idPoliza" => $idPoliza,
-					"idEquipo" => $idEquipo
-				);
-				$data['infoPoliza'] = $this->equipos_model->get_poliza($arrParam);
-			}
-			
+						
 			$data["view"] = 'equipos_poliza';
 			$this->load->view("layout_calendar", $data);
 	}
+
+    /**
+     * Cargo modal - formulario poliz
+     * @since 20/1/2021
+     */
+    public function cargarModalPoliza() 
+	{
+			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+			
+			$data['information'] = FALSE;
+			$data["idEquipo"] = $this->input->post("idEquipo");
+			$data["idPoliza"] = $this->input->post("idPoliza");
+			
+			if ($data["idPoliza"] != 'x') 
+			{
+				$arrParam = array(
+					"idPoliza" => $data["idPoliza"]
+				);
+				$data['information'] = $this->equipos_model->get_poliza($arrParam);
+				
+				$data["idEquipo"] = $data['information'][0]['fk_id_equipo_poliza'];
+			}
+			
+			$this->load->view("poliza_modal", $data);
+    }
 	
 	/**
 	 * Guardar Control de poliza
