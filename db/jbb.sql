@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-01-2021 a las 13:42:35
+-- Tiempo de generación: 20-01-2021 a las 01:22:46
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -152,16 +152,18 @@ INSERT INTO `equipos_detalle_vehiculo` (`id_equipo_detalle_vehiculo`, `fk_id_equ
 CREATE TABLE `equipos_fotos` (
   `id_equipo_foto` int(10) NOT NULL,
   `fk_id_equipo_foto` int(10) NOT NULL,
+  `fk_id_user_ef` int(10) NOT NULL,
   `equipo_foto` varchar(250) NOT NULL,
-  `fecha_foto` date NOT NULL
+  `fecha_foto` date NOT NULL,
+  `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `equipos_fotos`
 --
 
-INSERT INTO `equipos_fotos` (`id_equipo_foto`, `fk_id_equipo_foto`, `equipo_foto`, `fecha_foto`) VALUES
-(2, 1, 'images/equipos/1.PNG', '2020-12-16');
+INSERT INTO `equipos_fotos` (`id_equipo_foto`, `fk_id_equipo_foto`, `fk_id_user_ef`, `equipo_foto`, `fecha_foto`, `descripcion`) VALUES
+(4, 1, 1, 'images/equipos/formulario_equipos.png', '2021-01-20', 'Imagen principal');
 
 -- --------------------------------------------------------
 
@@ -172,6 +174,7 @@ INSERT INTO `equipos_fotos` (`id_equipo_foto`, `fk_id_equipo_foto`, `equipo_foto
 CREATE TABLE `equipos_localizacion` (
   `id_equipo_localizacion` int(10) NOT NULL,
   `fk_id_equipo_localizacion` int(10) NOT NULL,
+  `fk_id_user_localizacion` int(10) NOT NULL,
   `localizacion` varchar(200) NOT NULL,
   `fecha_localizacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -180,9 +183,11 @@ CREATE TABLE `equipos_localizacion` (
 -- Volcado de datos para la tabla `equipos_localizacion`
 --
 
-INSERT INTO `equipos_localizacion` (`id_equipo_localizacion`, `fk_id_equipo_localizacion`, `localizacion`, `fecha_localizacion`) VALUES
-(1, 1, 'Ibague- Barrio palermo - Manzana 8', '2020-12-24'),
-(2, 1, 'Bogotá - Jardin Botanico', '2020-12-18');
+INSERT INTO `equipos_localizacion` (`id_equipo_localizacion`, `fk_id_equipo_localizacion`, `fk_id_user_localizacion`, `localizacion`, `fecha_localizacion`) VALUES
+(1, 1, 1, 'Ibague- Barrio palermo - Manzana 8', '2020-12-24'),
+(2, 1, 1, 'Bogotá - Jardin Botanico', '2020-12-18'),
+(3, 1, 1, 'Taller del centro - CAD', '2021-01-19'),
+(4, 1, 1, 'Jardín Botánico', '2021-01-20');
 
 -- --------------------------------------------------------
 
@@ -682,7 +687,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_user`, `first_name`, `last_name`, `log_user`, `movil`, `email`, `password`, `state`, `fk_id_user_role`, `photo`) VALUES
 (1, 'Benjamin', 'Motta', 'Bmottag', '4034089921', 'benmotta@gmail.com', '25446782e2ccaf0afdb03e5d61d0fbb9', 1, 99, 'images/usuarios/thumbs/1.JPG'),
-(2, 'Administrador', 'Administrador', 'admin', '234523425', 'admin@gmail.com', '25f9e794323b453885f5181f1b624d0b', 1, 3, ''),
+(2, 'Administrador', 'Administrador', 'admin', '234523425', 'admin@gmail.com', '25f9e794323b453885f5181f1b624d0b', 1, 1, ''),
 (3, 'Pedro', 'Manrrique', 'pmanrrique', '3015549911', 'pmanrrique@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 5, '');
 
 -- --------------------------------------------------------
@@ -742,14 +747,16 @@ ALTER TABLE `equipos_detalle_vehiculo`
 --
 ALTER TABLE `equipos_fotos`
   ADD PRIMARY KEY (`id_equipo_foto`),
-  ADD KEY `fk_id_equipo_foto` (`fk_id_equipo_foto`);
+  ADD KEY `fk_id_equipo_foto` (`fk_id_equipo_foto`),
+  ADD KEY `fk_id_user_ef` (`fk_id_user_ef`);
 
 --
 -- Indices de la tabla `equipos_localizacion`
 --
 ALTER TABLE `equipos_localizacion`
   ADD PRIMARY KEY (`id_equipo_localizacion`),
-  ADD KEY `fk_id_equipo_localizacion` (`fk_id_equipo_localizacion`);
+  ADD KEY `fk_id_equipo_localizacion` (`fk_id_equipo_localizacion`),
+  ADD KEY `fk_id_user_localizacion` (`fk_id_user_localizacion`);
 
 --
 -- Indices de la tabla `equipos_poliza`
@@ -893,13 +900,13 @@ ALTER TABLE `equipos_detalle_vehiculo`
 -- AUTO_INCREMENT de la tabla `equipos_fotos`
 --
 ALTER TABLE `equipos_fotos`
-  MODIFY `id_equipo_foto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_equipo_foto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_localizacion`
 --
 ALTER TABLE `equipos_localizacion`
-  MODIFY `id_equipo_localizacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_equipo_localizacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_poliza`
