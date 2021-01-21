@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-01-2021 a las 01:22:46
+-- Tiempo de generación: 21-01-2021 a las 18:25:42
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -198,10 +198,10 @@ INSERT INTO `equipos_localizacion` (`id_equipo_localizacion`, `fk_id_equipo_loca
 CREATE TABLE `equipos_poliza` (
   `id_equipo_poliza` int(10) NOT NULL,
   `fk_id_equipo_poliza` int(10) NOT NULL,
+  `fk_id_user_poliza` int(10) NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_vencimiento` date NOT NULL,
   `numero_poliza` varchar(30) NOT NULL,
-  `estado_poliza` tinyint(4) NOT NULL,
   `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -209,9 +209,10 @@ CREATE TABLE `equipos_poliza` (
 -- Volcado de datos para la tabla `equipos_poliza`
 --
 
-INSERT INTO `equipos_poliza` (`id_equipo_poliza`, `fk_id_equipo_poliza`, `fecha_inicio`, `fecha_vencimiento`, `numero_poliza`, `estado_poliza`, `descripcion`) VALUES
-(3, 1, '2021-01-01', '2022-01-19', 'AC-34-X', 1, 'Primer poliza'),
-(4, 1, '2021-01-06', '2021-01-06', 'ASDFASDFADS', 1, 'ultima poliza');
+INSERT INTO `equipos_poliza` (`id_equipo_poliza`, `fk_id_equipo_poliza`, `fk_id_user_poliza`, `fecha_inicio`, `fecha_vencimiento`, `numero_poliza`, `descripcion`) VALUES
+(3, 1, 1, '2021-01-01', '2022-01-19', 'AC-34-X', 'Primer poliza'),
+(4, 1, 1, '2021-01-06', '2021-01-06', 'ASDFASDFADS', 'ultima poliza'),
+(5, 1, 1, '2021-01-03', '2021-01-20', '2021-JBB-001', 'Cambio de la descripción');
 
 -- --------------------------------------------------------
 
@@ -329,21 +330,11 @@ INSERT INTO `inspection_vehiculos` (`id_inspection_vehiculos`, `fk_id_user_respo
 CREATE TABLE `mantenimiento_correctivo` (
   `id_correctivo` int(10) NOT NULL,
   `fecha` datetime NOT NULL,
-  `fk_id_equipo` int(10) NOT NULL,
+  `fk_id_equipo_correctivo` int(10) NOT NULL,
   `descripcion` text CHARACTER SET latin1 NOT NULL,
+  `consideracion` text CHARACTER SET latin1 NOT NULL,
   `estado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `mantenimiento_correctivo`
---
-
-INSERT INTO `mantenimiento_correctivo` (`id_correctivo`, `fecha`, `fk_id_equipo`, `descripcion`, `estado`) VALUES
-(1, '2020-12-01 00:00:00', 1, 'pruebas', 1),
-(2, '2020-12-31 00:00:00', 1, 'pruebas hoy', 1),
-(3, '2020-12-31 00:00:00', 8, 'otra prueba', 1),
-(4, '2020-12-15 00:00:00', 1, 'ultima prueba', 1),
-(5, '2021-01-14 04:04:01', 1, 'cambio de aceite', 1);
 
 -- --------------------------------------------------------
 
@@ -353,7 +344,7 @@ INSERT INTO `mantenimiento_correctivo` (`id_correctivo`, `fecha`, `fk_id_equipo`
 
 CREATE TABLE `mantenimiento_preventivo` (
   `id_preventivo` int(10) NOT NULL,
-  `fk_id_tipo_equipo` int(1) NOT NULL,
+  `fk_id_tipo_equipo_preventivo` int(1) NOT NULL,
   `fk_id_frecuencia` int(10) NOT NULL,
   `descripcion` text CHARACTER SET latin1 NOT NULL,
   `estado` int(1) NOT NULL
@@ -363,7 +354,7 @@ CREATE TABLE `mantenimiento_preventivo` (
 -- Volcado de datos para la tabla `mantenimiento_preventivo`
 --
 
-INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fk_id_tipo_equipo`, `fk_id_frecuencia`, `descripcion`, `estado`) VALUES
+INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fk_id_tipo_equipo_preventivo`, `fk_id_frecuencia`, `descripcion`, `estado`) VALUES
 (1, 1, 1, 'algo', 1),
 (2, 2, 1, 'algo mas', 1),
 (3, 2, 4, 'pruebas de guardado', 1),
@@ -763,7 +754,8 @@ ALTER TABLE `equipos_localizacion`
 --
 ALTER TABLE `equipos_poliza`
   ADD PRIMARY KEY (`id_equipo_poliza`),
-  ADD KEY `fk_id_equipo_poliza` (`fk_id_equipo_poliza`);
+  ADD KEY `fk_id_equipo_poliza` (`fk_id_equipo_poliza`),
+  ADD KEY `fk_id_user_poliza` (`fk_id_user_poliza`);
 
 --
 -- Indices de la tabla `inspection_vehiculos`
@@ -777,13 +769,16 @@ ALTER TABLE `inspection_vehiculos`
 -- Indices de la tabla `mantenimiento_correctivo`
 --
 ALTER TABLE `mantenimiento_correctivo`
-  ADD PRIMARY KEY (`id_correctivo`);
+  ADD PRIMARY KEY (`id_correctivo`),
+  ADD KEY `fk_id_equipo` (`fk_id_equipo_correctivo`);
 
 --
 -- Indices de la tabla `mantenimiento_preventivo`
 --
 ALTER TABLE `mantenimiento_preventivo`
-  ADD PRIMARY KEY (`id_preventivo`);
+  ADD PRIMARY KEY (`id_preventivo`),
+  ADD KEY `fk_id_tipo_equipo_preventivo` (`fk_id_tipo_equipo_preventivo`),
+  ADD KEY `fk_id_frecuencia` (`fk_id_frecuencia`);
 
 --
 -- Indices de la tabla `param_clase_vehiculo`
@@ -912,7 +907,7 @@ ALTER TABLE `equipos_localizacion`
 -- AUTO_INCREMENT de la tabla `equipos_poliza`
 --
 ALTER TABLE `equipos_poliza`
-  MODIFY `id_equipo_poliza` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_equipo_poliza` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `inspection_vehiculos`
@@ -924,7 +919,7 @@ ALTER TABLE `inspection_vehiculos`
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo`
 --
 ALTER TABLE `mantenimiento_correctivo`
-  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimiento_preventivo`
