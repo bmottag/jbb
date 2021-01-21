@@ -13,10 +13,16 @@
 			<?php if($info[0]["qr_code_img"]){ ?>
 				<div class="form-group">
 					<div class="row" align="center">
-						<img src="<?php echo base_url($info[0]["qr_code_img"]); ?>" class="img-rounded" width="200" height="200" alt="QR CODE" />
+						<img src="<?php echo base_url($info[0]["qr_code_img"]); ?>" class="img-rounded" width="150" height="150" alt="QR CODE" />
 					</div>
 				</div>
 			<?php } ?>
+
+			<div class="form-group">
+				<div class="row" align="center">
+						<?php echo '<strong>No. Inventario:</strong> ' . $info[0]['numero_inventario']; ?>
+				</div>
+			</div>
 		
 			<div class="list-group">
 				<a href="<?php echo base_url('equipos/detalle/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
