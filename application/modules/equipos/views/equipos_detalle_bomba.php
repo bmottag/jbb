@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo_detalle_bomba.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo_detalle_bomba_v2.js"); ?>"></script>
 
 <div id="page-wrapper">
 	<br>
@@ -137,12 +137,12 @@ if ($retornoError) {
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="succion">Succión: </label>
-								<input type="text" id="succion" name="succion" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["succion"]:""; ?>" placeholder="Succión" >
+								<input type="text" id="succion" name="succion" class="form-control" value='<?php echo $infoEspecifica?$infoEspecifica[0]["succion"]:""; ?>' placeholder="Succión" >
 							</div>					
 							
 							<div class="col-sm-6">
 								<label for="salida">Salida: </label>
-								<input type="text" id="salida" name="salida" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["salida"]:""; ?>" placeholder="Salida" >
+								<input type="text" id="salida" name="salida" class="form-control" value='<?php echo $infoEspecifica?$infoEspecifica[0]["salida"]:""; ?>' placeholder="Salida" >
 							</div>
 						</div>
 						

@@ -1,19 +1,18 @@
 $( document ).ready( function () {
-		
+	
+	$("#valor_comercial").bloquearTexto().maxlength(10);
+	
 	$( "#form" ).validate( {
 		rules: {
-			dimension: 				{ minlength: 4, maxlength:8 },
-			motor_frecuencia: 		{ maxlength: 20 },
-			motor_velocidad: 		{ maxlength: 20 },
-			motor_voltaje: 			{ maxlength: 20 },
-			potencia: 				{ maxlength: 20 },
-			consumo: 				{ maxlength: 20 },
-			hmax: 					{ maxlength: 20 },
-			succion: 				{ maxlength: 20 },
-			salida: 				{ maxlength: 20 },
-			qmax: 					{ maxlength: 20 },
-			color: 					{ maxlength: 20 },
-			peso: 					{ maxlength: 25 }
+			numero_inventario: 		{ required: true, minlength: 3, maxlength:10 },
+			id_dependencia: 		{ required: true },
+			marca:					{ required: true, minlength: 3, maxlength: 20 },
+			modelo: 				{ required: true, minlength: 3, maxlength: 30 },
+			numero_serial: 			{ required: true, minlength: 3, maxlength: 20 },
+			id_tipo_equipo: 		{ required: true },
+			estado: 				{ required: true },
+			valor_comercial: 		{ number: true, maxlength:10 },
+			fecha_adquisicion: 		{ required: true }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
@@ -44,7 +43,7 @@ $( document ).ready( function () {
 			
 				$.ajax({
 					type: "POST",	
-					url: base_url + "equipos/guardar_info_especifica",	
+					url: base_url + "equipos/guardar_equipos",	
 					data: $("#form").serialize(),
 					dataType: "json",
 					contentType: "application/x-www-form-urlencoded;charset=UTF-8",
@@ -55,7 +54,9 @@ $( document ).ready( function () {
 						if( data.result == "error" )
 						{
 							$("#div_load").css("display", "none");
-							$('#btnSubmit').removeAttr('disabled');							
+							$("#div_error").css("display", "inline");
+							$("#span_msj").html(data.mensaje);
+							$('#btnSubmit').removeAttr('disabled');
 							return false;
 						} 
 
@@ -64,7 +65,7 @@ $( document ).ready( function () {
 							$("#div_load").css("display", "none");
 							$('#btnSubmit').removeAttr('disabled');
 
-							var url = base_url + "equipos/especifico/" + data.idRecord;
+							var url = base_url + "equipos/detalle/" + data.idRecord;
 							$(location).attr("href", url);
 						}
 						else

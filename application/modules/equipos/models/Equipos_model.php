@@ -95,19 +95,20 @@
 				
 				$data = array(
 					'fk_id_equipo_bomba' => $this->input->post('hddIdEquipo'),
-					'dimension' => $this->input->post('dimension'),
-					'motor_frecuencia' => $this->input->post('motor_frecuencia'),
-					'motor_velocidad' => $this->input->post('motor_velocidad'),
-					'motor_voltaje' => $this->input->post('motor_voltaje'),
-					'potencia' => $this->input->post('potencia'),
-					'consumo' => $this->input->post('consumo'),
-					'hmax' => $this->input->post('hmax'),
-					'succion' => $this->input->post('succion'),
-					'qmax' => $this->input->post('qmax'),
-					'color' => $this->input->post('color'),
-					'peso' => $this->input->post('peso'),
-					'caracteristicas' => $this->input->post('caracteristicas'),
-					'condiciones_operacion' => $this->input->post('condiciones_operacion')
+					'dimension' => $this->security->xss_clean($this->input->post('dimension')),
+					'motor_frecuencia' => $this->security->xss_clean($this->input->post('motor_frecuencia')),
+					'motor_velocidad' => $this->security->xss_clean($this->input->post('motor_velocidad')),
+					'motor_voltaje' => $this->security->xss_clean($this->input->post('motor_voltaje')),
+					'potencia' => $this->security->xss_clean($this->input->post('potencia')),
+					'consumo' => $this->security->xss_clean($this->input->post('consumo')),
+					'hmax' => $this->security->xss_clean($this->input->post('hmax')),
+					'qmax' => $this->security->xss_clean($this->input->post('qmax')),
+					'succion' => $this->security->xss_clean($this->input->post('succion')),
+					'salida' => $this->security->xss_clean($this->input->post('salida')),
+					'color' => $this->security->xss_clean($this->input->post('color')),
+					'peso' => $this->security->xss_clean($this->input->post('peso')),
+					'caracteristicas' => $this->security->xss_clean($this->input->post('caracteristicas')),
+					'condiciones_operacion' => $this->security->xss_clean($this->input->post('condiciones_operacion'))
 				);	
 
 				//revisar si es para adicionar o editar
