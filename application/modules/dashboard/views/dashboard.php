@@ -84,13 +84,16 @@ if ($retornoError) {
                     </div>
                 </div>
 
-                <a href="#anclaSafety">
-                    <div class="panel-footer">
-                        <span class="pull-left"> Ver registros </span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
+                <div class="panel-footer">
+                    <form  name="formBuscarVehiculos" id="formBuscarVehiculos" method="post" action="<?php echo base_url("equipos"); ?>">
+                        <input type="hidden" id="id_tipo_equipo" name="id_tipo_equipo" class="form-control" value="1" placeholder="Número Inventario Entidad" >
+                            <button type="submit" class="btn btn-link btn-xs" id='btnBuscar' name='btnBuscar'>
+                                    <span class="pull-right"> Ver registros <i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                            </button>
+                    </form>
+                </div>
+
             </div>
         </div>
 
@@ -108,13 +111,15 @@ if ($retornoError) {
                     </div>
                 </div>
 
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left"> Ver registros </span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
+                <div class="panel-footer">
+                    <form  name="formBuscarVehiculos" id="formBuscarVehiculos" method="post" action="<?php echo base_url("equipos"); ?>">
+                        <input type="hidden" id="id_tipo_equipo" name="id_tipo_equipo" class="form-control" value="2" placeholder="Número Inventario Entidad" >
+                            <button type="submit" class="btn btn-link btn-xs" id='btnBuscar' name='btnBuscar'>
+                                    <span class="pull-right"> Ver registros <i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                            </button>
+                    </form>
+                </div>
             </div>
         </div>
 
