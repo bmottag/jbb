@@ -211,7 +211,17 @@ class Equipos extends CI_Controller {
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
-			
+
+			//DESHABILITAR
+			$data['deshabilitar'] = '';
+			$userRol = $this->session->role;
+
+			//si el rol es: Usuario Consulta; Encargado; Operador - Conductor
+			if($userRol == 2 || $userRol == 3 || $userRol == 5)
+			{
+				$data['deshabilitar'] = 'disabled';
+			}
+
 			$arrParam = array(
 				"table" => "param_dependencias",
 				"order" => "dependencia",
