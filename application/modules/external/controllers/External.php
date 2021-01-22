@@ -10,30 +10,16 @@ class External extends CI_Controller {
     }
 	
 	/**
-	 * Detalle de un equipo
-     * @since 23/11/2020
+	 * Info equipo
+     * @since 22/1/2021
      * @author BMOTTAG
 	 */
-	public function detalle($idEquipo)
+	public function buscar_equipo()
 	{
-			$arrParam = array("idEquipo" => $idEquipo);
+			$arrParam = array("numero_inventario" => $this->security->xss_clean($this->input->post('numero_inventario')));
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
-			
-			$arrParam = array(
-				"table" => "param_dependencias",
-				"order" => "dependencia",
-				"id" => "x"
-			);
-			$data['dependencias'] = $this->general_model->get_basic_search($arrParam);
-			
-			$arrParam = array(
-				"table" => "param_tipo_equipos",
-				"order" => "tipo_equipo",
-				"id" => "x"
-			);
-			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
-			
-			$data["view"] = 'equipos_detalle';
+						
+			$data["view"] = 'listado_equipos';
 			$this->load->view("layout_calendar", $data);
 	}
 	

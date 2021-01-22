@@ -23,8 +23,7 @@ class Login extends CI_Controller {
 				$arrParam['encryption'] = $id;
 				$data['equipoInfo'] = $this->general_model->get_equipos_info($arrParam);
 
-				$data['idEquipo'] = $data['equipoInfo'][0]['id_equipo'];	
-				$data['idTipoEquipo'] = $data['equipoInfo'][0]['fk_id_tipo_equipo'];					
+				$data['idEquipo'] = $data['equipoInfo'][0]['id_equipo'];
 			}
 			$this->load->view('login', $data);
 	}
@@ -34,20 +33,7 @@ class Login extends CI_Controller {
 			$login = $this->security->xss_clean($this->input->post("inputLogin"));
 			$passwd = $this->security->xss_clean($this->input->post("inputPassword"));
 			$data['idEquipo'] = $this->input->post("hddId");
-			$data['idTipoEquipo'] = $this->input->post("hddidTipoEquipo");
 						
-			//busco informacion del vehiculo si existe
-			$data['linkInspection'] = FALSE;
-			$data['formInspection'] = FALSE;
-			
-			if ($data['idEquipo'] != 'x') {				
-				$arrParam['idEquipo'] = $data['idEquipo'];
-				$data['equipoInfo'] = $this->general_model->get_equipos_info($arrParam);
-
-				$data['linkInspection'] = $data['equipoInfo'][0]['enlace_inspeccion'];	
-				$data['formInspection'] = $data['equipoInfo'][0]['formulario_inspeccion'];					
-			}
-
 			//busco datos del usuario
 			$arrParam = array(
 				"table" => "usuarios",
@@ -85,10 +71,7 @@ class Login extends CI_Controller {
 							"state" => $user["state"],
 							"role" => $user["role"],
 							"photo" => $user["photo"],
-							"idEquipo" => $data['idEquipo'],
-							"idTipoEquipo" => $data['idTipoEquipo'],
-							"linkInspection" => $data['linkInspection'],
-							"formInspection" => $data['formInspection']
+							"idEquipo" => $data['idEquipo']
 						);
 												
 						$this->session->set_userdata($sessionData);
@@ -263,6 +246,14 @@ class Login extends CI_Controller {
 				$data["msj"] = "<strong>Error</strong> datos incorrectos.";
 				$this->load->view('login', $data);
 			}
+	}
+
+	/**
+	 * Form to search a equipment
+	 */
+	public function search_equipment()
+	{
+		$this->load->view("form_search_equipment");
 	}
 	
 	

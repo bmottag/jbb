@@ -56,19 +56,13 @@
 	    public function redireccionarUsuario()
 		{
 			$idEquipo = $this->session->userdata("idEquipo");
-			$idTipoEquipo = $this->session->userdata("idTipoEquipo");
-			$linkInspection = $this->session->userdata("linkInspection");
 			$state = $this->session->userdata("state");
 			$userRole = $this->session->userdata("rol");
 			$dashboardURL = $this->session->userdata("dashboardURL");
 
-			if($idEquipo != "x"){				
-				if($idTipoEquipo == 99 || $linkInspection == "NA"){
-					$state = 99;//NO HAY FORMATO DE INSPECTION
-				}else{
+			if($idEquipo != "x")
+			{				
 					$state = 88;
-				}
-				
 			}
 			
 	    	switch($state){
@@ -92,7 +86,7 @@
 						$this->load->view("layout", $data);
 	    				break;
 	    		case 88: //ES PARA UNA INSPECCION, LO REDIRECCIONO AL FORMUALIO DE LA BD
-	    				redirect($linkInspection,"location",301);
+	    				redirect('equipos/detalle/' . $idEquipo,"location",301);
 	    				break;
 				case 66: //USUARIO QUE INGRESO CON LLAVE DE RECUPERACION, LO REDIRECCIONO AL CAMBIO DE CONTRASEÑA
 						redirect("/usuarios","location",301);

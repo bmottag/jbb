@@ -29,7 +29,7 @@
 	<!-- jQuery validate-->
 	<script type="text/javascript" src="<?php echo base_url("assets/js/general/general.js"); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url("assets/js/general/jquery.validate.js"); ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url("assets/js/validate/login.js"); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url("assets/js/validate/buscar_equipo.js"); ?>"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,32 +47,51 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Autenticación</h3>
+                        <h3 class="panel-title">Buscar equipo por número de inventario</h3>
                     </div>
                     <div class="panel-body">
-						<?php if(isset($msj)){?>
-								<div class="alert alert-danger"><span class="glyphicon glyphicon-remove">&nbsp;</span>
-									<?php echo $msj;//mensaje de error ?>
+						<?php if(isset($msjSuccess)){?>
+							<div class="row">
+								<div class="col-lg-12">
+									<p class="text-success">
+										<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+										<?php echo $msjSuccess ?>	
+									</p>
 								</div>
+							</div>	
 						<?php } ?>
-						<form  name="form" id="form" role="form" method="post" action="<?php echo base_url("login/validateUser"); ?>" >
-						<input type="hidden" id="hddId" name="hddId" value="<?php echo $idEquipo?$idEquipo:"x"; ?>"/>
-
-                            <fieldset>
-                                <div class="form-group">
-									<input type="text" id="inputLogin" name="inputLogin" class="form-control" placeholder="Usuario" value="<?php echo get_cookie('user'); ?>" required autofocus >
-                                </div>
-                                <div class="form-group">
-									<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Contraseña" value="<?php echo get_cookie('password'); ?>" >
-                                </div>
-
-								<button type="submit" class="btn btn-lg btn-success btn-block" id='btnSubmit' name='btnSubmit'>Ingresar </button>
-                            </fieldset>
-                        </form>
 						
-                        <br>
-						<a href="<?php echo base_url("login/recover"); ?>">¿Olvidó su contraseña?</a><br>
-                        <a href="<?php echo base_url("login/search_equipment"); ?>">Ver Equipo</a>
+						<?php if(isset($msj)){?>
+							<div class="row">
+								<div class="col-lg-12">
+									<p class="text-danger">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+										<?php echo $msj ?>	
+									</p>
+								</div>
+							</div>	
+						<?php } ?>
+						
+						<form  name="form" id="form" role="form" method="post" action="<?php echo base_url("external/buscar_equipo"); ?>">
+
+							<div class="form-group has-feedback">
+								<label class="control-label" for="numero_inventario">Número Inventario Entidad: </label>
+								<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" placeholder="Número de inventario" maxlength=50 required="required">
+							</div>
+							<div class="row">
+								<div class="col-xs-8">
+
+								</div>
+								<!-- /.col -->
+								<div class="col-xs-4">
+									<button type="submit" class="btn btn-info btn-block" id='btnSubmit' name='btnSubmit'>Buscar</button>
+								</div>
+								<!-- /.col -->
+							</div>
+						</form>
+											
+						<br>	
+						<a href="<?php echo base_url("login"); ?>">Regresar</a><br>
 						
                     </div>
                 </div>
