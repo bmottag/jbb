@@ -2,7 +2,8 @@ $( document ).ready( function () {
 	
 	$( "#form" ).validate( {
 		rules: {
-			descripcion: 			{ required: true, minlength: 3, maxlength:5000 }
+			descripcion: 	{ required: true, minlength: 3, maxlength:5000 },
+			consideracion: 	{ required: true, minlength: 3, maxlength:5000 }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

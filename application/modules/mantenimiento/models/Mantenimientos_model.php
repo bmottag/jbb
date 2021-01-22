@@ -9,7 +9,7 @@ class Mantenimientos_model extends CI_Model {
 	public function get_preventivos_info($arrData)
 	{		
 		$this->db->select();
-		$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = P.fk_id_tipo_equipo', 'INNER');
+		$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = P.fk_id_tipo_equipo_preventivo', 'INNER');
 		$this->db->join('param_frecuencia F', 'F.id_frecuencia = P.fk_id_frecuencia', 'INNER');
 		if (array_key_exists("id_preventivo", $arrData)) {
 			$this->db->where('P.id_preventivo', $arrData["id_preventivo"]);
@@ -18,7 +18,7 @@ class Mantenimientos_model extends CI_Model {
 			$this->db->where('P.estado', $arrData["estado"]);
 		}
 		if (array_key_exists("tipo_equipo", $arrData) && $arrData["tipo_equipo"] != '') {
-			$this->db->like('P.fk_id_tipo_equipo', $arrData["tipo_equipo"]); 
+			$this->db->like('P.fk_id_tipo_equipo_preventivo', $arrData["tipo_equipo"]); 
 		}
 		if (array_key_exists("frecuencia", $arrData) && $arrData["frecuencia"] != '') {
 			$this->db->like('P.fk_id_frecuencia', $arrData["frecuencia"]); 
@@ -43,7 +43,7 @@ class Mantenimientos_model extends CI_Model {
 	public function guardarPreventivo() 
 	{
 		$data = array(
-			'fk_id_tipo_equipo' => $this->input->post('id_tipo_equipo'),
+			'fk_id_tipo_equipo_preventivo' => $this->input->post('id_tipo_equipo'),
 			'fk_id_frecuencia' => $this->input->post('frecuencia'),
 			'descripcion' => $this->input->post('descripcion'),
 			'estado' => 1
@@ -62,9 +62,10 @@ class Mantenimientos_model extends CI_Model {
 	 */
 	public function get_correctivo($arrData)
 	{
-		$this->db->select();				
+		$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name");
+		$this->db->join('usuarios U', 'C.fk_id_user_correctivo = U.id_user', 'INNER');
 		if (array_key_exists("idEquipo", $arrData)) {
-			$this->db->where('C.fk_id_equipo', $arrData["idEquipo"]);
+			$this->db->where('C.fk_id_equipo_correctivo', $arrData["idEquipo"]);
 		}
 		if (array_key_exists("idCorrectivo", $arrData)) {
 			$this->db->where('C.id_correctivo', $arrData["idCorrectivo"]);
@@ -86,18 +87,64 @@ class Mantenimientos_model extends CI_Model {
 	{
 		$idCorrectivo = $this->input->post('hddId');
 		$idEquipo = $this->input->post('hddIdEquipo');
+		$idUser = $this->session->userdata("id");
 		$data = array(
-			'fk_id_equipo' => $idEquipo,
+			'fk_id_equipo_correctivo' => $idEquipo,
 			'descripcion' => $this->input->post('descripcion'),
+			'consideracion' => $this->input->post('consideracion'),
 			'estado' => 1
 		);
 		if ($idCorrectivo == '') {
 			$data['fecha'] = date("Y-m-d G:i:s");
+			$data['fk_id_user_correctivo'] = $idUser;
 			$query = $this->db->insert('mantenimiento_correctivo', $data);
 		} else {
 			$this->db->where('id_correctivo', $idCorrectivo);
 			$query = $this->db->update('mantenimiento_correctivo', $data);
 		}
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	* Lista de fotos por daño
+	* @since 20/01/2021
+	*/
+	public function get_fotos_danios($arrData) 
+	{
+		$this->db->select("F.*, C.fk_id_equipo_correctivo");
+		$this->db->join('mantenimiento_correctivo C', 'C.id_correctivo = F.fk_id_correctivo', 'INNER');
+		if (array_key_exists("idCorrectivo", $arrData)) {
+			$this->db->where('F.fk_id_correctivo', $arrData["idCorrectivo"]);
+		}
+		if (array_key_exists("idFotoDanio", $arrData)) {
+			$this->db->where('F.id_foto_danio', $arrData["idFotoDanio"]);
+		}
+		$this->db->order_by('F.id_foto_danio', 'asc');
+		$query = $this->db->get('mantenimiento_correctivo_fotos F');
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	* Add fotos
+	* @since 20/01/2021
+	*/
+	public function add_fotoDanio($path) 
+	{							
+		$data = array(
+			'fk_id_correctivo' => $this->input->post('hddId'),
+			'ruta_foto' => $path,
+			'fecha_foto_danio' => date("Y-m-d"),
+			'descripcion' => $this->input->post('descripcion')
+		);
+		$query = $this->db->insert('mantenimiento_correctivo_fotos', $data);
 		if ($query) {
 			return true;
 		} else {

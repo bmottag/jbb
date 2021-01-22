@@ -105,22 +105,37 @@ class Mantenimiento extends CI_Controller {
      * @since 10/12/2020
      * @author BMOTTAG
 	 */
-	public function correctivo($idEquipo, $idCorrectivo = 'x')
+	public function correctivo($idEquipo)
 	{
 		$arrParam = array("idEquipo" => $idEquipo);
 		$data['info'] = $this->general_model->get_equipos_info($arrParam);
 		$data['listadoCorrectivos'] = $this->mantenimientos_model->get_correctivo($arrParam);
+		$data["view"] = 'correctivo';
+		$this->load->view("layout_calendar", $data);
+	}
+
+	/**
+     * Cargo modal - formulario correctivo
+     * @since 19/01/2021
+     * @author BMOTTAG
+     */
+    public function cargarModalCorrectivo() 
+	{
+		header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
 		$data['infoCorrectivo'] = FALSE;
-		if ($idCorrectivo != 'x') {
+		$data["idEquipo"] = $this->input->post("idEquipo");
+		$data["idCorrectivo"] = $this->input->post("idCorrectivo");
+		if ($data["idCorrectivo"] != 'x')
+		{
 			$arrParam = array(
-				"idCorrectivo" => $idCorrectivo,
-				"idEquipo" => $idEquipo
+				"idCorrectivo" => $data["idCorrectivo"]
 			);
 			$data['infoCorrectivo'] = $this->mantenimientos_model->get_correctivo($arrParam);
+			$data["idEquipo"] = $data['infoCorrectivo'][0]['fk_id_equipo_correctivo'];
+
 		}
-		$data["view"] = 'correctivo';
-		$this->load->view("layout", $data);
-	}
+		$this->load->view("correctivo_modal", $data);
+    }
 
 	/**
 	 * Guardar mantenimiento correctivo
@@ -144,4 +159,88 @@ class Mantenimiento extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+
+	/**
+	 * Foto del daño
+	 * @since 20/01/2021
+     * @author BMOTTAG
+	 */
+	public function foto_danio($idEquipo, $idCorrectivo, $error = '')
+	{	
+		$arrParam = array("idEquipo" => $idEquipo);
+		$data['info'] = $this->general_model->get_equipos_info($arrParam);
+		$arrParam = array("idCorrectivo" => $idCorrectivo);
+		$data['infoCorrectivo'] = $this->mantenimientos_model->get_correctivo($arrParam);
+		$data['fotosDanios'] = $this->mantenimientos_model->get_fotos_danios($arrParam);
+		$data['error'] = $error;
+		$data["view"] = 'foto_danios';
+		$this->load->view("layout_calendar", $data);
+	}
+
+	/**
+	 * Subir Foto del daño
+	 * @since 20/01/2021
+     * @author BMOTTAG
+	 */
+    function do_upload_danio() 
+	{
+		$config['upload_path'] = './images/danios/';
+        $config['overwrite'] = false;
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size'] = '3000';
+        $config['max_width'] = '3200';
+        $config['max_height'] = '2400';
+		$idCorrectivo = $this->input->post('hddId');
+		$idEquipo = $this->input->post('hddIdEquipo');
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload()) {
+            $error = $this->upload->display_errors();
+			$this->foto_danio($idEquipo, $idCorrectivo, $error);
+        } else {
+            $file_info = $this->upload->data();
+			$data = array('upload_data' => $this->upload->data());
+			$imagen = $file_info['file_name'];
+			$path = "images/danios/" . $imagen;
+			if($this->mantenimientos_model->add_fotoDanio($path))
+			{
+				$this->session->set_flashdata('retornoExito', 'Se cargó la foto del daño.');
+			} else {
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+			}
+			redirect('mantenimiento/foto_danio/' . $idEquipo . "/" . $idCorrectivo);
+        }
+    }
+	
+	/**
+	 * Eliminar foto del daño
+     * @since 20/01/2021
+     * @author BMOTTAG
+	 */
+	public function eliminar_foto_danio()
+	{			
+		header('Content-Type: application/json');
+		$data = array();
+		$idEquipo = $this->input->post('hddIdEquipo');
+		$idFotoDanio = $this->input->post('identificador');
+		$arrParam = array("idFotoDanio" => $idFotoDanio);
+		$fotosDanios = $this->mantenimientos_model->get_fotos_danios($arrParam);
+		$data["idRecord"] = $fotosDanios[0]['fk_id_correctivo'];
+		$data["idEquipo"] = $fotosDanios[0]['fk_id_equipo_correctivo'];
+		unlink($fotosDanios[0]['ruta_foto']);
+		$arrParam = array(
+			"table" => "mantenimiento_correctivo_fotos",
+			"primaryKey" => "id_foto_danio",
+			"id" => $idFotoDanio
+		);
+		if ($this->general_model->deleteRecord($arrParam))
+		{				
+			$data["result"] = true;
+			$this->session->set_flashdata('retornoExito', 'Se eliminó la foto del daño.');
+		} else {
+			$data["result"] = "error";
+			$data["mensaje"] = "Error!!! Contactarse con el Administrador.";
+			$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+		}				
+		echo json_encode($data);
+    }
 }
