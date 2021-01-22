@@ -2,7 +2,7 @@ $( document ).ready( function () {
 		
 	$( "#form" ).validate( {
 		rules: {
-			dimension: 				{ minlength: 4, maxlength:15 },
+			dimension: 				{ minlength: 4, maxlength:20 },
 			motor_frecuencia: 		{ maxlength: 20 },
 			motor_velocidad: 		{ maxlength: 20 },
 			motor_voltaje: 			{ maxlength: 20 },
