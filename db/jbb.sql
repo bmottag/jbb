@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 21-01-2021 a las 18:25:42
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.4
+-- Servidor: localhost:3306
+-- Tiempo de generación: 22-01-2021 a las 06:33:30
+-- Versión del servidor: 5.6.49-cll-lve
+-- Versión de PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `jbb`
+-- Base de datos: `jbb_2021`
 --
 
 -- --------------------------------------------------------
@@ -40,7 +41,7 @@ CREATE TABLE `equipos` (
   `qr_code_img` varchar(250) NOT NULL,
   `qr_code_encryption` varchar(60) NOT NULL,
   `fecha_adquisicion` date DEFAULT NULL,
-  `valor_comercial` float NOT NULL
+  `valor_comercial` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -48,14 +49,19 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`id_equipo`, `numero_inventario`, `fk_id_dependencia`, `marca`, `modelo`, `numero_serial`, `fk_id_tipo_equipo`, `estado_equipo`, `observacion`, `qr_code_img`, `qr_code_encryption`, `fecha_adquisicion`, `valor_comercial`) VALUES
-(1, '14853', 7, 'Chevrolet ', '2019', '3GNFL7E51HS559955', 1, 1, 'Inventario Yezid ', 'images/equipos/QR/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc', '1979-10-12', 10300500),
-(2, '14854', 7, 'Nissan', '2017', '3N6CD33B2ZK365122', 1, 1, 'Inventario Yezid ', 'images/equipos/QR/2_qr_code.png', '2jnpWRXLbDdCG8v9QrKJGlR84UXIKqzkhNH9CLm7eScoSMxWn0k', '0000-00-00', 0),
-(3, '16901', 7, 'Toyota', '2007', '9FH11UJ9079012119', 1, 1, 'Inventario Yezid', 'images/equipos/QR/3_qr_code.png', '3e0L1EUhaZIM0OZ9tdkon8brO7Auo7jL58GE7wg6V1GvqFwinHb', '0000-00-00', 0),
-(4, '16989', 7, 'Toyota- Hilux', '1996', 'RN1067012769', 1, 1, 'Inventario Yezid', 'images/equipos/QR/4_qr_code.png', '4XnvRyFKtJVZPPzzyRdPYzr1QkgpYtoP0kENJh5D8mQHESej8y4', '0000-00-00', 0),
-(5, '17129', 7, 'Volkswagen', '2018', '9536G8247JR812344', 1, 1, 'Inventario Yezid', 'images/equipos/QR/5_qr_code.png', '5PiIEUliY7PzZdS0ZDyUCaMNPfv25S1wQ1AlKAwxMlrdNH3N4mM', '0000-00-00', 0),
-(6, '17710', 7, 'Renault', '2020', '93YMAF4CELJ079626', 1, 1, 'Inventario Yezid', 'images/equipos/QR/6_qr_code.png', '6jxt7Cevdl0j5MHgHuUZh93iOWBxbOTTyXG1FHKKaJuLBwasNvY', '0000-00-00', 0),
-(7, '17615', 7, 'Chevrolet ', '2020', '9GDFVR345LB008406', 1, 1, 'Inventaro Yezid', 'images/equipos/QR/7_qr_code.png', '7sVXiSAcnge43sw3X0d1p4N8IHCo4LLAlN5cfX5ZRz6kuvJgAc0', '0000-00-00', 0),
-(8, 'JBB.210001', 7, 'Pedrollo', 'JC Rm 1B', '00000', 2, 1, 'Bomba Autocebante centrífuga', 'images/equipos/QR/8_qr_code.png', '8o55FZnUiVhnFLtO0Jjvg22gMuuvdhVNuo5ukma8YWP2Ba9Plpq', '0000-00-00', 0);
+(1, '14853', 7, 'Chevrolet ', '2017', '3GNFL7E51HS559955', 1, 1, 'Inventario Yezid ', 'images/equipos/QR/1_qr_code.png', '1FDs8vd21acPIz8bqrhKApdqdTjuxgBTJrs2eS1UmEwlwiwSdbc', '2016-10-12', 98205975),
+(2, '14854', 7, 'Nissan', '2017', '3N6CD33B2ZK365122', 1, 1, 'Inventario Yezid ', 'images/equipos/QR/2_qr_code.png', '2jnpWRXLbDdCG8v9QrKJGlR84UXIKqzkhNH9CLm7eScoSMxWn0k', '2016-10-12', 106070140),
+(3, '16901', 7, 'Toyota', '2007', '9FH11UJ9079012119', 1, 1, 'Inventario Yezid', 'images/equipos/QR/3_qr_code.png', '3e0L1EUhaZIM0OZ9tdkon8brO7Auo7jL58GE7wg6V1GvqFwinHb', '2006-10-12', 35550000),
+(4, '16989', 7, 'Toyota- Hilux', '1996', 'RN1067012769', 1, 1, 'Inventario Yezid', 'images/equipos/QR/4_qr_code.png', '4XnvRyFKtJVZPPzzyRdPYzr1QkgpYtoP0kENJh5D8mQHESej8y4', '1995-10-12', 5400000),
+(5, '17129', 7, 'Volkswagen', '2018', '9536G8247JR812344', 1, 1, 'Inventario Yezid', 'images/equipos/QR/5_qr_code.png', '5PiIEUliY7PzZdS0ZDyUCaMNPfv25S1wQ1AlKAwxMlrdNH3N4mM', '2017-10-12', 145443776),
+(6, '17710', 7, 'Renault', '2020', '93YMAF4CELJ079626', 1, 1, 'Inventario Yezid', 'images/equipos/QR/6_qr_code.png', '6jxt7Cevdl0j5MHgHuUZh93iOWBxbOTTyXG1FHKKaJuLBwasNvY', '2019-10-12', 252542668),
+(7, '17615', 7, 'Chevrolet ', '2020', '9GDFVR345LB008406', 1, 1, 'Inventaro Yezid', 'images/equipos/QR/7_qr_code.png', '7sVXiSAcnge43sw3X0d1p4N8IHCo4LLAlN5cfX5ZRz6kuvJgAc0', '2019-10-12', 215769798),
+(8, 'JBB-210002', 7, 'IHM Ignacio Gomez', '15H - 2 4 - Bomba Centrifuga', '97500330', 2, 1, 'Requiere cambió de tablero. La tubería de descarga presenta fuga, requiere cambio de todos los acoples de descarga. Requiere nueva base de soporte.						\r\n						\r\n						', 'images/equipos/QR/8_qr_code.png', '8o55FZnUiVhnFLtO0Jjvg22gMuuvdhVNuo5ukma8YWP2Ba9Plpq', '1989-10-12', 0),
+(9, 'JBB-210001', 7, 'Pedrollo', 'CP 21OC - Bomba Centrifuga', '03-15', 2, 1, 'Se encuentra embebida en el concreto, por lo cúal no es posible desmontar. En caso de un correctivo es necesario demoler la base. En el momento no presenta inconvenientes.			\r\n			', 'images/equipos/QR/9_qr_code.png', '9yco2AL3eLHezXBQkPUqqmVGMCEEaDsX0Sq1NDMoDpS8TQxXBn5', '1989-10-12', 0),
+(10, 'JBB-210003', 7, 'Pedrollo', 'Dm 20 N - Bomba Sumergible', '100522', 2, 1, 'Requiere embobinado nuevo', 'images/equipos/QR/10_qr_code.png', '10ofiGdyY9pVD6clvzxPHYk4mDakVn67mg6yRlK6wMonBWf1hnZz', '2017-10-12', 0),
+(11, 'JBB-210004', 7, 'Pedrollo', 'JC Rm 1B - Bomba centrífuga ', 'Esta borrado', 2, 1, 'Completamente inoperante. Se encuentra totalmente sulfatada. Requiere cambio de capacitor. Embobinado nuevo. Ventilador nuevo. Tornillería nueva', 'images/equipos/QR/11_qr_code.png', '11UUIhnssFMIHN6qK83skU61GCQVfkT6PDnY1wBe3CPevu5Ywt6r', '2014-10-12', 0),
+(12, 'JBB-210005', 7, 'Altamira (no verifi)', 'Se desconoce', 'Se desconoce', 2, 1, '', 'images/equipos/QR/12_qr_code.png', '12yWLEH7E1LN91xRJJJrbLLRWA0ZMGt737bimakfMpNT8Jgw8y3W', '2016-10-12', 0),
+(13, 'JBB-210006', 7, 'Altamira', 'MSQA4 23230', '2200007892-0148', 2, 1, 'Bomba inactica. Sistema electrónico completo. Bomba fuera de servicio. Requiere cambio de motor.', 'images/equipos/QR/13_qr_code.png', '13tZiwQ19BfJvn9BT7mWFVJA8LzNMDgWOEmWu39rVo1D5dG14xad', '2018-10-12', 0);
 
 -- --------------------------------------------------------
 
@@ -113,7 +119,12 @@ CREATE TABLE `equipos_detalle_bomba` (
 --
 
 INSERT INTO `equipos_detalle_bomba` (`id_equipo_detalle_bomba`, `fk_id_equipo_bomba`, `dimension`, `motor_frecuencia`, `motor_velocidad`, `motor_voltaje`, `potencia`, `consumo`, `hmax`, `succion`, `salida`, `qmax`, `color`, `peso`, `caracteristicas`, `condiciones_operacion`) VALUES
-(1, 8, '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+(1, 8, '40x25x30 cm', '60 Hz', '3375 rpm', '220 V', '2,4 Hp', '7A', '45 m', '1,5\"', '1,5\"', '90 It/min', 'Naranja', '20 kg', 'En hierro', 'Funciona para succionar agua del reservorio y el túnel de propagación.\r\nSe activa manualmente 3 veces por semana durante una hora. 					'),
+(2, 9, '40x25x30 cm', '60 Hz', '3450 rpm', '220 V', '3 Hp', '6,4 A', '45 m', '1,5\"', '1\"', '250 gpm ', 'Azul', '25,3 kg', 'En hierro', 'Funciona para succionar agua del reservorio y regar el invernadero.\r\nSe activa manualmente 3 veces por semana durante una hora. 									\r\n			'),
+(3, 10, 'h=34 x d=20 cm', '60 Hz', '3450 rpm ', '220 V', '1 Hp', '5 A', '19 mts', '', '1.5\"', '250 It/min', 'Plata metálico ', '10 kg', 'Bomba sumergible metálica para aguas ligeramente turbias', 'Funciona para evacuar fluidos del biodigestor (posiblemente lixiviados).\r\nNo se encuentra en uso. El biodigestor está fuera de funcionamiento.'),
+(4, 11, '37x18x18 cm', '60 Hz', '3455 rpm', '110 V', '0,7 Hp', '6,6 A', '41 m', '1\"', '1\"', '50 It/min', 'Azul', '12 kg', 'En acero', 'La función consiste en circular agua en el sud cerca al lago principal.\r\nTotalmente inoperante. Tablero de encendido sin energía.'),
+(5, 12, '', '60 Hz', '', '', 'Hp', '', '', 'N.A.', '1\"', 'gpm', 'Metálico', 'kg', 'En acero', 'Funciona evacuar las aguas que recibe de la zona y regar el herbal (función que no realiza).\r\nPermanece inundada. Requiere de otros equipos para poder evacuar el agua.'),
+(6, 13, 'h= 1m x d= 10cm', '60 Hz', '3450rpm', '230V', '2 Hp', '7,6 A', '150m', 'N.A.', '4\"', '', 'Metálico', '15 kg', 'En acero\r\nBomba sumergible tipo bala', 'Funciona para regar el sector de páramo (función que no realiza).\r\nEstos equipo diseñado para operar en condición vertical. Opera en sentido horizontal.');
 
 -- --------------------------------------------------------
 
@@ -141,7 +152,13 @@ CREATE TABLE `equipos_detalle_vehiculo` (
 --
 
 INSERT INTO `equipos_detalle_vehiculo` (`id_equipo_detalle_vehiculo`, `fk_id_equipo`, `placa`, `linea`, `color`, `fk_id_clase_vechiculo`, `fk_id_tipo_carroceria`, `combustible`, `capacidad`, `servicio`, `numero_motor`, `multas`) VALUES
-(2, 3, 'dbh 923', 'nose', 'amarillo', 5, 3, 1, '5 personas', 'publico', 'sferqwer234234', 1);
+(2, 3, 'OBI160', 'Land Cruiser', 'Blanco Artico', 2, 3, 1, '5 personas', 'Oficial', '3433948', 2),
+(3, 1, 'OKZ805', 'Captiva Sport', 'Gris mercurio', 1, 1, 1, '5 pasajeros', 'Oficial', 'CHS559955', 2),
+(4, 2, 'OKZ764', 'NP300 FRONTIER', 'Blanco', 1, 2, 2, '5 pasajeros', 'Oficial', 'YD25-648189P', 2),
+(5, 4, 'BHH611', 'Hilux', 'Roja Bordeaux perlad', 1, 2, 1, '6 personas ', 'Oficial', '4160354', 2),
+(6, 5, 'OLO377', 'Constellation-31-330', 'Blanco Geada', 3, 4, 2, '10000 Kg/P', 'Oficial', '0154865A174859', 2),
+(7, 6, 'GCW769', 'Nuevo Master', 'Blanco Calma', 4, 5, 1, '20', 'Oficial', 'M9TC678C031094', 2),
+(8, 7, 'GCW724', 'FVR', 'Blanco Calma', 5, 6, 2, '2', 'Oficial', '6HK1-224577', 2);
 
 -- --------------------------------------------------------
 
@@ -163,7 +180,11 @@ CREATE TABLE `equipos_fotos` (
 --
 
 INSERT INTO `equipos_fotos` (`id_equipo_foto`, `fk_id_equipo_foto`, `fk_id_user_ef`, `equipo_foto`, `fecha_foto`, `descripcion`) VALUES
-(4, 1, 1, 'images/equipos/formulario_equipos.png', '2021-01-20', 'Imagen principal');
+(2, 1, 0, 'images/equipos/1.PNG', '2020-12-16', ''),
+(3, 1, 1, 'images/equipos/formulario_equipos.png', '2021-01-19', 'Imagen principal'),
+(4, 11, 1, 'images/equipos/SUDS_1.png', '2021-01-22', 'Imagen principal'),
+(5, 12, 1, 'images/equipos/SUDS_2.png', '2021-01-22', 'Imagen principal'),
+(6, 13, 1, 'images/equipos/SUDS_3.png', '2021-01-22', 'Imagen principal');
 
 -- --------------------------------------------------------
 
@@ -184,10 +205,16 @@ CREATE TABLE `equipos_localizacion` (
 --
 
 INSERT INTO `equipos_localizacion` (`id_equipo_localizacion`, `fk_id_equipo_localizacion`, `fk_id_user_localizacion`, `localizacion`, `fecha_localizacion`) VALUES
-(1, 1, 1, 'Ibague- Barrio palermo - Manzana 8', '2020-12-24'),
-(2, 1, 1, 'Bogotá - Jardin Botanico', '2020-12-18'),
-(3, 1, 1, 'Taller del centro - CAD', '2021-01-19'),
-(4, 1, 1, 'Jardín Botánico', '2021-01-20');
+(1, 1, 0, 'Ibague- Barrio palermo - Manzana 8', '2020-12-24'),
+(2, 1, 0, 'Bogotá - Jardin Botanico', '2020-12-18'),
+(3, 1, 0, 'Taller del centro - CAD', '2021-01-19'),
+(4, 1, 1, 'Jardín Botánico', '2021-01-19'),
+(5, 9, 1, 'Cuarto junto al reservorio detrás del túnel de propagación', '2020-10-02'),
+(6, 8, 1, 'Cuarto junto al reservorio detrás del tunel de propagación', '2020-10-12'),
+(7, 10, 1, 'Zona de Compostaje, biodigestor.', '2020-01-21'),
+(8, 11, 1, 'Sud Cerca al lago principal', '2020-02-27'),
+(9, 12, 1, 'Sud Herbal', '2020-02-26'),
+(10, 13, 1, 'Sud páramo', '2020-02-26');
 
 -- --------------------------------------------------------
 
@@ -202,6 +229,7 @@ CREATE TABLE `equipos_poliza` (
   `fecha_inicio` date NOT NULL,
   `fecha_vencimiento` date NOT NULL,
   `numero_poliza` varchar(30) NOT NULL,
+  `estado_poliza` tinyint(4) NOT NULL,
   `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -209,10 +237,10 @@ CREATE TABLE `equipos_poliza` (
 -- Volcado de datos para la tabla `equipos_poliza`
 --
 
-INSERT INTO `equipos_poliza` (`id_equipo_poliza`, `fk_id_equipo_poliza`, `fk_id_user_poliza`, `fecha_inicio`, `fecha_vencimiento`, `numero_poliza`, `descripcion`) VALUES
-(3, 1, 1, '2021-01-01', '2022-01-19', 'AC-34-X', 'Primer poliza'),
-(4, 1, 1, '2021-01-06', '2021-01-06', 'ASDFASDFADS', 'ultima poliza'),
-(5, 1, 1, '2021-01-03', '2021-01-20', '2021-JBB-001', 'Cambio de la descripción');
+INSERT INTO `equipos_poliza` (`id_equipo_poliza`, `fk_id_equipo_poliza`, `fk_id_user_poliza`, `fecha_inicio`, `fecha_vencimiento`, `numero_poliza`, `estado_poliza`, `descripcion`) VALUES
+(3, 1, 1, '2021-01-01', '2022-01-19', 'AC-34-X', 1, 'Primer poliza'),
+(4, 1, 1, '2021-01-06', '2021-01-06', 'ASDFASDFADS', 1, 'ultima poliza'),
+(5, 1, 1, '2021-01-01', '2021-01-22', 'JBB-20212001', 0, 'Nueva poliza');
 
 -- --------------------------------------------------------
 
@@ -331,10 +359,25 @@ CREATE TABLE `mantenimiento_correctivo` (
   `id_correctivo` int(10) NOT NULL,
   `fecha` datetime NOT NULL,
   `fk_id_equipo_correctivo` int(10) NOT NULL,
+  `fk_id_user_correctivo` int(10) NOT NULL,
   `descripcion` text CHARACTER SET latin1 NOT NULL,
   `consideracion` text CHARACTER SET latin1 NOT NULL,
   `estado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mantenimiento_correctivo_fotos`
+--
+
+CREATE TABLE `mantenimiento_correctivo_fotos` (
+  `id_foto_danio` int(10) NOT NULL,
+  `fk_id_correctivo` int(10) NOT NULL,
+  `ruta_foto` varchar(250) NOT NULL,
+  `fecha_foto_danio` date NOT NULL,
+  `descripcion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -344,7 +387,7 @@ CREATE TABLE `mantenimiento_correctivo` (
 
 CREATE TABLE `mantenimiento_preventivo` (
   `id_preventivo` int(10) NOT NULL,
-  `fk_id_tipo_equipo_preventivo` int(1) NOT NULL,
+  `fk_id_tipo_equipo` int(1) NOT NULL,
   `fk_id_frecuencia` int(10) NOT NULL,
   `descripcion` text CHARACTER SET latin1 NOT NULL,
   `estado` int(1) NOT NULL
@@ -354,13 +397,14 @@ CREATE TABLE `mantenimiento_preventivo` (
 -- Volcado de datos para la tabla `mantenimiento_preventivo`
 --
 
-INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fk_id_tipo_equipo_preventivo`, `fk_id_frecuencia`, `descripcion`, `estado`) VALUES
+INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fk_id_tipo_equipo`, `fk_id_frecuencia`, `descripcion`, `estado`) VALUES
 (1, 1, 1, 'algo', 1),
 (2, 2, 1, 'algo mas', 1),
 (3, 2, 4, 'pruebas de guardado', 1),
 (4, 1, 7, 'mas pruebas', 1),
 (5, 2, 5, 'ultima prueba', 1),
-(6, 1, 7, 'otra mas', 1);
+(6, 1, 7, 'otra mas', 1),
+(7, 3, 4, 'Prueba Mensual', 1);
 
 -- --------------------------------------------------------
 
@@ -448,7 +492,7 @@ CREATE TABLE `param_menu` (
   `menu_icon` varchar(50) NOT NULL,
   `menu_order` int(1) NOT NULL,
   `menu_type` tinyint(1) NOT NULL COMMENT '1:Left; 2:Top',
-  `menu_state` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1:Active; 2:Inactive'
+  `menu_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:Active; 2:Inactive'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -489,13 +533,19 @@ INSERT INTO `param_menu_access` (`id_access`, `fk_id_menu`, `fk_id_link`, `fk_id
 (2, 1, 5, 99),
 (16, 1, 6, 1),
 (3, 1, 6, 99),
+(34, 2, 19, 1),
 (28, 2, 19, 99),
+(35, 2, 20, 1),
 (29, 2, 20, 99),
+(36, 2, 21, 1),
 (30, 2, 21, 99),
+(37, 2, 22, 1),
 (31, 2, 22, 99),
 (18, 3, 7, 1),
 (7, 3, 7, 99),
+(38, 3, 17, 1),
 (26, 3, 17, 99),
+(39, 3, 18, 1),
 (27, 3, 18, 99),
 (4, 4, 1, 99),
 (5, 4, 2, 99),
@@ -510,6 +560,7 @@ INSERT INTO `param_menu_access` (`id_access`, `fk_id_menu`, `fk_id_link`, `fk_id
 (13, 6, 14, 99),
 (23, 7, 15, 1),
 (21, 7, 15, 99),
+(33, 8, 0, 1),
 (32, 8, 0, 99);
 
 -- --------------------------------------------------------
@@ -667,8 +718,8 @@ CREATE TABLE `usuarios` (
   `movil` varchar(12) NOT NULL,
   `email` varchar(70) DEFAULT NULL,
   `password` varchar(50) NOT NULL,
-  `state` int(1) NOT NULL DEFAULT 0 COMMENT '0: newUser; 1:active; 2:inactive',
-  `fk_id_user_role` int(1) NOT NULL DEFAULT 7 COMMENT '99: Super Admin;',
+  `state` int(1) NOT NULL DEFAULT '0' COMMENT '0: newUser; 1:active; 2:inactive',
+  `fk_id_user_role` int(1) NOT NULL DEFAULT '7' COMMENT '99: Super Admin;',
   `photo` varchar(250) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -770,15 +821,21 @@ ALTER TABLE `inspection_vehiculos`
 --
 ALTER TABLE `mantenimiento_correctivo`
   ADD PRIMARY KEY (`id_correctivo`),
-  ADD KEY `fk_id_equipo` (`fk_id_equipo_correctivo`);
+  ADD KEY `fk_id_equipo` (`fk_id_equipo_correctivo`),
+  ADD KEY `fk_id_user_correctivo` (`fk_id_user_correctivo`);
+
+--
+-- Indices de la tabla `mantenimiento_correctivo_fotos`
+--
+ALTER TABLE `mantenimiento_correctivo_fotos`
+  ADD PRIMARY KEY (`id_foto_danio`),
+  ADD KEY `fk_id_correctivo` (`fk_id_correctivo`);
 
 --
 -- Indices de la tabla `mantenimiento_preventivo`
 --
 ALTER TABLE `mantenimiento_preventivo`
-  ADD PRIMARY KEY (`id_preventivo`),
-  ADD KEY `fk_id_tipo_equipo_preventivo` (`fk_id_tipo_equipo_preventivo`),
-  ADD KEY `fk_id_frecuencia` (`fk_id_frecuencia`);
+  ADD PRIMARY KEY (`id_preventivo`);
 
 --
 -- Indices de la tabla `param_clase_vehiculo`
@@ -871,7 +928,7 @@ ALTER TABLE `usuarios_llave_contraseña`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `id_equipo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_equipo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_control_combustible`
@@ -883,25 +940,25 @@ ALTER TABLE `equipos_control_combustible`
 -- AUTO_INCREMENT de la tabla `equipos_detalle_bomba`
 --
 ALTER TABLE `equipos_detalle_bomba`
-  MODIFY `id_equipo_detalle_bomba` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_equipo_detalle_bomba` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_detalle_vehiculo`
 --
 ALTER TABLE `equipos_detalle_vehiculo`
-  MODIFY `id_equipo_detalle_vehiculo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_equipo_detalle_vehiculo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_fotos`
 --
 ALTER TABLE `equipos_fotos`
-  MODIFY `id_equipo_foto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_equipo_foto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_localizacion`
 --
 ALTER TABLE `equipos_localizacion`
-  MODIFY `id_equipo_localizacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_equipo_localizacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_poliza`
@@ -922,10 +979,16 @@ ALTER TABLE `mantenimiento_correctivo`
   MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `mantenimiento_correctivo_fotos`
+--
+ALTER TABLE `mantenimiento_correctivo_fotos`
+  MODIFY `id_foto_danio` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `mantenimiento_preventivo`
 --
 ALTER TABLE `mantenimiento_preventivo`
-  MODIFY `id_preventivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_preventivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `param_clase_vehiculo`
@@ -955,7 +1018,7 @@ ALTER TABLE `param_menu`
 -- AUTO_INCREMENT de la tabla `param_menu_access`
 --
 ALTER TABLE `param_menu_access`
-  MODIFY `id_access` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_access` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu_links`
@@ -973,7 +1036,7 @@ ALTER TABLE `param_proveedores`
 -- AUTO_INCREMENT de la tabla `param_role`
 --
 ALTER TABLE `param_role`
-  MODIFY `id_role` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id_role` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT de la tabla `param_tipo_carroceria`
@@ -997,7 +1060,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios_llave_contraseña`
 --
 ALTER TABLE `usuarios_llave_contraseña`
-  MODIFY `id_llave` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_llave` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
