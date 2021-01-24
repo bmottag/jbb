@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo_v2.js"); ?>"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -66,7 +66,7 @@ if ($retornoExito) {
     ?>
 	<div class="col-lg-12">
 		<p class="text-success">
-			<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 			<?php echo $retornoExito ?>	
 		</p>
 	</div>

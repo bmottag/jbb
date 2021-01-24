@@ -10,7 +10,7 @@ $( document ).ready( function () {
 			consumo: 				{ maxlength: 20 },
 			hmax: 					{ maxlength: 20 },
 			succion: 				{ maxlength: 20 },
-			salida: 				{ maxlength: 20 },
+			salida: 				{ maxlength: 30 },
 			qmax: 					{ maxlength: 20 },
 			color: 					{ maxlength: 20 },
 			peso: 					{ maxlength: 25 }
