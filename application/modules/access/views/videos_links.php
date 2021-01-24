@@ -47,7 +47,7 @@ if ($retornoExito) {
     ?>
 	<div class="col-lg-12">	
 		<div class="alert alert-success ">
-			<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 			<?php echo $retornoExito ?>		
 		</div>
 	</div>
@@ -89,7 +89,7 @@ if ($retornoError) {
 									echo "<td class='text-center'>";
 									switch ($lista['link_state']) {
 										case 1:
-											$valor = 'Active';
+											$valor = 'Activo';
 											$clase = "text-success";
 											break;
 										case 2:

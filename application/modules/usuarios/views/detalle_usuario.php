@@ -83,7 +83,7 @@ if ($retornoExito) {
     ?>
 	<div class="col-lg-12">
 		<p class="text-success">
-			<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 			<?php echo $retornoExito ?>	
 		</p>
 	</div>
