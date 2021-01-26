@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 22-01-2021 a las 06:33:30
+-- Tiempo de generación: 22-01-2021 a las 08:38:21
 -- Versión del servidor: 5.6.49-cll-lve
 -- Versión de PHP: 7.3.6
 
@@ -80,14 +80,6 @@ CREATE TABLE `equipos_control_combustible` (
   `valor` float NOT NULL,
   `labor_realizada` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `equipos_control_combustible`
---
-
-INSERT INTO `equipos_control_combustible` (`id_equipo_control_combustible`, `fk_id_equipo_combustible`, `kilometros_actuales`, `cantidad`, `fecha_combustible`, `fk_id_operador_combustible`, `tipo_consumo`, `valor`, `labor_realizada`) VALUES
-(1, 1, '48000', '100 Litros', '2020-12-17 22:04:30', 3, 5, 150000, 'Falto dinero para llenar los tanques, solicitar la tarjeta'),
-(2, 1, '16000', '15 galones', '2021-01-15 18:52:39', 1, 2, 150000, 'nuevo registro, mas datos');
 
 -- --------------------------------------------------------
 
@@ -233,15 +225,6 @@ CREATE TABLE `equipos_poliza` (
   `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `equipos_poliza`
---
-
-INSERT INTO `equipos_poliza` (`id_equipo_poliza`, `fk_id_equipo_poliza`, `fk_id_user_poliza`, `fecha_inicio`, `fecha_vencimiento`, `numero_poliza`, `estado_poliza`, `descripcion`) VALUES
-(3, 1, 1, '2021-01-01', '2022-01-19', 'AC-34-X', 1, 'Primer poliza'),
-(4, 1, 1, '2021-01-06', '2021-01-06', 'ASDFASDFADS', 1, 'ultima poliza'),
-(5, 1, 1, '2021-01-01', '2021-01-22', 'JBB-20212001', 0, 'Nueva poliza');
-
 -- --------------------------------------------------------
 
 --
@@ -340,15 +323,6 @@ CREATE TABLE `inspection_vehiculos` (
   `rines_delanteros` tinyint(1) NOT NULL COMMENT '0:Mal Estado; 1:Buen estado; 99:N/A'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `inspection_vehiculos`
---
-
-INSERT INTO `inspection_vehiculos` (`id_inspection_vehiculos`, `fk_id_user_responsable`, `fk_id_equipo_vehiculo`, `fecha_registro`, `horas_actuales_vehiculo`, `radiador`, `tapa`, `nivel_refrigeracion`, `tension_correa_ventilacion`, `manometro_temperatura`, `persiana`, `signature`, `comments`, `tanque_combustible`, `indicador`, `tuberia_baja_presion`, `grifo`, `vaso_sedimentacion`, `filtro_aire`, `filtro_combustible`, `prefiltro`, `filtro_aire_tipo_seco`, `pre_calentador`, `acelerador_manual`, `acelerador_aire`, `ahogador`, `consumo_acpm`, `tapon_carter`, `nivel_aceite_motor`, `bayoneta`, `presion_aceite_motor`, `indicador_presion`, `tapa_drenaje_caja`, `bombillo_tablero`, `nivel_aceite_direccion`, `bomba_hidraulica`, `bateria`, `nivel_electrolito`, `bornes_bateria`, `terminales`, `seguro_bateria`, `caja`, `tapa_celdas`, `conexiones_alternador`, `regulador_corriente`, `indicador_tablero`, `luz_testigo`, `horometro`, `interruptor`, `farolas_delanteras`, `farolas_traseras`, `pedal_embrague`, `tolerancia_pedal`, `engrase_sistema`, `nivel_aceite`, `palanca_baja`, `palanca_alta`, `selector_velocidad`, `esfera_palanca`, `palanca`, `barra_tiro`, `bloqueador`, `nivel_aceite_diferencial`, `bayoneta_diferencial`, `pesas_delanteras`, `pesas_traseras`, `pernos_delanteros`, `palanca_control_posicion`, `palanca_control_automatico`, `nivel_aceite_hidraulico`, `bayoneta_hidraulico`, `tuberia_conduccion`, `radiador_enfriado`, `brazos_levante`, `cadenas_tensoras`, `mangueras`, `tonillo_nivelados`, `guardafangos`, `asiento`, `capot`, `caja_direccion`, `brazo_direccion`, `barra_principal`, `soporte_delantero`, `tolerancia_frenos`, `freno_mano`, `tapa_rueda_delantera`, `rines_traseros`, `rines_delanteros`) VALUES
-(1, 1, 1, '2021-01-18 20:40:50', 15000, 0, 1, 99, 1, 0, 1, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(2, 1, 1, '2021-01-18 20:41:22', 15000, 0, 1, 99, 1, 0, 1, 'images/signature/inspection/vehiculos_2.png', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(3, 1, 1, '2021-01-19 13:20:20', 20000, 0, 0, 0, 0, 0, 0, '', '', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 99, 99, 99, 99, 99, 99, 99, 99, 99, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 99, 99, 99, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -387,7 +361,7 @@ CREATE TABLE `mantenimiento_correctivo_fotos` (
 
 CREATE TABLE `mantenimiento_preventivo` (
   `id_preventivo` int(10) NOT NULL,
-  `fk_id_tipo_equipo` int(1) NOT NULL,
+  `fk_id_tipo_equipo_preventivo` int(1) NOT NULL,
   `fk_id_frecuencia` int(10) NOT NULL,
   `descripcion` text CHARACTER SET latin1 NOT NULL,
   `estado` int(1) NOT NULL
@@ -397,14 +371,15 @@ CREATE TABLE `mantenimiento_preventivo` (
 -- Volcado de datos para la tabla `mantenimiento_preventivo`
 --
 
-INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fk_id_tipo_equipo`, `fk_id_frecuencia`, `descripcion`, `estado`) VALUES
+INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fk_id_tipo_equipo_preventivo`, `fk_id_frecuencia`, `descripcion`, `estado`) VALUES
 (1, 1, 1, 'algo', 1),
 (2, 2, 1, 'algo mas', 1),
 (3, 2, 4, 'pruebas de guardado', 1),
 (4, 1, 7, 'mas pruebas', 1),
 (5, 2, 5, 'ultima prueba', 1),
 (6, 1, 7, 'otra mas', 1),
-(7, 3, 4, 'Prueba Mensual', 1);
+(7, 3, 4, 'Prueba Mensual', 1),
+(8, 2, 4, 'Limpieza general', 1);
 
 -- --------------------------------------------------------
 
@@ -700,7 +675,7 @@ CREATE TABLE `param_tipo_equipos` (
 
 INSERT INTO `param_tipo_equipos` (`id_tipo_equipo`, `tipo_equipo`, `formulario_especifico`, `metodo_guardar`, `enlace_inspeccion`, `formulario_inspeccion`, `tabla_inspeccion`, `id_tabla_inspeccion`) VALUES
 (1, 'Vehículos', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo', '/inspection/add_vehiculos_inspection', 'form_1_vehiculos', 'inspection_vehiculos', 'id_inspection_vehiculos'),
-(2, 'Bomba', 'equipos_detalle_bomba', 'guardarInfoEspecificaBomba', '', '', '', ''),
+(2, 'Bomba', 'equipos_detalle_bomba', 'guardarInfoEspecificaBomba', '/inspection/add_vehiculos_inspection', '', '', ''),
 (3, 'Maquinaria', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo', '/inspection/vehiculos', 'form_1_vehiculos', 'inpection_vehiculos', 'id_inspection_vehiculos'),
 (4, 'Equipo', '', '', '', '', '', '');
 
@@ -835,7 +810,9 @@ ALTER TABLE `mantenimiento_correctivo_fotos`
 -- Indices de la tabla `mantenimiento_preventivo`
 --
 ALTER TABLE `mantenimiento_preventivo`
-  ADD PRIMARY KEY (`id_preventivo`);
+  ADD PRIMARY KEY (`id_preventivo`),
+  ADD KEY `fk_id_tipo_equipo_preventivo` (`fk_id_tipo_equipo_preventivo`),
+  ADD KEY `fk_id_frecuencia` (`fk_id_frecuencia`);
 
 --
 -- Indices de la tabla `param_clase_vehiculo`
@@ -934,7 +911,7 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `equipos_control_combustible`
 --
 ALTER TABLE `equipos_control_combustible`
-  MODIFY `id_equipo_control_combustible` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_equipo_control_combustible` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_detalle_bomba`
@@ -952,7 +929,7 @@ ALTER TABLE `equipos_detalle_vehiculo`
 -- AUTO_INCREMENT de la tabla `equipos_fotos`
 --
 ALTER TABLE `equipos_fotos`
-  MODIFY `id_equipo_foto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_equipo_foto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_localizacion`
@@ -964,13 +941,13 @@ ALTER TABLE `equipos_localizacion`
 -- AUTO_INCREMENT de la tabla `equipos_poliza`
 --
 ALTER TABLE `equipos_poliza`
-  MODIFY `id_equipo_poliza` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_equipo_poliza` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `inspection_vehiculos`
 --
 ALTER TABLE `inspection_vehiculos`
-  MODIFY `id_inspection_vehiculos` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_inspection_vehiculos` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo`
@@ -988,7 +965,7 @@ ALTER TABLE `mantenimiento_correctivo_fotos`
 -- AUTO_INCREMENT de la tabla `mantenimiento_preventivo`
 --
 ALTER TABLE `mantenimiento_preventivo`
-  MODIFY `id_preventivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_preventivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `param_clase_vehiculo`

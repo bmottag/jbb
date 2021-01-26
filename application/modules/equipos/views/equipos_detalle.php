@@ -61,30 +61,25 @@
 				<div class="panel-body">
 
 <?php
-$retornoExito = $this->session->flashdata('retornoExito');
-if ($retornoExito) {
-    ?>
-	<div class="col-lg-12">
-		<p class="text-success">
-			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-			<?php echo $retornoExito ?>	
-		</p>
-	</div>
-    <?php
-}
-
-$retornoError = $this->session->flashdata('retornoError');
-if ($retornoError) {
-    ?>
-	<div class="col-lg-12">
-		<p class="text-danger">
-			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-			<?php echo $retornoError ?>	
-		</p>
-	</div>
-    <?php
-}
+	$retornoExito = $this->session->flashdata('retornoExito');
+	if ($retornoExito) {
 ?>
+		<div class="alert alert-success ">
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			<?php echo $retornoExito ?>		
+		</div>
+<?php
+	}
+	$retornoError = $this->session->flashdata('retornoError');
+	if ($retornoError) {
+?>
+		<div class="alert alert-danger ">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<?php echo $retornoError ?>
+		</div>
+<?php
+	}
+?> 
 				
 					<form  name="form" id="form" class="form-horizontal" method="post"  >
 						<input type="hidden" id="hddId" name="hddId" value="<?php echo $info[0]['id_equipo']; ?>"/>

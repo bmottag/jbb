@@ -91,31 +91,25 @@ $(function(){
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Seguimiento
 					</button><br>
 
-					
 <?php
-$retornoExito = $this->session->flashdata('retornoExito');
-if ($retornoExito) {
-    ?>
-	<div class="col-lg-12">	
+	$retornoExito = $this->session->flashdata('retornoExito');
+	if ($retornoExito) {
+?>
 		<div class="alert alert-success ">
 			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 			<?php echo $retornoExito ?>		
 		</div>
-	</div>
-    <?php
-}
-
-$retornoError = $this->session->flashdata('retornoError');
-if ($retornoError) {
-    ?>
-	<div class="col-lg-12">	
+<?php
+	}
+	$retornoError = $this->session->flashdata('retornoError');
+	if ($retornoError) {
+?>
 		<div class="alert alert-danger ">
 			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 			<?php echo $retornoError ?>
 		</div>
-	</div>
-    <?php
-}
+<?php
+	}
 ?> 
 
 <?php 										
