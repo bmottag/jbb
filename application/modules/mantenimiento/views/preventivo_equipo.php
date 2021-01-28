@@ -1,33 +1,3 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-$(function(){
-	$(".btn-info").click(function () {
-		var oID = $(this).attr("id");
-        $.ajax ({
-            type: 'POST',
-			url: base_url + 'mantenimiento/cargarModalCorrectivo',
-			data: {'idEquipo': oID, 'idCorrectivo': 'x'},
-            cache: false,
-            success: function (data) {
-                $('#tablaDatos').html(data);
-            }
-        });
-	});
-	$(".btn-success").click(function () {
-		var oID = $(this).attr("id");
-        $.ajax ({
-            type: 'POST',
-			url: base_url + 'mantenimiento/cargarModalCorrectivo',
-			data: {'idEquipo': '', 'idCorrectivo': oID},
-            cache: false,
-            success: function (data) {
-                $('#tablaDatos').html(data);
-            }
-        });
-	});
-});
-</script>
 <div id="page-wrapper">
 	<br>
 	<div class="row">
@@ -63,10 +33,10 @@ $(function(){
 				<a href="<?php echo base_url('equipos/poliza/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-book"></i> Pólizas
 				</a>
-				<a href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
+				<a href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-wrench"></i> Mantenimiento Correctivo
 				</a>
-				<a href="<?php echo base_url('mantenimiento/preventivo_equipo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+				<a href="<?php echo base_url('mantenimiento/preventivo_equipo/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
 					<i class="fa fa-wrench"></i> Mantenimiento Preventivo
 				</a>
 				<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
@@ -77,12 +47,9 @@ $(function(){
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-tag"></i> MANTENIMIENTOS CORRECTIVOS DEL EQUIPO
+					<i class="fa fa-tag"></i> MANTENIMIENTOS PREVENTIVOS DEL EQUIPO
 				</div>
 				<div class="panel-body">
-					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantenimiento Correctivo del Equipo
-					</button><br>
 					<?php
 					$retornoExito = $this->session->flashdata('retornoExito');
 					if ($retornoExito) {
@@ -108,32 +75,34 @@ $(function(){
 					}
 					?> 
 					<?php 										
-						if(!$listadoCorrectivos){ 
+						if(!$infoPreventivo){ 
 							echo '<div class="col-lg-12">
 								<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en el sistema.</p>
 								</div>';
 						} else {
 					?>
-					<table class="table table-bordered table-striped table-hover table-condensed">
-						<tr class="dafault">
-							<th class="text-center">Fecha</th>
-							<th class="text-center">Descripción Falla</th>
-							<th class="text-center">Consideración</th>
-							<th class="text-center">Usuario</th>
-							<th class="text-center">Estado</th>
-							<th class="text-center">Editar</th>
-							<th class="text-center">Foto Falla</th>
-							<th class="text-center">Orden Trabajo</th>
-						</tr>
+					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+						<thead>
+							<tr>
+								<th class="text-center">Id Mantenimiento</th>
+								<th class="text-center">Tipo Equipo</th>
+								<th class="text-center">Frecuencia</th>
+								<th class="text-center">Usuario</th>
+								<th class="text-center">Estado</th>
+								<th class="text-center">Descripción</th>
+								<th class="text-center">Orden Trabajo</th>
+							</tr>
+						</thead>
+						<tbody>							
 						<?php
-							foreach ($listadoCorrectivos as $data):
-								echo "<tr>";					
-								echo "<td class='text-center'>" . $data['fecha'] . "</td>";
-								echo "<td>" . $data['descripcion'] . "</td>";
-								echo "<td>" . $data['consideracion'] . "</td>";
-								echo "<td>" . $data['name'] . "</td>";
+							foreach ($infoPreventivo as $lista):
+								echo "<tr>";
+								echo "<td class='text-center'>" . $lista['id_preventivo'] . "</td>";
+								echo "<td>" . $lista['tipo_equipo'] . "</td>";
+								echo "<td>" . $lista['frecuencia'] . "</td>";
+								echo "<td>" . $lista['name'] . "</td>";
 								echo "<td class='text-center'>";
-								switch ($data['estado']) {
+								switch ($lista['estado']) {
 									case 1:
 										$valor = 'Activo';
 										$clase = "text-success";
@@ -145,26 +114,16 @@ $(function(){
 								}
 								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
 								echo "</td>";
+								echo "<td>" . $lista['descripcion'] . "</td>";
 								echo "<td class='text-center'>";
 								?>
-								<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $data['id_correctivo']; ?>" >
-									Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
-								</button>
-								<?php
-								echo "</td>";
-								echo "<td class='text-center'>";
-								?>
-								<a href="<?php echo base_url("mantenimiento/foto_danio/" . $data['fk_id_equipo_correctivo'] . "/" . $data['id_correctivo']); ?>" class="btn btn-default btn-warning btn-xs">Foto <span class="glyphicon glyphicon-picture" aria-hidden="true"></a>
-								<?php
-								echo "</td>";
-								echo "<td class='text-center'>";
-								?>
-								<a href="<?php echo base_url("ordentrabajo/crear_orden/" . $data['id_correctivo']); ?>" class="btn btn-default btn-violeta btn-xs">Crear <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></a>
+								<a href="<?php echo base_url("ordentrabajo/crear_orden/" . $lista['id_preventivo']); ?>" class="btn btn-default btn-violeta btn-xs">Crear <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></a>
 								<?php
 								echo "</td>";
 								echo "</tr>";
 							endforeach;
 						?>
+						</tbody>
 					</table>
 				<?php } ?>
 				</div>

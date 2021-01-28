@@ -6,19 +6,20 @@ class Mantenimientos_model extends CI_Model {
 	 * Consulta lista de mantenimientos preventivos
 	 * @since 20/12/2020
 	 */
-	public function get_preventivos_info($arrData)
-	{		
-		$this->db->select();
+	public function get_preventivo($arrData)
+	{
+		$this->db->select("P.*, T.tipo_equipo, F.frecuencia, CONCAT(U.first_name, ' ', U.last_name) name");
+		$this->db->join('usuarios U', 'P.fk_id_user_preventivo = U.id_user', 'INNER');
 		$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = P.fk_id_tipo_equipo_preventivo', 'INNER');
 		$this->db->join('param_frecuencia F', 'F.id_frecuencia = P.fk_id_frecuencia', 'INNER');
-		if (array_key_exists("id_preventivo", $arrData)) {
-			$this->db->where('P.id_preventivo', $arrData["id_preventivo"]);
+		if (array_key_exists("idPreventivo", $arrData)) {
+			$this->db->where('P.id_preventivo', $arrData["idPreventivo"]);
 		}
 		if (array_key_exists("estado", $arrData)) {
 			$this->db->where('P.estado', $arrData["estado"]);
 		}
-		if (array_key_exists("tipo_equipo", $arrData) && $arrData["tipo_equipo"] != '') {
-			$this->db->like('P.fk_id_tipo_equipo_preventivo', $arrData["tipo_equipo"]); 
+		if (array_key_exists("tipoEquipo", $arrData) && $arrData["tipoEquipo"] != '') {
+			$this->db->like('P.fk_id_tipo_equipo_preventivo', $arrData["tipoEquipo"]); 
 		}
 		if (array_key_exists("frecuencia", $arrData) && $arrData["frecuencia"] != '') {
 			$this->db->like('P.fk_id_frecuencia', $arrData["frecuencia"]); 
@@ -42,13 +43,21 @@ class Mantenimientos_model extends CI_Model {
 	 */
 	public function guardarPreventivo() 
 	{
+		$idPreventivo = $this->input->post('hddId');
+		$idUser = $this->session->userdata("id");
 		$data = array(
 			'fk_id_tipo_equipo_preventivo' => $this->input->post('id_tipo_equipo'),
 			'fk_id_frecuencia' => $this->input->post('frecuencia'),
 			'descripcion' => $this->input->post('descripcion'),
 			'estado' => 1
 		);	
-		$query = $this->db->insert('mantenimiento_preventivo', $data);
+		if ($idPreventivo == '') {
+			$data['fk_id_user_preventivo'] = $idUser;
+			$query = $this->db->insert('mantenimiento_preventivo', $data);
+		} else {
+			$this->db->where('id_preventivo', $idPreventivo);
+			$query = $this->db->update('mantenimiento_preventivo', $data);
+		}
 		if ($query) {
 			return true;
 		} else {

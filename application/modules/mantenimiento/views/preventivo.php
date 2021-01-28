@@ -1,17 +1,31 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/mantenimiento/buscarPreventivo.js"); ?>"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-$(function(){ 
+$(function(){
+	$(".btn-info").click(function () {
+		var oID = $(this).attr("id");
+        $.ajax ({
+            type: 'POST',
+			url: base_url + 'mantenimiento/cargarModalPreventivo',
+			data: {'idPreventivo': 'x'},
+            cache: false,
+            success: function (data) {
+                $('#tablaDatos').html(data);
+            }
+        });
+	});
 	$(".btn-success").click(function () {
-			var oID = $(this).attr("id");
-            $.ajax ({
-                type: 'POST',
-				url: base_url + 'mantenimiento/cargarModalPreventivo',
-                data: {'id_preventivo': oID},
-                cache: false,
-                success: function (data) {
-                    $('#tablaDatos').html(data);
-                }
-            });
+		var oID = $(this).attr("id");
+        $.ajax ({
+            type: 'POST',
+			url: base_url + 'mantenimiento/cargarModalPreventivo',
+            data: {'idPreventivo': oID},
+            cache: false,
+            success: function (data) {
+                $('#tablaDatos').html(data);
+            }
+        });
 	});	
 });
 </script>
@@ -62,7 +76,7 @@ $(function(){
 			</div>
 		</div>
 		<div class="col-lg-4">
-			<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
+			<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="x">
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Programar Mantenimiento Preventivo
 			</button>
 		</div>
@@ -76,7 +90,7 @@ $(function(){
 				<div class="panel-body">	
 				<br>
 				<?php
-					if(!$info){
+					if(!$infoPreventivo){
 						echo '<div class="col-lg-12">
 						<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en el sistema.</p>
 						</div>';
@@ -88,17 +102,20 @@ $(function(){
 								<th class="text-center">Id Mantenimiento</th>
 								<th class="text-center">Tipo Equipo</th>
 								<th class="text-center">Frecuencia</th>
+								<th class="text-center">Usuario</th>
 								<th class="text-center">Estado</th>
 								<th class="text-center">Descripción</th>
+								<th class="text-center">Editar</th>
 							</tr>
 						</thead>
 						<tbody>							
 						<?php
-							foreach ($info as $lista):
+							foreach ($infoPreventivo as $lista):
 								echo "<tr>";
 								echo "<td class='text-center'>" . $lista['id_preventivo'] . "</td>";
 								echo "<td>" . $lista['tipo_equipo'] . "</td>";
 								echo "<td>" . $lista['frecuencia'] . "</td>";
+								echo "<td>" . $lista['name'] . "</td>";
 								echo "<td class='text-center'>";
 								switch ($lista['estado']) {
 									case 1:
@@ -113,6 +130,13 @@ $(function(){
 								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
 								echo "</td>";
 								echo "<td>" . $lista['descripcion'] . "</td>";
+								echo "<td class='text-center'>";
+								?>
+								<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_preventivo']; ?>" >
+									Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
+								</button>
+								<?php
+								echo "</td>";
 								echo "</tr>";
 							endforeach;
 						?>
