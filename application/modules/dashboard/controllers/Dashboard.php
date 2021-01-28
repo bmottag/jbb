@@ -14,6 +14,10 @@ class Dashboard extends CI_Controller {
 	public function admin()
 	{				
 			$data = array();
+			$arrParam = array();
+
+			$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam);
+			$data['noOrdenesTrabajo'] = $data['infoOrdenesTrabajo']?count($data['infoOrdenesTrabajo']):0;
 
 			//Tipo -> vehiculos
 			$arrParam = array(

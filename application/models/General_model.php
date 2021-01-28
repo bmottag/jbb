@@ -406,6 +406,54 @@ class General_model extends CI_Model {
 					return false;
 				}
 		}
+		
+		/**
+		 * Consulta lista de mantenimientos correctivo por equipo
+		 * @since 26/1/2021
+		 */
+		public function get_mantenimiento_correctivo($arrData)
+		{
+				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name");
+				$this->db->join('usuarios U', 'C.fk_id_user_correctivo = U.id_user', 'INNER');
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('C.fk_id_equipo_correctivo', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idCorrectivo", $arrData)) {
+					$this->db->where('C.id_correctivo', $arrData["idCorrectivo"]);
+				}
+				$this->db->order_by('C.id_correctivo', 'desc');
+				$query = $this->db->get('mantenimiento_correctivo C');
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Consulta orden de trabajo
+		 * @since 27/1/2021
+		 */
+		public function get_orden_trabajo($arrData)
+		{
+				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name, CONCAT(X.first_name, ' ', X.last_name) encargado");
+				$this->db->join('usuarios U', 'U.id_user = C.fk_id_user_orden', 'INNER');
+				$this->db->join('usuarios X', 'X.id_user = C.fk_id_user_encargado', 'INNER');
+				if (array_key_exists("idMantenimiento", $arrData) && array_key_exists("tipoMantenimiento", $arrData)) {
+					$this->db->where('C.fk_id_mantenimiento', $arrData["idMantenimiento"]);
+				}
+				if (array_key_exists("tipoMantenimiento", $arrData)) {
+					$this->db->where('C.tipo_mantenimiento ', $arrData["tipoMantenimiento"]);
+				}
+
+				$this->db->order_by('C.id_orden_trabajo', 'desc');
+				$query = $this->db->get('orden_trabajo C');
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
 
 
 }
