@@ -180,6 +180,7 @@ if ($retornoError) {
                                 <th class='text-center'>Tipo Mantenimiento</th>
                                 <th class='text-center'>Información Adicional</th>
                                 <th class='text-center'>Estado</th>
+                                <th class='text-center'>Ver</th>
                             </tr>
                         </thead>
                         <tbody>                         
@@ -197,11 +198,11 @@ if ($retornoError) {
                                 switch ($lista['ultimo_estado']) {
                                     case 1:
                                         $valor = 'Asignada';
-                                        $clase = "text-success";
+                                        $clase = "text-warning";
                                         break;
                                     case 2:
                                         $valor = 'Solucionada';
-                                        $clase = "text-danger";
+                                        $clase = "text-success";
                                         break;
                                     case 3:
                                         $valor = 'Cancelada';
@@ -209,6 +210,11 @@ if ($retornoError) {
                                         break;
                                 }
                                 echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+                                echo "</td>";
+                                echo "<td class='text-center'>";
+                                ?>
+                                <a href="<?php echo base_url("ordentrabajo/editar_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Editar <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+                                <?php
                                 echo "</td>";
                                 echo "</tr>";
                             endforeach;
