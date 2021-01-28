@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 22-01-2021 a las 08:38:21
--- Versión del servidor: 5.6.49-cll-lve
--- Versión de PHP: 7.3.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 28-01-2021 a las 15:09:35
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `jbb_2021`
+-- Base de datos: `jbb`
 --
 
 -- --------------------------------------------------------
@@ -98,7 +97,7 @@ CREATE TABLE `equipos_detalle_bomba` (
   `consumo` varchar(10) NOT NULL,
   `hmax` varchar(10) NOT NULL,
   `succion` varchar(10) NOT NULL,
-  `salida` varchar(10) NOT NULL,
+  `salida` varchar(30) NOT NULL,
   `qmax` varchar(10) NOT NULL,
   `color` varchar(30) NOT NULL,
   `peso` varchar(10) NOT NULL,
@@ -339,6 +338,13 @@ CREATE TABLE `mantenimiento_correctivo` (
   `estado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `mantenimiento_correctivo`
+--
+
+INSERT INTO `mantenimiento_correctivo` (`id_correctivo`, `fecha`, `fk_id_equipo_correctivo`, `fk_id_user_correctivo`, `descripcion`, `consideracion`, `estado`) VALUES
+(1, '2021-01-26 21:11:57', 4, 1, 'El motor no arranca', 'Revisar con el fabricante', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -380,6 +386,45 @@ INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fk_id_tipo_equipo_prev
 (6, 1, 7, 'otra mas', 1),
 (7, 3, 4, 'Prueba Mensual', 1),
 (8, 2, 4, 'Limpieza general', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orden_trabajo`
+--
+
+CREATE TABLE `orden_trabajo` (
+  `id_orden_trabajo` int(10) NOT NULL,
+  `fecha_asignacion` date NOT NULL,
+  `fk_id_mantenimiento` int(10) NOT NULL,
+  `tipo_mantenimiento` tinyint(4) NOT NULL COMMENT '1:Correctivo;2:Preventivo',
+  `fk_id_user_orden` int(10) NOT NULL,
+  `fk_id_user_encargado` int(10) NOT NULL,
+  `informacion_adicional` text NOT NULL,
+  `ultimo_estado` int(1) NOT NULL COMMENT '1:Asignada;2:Solucionada;3:Cancelada'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `orden_trabajo`
+--
+
+INSERT INTO `orden_trabajo` (`id_orden_trabajo`, `fecha_asignacion`, `fk_id_mantenimiento`, `tipo_mantenimiento`, `fk_id_user_orden`, `fk_id_user_encargado`, `informacion_adicional`, `ultimo_estado`) VALUES
+(1, '2021-01-27', 1, 1, 1, 4, 'Primer registro de una orden trabajo', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orden_trabajo_estado`
+--
+
+CREATE TABLE `orden_trabajo_estado` (
+  `id_orden_trabajo_estado` int(10) NOT NULL,
+  `fk_id_orden_trabajo_estado` int(10) NOT NULL,
+  `fk_id_user_ote` int(10) NOT NULL,
+  `fecha_registro_estado` datetime NOT NULL,
+  `informacion_adicional_estado` text NOT NULL,
+  `estado` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -467,7 +512,7 @@ CREATE TABLE `param_menu` (
   `menu_icon` varchar(50) NOT NULL,
   `menu_order` int(1) NOT NULL,
   `menu_type` tinyint(1) NOT NULL COMMENT '1:Left; 2:Top',
-  `menu_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:Active; 2:Inactive'
+  `menu_state` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1:Active; 2:Inactive'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -693,8 +738,8 @@ CREATE TABLE `usuarios` (
   `movil` varchar(12) NOT NULL,
   `email` varchar(70) DEFAULT NULL,
   `password` varchar(50) NOT NULL,
-  `state` int(1) NOT NULL DEFAULT '0' COMMENT '0: newUser; 1:active; 2:inactive',
-  `fk_id_user_role` int(1) NOT NULL DEFAULT '7' COMMENT '99: Super Admin;',
+  `state` int(1) NOT NULL DEFAULT 0 COMMENT '0: newUser; 1:active; 2:inactive',
+  `fk_id_user_role` int(1) NOT NULL DEFAULT 7 COMMENT '99: Super Admin;',
   `photo` varchar(250) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -705,7 +750,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_user`, `first_name`, `last_name`, `log_user`, `movil`, `email`, `password`, `state`, `fk_id_user_role`, `photo`) VALUES
 (1, 'Benjamin', 'Motta', 'Bmottag', '4034089921', 'benmotta@gmail.com', '25446782e2ccaf0afdb03e5d61d0fbb9', 1, 99, 'images/usuarios/thumbs/1.JPG'),
 (2, 'Administrador', 'Administrador', 'admin', '234523425', 'admin@gmail.com', '25f9e794323b453885f5181f1b624d0b', 1, 1, ''),
-(3, 'Pedro', 'Manrrique', 'pmanrrique', '3015549911', 'pmanrrique@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 5, '');
+(3, 'Pedro', 'Manrrique', 'pmanrrique', '3015549911', 'pmanrrique@gmail.com', '25f9e794323b453885f5181f1b624d0b', 0, 5, ''),
+(4, 'Encargado', 'Encargado', 'encargado', '3156123456', 'encargado@jbb.com.co', 'e10adc3949ba59abbe56e057f20f883e', 0, 3, '');
 
 -- --------------------------------------------------------
 
@@ -813,6 +859,24 @@ ALTER TABLE `mantenimiento_preventivo`
   ADD PRIMARY KEY (`id_preventivo`),
   ADD KEY `fk_id_tipo_equipo_preventivo` (`fk_id_tipo_equipo_preventivo`),
   ADD KEY `fk_id_frecuencia` (`fk_id_frecuencia`);
+
+--
+-- Indices de la tabla `orden_trabajo`
+--
+ALTER TABLE `orden_trabajo`
+  ADD PRIMARY KEY (`id_orden_trabajo`),
+  ADD KEY `fk_id_mantenimiento` (`fk_id_mantenimiento`),
+  ADD KEY `tipo_mantenimiento` (`tipo_mantenimiento`),
+  ADD KEY `fk_id_user_orden` (`fk_id_user_orden`),
+  ADD KEY `fk_id_user_encargado` (`fk_id_user_encargado`);
+
+--
+-- Indices de la tabla `orden_trabajo_estado`
+--
+ALTER TABLE `orden_trabajo_estado`
+  ADD PRIMARY KEY (`id_orden_trabajo_estado`),
+  ADD KEY `fk_id_orden_trabajo_estado` (`fk_id_orden_trabajo_estado`),
+  ADD KEY `fk_id_user_ote` (`fk_id_user_ote`);
 
 --
 -- Indices de la tabla `param_clase_vehiculo`
@@ -953,7 +1017,7 @@ ALTER TABLE `inspection_vehiculos`
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo`
 --
 ALTER TABLE `mantenimiento_correctivo`
-  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo_fotos`
@@ -966,6 +1030,18 @@ ALTER TABLE `mantenimiento_correctivo_fotos`
 --
 ALTER TABLE `mantenimiento_preventivo`
   MODIFY `id_preventivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `orden_trabajo`
+--
+ALTER TABLE `orden_trabajo`
+  MODIFY `id_orden_trabajo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `orden_trabajo_estado`
+--
+ALTER TABLE `orden_trabajo_estado`
+  MODIFY `id_orden_trabajo_estado` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `param_clase_vehiculo`
@@ -1031,7 +1107,7 @@ ALTER TABLE `param_tipo_equipos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_llave_contraseña`
