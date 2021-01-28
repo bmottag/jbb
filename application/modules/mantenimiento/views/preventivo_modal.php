@@ -7,6 +7,12 @@
 </div>
 <div class="modal-body">
 	<form name="form" id="form" role="form" method="post" >
+		<input type="hidden" id="hddId" name="hddId" value="<?php echo $infoPreventivo?$infoPreventivo[0]['id_preventivo']:""; ?>"/>
+		<?php 
+		if($infoPreventivo){
+			$descripcion = $infoPreventivo[0]['descripcion'];
+		}
+		?>
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
@@ -14,7 +20,7 @@
 					<select name="id_tipo_equipo" id="id_tipo_equipo" class="form-control" required >
 						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($tipoEquipo); $i++) { ?>
-							<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>"><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>
+							<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>" <?php if($infoPreventivo && $infoPreventivo[0]["fk_id_tipo_equipo_preventivo"] == $tipoEquipo[$i]["id_tipo_equipo"]) { echo "selected"; } ?>><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>
 						<?php } ?>
 					</select>
 				</div>
@@ -25,7 +31,7 @@
 					<select name="frecuencia" id="frecuencia" class="form-control" required >
 						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($frecuencia); $i++) { ?>
-							<option value="<?php echo $frecuencia[$i]["id_frecuencia"]; ?>"><?php echo $frecuencia[$i]["frecuencia"]; ?></option>
+							<option value="<?php echo $frecuencia[$i]["id_frecuencia"]; ?>" <?php if($infoPreventivo && $infoPreventivo[0]["fk_id_frecuencia"] == $frecuencia[$i]["id_frecuencia"]) { echo "selected"; } ?>><?php echo $frecuencia[$i]["frecuencia"]; ?></option>
 						<?php } ?>
 					</select>
 				</div>
@@ -35,7 +41,7 @@
 			<div class="col-sm-12">
 				<div class="form-group text-left">
 					<label for="descripcion">Descripción: *</label>
-					<textarea id="descripcion" name="descripcion" placeholder="Descripción" class="form-control" rows="3"></textarea>
+					<textarea id="descripcion" name="descripcion" placeholder="Descripción" class="form-control" rows="3"><?php echo $infoPreventivo?$descripcion:""; ?></textarea>
 				</div>
 			</div>
 		</div>			

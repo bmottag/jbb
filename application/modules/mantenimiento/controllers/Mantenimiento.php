@@ -24,20 +24,20 @@ class Mantenimiento extends CI_Controller {
 				"estadoMantenimiento" => $estado,
 				'limit' => 10
 			);
-			$data['info'] = $this->mantenimientos_model->get_preventivos_info($arrParam);
+			$data['infoPreventivo'] = $this->mantenimientos_model->get_preventivo($arrParam);
 		} elseif ($this->input->post('tipo_equipo') || $this->input->post('frecuencia'))
 		{
 			$data['tituloListado'] = 'LISTA DE MANTENIMIENTOS PREVENTIVOS QUE COINCIDEN CON SU BUSQUEDA';
-			$data['tipo_equipo'] =  $this->input->post('tipo_equipo');
+			$data['tipoEquipo'] =  $this->input->post('id_tipo_equipo');
 			$data['frecuencia'] =  $this->input->post('frecuencia');	
 			$arrParam = array(
-				"tipo_equipo" => $this->input->post('tipo_equipo'),
+				"tipoEquipo" => $this->input->post('id_tipo_equipo'),
 				"frecuencia" => $this->input->post('frecuencia'),
 				"estadoMantenimiento" => $estado
 			);
-			$data['info'] = $this->mantenimientos_model->get_preventivos_info($arrParam);
+			$data['infoPreventivo'] = $this->mantenimientos_model->get_preventivo($arrParam);
 		} else {
-			$data['info'] = FALSE;
+			$data['infoPreventivo'] = FALSE;
 		}
 		$arrParam = array(
 			"table" => "param_tipo_equipos",
@@ -62,8 +62,7 @@ class Mantenimiento extends CI_Controller {
     public function cargarModalPreventivo() 
 	{
 		header("Content-Type: text/plain; charset=utf-8");
-		$data['information'] = FALSE;
-		$id_preventivo = $this->input->post("id_preventivo");
+		$data['infoPreventivo'] = FALSE;
 		$arrParam = array(
 			"table" => "param_tipo_equipos",
 			"order" => "tipo_equipo",
@@ -76,6 +75,14 @@ class Mantenimiento extends CI_Controller {
 			"id" => "x"
 		);
 		$data['frecuencia'] = $this->general_model->get_basic_search($arrParam);
+		$data["idPreventivo"] = $this->input->post("idPreventivo");
+		if ($data["idPreventivo"] != 'x')
+		{
+			$arrParam = array(
+				"idPreventivo" => $data["idPreventivo"]
+			);
+			$data['infoPreventivo'] = $this->mantenimientos_model->get_preventivo($arrParam);
+		}
 		$this->load->view("preventivo_modal", $data);
     }
 
@@ -121,7 +128,7 @@ class Mantenimiento extends CI_Controller {
      */
     public function cargarModalCorrectivo() 
 	{
-		header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+		header("Content-Type: text/plain; charset=utf-8");
 		$data['infoCorrectivo'] = FALSE;
 		$data["idEquipo"] = $this->input->post("idEquipo");
 		$data["idCorrectivo"] = $this->input->post("idCorrectivo");
@@ -243,4 +250,22 @@ class Mantenimiento extends CI_Controller {
 		}				
 		echo json_encode($data);
     }
+
+    /**
+	 * Mantenimiento preventivo por equipo
+     * @since 25/01/2021
+     * @author BMOTTAG
+	 */
+	public function preventivo_equipo($idEquipo)
+	{
+		$arrParam = array("idEquipo" => $idEquipo);
+		$data['info'] = $this->general_model->get_equipos_info($arrParam);
+		$arrParam = array(
+			"tipoEquipo" => $data['info'][0]['fk_id_tipo_equipo'],
+			'limit' => 10
+		);
+		$data['infoPreventivo'] = $this->mantenimientos_model->get_preventivo($arrParam);
+		$data["view"] = 'preventivo_equipo';
+		$this->load->view("layout_calendar", $data);
+	}
 }
