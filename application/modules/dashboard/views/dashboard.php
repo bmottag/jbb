@@ -213,7 +213,7 @@ if ($retornoError) {
                                 echo "</td>";
                                 echo "<td class='text-center'>";
                                 ?>
-                                <a href="<?php echo base_url("ordentrabajo/editar_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Editar <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+                                <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver OT <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
                                 <?php
                                 echo "</td>";
                                 echo "</tr>";

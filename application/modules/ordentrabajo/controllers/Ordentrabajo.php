@@ -9,36 +9,38 @@ class Ordentrabajo extends CI_Controller {
     }
 	
 	/**
-	 * Infro de orden de trabajo
+	 * Info orden de trabajo
      * @since 26/1/2021
      * @author BMOTTAG
 	 */
-	public function crear_orden($idMantenimiento, $tipoMantenimiento = '1') 
+	public function ver_orden($idOrdenTrabajo) 
 	{		
-			if(empty($idMantenimiento) || empty($tipoMantenimiento)){
+			if(empty($idOrdenTrabajo)){
 				show_error('ERROR!!! - You are in the wrong place.');
 			}
 			
-			$data['information'] = FALSE;
+			//buscar informacion de la orden de trabajo
+			$arrParam = array("idOrdenTrabajo" => $idOrdenTrabajo);
+			$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
 
-			$this->load->model("general_model");			
-			$data['tipoMantenimiento'] = $tipoMantenimiento;
+			//buscar historial de estados orden de trabajo
+			$data['infoEstado'] = $this->general_model->get_estado_orden_trabajo($arrParam);
+
+			$data['idMantenimiento'] = $data['information'][0]['fk_id_mantenimiento'];
+			$data['tipoMantenimiento'] = $data['information'][0]['tipo_mantenimiento'];
 
 			$arrParam = array(
-				"idMantenimiento" => $idMantenimiento,
-				"tipoMantenimiento" => $tipoMantenimiento
+				"idMantenimiento" => $data['idMantenimiento'],
+				"tipoMantenimiento" => $data['tipoMantenimiento']
 			);
 			
 			//buscar informacion del mantenimiento
-			if($tipoMantenimiento == 1)
+			if($data['tipoMantenimiento'] == 1)
 			{
 				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
 			}else{
 				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
 			}
-
-			//buscar informacion de la orden de trabajo
-			$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
 
 			//busco datos del vehiculo
 			$arrParam['idEquipo'] = $data['infoMantenimiento'][0]['fk_id_equipo_correctivo'];
@@ -54,7 +56,7 @@ class Ordentrabajo extends CI_Controller {
 						);
 			$data['listaEncargados'] = $this->general_model->get_user($arrParam);
 
-			$data["view"] = 'form_ordentrabajo';
+			$data["view"] = 'ordentrabajo';
 			$this->load->view("layout", $data);
 	}
 
@@ -67,14 +69,13 @@ class Ordentrabajo extends CI_Controller {
 	{			
 			header('Content-Type: application/json');
 			$data = array();
-			
-			$idOrdenTrabajo = $this->input->post('hddIdOrdenTrabajo');
-			$data["idRecord"] = $this->input->post('hddIdMantenimiento');
-		
+				
 			$msj = "Se guardo la información!";
 
 			if ($idOrdenTrabajo = $this->ordentrabajo_model->guardarOrdentrabajo()) 
 			{				
+				$this->ordentrabajo_model->guardarEstadoOrdentrabajo($idOrdenTrabajo);
+
 				$data["result"] = true;		
 				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 			} else {
@@ -82,61 +83,10 @@ class Ordentrabajo extends CI_Controller {
 				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
 
-			//$data["idRecord"] = $idMantenimiento . '/' . $idOrdenTrabajo;
+			$data["idRecord"] = $idOrdenTrabajo;
 		
 			echo json_encode($data);
     }
-
-	/**
-	 * Editar el estado de la otden de trabajo
-     * @since 28/1/2021
-     * @author BMOTTAG
-	 */
-	public function editar_orden($idOrdenTrabajo) 
-	{		
-			if(empty($idOrdenTrabajo)){
-				show_error('ERROR!!! - You are in the wrong place.');
-			}
-			
-			$data['information'] = FALSE;
-			//buscar informacion de la orden de trabajo
-			$arrParam = array("idOrdenTrabajo" => $idOrdenTrabajo);
-			$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
-
-			$data['tipoMantenimiento'] = $data['information'][0]['tipo_mantenimiento'];
-
-			$arrParam = array(
-				"idMantenimiento" => $data['information'][0]['fk_id_mantenimiento'],
-				"tipoMantenimiento" => $data['tipoMantenimiento']
-			);
-			
-			//buscar informacion del mantenimiento
-			if($data['tipoMantenimiento'] == 1)
-			{
-				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
-			}else{
-				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
-			}
-
-
-
-			//busco datos del vehiculo
-			$arrParam['idEquipo'] = $data['infoMantenimiento'][0]['fk_id_equipo_correctivo'];
-			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
-		
-			//Lista fotos de equipo
-			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
-			
-			//Lista de encargados activos
-			$arrParam = array(
-						"filtroState" => TRUE,
-						'idRole' => 3
-						);
-			$data['listaEncargados'] = $this->general_model->get_user($arrParam);
-
-			$data["view"] = 'form_ordentrabajo';
-			$this->load->view("layout", $data);
-	}
 
 	/**
 	 * Guardar orden de trabajo
@@ -166,6 +116,113 @@ class Ordentrabajo extends CI_Controller {
 		
 			echo json_encode($data);
     }
+
+	/**
+     * Cargo modal - formulario orden trabajo
+     * @since 19/01/2021
+     * @author BMOTTAG
+     */
+    public function cargarModalOrdenTrabajo() 
+	{
+			header("Content-Type: text/plain; charset=utf-8");
+
+			$data["idMantenimiento"] = $this->input->post("idMantenimiento");
+			$data["tipoMantenimiento"] = $this->input->post("tipoMantenimiento");
+
+			$data['information'] = FALSE;
+
+			$arrParam = array(
+				"idMantenimiento" => $data["idMantenimiento"],
+				"tipoMantenimiento" => $data["tipoMantenimiento"] 
+			);
+			
+			//buscar informacion del mantenimiento
+			if($data["tipoMantenimiento"] == 1)
+			{
+				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
+			}else{
+				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
+			}
+/**
+FALTA DEFINIR ESTA PARTE
+if ($data["idOrdenTrabajo"] != 'x')
+{
+	$arrParam = array(
+		"idOrdenTrabajo" => $data["idOrdenTrabajo"]
+	);
+	$data['infoCorrectivo'] = $this->mantenimientos_model->get_correctivo($arrParam);
+	$data["idEquipo"] = $data['infoCorrectivo'][0]['fk_id_equipo_correctivo'];
+
+}
+*/
+
+			//buscar informacion de la orden de trabajo
+			$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
+
+
+//NOTA: FALTA AJUSTAR ESTA BUSQUEDA PORQUE EN ESTE MOMENTO ESTA SOLO PARA MENTENIMIENTO CORRECTIVO
+			//busco datos del vehiculo
+			$arrParam['idEquipo'] = $data['infoMantenimiento'][0]['fk_id_equipo_correctivo'];
+			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);
+		
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
+			
+			//Lista de encargados activos
+			$arrParam = array(
+						"filtroState" => TRUE,
+						'idRole' => 3
+						);
+			$data['listaEncargados'] = $this->general_model->get_user($arrParam);
+
+			$this->load->view("ordentrabajo_modal", $data);
+    }
+
+	/**
+     * Cargo modal - formulario Estado orden trabajo
+     * @since 29/01/2021
+     * @author BMOTTAG
+     */
+    public function cargarModalEstadoOrdenTrabajo() 
+	{
+			header("Content-Type: text/plain; charset=utf-8");
+
+			$data["idOrdenTrabajo"] = $this->input->post("idOrdenTrabajo");
+
+			$data['information'] = FALSE;
+
+			$this->load->view("ordentrabajoestado_modal", $data);
+    }
+
+	/**
+	 * Guardar orden de trabajo estado
+	 * @since 29/1/2021
+     * @author BMOTTAG
+	 */
+	public function guardar_ordentrabajo_estado()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			
+			$data['idRecord'] = $this->input->post("hddIdOrdenTrabajo");
+				
+			$msj = "Se guardo la información!";
+
+			if ($this->ordentrabajo_model->guardarEstadoOrdentrabajo($data['idRecord'])) 
+			{
+				//actualizar estado
+				$this->ordentrabajo_model->updateOrdentrabajo($data['idRecord']);
+
+				$data["result"] = true;		
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
+			} else {
+				$data["result"] = "error";
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
+			}
+		
+			echo json_encode($data);
+    }
+	
 	
 	
 	

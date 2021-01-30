@@ -34,7 +34,7 @@ $( document ).ready( function () {
 			
 				$.ajax({
 					type: "POST",	
-					url: base_url + "ordentrabajo/guardar_ordentrabajo",
+					url: base_url + "ordentrabajo/guardar_ordentrabajo_estado",
 					data: $("#form").serialize(),
 					dataType: "json",
 					contentType: "application/x-www-form-urlencoded;charset=UTF-8",

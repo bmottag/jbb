@@ -26,6 +26,18 @@ $(function(){
             }
         });
 	});
+	$(".btn-violeta").click(function () {
+		var oID = $(this).attr("id");
+        $.ajax ({
+            type: 'POST',
+			url: base_url + 'ordentrabajo/cargarModalOrdenTrabajo',
+			data: {'idMantenimiento': oID, 'tipoMantenimiento': 1},
+            cache: false,
+            success: function (data) {
+                $('#tablaDatos').html(data);
+            }
+        });
+	});
 });
 </script>
 <div id="page-wrapper">
@@ -159,7 +171,9 @@ $(function(){
 								echo "</td>";
 								echo "<td class='text-center'>";
 								?>
-								<a href="<?php echo base_url("ordentrabajo/crear_orden/" . $data['id_correctivo']); ?>" class="btn btn-default btn-violeta btn-xs">Crear <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></a>
+								<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $data['id_correctivo']; ?>" >
+									Asignar OT <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
+								</button>
 								<?php
 								echo "</td>";
 								echo "</tr>";

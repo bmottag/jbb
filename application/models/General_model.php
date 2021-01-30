@@ -439,6 +439,9 @@ class General_model extends CI_Model {
 				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name, CONCAT(X.first_name, ' ', X.last_name) encargado");
 				$this->db->join('usuarios U', 'U.id_user = C.fk_id_user_orden', 'INNER');
 				$this->db->join('usuarios X', 'X.id_user = C.fk_id_user_encargado', 'INNER');
+				if (array_key_exists("idOrdenTrabajo", $arrData)) {
+					$this->db->where('C.id_orden_trabajo ', $arrData["idOrdenTrabajo"]);
+				}
 				if (array_key_exists("idMantenimiento", $arrData) && array_key_exists("tipoMantenimiento", $arrData)) {
 					$this->db->where('C.fk_id_mantenimiento', $arrData["idMantenimiento"]);
 				}
@@ -448,6 +451,30 @@ class General_model extends CI_Model {
 
 				$this->db->order_by('C.id_orden_trabajo', 'desc');
 				$query = $this->db->get('orden_trabajo C');
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Consulta estado orden de trabajo
+		 * @since 29/1/2021
+		 */
+		public function get_estado_orden_trabajo($arrData)
+		{
+				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name");
+				$this->db->join('usuarios U', 'U.id_user = C.fk_id_user_ote', 'INNER');
+				if (array_key_exists("idOrdenTrabajoEstado", $arrData)) {
+					$this->db->where('C.id_orden_trabajo_estado', $arrData["idOrdenTrabajoEstado"]);
+				}
+				if (array_key_exists("idOrdenTrabajoEstado", $arrData)) {
+					$this->db->where('C.fk_id_orden_trabajo_estado', $arrData["idOrdenTrabajoEstado"]);
+				}
+
+				$this->db->order_by('C.id_orden_trabajo_estado', 'desc');
+				$query = $this->db->get('orden_trabajo_estado C');
 				if ($query->num_rows() > 0) {
 					return $query->result_array();
 				} else {

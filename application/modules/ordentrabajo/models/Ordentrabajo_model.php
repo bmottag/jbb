@@ -14,8 +14,7 @@
 		
 				$data = array(
 					'fk_id_user_encargado' => $this->input->post('id_encargado'),
-					'informacion_adicional' => $this->input->post('informacion'),
-					'ultimo_estado' => 1
+					'informacion_adicional' => $this->input->post('informacion')
 				);	
 
 				//revisar si es para adicionar o editar
@@ -25,11 +24,61 @@
 					$data['fk_id_mantenimiento'] = $this->input->post('hddIdMantenimiento');
 					$data['fecha_asignacion'] = date("Y-m-d");
 					$data['fk_id_user_orden'] = $idUser;
+					$data['ultimo_estado'] = $this->input->post('hddEstado');
 					$query = $this->db->insert('orden_trabajo', $data);
+					$idOrdenTrabajo = $this->db->insert_id();
 				} else {
-					$this->db->where('id_orden_trabajo', $idLocalizacion);
+					$this->db->where('id_orden_trabajo', $idOrdenTrabajo);
 					$query = $this->db->update('orden_trabajo', $data);
 				}
+				if ($query) {
+					return $idOrdenTrabajo;
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Guardar estado orden trabajo
+		 * @since 29/1/2021
+		 */
+		public function guardarEstadoOrdentrabajo($idOrdenTrabajo) 
+		{
+				$idUser = $this->session->userdata("id");
+		
+				$data = array(
+					'fk_id_orden_trabajo_estado' => $idOrdenTrabajo,
+					'fk_id_user_ote' => $idUser,
+					'fecha_registro_estado' => date("Y-m-d G:i:s"),
+					'informacion_adicional_estado' => $this->input->post('informacion'),
+					'estado' => $this->input->post('estado')
+				);	
+
+				$query = $this->db->insert('orden_trabajo_estado', $data);
+
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Actualizar orden trabajo estado
+		 * @since 29/1/2021
+		 */
+		public function updateOrdentrabajo() 
+		{		
+				$idOrdenTrabajo = $this->input->post("hddIdOrdenTrabajo");
+
+				$data = array(
+					'informacion_adicional' => $this->input->post('informacion'),
+					'ultimo_estado' => $this->input->post('estado')
+				);
+
+				$this->db->where('id_orden_trabajo', $idOrdenTrabajo);
+				$query = $this->db->update('orden_trabajo', $data);
+
 				if ($query) {
 					return true;
 				} else {
