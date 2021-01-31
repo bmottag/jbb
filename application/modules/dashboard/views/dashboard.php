@@ -174,7 +174,7 @@ if ($retornoError) {
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
                         <thead>
                             <tr>
-                                <th class='text-center'>No. Orden Trabajo</th>
+                                <th class='text-center'>No. OT</th>
                                 <th class='text-center'>Fecha Asignación</th>
                                 <th class='text-center'>Encargado</th>
                                 <th class='text-center'>Tipo Mantenimiento</th>
@@ -191,14 +191,24 @@ if ($retornoError) {
                                 echo "<td class='text-center'>" . $lista['fecha_asignacion'] . "</td>";
                                 echo "<td class='text-right'>" . $lista['encargado'] . "</td>";
                                 echo "<td class='text-center'>";
-                                echo $lista['tipo_mantenimiento'];
+                                switch ($lista['tipo_mantenimiento']) {
+                                    case 1:
+                                        $valor = 'Correctivo';
+                                        $clase = "text-violeta";
+                                        break;
+                                    case 2:
+                                        $valor = 'Preventivo';
+                                        $clase = "text-info";
+                                        break;
+                                }
+                                echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
                                 echo "</td>";
                                 echo "<td>" . $lista['informacion_adicional'] . "</td>";
                                 echo "<td class='text-center'>";
                                 switch ($lista['ultimo_estado']) {
                                     case 1:
                                         $valor = 'Asignada';
-                                        $clase = "text-warning";
+                                        $clase = "text-info";
                                         break;
                                     case 2:
                                         $valor = 'Solucionada';

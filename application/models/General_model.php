@@ -469,8 +469,8 @@ class General_model extends CI_Model {
 				if (array_key_exists("idOrdenTrabajoEstado", $arrData)) {
 					$this->db->where('C.id_orden_trabajo_estado', $arrData["idOrdenTrabajoEstado"]);
 				}
-				if (array_key_exists("idOrdenTrabajoEstado", $arrData)) {
-					$this->db->where('C.fk_id_orden_trabajo_estado', $arrData["idOrdenTrabajoEstado"]);
+				if (array_key_exists("idOrdenTrabajo", $arrData)) {
+					$this->db->where('C.fk_id_orden_trabajo_estado', $arrData["idOrdenTrabajo"]);
 				}
 
 				$this->db->order_by('C.id_orden_trabajo_estado', 'desc');

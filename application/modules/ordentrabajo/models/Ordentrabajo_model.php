@@ -24,7 +24,7 @@
 					$data['fk_id_mantenimiento'] = $this->input->post('hddIdMantenimiento');
 					$data['fecha_asignacion'] = date("Y-m-d");
 					$data['fk_id_user_orden'] = $idUser;
-					$data['ultimo_estado'] = $this->input->post('hddEstado');
+					$data['ultimo_estado'] = $this->input->post('estado');
 					$query = $this->db->insert('orden_trabajo', $data);
 					$idOrdenTrabajo = $this->db->insert_id();
 				} else {

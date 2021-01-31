@@ -56,8 +56,8 @@ $(function(){
 				<div class="panel-body">
 
 					<strong>Fecha Registro: </strong><?php echo $infoMantenimiento[0]['fecha']; ?><br>
-					<strong>Descripción Falla: </strong><?php echo $infoMantenimiento[0]['descripcion']; ?><br>
-					<strong>Consideración: </strong><?php echo $infoMantenimiento[0]['consideracion']; ?>
+					<strong>Descripción Falla: </strong><br><?php echo $infoMantenimiento[0]['descripcion']; ?><br>
+					<strong>Consideración: </strong><br><?php echo $infoMantenimiento[0]['consideracion']; ?>
 					
 				</div>
 			</div>
@@ -70,7 +70,7 @@ $(function(){
 				</div>
 				<div class="panel-body">
 
-					<strong>OT. No.: </strong><?php echo $information[0]['id_orden_trabajo']; ?><br>
+					<strong>No. OT: </strong><?php echo $information[0]['id_orden_trabajo']; ?><br>
 					<strong>Encargado: </strong><?php echo $information[0]['encargado']; ?>
 					
 				</div>
@@ -140,7 +140,7 @@ $(function(){
 									switch ($lista['estado']) {
 										case 1:
 											$valor = 'Asignada';
-											$clase = "text-warning";
+											$clase = "text-info";
 											break;
 										case 2:
 											$valor = 'Solucionado';
