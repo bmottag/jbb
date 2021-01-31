@@ -1,5 +1,3 @@
-<a name="anclaUp"></a>
-
 <div id="page-wrapper">
     <div class="row"><br>
 		<div class="col-md-12">
@@ -47,7 +45,7 @@ if ($retornoError) {
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-3 col-md-6">
-            <div class="panel panel-primary">
+            <div class="panel panel-red">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
@@ -124,7 +122,7 @@ if ($retornoError) {
         </div>
 
         <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
@@ -152,18 +150,13 @@ if ($retornoError) {
     <!-- /.row -->
     <div class="row">
 
-<a name="anclaPayroll" ></a>            
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <i class="fa fa-book fa-fw"></i> Ordenes de Trabajo
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-
-
-<a class="btn btn-default btn-circle" href="#anclaUp"><i class="fa fa-arrow-up"></i> </a>
-
+        <div class="col-lg-9">
+            <div class="panel panel-violeta">
+                <div class="panel-heading">
+                    <i class="fa fa-book fa-fw"></i> Ordenes de Trabajo
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
 
 <?php
     if(!$infoOrdenesTrabajo){ 
@@ -179,7 +172,6 @@ if ($retornoError) {
                                 <th class='text-center'>Encargado</th>
                                 <th class='text-center'>Tipo Mantenimiento</th>
                                 <th class='text-center'>Información Adicional</th>
-                                <th class='text-center'>Estado</th>
                                 <th class='text-center'>Ver</th>
                             </tr>
                         </thead>
@@ -187,7 +179,24 @@ if ($retornoError) {
                         <?php
                             foreach ($infoOrdenesTrabajo as $lista):
                                 echo "<tr>";
-                                echo "<td class='text-center'>" . $lista['id_orden_trabajo'] . "</td>";
+                                echo "<td class='text-center'>";
+                                echo $lista['id_orden_trabajo']; 
+                                switch ($lista['ultimo_estado']) {
+                                    case 1:
+                                        $valor = 'Asignada';
+                                        $clase = "text-info";
+                                        break;
+                                    case 2:
+                                        $valor = 'Solucionada';
+                                        $clase = "text-success";
+                                        break;
+                                    case 3:
+                                        $valor = 'Cancelada';
+                                        $clase = "text-danger";
+                                        break;
+                                }
+                                echo '<p class="' . $clase . '">' . $valor . '</p>';
+                                echo "</td>";
                                 echo "<td class='text-center'>" . $lista['fecha_asignacion'] . "</td>";
                                 echo "<td class='text-right'>" . $lista['encargado'] . "</td>";
                                 echo "<td class='text-center'>";
@@ -205,23 +214,6 @@ if ($retornoError) {
                                 echo "</td>";
                                 echo "<td>" . $lista['informacion_adicional'] . "</td>";
                                 echo "<td class='text-center'>";
-                                switch ($lista['ultimo_estado']) {
-                                    case 1:
-                                        $valor = 'Asignada';
-                                        $clase = "text-info";
-                                        break;
-                                    case 2:
-                                        $valor = 'Solucionada';
-                                        $clase = "text-success";
-                                        break;
-                                    case 3:
-                                        $valor = 'Cancelada';
-                                        $clase = "text-danger";
-                                        break;
-                                }
-                                echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
-                                echo "</td>";
-                                echo "<td class='text-center'>";
                                 ?>
                                 <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver OT <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
                                 <?php
@@ -238,8 +230,45 @@ if ($retornoError) {
             </div>
 
         </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-violeta">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i> OT - <?php echo date("Y"); ?>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="<?php echo base_url("workorders/wo_by_state/0/" . date("Y")); ?>" class="list-group-item">
+                            <p class="text-info"><i class="fa fa-thumb-tack fa-fw"></i><strong> Asignadas</strong>
+                                <span class="pull-right text-muted small"><em><?php echo $asignadas; ?></em>
+                                </span>
+                            </p>
+                        </a>
+                        <a href="<?php echo base_url("workorders/wo_by_state/2/" . date("Y")); ?>" class="list-group-item">
+                            <p class="text-success"><i class="fa fa-check fa-fw"></i><strong> Solucionadas</strong>
+                                <span class="pull-right text-muted small"><em><?php echo $solucionadas; ?></em>
+                                </span>
+                            </p>
+                        </a>
+                        <a href="<?php echo base_url("workorders/wo_by_state/4/" . date("Y")); ?>" class="list-group-item">
+                            <p class="text-danger"><i class="fa fa-power-off fa-fw"></i><strong> Canceladas</strong>
+                                <span class="pull-right text-muted small"><em><?php echo $canceladas; ?></em>
+                                </span>
+                            </p>
+                        </a>
+
+                    </div>
+                    <!-- /.list-group -->
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+
+        </div>
+        <!-- /.col-lg-4 -->
     
     </div>      
-
 
 </div>

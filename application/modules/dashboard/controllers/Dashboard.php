@@ -19,6 +19,24 @@ class Dashboard extends CI_Controller {
 			$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam);
 			$data['noOrdenesTrabajo'] = $data['infoOrdenesTrabajo']?count($data['infoOrdenesTrabajo']):0;
 
+			//filtrar por estado y fecha
+			$year = date('Y');
+			$firstDay = date('Y-m-d', mktime(0,0,0, 1, 1, $year));//primer dia del año, para filtrar por año
+			$arrParam2 = array(
+				'estado' => 1,
+				'filtroFecha' => $firstDay
+			);
+			$data['asignadas'] = $this->general_model->get_orden_trabajo($arrParam2);
+			$data['asignadas'] = $data['asignadas']?count($data['asignadas']):0;
+
+			$arrParam2['estado'] = 2;
+			$data['solucionadas'] = $this->general_model->get_orden_trabajo($arrParam2);
+			$data['solucionadas'] = $data['solucionadas']?count($data['solucionadas']):0;
+
+			$arrParam2['estado'] = 3;
+			$data['canceladas'] = $this->general_model->get_orden_trabajo($arrParam2);
+			$data['canceladas'] = $data['canceladas']?count($data['canceladas']):0;
+
 			//Tipo -> vehiculos
 			$arrParam = array(
 				"idTipoEquipo" => 1,
