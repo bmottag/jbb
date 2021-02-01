@@ -38,7 +38,11 @@ $(function(){
 						</div>
 					<?php } ?>
 				
-					<strong>No. Inventario Entidad: </strong><?php echo $infoEquipo[0]['numero_inventario']; ?><br>
+					<strong>No. Inventario Entidad: </strong>
+					<a href='<?php echo base_url('equipos/detalle/' . $infoEquipo[0]['id_equipo']); ?>'>
+							  <?php echo $infoEquipo[0]['numero_inventario'] ?>
+					</a>
+					<br>
 					<strong>Marca: </strong><?php echo $infoEquipo[0]['marca']; ?><br>
 					<strong>Modelo: </strong><?php echo $infoEquipo[0]['modelo']; ?><br>
 					<strong>No. Serial: </strong><?php echo $infoEquipo[0]['numero_serial']; ?><br>
