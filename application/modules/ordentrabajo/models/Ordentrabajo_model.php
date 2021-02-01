@@ -22,6 +22,7 @@
 				{
 					$data['tipo_mantenimiento'] = $this->input->post('hddtipoMantenimiento');
 					$data['fk_id_mantenimiento'] = $this->input->post('hddIdMantenimiento');
+					$data['fk_id_equipo_ot '] = $this->input->post('hddIdEquipo');
 					$data['fecha_asignacion'] = date("Y-m-d");
 					$data['fk_id_user_orden'] = $idUser;
 					$data['estado_actual'] = $this->input->post('estado');

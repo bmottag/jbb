@@ -30,8 +30,8 @@ $(function(){
 		var oID = $(this).attr("id");
         $.ajax ({
             type: 'POST',
-			url: base_url + 'ordentrabajo/cargarModalOrdenTrabajo',
-			data: {'idMantenimiento': oID, 'tipoMantenimiento': 1},
+			url: base_url + 'ordentrabajo/cargarModalOrdenTrabajoPreventivo',
+			data: {'idCompuesto': oID, 'tipoMantenimiento': 1},
             cache: false,
             success: function (data) {
                 $('#tablaDatos').html(data);
@@ -170,8 +170,9 @@ $(function(){
 								<?php
 								echo "</td>";
 								echo "<td class='text-center'>";
+								$idCompuesto = $data['id_correctivo'] . '-' . $info[0]['id_equipo'];
 								?>
-								<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $data['id_correctivo']; ?>" >
+								<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $idCompuesto; ?>" >
 									Asignar OT <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
 								</button>
 								<?php

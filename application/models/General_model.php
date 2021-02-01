@@ -418,8 +418,8 @@ class General_model extends CI_Model {
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('C.fk_id_equipo_correctivo', $arrData["idEquipo"]);
 				}
-				if (array_key_exists("idCorrectivo", $arrData)) {
-					$this->db->where('C.id_correctivo', $arrData["idCorrectivo"]);
+				if (array_key_exists("idMantenimiento", $arrData)) {
+					$this->db->where('C.id_correctivo', $arrData["idMantenimiento"]);
 				}
 				if (array_key_exists("filtroFecha", $arrData)) {
 					$this->db->where('C.fecha >=', $arrData["filtroFecha"]);
@@ -453,6 +453,9 @@ class General_model extends CI_Model {
 				}
 				if (array_key_exists("tipoMantenimiento", $arrData)) {
 					$this->db->where('C.tipo_mantenimiento ', $arrData["tipoMantenimiento"]);
+				}
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('C.fk_id_equipo_ot', $arrData["idEquipo"]);
 				}
 				if (array_key_exists("estado", $arrData)) {
 					$this->db->where('C.estado_actual', $arrData["estado"]);
@@ -490,6 +493,41 @@ class General_model extends CI_Model {
 
 				$this->db->order_by('C.id_orden_trabajo_estado', 'desc');
 				$query = $this->db->get('orden_trabajo_estado C');
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Consulta lista de mantenimientos preventivos
+		 * @since 1/2/2021
+		 */
+		public function get_mantenimiento_preventivo($arrData)
+		{
+				$this->db->select("P.*, T.tipo_equipo, F.frecuencia, CONCAT(U.first_name, ' ', U.last_name) name");
+				$this->db->join('usuarios U', 'P.fk_id_user_preventivo = U.id_user', 'INNER');
+				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = P.fk_id_tipo_equipo_preventivo', 'INNER');
+				$this->db->join('param_frecuencia F', 'F.id_frecuencia = P.fk_id_frecuencia', 'INNER');
+				if (array_key_exists("idMantenimiento", $arrData)) {
+					$this->db->where('P.id_preventivo', $arrData["idMantenimiento"]);
+				}
+				if (array_key_exists("estado", $arrData)) {
+					$this->db->where('P.estado', $arrData["estado"]);
+				}
+				if (array_key_exists("tipoEquipo", $arrData) && $arrData["tipoEquipo"] != '') {
+					$this->db->like('P.fk_id_tipo_equipo_preventivo', $arrData["tipoEquipo"]); 
+				}
+				if (array_key_exists("frecuencia", $arrData) && $arrData["frecuencia"] != '') {
+					$this->db->like('P.fk_id_frecuencia', $arrData["frecuencia"]); 
+				}
+				$this->db->order_by('P.id_preventivo', 'desc');
+				if (array_key_exists("limit", $arrData)) {
+					$query = $this->db->get('mantenimiento_preventivo P', $arrData["limit"]);
+				}else{
+					$query = $this->db->get('mantenimiento_preventivo P');
+				}
 				if ($query->num_rows() > 0) {
 					return $query->result_array();
 				} else {

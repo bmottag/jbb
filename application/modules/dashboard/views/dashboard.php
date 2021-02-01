@@ -53,12 +53,14 @@ if ($retornoError) {
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?php echo $noOrdenesTrabajo; ?></div>
-                            <div>Ordenes de Trabajo</div>
+                            <div>Ordenes de Trabajo<br>Asignadas
+
+                            </div>
                         </div>
                     </div>
                 </div>
 				
-                <a href="#anclaPayroll">
+                <a href="#anclaOT">
                     <div class="panel-footer">
                         <span class="pull-left">Últimos registros</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -212,7 +214,7 @@ if ($retornoError) {
 
     <!-- /.row -->
     <div class="row">
-
+<a name="anclaOT" ></a>
         <div class="col-lg-9">
             <div class="panel panel-violeta">
                 <div class="panel-heading">

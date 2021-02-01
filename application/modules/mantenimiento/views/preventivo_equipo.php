@@ -1,3 +1,19 @@
+<script>
+$(function(){
+	$(".btn-violeta").click(function () {
+		var oID = $(this).attr("id");
+        $.ajax ({
+            type: 'POST',
+			url: base_url + 'ordentrabajo/cargarModalOrdenTrabajoPreventivo',
+			data: {'idCompuesto': oID, 'tipoMantenimiento': 2},
+            cache: false,
+            success: function (data) {
+                $('#tablaDatos').html(data);
+            }
+        });
+	});
+});
+</script>
 <div id="page-wrapper">
 	<br>
 	<div class="row">
@@ -84,7 +100,6 @@
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-								<th class="text-center">Id Mantenimiento</th>
 								<th class="text-center">Tipo Equipo</th>
 								<th class="text-center">Frecuencia</th>
 								<th class="text-center">Usuario</th>
@@ -97,7 +112,6 @@
 						<?php
 							foreach ($infoPreventivo as $lista):
 								echo "<tr>";
-								echo "<td class='text-center'>" . $lista['id_preventivo'] . "</td>";
 								echo "<td>" . $lista['tipo_equipo'] . "</td>";
 								echo "<td>" . $lista['frecuencia'] . "</td>";
 								echo "<td>" . $lista['name'] . "</td>";
@@ -116,9 +130,13 @@
 								echo "</td>";
 								echo "<td>" . $lista['descripcion'] . "</td>";
 								echo "<td class='text-center'>";
+								$idCompuesto = $lista['id_preventivo'] . '-' . $info[0]['id_equipo'];
 								?>
-								<a href="<?php echo base_url("ordentrabajo/crear_orden/" . $lista['id_preventivo']); ?>" class="btn btn-default btn-violeta btn-xs">Crear <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></a>
+								<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $idCompuesto; ?>" >
+									Asignar OT <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
+								</button>
 								<?php
+
 								echo "</td>";
 								echo "</tr>";
 							endforeach;

@@ -43,9 +43,9 @@ class Ordentrabajo extends CI_Controller {
 			}
 
 			//busco datos del vehiculo
-			$arrParam['idEquipo'] = $data['infoMantenimiento'][0]['fk_id_equipo_correctivo'];
+			$arrParam['idEquipo'] = $data['information'][0]['fk_id_equipo_ot'];
 			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
-		
+
 			//Lista fotos de equipo
 			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 			
@@ -128,6 +128,12 @@ class Ordentrabajo extends CI_Controller {
 			}else{
 				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
 			}
+
+
+			//busco datos del vehiculo
+			$arrParam['idEquipo'] = $data['infoMantenimiento'][0]['fk_id_equipo_correctivo'];
+			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);
+
 /**
 FALTA DEFINIR ESTA PARTE
 if ($data["idOrdenTrabajo"] != 'x')
@@ -143,12 +149,6 @@ if ($data["idOrdenTrabajo"] != 'x')
 
 			//buscar informacion de la orden de trabajo
 			$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
-
-
-//NOTA: FALTA AJUSTAR ESTA BUSQUEDA PORQUE EN ESTE MOMENTO ESTA SOLO PARA MENTENIMIENTO CORRECTIVO
-			//busco datos del vehiculo
-			$arrParam['idEquipo'] = $data['infoMantenimiento'][0]['fk_id_equipo_correctivo'];
-			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);
 		
 			//Lista fotos de equipo
 			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
@@ -228,6 +228,40 @@ if ($data["idOrdenTrabajo"] != 'x')
 			$data["view"] = "listado_orden_trabajo";
 			$this->load->view("layout", $data);	
 	}
+
+	/**
+     * Cargo modal - formulario orden trabajo para mentenimiento preventivo
+     * @since 1/2/2021
+     * @author BMOTTAG
+     */
+    public function cargarModalOrdenTrabajoPreventivo() 
+	{
+			header("Content-Type: text/plain; charset=utf-8");
+
+			$arrParam['tipoMantenimiento'] = $data["tipoMantenimiento"] = $this->input->post("tipoMantenimiento");
+
+			$idCompuesto = $this->input->post("idCompuesto");
+			$porciones = explode('-', $idCompuesto);
+
+			$arrParam['idMantenimiento'] = $data['idMantenimiento'] = $porciones[0];
+			$arrParam['idEquipo'] = $data['idEquipo'] = $porciones[1];
+
+			//busco datos del equipo
+			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);
+
+			//buscar informacion de la orden de trabajo
+			$data['information'] = FALSE;
+			$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
+		
+			//Lista de encargados activos
+			$arrParam = array(
+						"filtroState" => TRUE,
+						'idRole' => 3
+						);
+			$data['listaEncargados'] = $this->general_model->get_user($arrParam);
+
+			$this->load->view("ordentrabajo_modal", $data);
+    }
 	
 	
 	

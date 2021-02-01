@@ -54,10 +54,21 @@ $(function(){
 					<i class="fa fa-wrench"></i> <strong>INFORMACIÓN DEL MANTENIMIENTO</strong>
 				</div>
 				<div class="panel-body">
-
+					<?php 
+						if($information[0]['tipo_mantenimiento'] == 1){
+					?>
 					<strong>Fecha Registro: </strong><?php echo $infoMantenimiento[0]['fecha']; ?><br>
 					<strong>Descripción Falla: </strong><br><?php echo $infoMantenimiento[0]['descripcion']; ?><br>
-					<strong>Consideración: </strong><br><?php echo $infoMantenimiento[0]['consideracion']; ?>
+					<strong>Consideración: </strong><br><?php echo $infoMantenimiento[0]['consideracion']; ?><br>
+					<strong>Tipo de Mantenimiento: </strong>Correctivo
+					<?php 
+						}else{
+					?>
+					<strong>Descripción: </strong><br><?php echo $infoMantenimiento[0]['descripcion']; ?><br>
+					<strong>Tipo de Mantenimiento: </strong>Preventivo
+					<?php
+						}
+					?>
 					
 				</div>
 			</div>
