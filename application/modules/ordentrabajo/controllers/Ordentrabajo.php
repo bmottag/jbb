@@ -206,7 +206,7 @@ class Ordentrabajo extends CI_Controller {
 
 			//buscar informacion de la orden de trabajo
 			$data['information'] = FALSE;
-			$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
+			//$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
 		
 			//Lista de encargados activos
 			$arrParam = array(
