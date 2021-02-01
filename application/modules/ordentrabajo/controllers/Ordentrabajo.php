@@ -69,12 +69,27 @@ class Ordentrabajo extends CI_Controller {
 	{			
 			header('Content-Type: application/json');
 			$data = array();
-				
+
+			$idOrdenTrabajo = $this->input->post('hddIdOrdenTrabajo');
+			$tipoMantenimiento = $this->input->post('hddtipoMantenimiento');
+			
+			$flag = false;
+			if($idOrdenTrabajo == ''){
+				$flag = true;
+			}
+
+
 			$msj = "Se guardo la información!";
 
 			if ($idOrdenTrabajo = $this->ordentrabajo_model->guardarOrdentrabajo()) 
 			{				
 				$this->ordentrabajo_model->guardarEstadoOrdentrabajo($idOrdenTrabajo);
+
+				//si es un registro nuevo entonces cambio el estado de mantenimiento de correctivo a EN PROCESO
+				if($flag && $tipoMantenimiento == 1){
+					$estado = 2;//EN PROCESO
+					$this->ordentrabajo_model->updateEstadoMantenimientoCorrectivo($estado);
+				}
 
 				$data["result"] = true;		
 				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);

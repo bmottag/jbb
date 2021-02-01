@@ -16,12 +16,18 @@ class Dashboard extends CI_Controller {
 			$data = array();
 			$arrParam = array();
 
+			//filtrar por estado y fecha, para el cuadro de notificaciones
+			$year = date('Y');
+			$firstDay = date('Y-m-d', mktime(0,0,0, 1, 1, $year));//primer dia del año, para filtrar por año
+
+			$arrParam['filtroFecha'] = $firstDay;//filtro registros desde el primeri dia del año
+			$arrParam['estado'] = 1;
 			$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam);
 			$data['noOrdenesTrabajo'] = $data['infoOrdenesTrabajo']?count($data['infoOrdenesTrabajo']):0;
 
-			//filtrar por estado y fecha
-			$year = date('Y');
-			$firstDay = date('Y-m-d', mktime(0,0,0, 1, 1, $year));//primer dia del año, para filtrar por año
+			$arrParam['estadoMantenimiento'] = 1;
+			$data['infoMantenimientoCorrectivo'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
+
 			$arrParam2 = array(
 				'estado' => 1,
 				'filtroFecha' => $firstDay

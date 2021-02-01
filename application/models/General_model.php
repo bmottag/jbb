@@ -421,6 +421,12 @@ class General_model extends CI_Model {
 				if (array_key_exists("idCorrectivo", $arrData)) {
 					$this->db->where('C.id_correctivo', $arrData["idCorrectivo"]);
 				}
+				if (array_key_exists("filtroFecha", $arrData)) {
+					$this->db->where('C.fecha >=', $arrData["filtroFecha"]);
+				}
+				if (array_key_exists("estadoMantenimiento", $arrData)) {
+					$this->db->where('C.estado', $arrData["estadoMantenimiento"]);
+				}
 				$this->db->order_by('C.id_correctivo', 'desc');
 				$query = $this->db->get('mantenimiento_correctivo C');
 				if ($query->num_rows() > 0) {

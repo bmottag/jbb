@@ -99,23 +99,19 @@ $(function(){
 					$retornoExito = $this->session->flashdata('retornoExito');
 					if ($retornoExito) {
 					    ?>
-						<div class="col-lg-12">	
 							<div class="alert alert-success ">
 								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 								<?php echo $retornoExito ?>		
 							</div>
-						</div>
 					    <?php
 					}
 					$retornoError = $this->session->flashdata('retornoError');
 					if ($retornoError) {
 					    ?>
-						<div class="col-lg-12">	
 							<div class="alert alert-danger ">
 								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 								<?php echo $retornoError ?>
 							</div>
-						</div>
 					    <?php
 					}
 					?> 
@@ -147,12 +143,16 @@ $(function(){
 								echo "<td class='text-center'>";
 								switch ($data['estado']) {
 									case 1:
-										$valor = 'Activo';
-										$clase = "text-success";
+										$valor = 'Nuevo';
+										$clase = "text-info";
 										break;
 									case 2:
-										$valor = 'Inactivo';
+										$valor = 'En Proceso';
 										$clase = "text-danger";
+										break;
+									case 2:
+										$valor = 'Finalizado';
+										$clase = "text-success";
 										break;
 								}
 								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
