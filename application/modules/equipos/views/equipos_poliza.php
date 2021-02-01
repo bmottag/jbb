@@ -89,7 +89,7 @@ $(function(){
 		<div class="col-lg-9">
 			<div class="panel panel-violeta">
 				<div class="panel-heading">
-					<i class="fa fa-tag"></i> PÓLIZAS DEL EQUIPO
+					<i class="fa fa-tag"></i> <strong>PÓLIZAS DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 				

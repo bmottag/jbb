@@ -86,7 +86,7 @@ $(function(){
 		<div class="col-lg-9">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<i class="fa fa-tint"></i> SEGUIMIENTO DE OPERACIÓN DE EQUIPO
+					<i class="fa fa-tint"></i> <strong>SEGUIMIENTO DE OPERACIÓN DE EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 				

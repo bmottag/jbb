@@ -89,7 +89,7 @@ $(function(){
 		<div class="col-lg-9">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
-					<i class="fa fa-tag"></i> LOCALIZACIÓN DEL EQUIPO
+					<i class="fa fa-tag"></i> <strong>LOCALIZACIÓN DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 				

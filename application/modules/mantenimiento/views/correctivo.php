@@ -89,7 +89,7 @@ $(function(){
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-tag"></i> MANTENIMIENTOS CORRECTIVOS DEL EQUIPO
+					<i class="fa fa-tag"></i> <strong>MANTENIMIENTOS CORRECTIVOS DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
@@ -173,7 +173,7 @@ $(function(){
 								$idCompuesto = $data['id_correctivo'] . '-' . $info[0]['id_equipo'];
 								?>
 								<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $idCompuesto; ?>" >
-									Asignar OT <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
+									Crear OT <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
 								</button>
 								<?php
 								echo "</td>";

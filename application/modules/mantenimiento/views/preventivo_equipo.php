@@ -63,7 +63,7 @@ $(function(){
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-tag"></i> MANTENIMIENTOS PREVENTIVOS DEL EQUIPO
+					<i class="fa fa-tag"></i> <strong>MANTENIMIENTOS PREVENTIVOS DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 					<?php
@@ -133,7 +133,7 @@ $(function(){
 								$idCompuesto = $lista['id_preventivo'] . '-' . $info[0]['id_equipo'];
 								?>
 								<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $idCompuesto; ?>" >
-									Asignar OT <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
+									Crear OT <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
 								</button>
 								<?php
 
