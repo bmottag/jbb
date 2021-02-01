@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-02-2021 a las 01:51:06
+-- Tiempo de generación: 01-02-2021 a las 19:44:06
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -393,6 +393,17 @@ CREATE TABLE `mantenimiento_correctivo` (
   `estado` int(1) NOT NULL COMMENT '1:Nuevo;2:En Proceso;3:Finalizado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `mantenimiento_correctivo`
+--
+
+INSERT INTO `mantenimiento_correctivo` (`id_correctivo`, `fecha`, `fk_id_equipo_correctivo`, `fk_id_user_correctivo`, `descripcion`, `consideracion`, `estado`) VALUES
+(1, '2021-02-01 02:03:54', 1, 1, 'El motor no arranca', 'Revisar con el fabricante', 2),
+(2, '2021-02-01 13:08:40', 2, 1, 'Se rompio el vidrio del copiloto', 'Ir al almacen y cambiar.', 3),
+(3, '2021-02-01 13:19:03', 16, 1, 'El cable de alimentación se rompio', 'EL cambio lo podemos hacer en la entidad', 3),
+(4, '2021-02-01 14:11:34', 2, 1, 'Llanta trasera derecha pinchada', 'Esto se puede arreglarar en la entidad', 3),
+(5, '2021-02-01 18:18:33', 2, 1, 'Es necesario cambiar los frenos, tienen un ruido extraño cuando se usan.', 'Que es provedor los revise si a se requiere el cambio.', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -417,10 +428,19 @@ CREATE TABLE `mantenimiento_preventivo` (
   `id_preventivo` int(10) NOT NULL,
   `fk_id_tipo_equipo_preventivo` int(1) NOT NULL,
   `fk_id_user_preventivo` int(10) NOT NULL,
-  `fk_id_frecuencia` int(10) NOT NULL,
+  `frecuencia` varchar(200) NOT NULL,
   `descripcion` text CHARACTER SET latin1 NOT NULL,
   `estado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `mantenimiento_preventivo`
+--
+
+INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fk_id_tipo_equipo_preventivo`, `fk_id_user_preventivo`, `frecuencia`, `descripcion`, `estado`) VALUES
+(1, 1, 1, 'Cada 8mil kilometros', 'Cambio de aceite cada 8mil kilometros', 1),
+(2, 1, 1, 'Cada 50 horas', 'Engrasado cada 50 horas', 1),
+(3, 1, 1, 'Cada 2 años', 'Limpieza deposito ACPM', 1);
 
 -- --------------------------------------------------------
 
@@ -432,12 +452,27 @@ CREATE TABLE `orden_trabajo` (
   `id_orden_trabajo` int(10) NOT NULL,
   `fecha_asignacion` date NOT NULL,
   `fk_id_mantenimiento` int(10) NOT NULL,
+  `fk_id_equipo_ot` int(10) NOT NULL,
   `tipo_mantenimiento` tinyint(4) NOT NULL COMMENT '1:Correctivo;2:Preventivo',
   `fk_id_user_orden` int(10) NOT NULL,
   `fk_id_user_encargado` int(10) NOT NULL,
   `informacion_adicional` text NOT NULL,
-  `ultimo_estado` int(1) NOT NULL COMMENT '1:Asignada;2:Solucionada;3:Cancelada'
+  `estado_actual` int(1) NOT NULL COMMENT '1:Asignada;2:Solucionada;3:Cancelada'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `orden_trabajo`
+--
+
+INSERT INTO `orden_trabajo` (`id_orden_trabajo`, `fecha_asignacion`, `fk_id_mantenimiento`, `fk_id_equipo_ot`, `tipo_mantenimiento`, `fk_id_user_orden`, `fk_id_user_encargado`, `informacion_adicional`, `estado_actual`) VALUES
+(1, '2021-02-01', 1, 1, 1, 1, 4, 'Se realizo el cambio de motor.', 2),
+(2, '2021-02-01', 1, 1, 2, 1, 4, 'Solicitar al proveedor cambio de aceite de acuerdo al contraro vigente.', 1),
+(3, '2021-02-01', 2, 2, 1, 1, 4, 'Realizar el cambio del vidrio lo mas pronto posible', 1),
+(4, '2021-02-01', 1, 3, 2, 1, 4, 'Se realizo el cambio de aceite a los 45mil kilometros', 2),
+(5, '2021-02-01', 3, 16, 1, 1, 4, 'Se cambio el cable por uno nuevo.', 2),
+(6, '2021-02-01', 4, 2, 1, 1, 4, 'Este vehículo se va a rematar', 3),
+(7, '2021-02-01', 5, 2, 1, 1, 4, 'Se cambiaron las pastillas de frenos', 2),
+(8, '2021-02-01', 1, 3, 2, 1, 4, 'Se necesita realizar cambio de aceite', 1);
 
 -- --------------------------------------------------------
 
@@ -453,6 +488,27 @@ CREATE TABLE `orden_trabajo_estado` (
   `informacion_adicional_estado` text NOT NULL,
   `estado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `orden_trabajo_estado`
+--
+
+INSERT INTO `orden_trabajo_estado` (`id_orden_trabajo_estado`, `fk_id_orden_trabajo_estado`, `fk_id_user_ote`, `fecha_registro_estado`, `informacion_adicional_estado`, `estado`) VALUES
+(1, 1, 1, '2021-02-01 02:13:07', 'Solucionar lo antes posible, se necesita el correcto funcionamiento del vehículo', 1),
+(2, 1, 1, '2021-02-01 03:40:52', 'Se realizo diagnostico del equipo, y toma tres dias repararlo', 1),
+(3, 1, 1, '2021-02-01 03:46:56', 'Se realizo el cambio de motor.', 2),
+(4, 2, 1, '2021-02-01 12:48:22', 'Solicitar al proveedor cambio de aceite de acuerdo al contraro vigente.', 1),
+(5, 3, 1, '2021-02-01 13:11:03', 'Realizar el cambio del vidrio lo mas pronto posible', 1),
+(6, 4, 1, '2021-02-01 13:16:47', 'Llevar al proveedor para realizar cambio de acuerdo a contrato', 1),
+(7, 4, 1, '2021-02-01 13:17:48', 'Se realizo el cambio de aceite a los 45mil kilometros', 2),
+(8, 5, 1, '2021-02-01 13:19:28', 'Por favor realizar el cambio el dia de hoy.', 1),
+(9, 6, 1, '2021-02-01 14:13:28', 'Esto se debe solucionar el dia de hoy', 1),
+(10, 6, 1, '2021-02-01 14:15:39', 'El dia de hoy no hay personal disponible', 1),
+(14, 5, 1, '2021-02-01 17:29:15', 'Se cambio el cable por uno nuevo.', 2),
+(15, 6, 1, '2021-02-01 18:09:05', 'Este vehículo se va a rematar', 3),
+(16, 7, 1, '2021-02-01 18:19:32', 'El dia de hoy se lleva el vehículo para revisarlo.', 1),
+(17, 7, 1, '2021-02-01 18:20:50', 'Se cambiaron las pastillas de frenos', 2),
+(18, 8, 1, '2021-02-01 19:36:51', 'Se necesita realizar cambio de aceite', 1);
 
 -- --------------------------------------------------------
 
@@ -501,31 +557,6 @@ INSERT INTO `param_dependencias` (`id_dependencia`, `dependencia`) VALUES
 (7, 'Subdirección Técnica Operativa'),
 (8, 'Oficina de Arborización Urbana'),
 (9, 'Subdirección Educativa y Cultural');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `param_frecuencia`
---
-
-CREATE TABLE `param_frecuencia` (
-  `id_frecuencia` int(10) NOT NULL,
-  `frecuencia` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `estado` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `param_frecuencia`
---
-
-INSERT INTO `param_frecuencia` (`id_frecuencia`, `frecuencia`, `estado`) VALUES
-(1, 'Diaria', 1),
-(2, 'Semanal', 1),
-(3, 'Quincenal', 1),
-(4, 'Mensual', 1),
-(5, 'Trimestral', 1),
-(6, 'Semestral', 1),
-(7, 'Anual', 1);
 
 -- --------------------------------------------------------
 
@@ -886,7 +917,6 @@ ALTER TABLE `mantenimiento_correctivo_fotos`
 ALTER TABLE `mantenimiento_preventivo`
   ADD PRIMARY KEY (`id_preventivo`),
   ADD KEY `fk_id_tipo_equipo_preventivo` (`fk_id_tipo_equipo_preventivo`),
-  ADD KEY `fk_id_frecuencia` (`fk_id_frecuencia`),
   ADD KEY `fk_id_user_preventivo` (`fk_id_user_preventivo`);
 
 --
@@ -897,7 +927,8 @@ ALTER TABLE `orden_trabajo`
   ADD KEY `fk_id_mantenimiento` (`fk_id_mantenimiento`),
   ADD KEY `tipo_mantenimiento` (`tipo_mantenimiento`),
   ADD KEY `fk_id_user_orden` (`fk_id_user_orden`),
-  ADD KEY `fk_id_user_encargado` (`fk_id_user_encargado`);
+  ADD KEY `fk_id_user_encargado` (`fk_id_user_encargado`),
+  ADD KEY `fk_id_equipo_ot` (`fk_id_equipo_ot`);
 
 --
 -- Indices de la tabla `orden_trabajo_estado`
@@ -918,12 +949,6 @@ ALTER TABLE `param_clase_vehiculo`
 --
 ALTER TABLE `param_dependencias`
   ADD PRIMARY KEY (`id_dependencia`);
-
---
--- Indices de la tabla `param_frecuencia`
---
-ALTER TABLE `param_frecuencia`
-  ADD PRIMARY KEY (`id_frecuencia`);
 
 --
 -- Indices de la tabla `param_menu`
@@ -1046,7 +1071,7 @@ ALTER TABLE `inspection_vehiculos`
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo`
 --
 ALTER TABLE `mantenimiento_correctivo`
-  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo_fotos`
@@ -1058,19 +1083,19 @@ ALTER TABLE `mantenimiento_correctivo_fotos`
 -- AUTO_INCREMENT de la tabla `mantenimiento_preventivo`
 --
 ALTER TABLE `mantenimiento_preventivo`
-  MODIFY `id_preventivo` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_preventivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_trabajo`
 --
 ALTER TABLE `orden_trabajo`
-  MODIFY `id_orden_trabajo` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_orden_trabajo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_trabajo_estado`
 --
 ALTER TABLE `orden_trabajo_estado`
-  MODIFY `id_orden_trabajo_estado` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_orden_trabajo_estado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `param_clase_vehiculo`
@@ -1083,12 +1108,6 @@ ALTER TABLE `param_clase_vehiculo`
 --
 ALTER TABLE `param_dependencias`
   MODIFY `id_dependencia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de la tabla `param_frecuencia`
---
-ALTER TABLE `param_frecuencia`
-  MODIFY `id_frecuencia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `param_menu`
