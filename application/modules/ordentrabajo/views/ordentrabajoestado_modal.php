@@ -8,6 +8,8 @@
 <div class="modal-body">
 	<form name="form" id="form" role="form" method="post" >
 		<input type="hidden" id="hddIdOrdenTrabajo" name="hddIdOrdenTrabajo" value="<?php echo $idOrdenTrabajo; ?>"/>
+		<input type="hidden" id="hddtipoMantenimiento" name="hddtipoMantenimiento" value="<?php echo $information[0]['tipo_mantenimiento']; ?>"/>
+		<input type="hidden" id="hddIdMantenimiento" name="hddIdMantenimiento" value="<?php echo $information[0]['fk_id_mantenimiento']; ?>"/>
 
 		<div class="row">
 			<div class="col-sm-6">
@@ -15,16 +17,16 @@
 					<label class="control-label" for="estado">Estado: *</label>
 					<select name="estado" id="estado" class="form-control" required>
 						<option value=''>Seleccione...</option>
-						<option value=1 <?php if($information && $information[0]["tipo_consumo"] == 1) { echo "selected"; }  ?>>Asignada</option>
-						<option value=2 <?php if($information && $information[0]["tipo_consumo"] == 2) { echo "selected"; }  ?>>Solucionada</option>
-						<option value=3 <?php if($information && $information[0]["tipo_consumo"] == 3) { echo "selected"; }  ?>>Cancelada</option>
+						<option value=1 >Asignada</option>
+						<option value=2 >Solucionada</option>
+						<option value=3 >Cancelada</option>
 					</select>
 				</div>
 			</div>
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="consideracion">Información Adicional: *</label>
-					<textarea id="informacion" name="informacion" placeholder="Información Adicional" class="form-control" rows="3" ><?php echo $information?$information[0]["informacion_adicional"]:""; ?></textarea>
+					<textarea id="informacion" name="informacion" placeholder="Información Adicional" class="form-control" rows="3" ></textarea>
 				</div>
 			</div>
 		</div>

@@ -94,11 +94,9 @@
 		public function updateEstadoMantenimientoCorrectivo($estado)
 		{		
 				$idMantenimiento = $this->input->post('hddIdMantenimiento');
-
 				$data = array(
 					'estado' => $estado
 				);
-
 				$this->db->where('id_correctivo', $idMantenimiento);
 				$query = $this->db->update('mantenimiento_correctivo', $data);
 

@@ -4,7 +4,7 @@ $(function(){
 		var oID = $(this).attr("id");
         $.ajax ({
             type: 'POST',
-			url: base_url + 'ordentrabajo/cargarModalOrdenTrabajoPreventivo',
+			url: base_url + 'ordentrabajo/cargarModalOrdenTrabajo',
 			data: {'idCompuesto': oID, 'tipoMantenimiento': 2},
             cache: false,
             success: function (data) {

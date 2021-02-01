@@ -112,67 +112,6 @@ class Ordentrabajo extends CI_Controller {
     }
 
 	/**
-     * Cargo modal - formulario orden trabajo
-     * @since 19/01/2021
-     * @author BMOTTAG
-     */
-    public function cargarModalOrdenTrabajo() 
-	{
-			header("Content-Type: text/plain; charset=utf-8");
-
-			$data["idMantenimiento"] = $this->input->post("idMantenimiento");
-			$data["tipoMantenimiento"] = $this->input->post("tipoMantenimiento");
-
-			$data['information'] = FALSE;
-
-			$arrParam = array(
-				"idMantenimiento" => $data["idMantenimiento"],
-				"tipoMantenimiento" => $data["tipoMantenimiento"] 
-			);
-			
-			//buscar informacion del mantenimiento
-			if($data["tipoMantenimiento"] == 1)
-			{
-				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
-			}else{
-				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
-			}
-
-
-			//busco datos del vehiculo
-			$arrParam['idEquipo'] = $data['infoMantenimiento'][0]['fk_id_equipo_correctivo'];
-			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);
-
-/**
-FALTA DEFINIR ESTA PARTE
-if ($data["idOrdenTrabajo"] != 'x')
-{
-	$arrParam = array(
-		"idOrdenTrabajo" => $data["idOrdenTrabajo"]
-	);
-	$data['infoCorrectivo'] = $this->mantenimientos_model->get_correctivo($arrParam);
-	$data["idEquipo"] = $data['infoCorrectivo'][0]['fk_id_equipo_correctivo'];
-
-}
-*/
-
-			//buscar informacion de la orden de trabajo
-			$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
-		
-			//Lista fotos de equipo
-			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
-			
-			//Lista de encargados activos
-			$arrParam = array(
-						"filtroState" => TRUE,
-						'idRole' => 3
-						);
-			$data['listaEncargados'] = $this->general_model->get_user($arrParam);
-
-			$this->load->view("ordentrabajo_modal", $data);
-    }
-
-	/**
      * Cargo modal - formulario Estado orden trabajo
      * @since 29/01/2021
      * @author BMOTTAG
@@ -181,9 +120,8 @@ if ($data["idOrdenTrabajo"] != 'x')
 	{
 			header("Content-Type: text/plain; charset=utf-8");
 
-			$data["idOrdenTrabajo"] = $this->input->post("idOrdenTrabajo");
-
-			$data['information'] = FALSE;
+			$data['idOrdenTrabajo'] = $this->input->post("idOrdenTrabajo");
+			$data['information'] = $this->general_model->get_orden_trabajo($data);
 
 			$this->load->view("ordentrabajoestado_modal", $data);
     }
@@ -199,13 +137,21 @@ if ($data["idOrdenTrabajo"] != 'x')
 			$data = array();
 			
 			$data['idRecord'] = $this->input->post("hddIdOrdenTrabajo");
+			$tipoMantenimiento = $this->input->post("hddtipoMantenimiento");
 				
 			$msj = "Se guardo la información!";
 
 			if ($this->ordentrabajo_model->guardarEstadoOrdentrabajo($data['idRecord'])) 
 			{
-				//actualizar estado
+				//actualizar estado actual en OT
 				$this->ordentrabajo_model->updateOrdentrabajo($data['idRecord']);
+
+				//si es mantenimiento correctivo y el estado es diferente de asignado entonces cambio el estado de mantenimiento a FINALIZADO
+				$estadoActual = $this->input->post('estado');
+				if($tipoMantenimiento == 1 && $estadoActual>1){
+					$estadoMantenimiento = 3;//FINALIZADO
+					$this->ordentrabajo_model->updateEstadoMantenimientoCorrectivo($estadoMantenimiento);
+				}
 
 				$data["result"] = true;		
 				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
@@ -243,7 +189,7 @@ if ($data["idOrdenTrabajo"] != 'x')
      * @since 1/2/2021
      * @author BMOTTAG
      */
-    public function cargarModalOrdenTrabajoPreventivo() 
+    public function cargarModalOrdenTrabajo() 
 	{
 			header("Content-Type: text/plain; charset=utf-8");
 

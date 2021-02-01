@@ -30,7 +30,7 @@ $(function(){
 		var oID = $(this).attr("id");
         $.ajax ({
             type: 'POST',
-			url: base_url + 'ordentrabajo/cargarModalOrdenTrabajoPreventivo',
+			url: base_url + 'ordentrabajo/cargarModalOrdenTrabajo',
 			data: {'idCompuesto': oID, 'tipoMantenimiento': 1},
             cache: false,
             success: function (data) {
@@ -93,7 +93,7 @@ $(function(){
 				</div>
 				<div class="panel-body">
 					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantenimiento Correctivo del Equipo
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantenimiento Correctivo
 					</button><br>
 					<?php
 					$retornoExito = $this->session->flashdata('retornoExito');
@@ -150,7 +150,7 @@ $(function(){
 										$valor = 'En Proceso';
 										$clase = "text-danger";
 										break;
-									case 2:
+									case 3:
 										$valor = 'Finalizado';
 										$clase = "text-success";
 										break;
@@ -158,23 +158,55 @@ $(function(){
 								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
 								echo "</td>";
 								echo "<td class='text-center'>";
+
+								//DESHABILITAR BOTONES
+								$deshabilitar = '';
+								$userRol = $this->session->rol;
+								$estadoMantenimiento = $data['estado'];
+								if($userRol != 99 && $estadoMantenimiento > 1)
+								{
+									$deshabilitar = 'disabled';
+								}
 								?>
+								<?php if(!$deshabilitar){ ?>
 								<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $data['id_correctivo']; ?>" >
 									Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 								</button>
+								<?php }else{ echo "---";} ?>
 								<?php
 								echo "</td>";
 								echo "<td class='text-center'>";
 								?>
-								<a href="<?php echo base_url("mantenimiento/foto_danio/" . $data['fk_id_equipo_correctivo'] . "/" . $data['id_correctivo']); ?>" class="btn btn-default btn-warning btn-xs">Foto <span class="glyphicon glyphicon-picture" aria-hidden="true"></a>
+								<?php if(!$deshabilitar){ ?>
+									<a href="<?php echo base_url("mantenimiento/foto_danio/" . $data['fk_id_equipo_correctivo'] . "/" . $data['id_correctivo']); ?>" class="btn btn-default btn-warning btn-xs">Foto <span class="glyphicon glyphicon-picture" aria-hidden="true"></a>
+								<?php }else{ echo "---";} ?>
+
 								<?php
 								echo "</td>";
 								echo "<td class='text-center'>";
 								$idCompuesto = $data['id_correctivo'] . '-' . $info[0]['id_equipo'];
 								?>
+								<?php if(!$deshabilitar){ ?>
 								<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $idCompuesto; ?>" >
 									Crear OT <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
 								</button>
+								<?php 
+								}else{ 
+									//buscar numero de la OT
+									$ci = &get_instance();
+									$ci->load->model("general_model");
+									
+									//Left MENU 
+									$arrParam = array(
+										"idMantenimiento" => $data['id_correctivo'],
+										"tipoMantenimiento" => 1
+									);
+									$infoOT = $this->general_model->get_orden_trabajo($arrParam);
+									$idOT = $infoOT[0]['id_orden_trabajo'];
+								?>
+								<a href="<?php echo base_url("ordentrabajo/ver_orden/" . $idOT); ?>" class="btn btn-success btn-xs">Ver OT <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+								<?php } ?>
+
 								<?php
 								echo "</td>";
 								echo "</tr>";
