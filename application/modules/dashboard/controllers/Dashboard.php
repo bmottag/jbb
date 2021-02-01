@@ -20,7 +20,7 @@ class Dashboard extends CI_Controller {
 			$year = date('Y');
 			$firstDay = date('Y-m-d', mktime(0,0,0, 1, 1, $year));//primer dia del año, para filtrar por año
 
-			$arrParam['filtroFecha'] = $firstDay;//filtro registros desde el primeri dia del año
+			$arrParam['from'] = $firstDay;//filtro registros desde el primeri dia del año
 			$arrParam['estado'] = 1;
 			$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam);
 			$data['noOrdenesTrabajo'] = $data['infoOrdenesTrabajo']?count($data['infoOrdenesTrabajo']):0;

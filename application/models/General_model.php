@@ -455,10 +455,13 @@ class General_model extends CI_Model {
 					$this->db->where('C.tipo_mantenimiento ', $arrData["tipoMantenimiento"]);
 				}
 				if (array_key_exists("estado", $arrData)) {
-					$this->db->where('C.ultimo_estado', $arrData["estado"]);
+					$this->db->where('C.estado_actual', $arrData["estado"]);
 				}
-				if (array_key_exists("filtroFecha", $arrData)) {
-					$this->db->where('C.fecha_asignacion >=', $arrData["filtroFecha"]);
+				if (array_key_exists("from", $arrData) && $arrData["from"] != '') {
+					$this->db->where('C.fecha_asignacion >=', $arrData["from"]);
+				}				
+				if (array_key_exists("to", $arrData) && $arrData["to"] != '' && $arrData["from"] != '') {
+					$this->db->where('C.fecha_asignacion <=', $arrData["to"]);
 				}
 
 				$this->db->order_by('C.id_orden_trabajo', 'desc');

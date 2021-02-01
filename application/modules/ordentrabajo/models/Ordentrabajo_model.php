@@ -24,7 +24,7 @@
 					$data['fk_id_mantenimiento'] = $this->input->post('hddIdMantenimiento');
 					$data['fecha_asignacion'] = date("Y-m-d");
 					$data['fk_id_user_orden'] = $idUser;
-					$data['ultimo_estado'] = $this->input->post('estado');
+					$data['estado_actual'] = $this->input->post('estado');
 					$query = $this->db->insert('orden_trabajo', $data);
 					$idOrdenTrabajo = $this->db->insert_id();
 				} else {
@@ -73,7 +73,7 @@
 
 				$data = array(
 					'informacion_adicional' => $this->input->post('informacion'),
-					'ultimo_estado' => $this->input->post('estado')
+					'estado_actual' => $this->input->post('estado')
 				);
 
 				$this->db->where('id_orden_trabajo', $idOrdenTrabajo);

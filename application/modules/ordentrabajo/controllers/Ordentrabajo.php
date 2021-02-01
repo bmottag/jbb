@@ -78,7 +78,6 @@ class Ordentrabajo extends CI_Controller {
 				$flag = true;
 			}
 
-
 			$msj = "Se guardo la información!";
 
 			if ($idOrdenTrabajo = $this->ordentrabajo_model->guardarOrdentrabajo()) 
@@ -99,35 +98,6 @@ class Ordentrabajo extends CI_Controller {
 			}
 
 			$data["idRecord"] = $idOrdenTrabajo;
-		
-			echo json_encode($data);
-    }
-
-	/**
-	 * Guardar orden de trabajo
-	 * @since 27/1/2021
-     * @author BMOTTAG
-	 */
-	public function actualizar_ordentrabajo()
-	{			
-			header('Content-Type: application/json');
-			$data = array();
-			
-			$idOrdenTrabajo = $this->input->post('hddIdOrdenTrabajo');
-			$data["idRecord"] = $this->input->post('hddIdMantenimiento');
-		
-			$msj = "Se guardo la información!";
-
-			if ($idOrdenTrabajo = $this->ordentrabajo_model->guardarOrdentrabajo()) 
-			{				
-				$data["result"] = true;		
-				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
-			} else {
-				$data["result"] = "error";
-				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
-			}
-
-			//$data["idRecord"] = $idMantenimiento . '/' . $idOrdenTrabajo;
 		
 			echo json_encode($data);
     }
@@ -237,6 +207,27 @@ if ($data["idOrdenTrabajo"] != 'x')
 		
 			echo json_encode($data);
     }
+
+	/**
+	 * Lista de OT filtrado por estado
+     * @since 1/2/2021
+     * @author BMOTTAG
+	 */
+	public function orden_estado($estado, $year="x")
+	{						
+			$from = date('Y-m-d', mktime(0,0,0, 1, 1, $year));//primer dia del año
+			$to = date('Y-m-d', mktime(0,0,0, 1, 1, $year+1));//primer dia del siguiente año para que incluya todo el dia anterior en la consulta
+			
+			$arrParam = array(
+				"from" => $from,
+				"to" => $to,
+				"estado" => $estado
+			);
+			$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam);
+
+			$data["view"] = "listado_orden_trabajo";
+			$this->load->view("layout", $data);	
+	}
 	
 	
 	

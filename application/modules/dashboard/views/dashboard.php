@@ -150,6 +150,69 @@ if ($retornoError) {
     <!-- /.row -->
     <div class="row">
 
+        <div class="col-lg-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <i class="fa fa-book fa-fw"></i> Lista Mantenimiento Correctivo <strong>Nuevas - <?php echo date("Y"); ?></strong>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+<?php
+    if(!$infoMantenimientoCorrectivo){ 
+?>
+        <div class="col-lg-12">
+            <small>
+                <p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en la base de datos.</p>
+            </small>
+        </div>
+<?php
+    }else{
+?>                      
+                    
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+                        <thead>
+                            <tr>
+                                <th class='text-center'>Fecha Registro</th>
+                                <th class='text-center'>Descripción Falla</th>
+                                <th class='text-center'>Requerimiento</th>
+                                <th class='text-center'>Usuario</th>
+                                <th class='text-center'>Ver</th>
+                            </tr>
+                        </thead>
+                        <tbody>                         
+                        <?php
+                            foreach ($infoMantenimientoCorrectivo as $lista):
+                                echo "<tr>";
+                                echo "<td class='text-center'>";
+                                echo $lista['fecha']; 
+                                echo "</td>";
+                                echo "<td>" . $lista['descripcion'] . "</td>";
+                                echo "<td>" . $lista['consideracion'] . "</td>";
+                                echo "<td>" . $lista['name'] . "</td>";
+                                echo "<td class='text-center'>";
+                                ?>
+                                <a href="<?php echo base_url("mantenimiento/correctivo/" . $lista['fk_id_equipo_correctivo']); ?>" class="btn btn-success btn-xs">Ver <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+                                <?php
+                                echo "</td>";
+                                echo "</tr>";
+                            endforeach;
+                        ?>
+                        </tbody>
+                    </table>
+                    
+<?php   } ?>                    
+                </div>
+                <!-- /.panel-body -->
+            </div>
+
+        </div>
+    
+    </div>
+
+    <!-- /.row -->
+    <div class="row">
+
         <div class="col-lg-9">
             <div class="panel panel-violeta">
                 <div class="panel-heading">
@@ -228,121 +291,35 @@ if ($retornoError) {
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="list-group">
-                        <a href="<?php echo base_url("workorders/wo_by_state/0/" . date("Y")); ?>" class="list-group-item">
-                            <p class="text-info"><i class="fa fa-thumb-tack fa-fw"></i><strong> Asignadas</strong>
-                                <span class="pull-right text-muted small"><em><?php echo $asignadas; ?></em>
-                                </span>
-                            </p>
-                        </a>
-                        <a href="<?php echo base_url("workorders/wo_by_state/2/" . date("Y")); ?>" class="list-group-item">
-                            <p class="text-success"><i class="fa fa-check fa-fw"></i><strong> Solucionadas</strong>
-                                <span class="pull-right text-muted small"><em><?php echo $solucionadas; ?></em>
-                                </span>
-                            </p>
-                        </a>
-                        <a href="<?php echo base_url("workorders/wo_by_state/4/" . date("Y")); ?>" class="list-group-item">
-                            <p class="text-danger"><i class="fa fa-times fa-fw"></i><strong> Canceladas</strong>
-                                <span class="pull-right text-muted small"><em><?php echo $canceladas; ?></em>
-                                </span>
-                            </p>
-                        </a>
-
-                    </div>
-                    <!-- /.list-group -->
-
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-
-        </div>
-        <!-- /.col-lg-4 -->
-    
-    </div>
-
-    <!-- /.row -->
-    <div class="row">
-
-        <div class="col-lg-9">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <i class="fa fa-book fa-fw"></i> Lista Mantenimiento Correctivo 
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-
-<?php
-    if(!$infoMantenimientoCorrectivo){ 
-?>
-        <div class="col-lg-12">
-            <small>
-                <p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en la base de datos.</p>
-            </small>
-        </div>
-<?php
-    }else{
-?>                      
-                    
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
-                        <thead>
-                            <tr>
-                                <th class='text-center'>Fecha Registro</th>
-                                <th class='text-center'>Descripción Falla</th>
-                                <th class='text-center'>Requerimiento</th>
-                                <th class='text-center'>Usuario</th>
-                                <th class='text-center'>Ver</th>
-                            </tr>
-                        </thead>
-                        <tbody>                         
-                        <?php
-                            foreach ($infoMantenimientoCorrectivo as $lista):
-                                echo "<tr>";
-                                echo "<td class='text-center'>";
-                                echo $lista['fecha']; 
-                                echo "</td>";
-                                echo "<td>" . $lista['descripcion'] . "</td>";
-                                echo "<td>" . $lista['consideracion'] . "</td>";
-                                echo "<td>" . $lista['name'] . "</td>";
-                                echo "<td class='text-center'>";
-                                ?>
-                                <a href="<?php echo base_url("mantenimiento/correctivo/" . $lista['fk_id_equipo_correctivo']); ?>" class="btn btn-success btn-xs">Ver <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
-                                <?php
-                                echo "</td>";
-                                echo "</tr>";
-                            endforeach;
+                        <?php 
+                            $enlace = '#';
+                            $enlace2 = '#';
+                            $enlace3 = '#';
+                            if($asignadas){
+                                $enlace = base_url("ordentrabajo/orden_estado/1/" . date("Y"));
+                            }
+                            if($solucionadas){
+                                $enlace2 = base_url("ordentrabajo/orden_estado/2/" . date("Y"));
+                            }
+                            if($canceladas){
+                                $enlace3 = base_url("ordentrabajo/orden_estado/3/" . date("Y"));
+                            }
                         ?>
-                        </tbody>
-                    </table>
-                    
-<?php   } ?>                    
-                </div>
-                <!-- /.panel-body -->
-            </div>
-
-        </div>
-
-        <div class="col-lg-3">
-            <div class="panel panel-violeta">
-                <div class="panel-heading">
-                    <i class="fa fa-bell fa-fw"></i> OT - <?php echo date("Y"); ?>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="list-group">
-                        <a href="<?php echo base_url("workorders/wo_by_state/0/" . date("Y")); ?>" class="list-group-item">
+                        <a href="<?php echo $enlace; ?>" class="list-group-item" disabled>
                             <p class="text-info"><i class="fa fa-thumb-tack fa-fw"></i><strong> Asignadas</strong>
                                 <span class="pull-right text-muted small"><em><?php echo $asignadas; ?></em>
                                 </span>
                             </p>
                         </a>
-                        <a href="<?php echo base_url("workorders/wo_by_state/2/" . date("Y")); ?>" class="list-group-item">
+
+                        <a href="<?php echo $enlace2; ?>" class="list-group-item">
                             <p class="text-success"><i class="fa fa-check fa-fw"></i><strong> Solucionadas</strong>
                                 <span class="pull-right text-muted small"><em><?php echo $solucionadas; ?></em>
                                 </span>
                             </p>
                         </a>
-                        <a href="<?php echo base_url("workorders/wo_by_state/4/" . date("Y")); ?>" class="list-group-item">
-                            <p class="text-danger"><i class="fa fa-power-off fa-fw"></i><strong> Canceladas</strong>
+                        <a href="<?php echo $enlace3; ?>" class="list-group-item">
+                            <p class="text-danger"><i class="fa fa-times fa-fw"></i><strong> Canceladas</strong>
                                 <span class="pull-right text-muted small"><em><?php echo $canceladas; ?></em>
                                 </span>
                             </p>

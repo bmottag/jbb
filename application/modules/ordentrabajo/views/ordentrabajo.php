@@ -71,8 +71,25 @@ $(function(){
 				<div class="panel-body">
 
 					<strong>No. OT: </strong><?php echo $information[0]['id_orden_trabajo']; ?><br>
-					<strong>Encargado: </strong><?php echo $information[0]['encargado']; ?>
-					
+					<strong>Encargado: </strong><?php echo $information[0]['encargado']; ?><br>
+					<strong>Estado Actual: </strong>
+					<?php
+					switch ($information[0]['estado_actual']) {
+						case 1:
+							$valor = 'Asignada';
+							$clase = "text-info";
+							break;
+						case 2:
+							$valor = 'Solucionado';
+							$clase = "text-success";
+							break;
+						case 3:
+							$valor = 'Cancelado';
+							$clase = "text-danger";
+							break;
+					}
+					echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+					?>
 				</div>
 			</div>
 		</div>
