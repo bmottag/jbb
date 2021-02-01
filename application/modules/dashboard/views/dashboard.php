@@ -155,7 +155,7 @@ if ($retornoError) {
         <div class="col-lg-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <i class="fa fa-book fa-fw"></i> Lista Mantenimiento Correctivo <strong>Nuevas - <?php echo date("Y"); ?></strong>
+                    <i class="fa fa-wrench fa-fw"></i> Lista Mantenimiento Correctivo <strong>Nuevas - <?php echo date("Y"); ?></strong>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -218,7 +218,7 @@ if ($retornoError) {
         <div class="col-lg-9">
             <div class="panel panel-violeta">
                 <div class="panel-heading">
-                    <i class="fa fa-book fa-fw"></i> Ordenes de Trabajo <strong>Asignadas - <?php echo date("Y"); ?></strong>
+                    <i class="fa fa-briefcase fa-fw"></i> Ordenes de Trabajo <strong>Asignadas - <?php echo date("Y"); ?></strong>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">

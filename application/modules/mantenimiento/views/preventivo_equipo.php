@@ -100,11 +100,8 @@ $(function(){
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-								<th class="text-center">Tipo Equipo</th>
-								<th class="text-center">Frecuencia</th>
-								<th class="text-center">Usuario</th>
-								<th class="text-center">Estado</th>
 								<th class="text-center">Descripción</th>
+								<th class="text-center">Frecuencia</th>						
 								<th class="text-center">Orden Trabajo</th>
 							</tr>
 						</thead>
@@ -112,23 +109,8 @@ $(function(){
 						<?php
 							foreach ($infoPreventivo as $lista):
 								echo "<tr>";
-								echo "<td>" . $lista['tipo_equipo'] . "</td>";
-								echo "<td>" . $lista['frecuencia'] . "</td>";
-								echo "<td>" . $lista['name'] . "</td>";
-								echo "<td class='text-center'>";
-								switch ($lista['estado']) {
-									case 1:
-										$valor = 'Activo';
-										$clase = "text-success";
-										break;
-									case 2:
-										$valor = 'Inactivo';
-										$clase = "text-danger";
-										break;
-								}
-								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
-								echo "</td>";
 								echo "<td>" . $lista['descripcion'] . "</td>";
+								echo "<td>" . $lista['frecuencia'] . "</td>";
 								echo "<td class='text-center'>";
 								$idCompuesto = $lista['id_preventivo'] . '-' . $info[0]['id_equipo'];
 								?>
@@ -147,6 +129,72 @@ $(function(){
 				</div>
 			</div>
 		</div>
+		<div class="col-lg-9">
+			<div class="panel panel-violeta">
+				<div class="panel-heading">
+					<i class="fa fa-briefcase"></i> <strong>ORDENES DE TRABAJO</strong>
+				</div>
+				<div class="panel-body">
+
+					<?php 										
+						if(!$infoOrdenesTrabajo){ 
+							echo '<div class="col-lg-12">
+								<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en el sistema.</p>
+								</div>';
+						} else {
+					?>
+					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+						<thead>
+							<tr>
+                                <th class='text-center'>No. OT</th>
+                                <th class='text-center'>Fecha Asignación</th>
+                                <th class='text-center'>Encargado</th>
+                                <th class='text-center'>Estado</th>
+                                <th class='text-center'>Información Adicional</th>
+                                <th class='text-center'>Ver</th>
+							</tr>
+						</thead>
+						<tbody>							
+						<?php
+							foreach ($infoOrdenesTrabajo as $lista):
+                                echo "<tr>";
+                                echo "<td class='text-center'>" . $lista['id_orden_trabajo'] . "</td>";
+                                echo "<td class='text-center'>" . $lista['fecha_asignacion'] . "</td>";
+                                echo "<td >" . $lista['encargado'] . "</td>";
+                                echo "<td class='text-center'>";
+								switch ($lista['estado_actual']) {
+									case 1:
+										$valor = 'Asignada';
+										$clase = "text-info";
+										break;
+									case 2:
+										$valor = 'Solucionado';
+										$clase = "text-success";
+										break;
+									case 3:
+										$valor = 'Cancelado';
+										$clase = "text-danger";
+										break;
+								}
+								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+                                echo "</td>";
+                                echo "<td>" . $lista['informacion_adicional'] . "</td>";
+                                echo "<td class='text-center'>";
+                                ?>
+                                <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver OT <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+                                <?php
+                                echo "</td>";
+                                echo "</tr>";
+							endforeach;
+						?>
+						</tbody>
+					</table>
+				<?php } ?>
+				</div>
+			</div>
+		</div>
+
+
 	</div>
 </div>
 <div class="modal fade text-center" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">    

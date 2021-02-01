@@ -24,7 +24,7 @@ class Mantenimiento extends CI_Controller {
 				"estadoMantenimiento" => $estado,
 				'limit' => 10
 			);
-			$data['infoPreventivo'] = $this->mantenimientos_model->get_preventivo($arrParam);
+			$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
 		} elseif ($this->input->post('tipo_equipo'))
 		{
 			$data['tituloListado'] = 'LISTA DE MANTENIMIENTOS PREVENTIVOS QUE COINCIDEN CON SU BUSQUEDA';
@@ -33,7 +33,7 @@ class Mantenimiento extends CI_Controller {
 				"tipoEquipo" => $this->input->post('tipo_equipo'),
 				"estadoMantenimiento" => $estado
 			);
-			$data['infoPreventivo'] = $this->mantenimientos_model->get_preventivo($arrParam);
+			$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
 		} else {
 			$data['infoPreventivo'] = FALSE;
 		}
@@ -68,7 +68,7 @@ class Mantenimiento extends CI_Controller {
 			$arrParam = array(
 				"idPreventivo" => $data["idPreventivo"]
 			);
-			$data['infoPreventivo'] = $this->mantenimientos_model->get_preventivo($arrParam);
+			$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
 		}
 		$this->load->view("preventivo_modal", $data);
     }
@@ -103,7 +103,7 @@ class Mantenimiento extends CI_Controller {
 	{
 		$arrParam = array("idEquipo" => $idEquipo);
 		$data['info'] = $this->general_model->get_equipos_info($arrParam);
-		$data['listadoCorrectivos'] = $this->mantenimientos_model->get_correctivo($arrParam);
+		$data['listadoCorrectivos'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
 		$data["view"] = 'correctivo';
 		$this->load->view("layout_calendar", $data);
 	}
@@ -124,7 +124,7 @@ class Mantenimiento extends CI_Controller {
 			$arrParam = array(
 				"idCorrectivo" => $data["idCorrectivo"]
 			);
-			$data['infoCorrectivo'] = $this->mantenimientos_model->get_correctivo($arrParam);
+			$data['infoCorrectivo'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
 			$data["idEquipo"] = $data['infoCorrectivo'][0]['fk_id_equipo_correctivo'];
 
 		}
@@ -164,7 +164,7 @@ class Mantenimiento extends CI_Controller {
 		$arrParam = array("idEquipo" => $idEquipo);
 		$data['info'] = $this->general_model->get_equipos_info($arrParam);
 		$arrParam = array("idCorrectivo" => $idCorrectivo);
-		$data['infoCorrectivo'] = $this->mantenimientos_model->get_correctivo($arrParam);
+		$data['infoCorrectivo'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
 		$data['fotosDanios'] = $this->mantenimientos_model->get_fotos_danios($arrParam);
 		$data['error'] = $error;
 		$data["view"] = 'foto_danios';
@@ -248,10 +248,17 @@ class Mantenimiento extends CI_Controller {
 		$arrParam = array("idEquipo" => $idEquipo);
 		$data['info'] = $this->general_model->get_equipos_info($arrParam);
 		$arrParam = array(
-			"tipoEquipo" => $data['info'][0]['fk_id_tipo_equipo'],
+			'tipoEquipo' => $data['info'][0]['fk_id_tipo_equipo'],
 			'limit' => 10
 		);
-		$data['infoPreventivo'] = $this->mantenimientos_model->get_preventivo($arrParam);
+		$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
+
+		$arrParam2 = array(
+			'tipoMantenimiento' => 2,
+			'idEquipo' => $idEquipo
+		);
+		$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam2);
+
 		$data["view"] = 'preventivo_equipo';
 		$this->load->view("layout_calendar", $data);
 	}
