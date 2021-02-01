@@ -3,8 +3,8 @@ $( document ).ready( function () {
 	$( "#form" ).validate( {
 		rules: {
 			id_tipo_equipo: 		{ required: true, minlength: 1, maxlength:1 },
-			frecuencia:				{ required: true, minlength: 1, maxlength:10 },
-			descripcion: 			{ required: true, minlength: 3, maxlength:5000 }
+			frecuencia:				{ required: true, minlength: 5, maxlength:180 },
+			descripcion: 			{ required: true }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

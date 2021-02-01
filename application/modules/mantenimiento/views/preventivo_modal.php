@@ -16,7 +16,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label for="from">Tipo Equipo: *</label>
+					<label class="control-label" for="from">Tipo Equipo: *</label>
 					<select name="id_tipo_equipo" id="id_tipo_equipo" class="form-control" required >
 						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($tipoEquipo); $i++) { ?>
@@ -27,20 +27,15 @@
 			</div>
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label for="frecuencia">Frecuencia: *</label>
-					<select name="frecuencia" id="frecuencia" class="form-control" required >
-						<option value="">Seleccione...</option>
-						<?php for ($i = 0; $i < count($frecuencia); $i++) { ?>
-							<option value="<?php echo $frecuencia[$i]["id_frecuencia"]; ?>" <?php if($infoPreventivo && $infoPreventivo[0]["fk_id_frecuencia"] == $frecuencia[$i]["id_frecuencia"]) { echo "selected"; } ?>><?php echo $frecuencia[$i]["frecuencia"]; ?></option>
-						<?php } ?>
-					</select>
+					<label class="control-label" for="frecuencia">Frecuencia: *</label>
+					<input type="text" id="frecuencia" name="frecuencia" class="form-control" value="<?php echo $infoPreventivo?$infoPreventivo[0]["frecuencia"]:""; ?>" placeholder="Frecuencia" required >
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="form-group text-left">
-					<label for="descripcion">Descripción: *</label>
+					<label class="control-label" for="descripcion">Descripción: *</label>
 					<textarea id="descripcion" name="descripcion" placeholder="Descripción" class="form-control" rows="3"><?php echo $infoPreventivo?$descripcion:""; ?></textarea>
 				</div>
 			</div>

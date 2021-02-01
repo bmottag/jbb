@@ -25,14 +25,12 @@ class Mantenimiento extends CI_Controller {
 				'limit' => 10
 			);
 			$data['infoPreventivo'] = $this->mantenimientos_model->get_preventivo($arrParam);
-		} elseif ($this->input->post('tipo_equipo') || $this->input->post('frecuencia'))
+		} elseif ($this->input->post('tipo_equipo'))
 		{
 			$data['tituloListado'] = 'LISTA DE MANTENIMIENTOS PREVENTIVOS QUE COINCIDEN CON SU BUSQUEDA';
-			$data['tipoEquipo'] =  $this->input->post('id_tipo_equipo');
-			$data['frecuencia'] =  $this->input->post('frecuencia');	
+			$data['tipoEquipo'] =  $this->input->post('tipo_equipo');
 			$arrParam = array(
-				"tipoEquipo" => $this->input->post('id_tipo_equipo'),
-				"frecuencia" => $this->input->post('frecuencia'),
+				"tipoEquipo" => $this->input->post('tipo_equipo'),
 				"estadoMantenimiento" => $estado
 			);
 			$data['infoPreventivo'] = $this->mantenimientos_model->get_preventivo($arrParam);
@@ -45,12 +43,7 @@ class Mantenimiento extends CI_Controller {
 			"id" => "x"
 		);
 		$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
-		$arrParam = array(
-			"table" => "param_frecuencia",
-			"order" => "id_frecuencia",
-			"id" => "x"
-		);
-		$data['frecuencia'] = $this->general_model->get_basic_search($arrParam);
+
 		$data["view"] = 'preventivo';
 		$this->load->view("layout", $data);
 	}
@@ -69,12 +62,6 @@ class Mantenimiento extends CI_Controller {
 			"id" => "x"
 		);
 		$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
-		$arrParam = array(
-			"table" => "param_frecuencia",
-			"order" => "id_frecuencia",
-			"id" => "x"
-		);
-		$data['frecuencia'] = $this->general_model->get_basic_search($arrParam);
 		$data["idPreventivo"] = $this->input->post("idPreventivo");
 		if ($data["idPreventivo"] != 'x')
 		{
