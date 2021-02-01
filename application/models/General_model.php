@@ -506,10 +506,9 @@ class General_model extends CI_Model {
 		 */
 		public function get_mantenimiento_preventivo($arrData)
 		{
-				$this->db->select("P.*, T.tipo_equipo, F.frecuencia, CONCAT(U.first_name, ' ', U.last_name) name");
+				$this->db->select("P.*, T.tipo_equipo, CONCAT(U.first_name, ' ', U.last_name) name");
 				$this->db->join('usuarios U', 'P.fk_id_user_preventivo = U.id_user', 'INNER');
 				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = P.fk_id_tipo_equipo_preventivo', 'INNER');
-				$this->db->join('param_frecuencia F', 'F.id_frecuencia = P.fk_id_frecuencia', 'INNER');
 				if (array_key_exists("idMantenimiento", $arrData)) {
 					$this->db->where('P.id_preventivo', $arrData["idMantenimiento"]);
 				}

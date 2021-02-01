@@ -116,7 +116,7 @@ $(function(){
 				</div>
 				<div class="panel-body">
 				
-					<button type="button" class="btn btn-violeta btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $information[0]['id_orden_trabajo']; ?>">
+					<button type="button" class="btn btn-violeta btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $information[0]['id_orden_trabajo']; ?>" <?php echo $deshabilitar; ?>>
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Información
 					</button><br>
 					

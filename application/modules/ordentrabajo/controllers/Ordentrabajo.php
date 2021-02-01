@@ -23,6 +23,15 @@ class Ordentrabajo extends CI_Controller {
 			$arrParam = array("idOrdenTrabajo" => $idOrdenTrabajo);
 			$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
 
+			//DESHABILITAR ORDEN DE TRABAJO
+			$data['deshabilitar'] = '';
+			$userRol = $this->session->rol;
+			$estadoOT = $data['information'][0]['estado_actual'];
+			if($userRol != 99 && $estadoOT > 1)
+			{
+				$data['deshabilitar'] = 'disabled';
+			}
+
 			//buscar historial de estados orden de trabajo
 			$data['infoEstado'] = $this->general_model->get_estado_orden_trabajo($arrParam);
 
