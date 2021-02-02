@@ -26,7 +26,7 @@
 		
 			<div class="list-group">
 				<a href="<?php echo base_url('equipos/detalle/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
-					<i class="fa fa-tag"></i> Información General
+					<i class="fa <?php echo $info[0]['icono']; ?>"></i> Información General
 				</a>
 				<a href="<?php echo base_url('equipos/especifico/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tags"></i> Información Específica
@@ -50,7 +50,7 @@
 					<i class="fa fa-wrench"></i> Mantenimiento Preventivo
 				</a>
 				<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
-					<i class="fa fa-book"></i> Diagnóstico Periódico
+					<i class="fa fa-tasks"></i> Diagnóstico Periódico
 				</a>
 			</div>
 
@@ -59,7 +59,7 @@
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-tag"></i> <strong>INFORMACIÓN GENERAL DEL EQUIPO</strong>
+					<i class="fa <?php echo $info[0]['icono']; ?>"></i> <strong>INFORMACIÓN GENERAL DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 

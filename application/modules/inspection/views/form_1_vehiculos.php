@@ -17,7 +17,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<i class="fa fa-search"></i><strong> DIAGNÓSTICO PERIÓDICO</strong>
+					<i class="fa fa-tasks"></i><strong> DIAGNÓSTICO PERIÓDICO</strong>
 				</div>
 				<div class="panel-body">
 

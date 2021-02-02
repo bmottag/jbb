@@ -49,7 +49,7 @@ if ($retornoError) {
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-book fa-5x"></i>
+                            <i class="fa fa-briefcase fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?php echo $noOrdenesTrabajo; ?></div>
@@ -75,7 +75,7 @@ if ($retornoError) {
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-life-saver fa-5x"></i>
+                            <i class="fa fa-car fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?php echo $noVehiculos; ?></div>
@@ -102,7 +102,7 @@ if ($retornoError) {
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-briefcase fa-5x"></i>
+                            <i class="fa fa-bomb fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?php echo $noBombas; ?></div>
@@ -257,7 +257,7 @@ if ($retornoError) {
                                 switch ($lista['tipo_mantenimiento']) {
                                     case 1:
                                         $valor = 'Correctivo';
-                                        $clase = "text-violeta";
+                                        $clase = "text-danger";
                                         break;
                                     case 2:
                                         $valor = 'Preventivo';

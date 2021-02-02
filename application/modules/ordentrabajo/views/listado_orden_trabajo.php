@@ -46,7 +46,7 @@
                                 switch ($lista['tipo_mantenimiento']) {
                                     case 1:
                                         $valor = 'Correctivo';
-                                        $clase = "text-violeta";
+                                        $clase = "text-danger";
                                         break;
                                     case 2:
                                         $valor = 'Preventivo';

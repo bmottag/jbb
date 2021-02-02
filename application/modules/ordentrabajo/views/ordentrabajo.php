@@ -26,7 +26,7 @@ $(function(){
 		<div class="col-lg-4">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-automobile"></i> <strong>INFORMACIÓN DEL EQUIPO</strong>
+					<i class="fa <?php echo $infoEquipo[0]['icono']; ?>"></i> <strong>INFORMACIÓN DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 
@@ -40,7 +40,7 @@ $(function(){
 				
 					<strong>No. Inventario Entidad: </strong>
 					<a href='<?php echo base_url('equipos/detalle/' . $infoEquipo[0]['id_equipo']); ?>'>
-							  <?php echo $infoEquipo[0]['numero_inventario'] ?>
+							  <?php echo $infoEquipo[0]['numero_inventario']; ?>
 					</a>
 					<br>
 					<strong>Marca: </strong><?php echo $infoEquipo[0]['marca']; ?><br>
