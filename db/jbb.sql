@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-02-2021 a las 19:44:06
+-- Tiempo de generación: 03-02-2021 a las 19:53:56
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -92,6 +92,13 @@ CREATE TABLE `equipos_control_combustible` (
   `valor` float NOT NULL,
   `labor_realizada` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `equipos_control_combustible`
+--
+
+INSERT INTO `equipos_control_combustible` (`id_equipo_control_combustible`, `fk_id_equipo_combustible`, `kilometros_actuales`, `cantidad`, `fecha_combustible`, `fk_id_operador_combustible`, `tipo_consumo`, `valor`, `labor_realizada`) VALUES
+(1, 22, '100', '1 cartucho', '2021-02-02 10:12:56', 3, 2, 10000, 'Se engraso la bomba');
 
 -- --------------------------------------------------------
 
@@ -279,6 +286,13 @@ CREATE TABLE `equipos_poliza` (
   `descripcion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `equipos_poliza`
+--
+
+INSERT INTO `equipos_poliza` (`id_equipo_poliza`, `fk_id_equipo_poliza`, `fk_id_user_poliza`, `fecha_inicio`, `fecha_vencimiento`, `numero_poliza`, `estado_poliza`, `descripcion`) VALUES
+(1, 22, 1, '2021-02-01', '2021-02-28', '456789', 0, 'Nueva póliza');
+
 -- --------------------------------------------------------
 
 --
@@ -402,7 +416,8 @@ INSERT INTO `mantenimiento_correctivo` (`id_correctivo`, `fecha`, `fk_id_equipo_
 (2, '2021-02-01 13:08:40', 2, 1, 'Se rompio el vidrio del copiloto', 'Ir al almacen y cambiar.', 3),
 (3, '2021-02-01 13:19:03', 16, 1, 'El cable de alimentación se rompio', 'EL cambio lo podemos hacer en la entidad', 3),
 (4, '2021-02-01 14:11:34', 2, 1, 'Llanta trasera derecha pinchada', 'Esto se puede arreglarar en la entidad', 3),
-(5, '2021-02-01 18:18:33', 2, 1, 'Es necesario cambiar los frenos, tienen un ruido extraño cuando se usan.', 'Que es provedor los revise si a se requiere el cambio.', 3);
+(5, '2021-02-01 18:18:33', 2, 1, 'Es necesario cambiar los frenos, tienen un ruido extraño cuando se usan.', 'Que es provedor los revise si a se requiere el cambio.', 3),
+(6, '2021-02-01 20:43:19', 1, 1, 'Motor con gotera de aceite', 'Revisar con el fabricante', 3);
 
 -- --------------------------------------------------------
 
@@ -440,7 +455,8 @@ CREATE TABLE `mantenimiento_preventivo` (
 INSERT INTO `mantenimiento_preventivo` (`id_preventivo`, `fk_id_tipo_equipo_preventivo`, `fk_id_user_preventivo`, `frecuencia`, `descripcion`, `estado`) VALUES
 (1, 1, 1, 'Cada 8mil kilometros', 'Cambio de aceite cada 8mil kilometros', 1),
 (2, 1, 1, 'Cada 50 horas', 'Engrasado cada 50 horas', 1),
-(3, 1, 1, 'Cada 2 años', 'Limpieza deposito ACPM', 1);
+(3, 1, 1, 'Cada 2 años', 'Limpieza deposito ACPM', 1),
+(4, 2, 1, 'Cada vez que se opera', 'Limpieza del motor', 1);
 
 -- --------------------------------------------------------
 
@@ -472,7 +488,9 @@ INSERT INTO `orden_trabajo` (`id_orden_trabajo`, `fecha_asignacion`, `fk_id_mant
 (5, '2021-02-01', 3, 16, 1, 1, 4, 'Se cambio el cable por uno nuevo.', 2),
 (6, '2021-02-01', 4, 2, 1, 1, 4, 'Este vehículo se va a rematar', 3),
 (7, '2021-02-01', 5, 2, 1, 1, 4, 'Se cambiaron las pastillas de frenos', 2),
-(8, '2021-02-01', 1, 3, 2, 1, 4, 'Se necesita realizar cambio de aceite', 1);
+(8, '2021-02-01', 1, 3, 2, 1, 4, 'Se necesita realizar cambio de aceite', 1),
+(9, '2021-02-01', 6, 1, 1, 1, 4, 'Se reparo el motor', 2),
+(10, '2021-02-01', 4, 22, 2, 1, 4, 'Esta bomba se vendio', 3);
 
 -- --------------------------------------------------------
 
@@ -508,7 +526,12 @@ INSERT INTO `orden_trabajo_estado` (`id_orden_trabajo_estado`, `fk_id_orden_trab
 (15, 6, 1, '2021-02-01 18:09:05', 'Este vehículo se va a rematar', 3),
 (16, 7, 1, '2021-02-01 18:19:32', 'El dia de hoy se lleva el vehículo para revisarlo.', 1),
 (17, 7, 1, '2021-02-01 18:20:50', 'Se cambiaron las pastillas de frenos', 2),
-(18, 8, 1, '2021-02-01 19:36:51', 'Se necesita realizar cambio de aceite', 1);
+(18, 8, 1, '2021-02-01 19:36:51', 'Se necesita realizar cambio de aceite', 1),
+(19, 9, 1, '2021-02-01 20:44:34', 'Se requiere que se solucione lo antes posible', 1),
+(20, 9, 1, '2021-02-01 20:47:17', 'El motor necesita reparacion, demora 4 dias', 1),
+(21, 9, 1, '2021-02-01 20:48:03', 'Se reparo el motor', 2),
+(22, 10, 1, '2021-02-01 20:52:29', 'Por favor realizarlo el dia de hoy', 1),
+(23, 10, 1, '2021-02-01 20:53:16', 'Esta bomba se vendio', 3);
 
 -- --------------------------------------------------------
 
@@ -770,18 +793,19 @@ CREATE TABLE `param_tipo_equipos` (
   `enlace_inspeccion` varchar(100) NOT NULL,
   `formulario_inspeccion` varchar(100) NOT NULL,
   `tabla_inspeccion` varchar(100) NOT NULL,
-  `id_tabla_inspeccion` varchar(100) NOT NULL
+  `id_tabla_inspeccion` varchar(100) NOT NULL,
+  `icono` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `param_tipo_equipos`
 --
 
-INSERT INTO `param_tipo_equipos` (`id_tipo_equipo`, `tipo_equipo`, `formulario_especifico`, `metodo_guardar`, `enlace_inspeccion`, `formulario_inspeccion`, `tabla_inspeccion`, `id_tabla_inspeccion`) VALUES
-(1, 'Vehículos', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo', '/inspection/add_vehiculos_inspection', 'form_1_vehiculos', 'inspection_vehiculos', 'id_inspection_vehiculos'),
-(2, 'Bomba', 'equipos_detalle_bomba', 'guardarInfoEspecificaBomba', '/inspection/add_vehiculos_inspection', '', '', ''),
-(3, 'Maquinaria', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo', '/inspection/vehiculos', 'form_1_vehiculos', 'inpection_vehiculos', 'id_inspection_vehiculos'),
-(4, 'Equipo', '', '', '', '', '', '');
+INSERT INTO `param_tipo_equipos` (`id_tipo_equipo`, `tipo_equipo`, `formulario_especifico`, `metodo_guardar`, `enlace_inspeccion`, `formulario_inspeccion`, `tabla_inspeccion`, `id_tabla_inspeccion`, `icono`) VALUES
+(1, 'Vehículos', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo', '/inspection/add_vehiculos_inspection', 'form_1_vehiculos', 'inspection_vehiculos', 'id_inspection_vehiculos', 'fa-car'),
+(2, 'Bomba', 'equipos_detalle_bomba', 'guardarInfoEspecificaBomba', '/inspection/add_vehiculos_inspection', '', '', '', 'fa-bomb'),
+(3, 'Maquinaria', 'equipos_detalle_vehiculo', 'guardarInfoEspecificaVehiculo', '/inspection/vehiculos', 'form_1_vehiculos', 'inpection_vehiculos', 'id_inspection_vehiculos', 'fa-truck'),
+(4, 'Equipo', '', '', '', '', '', '', 'fa-legal');
 
 -- --------------------------------------------------------
 
@@ -1029,7 +1053,7 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `equipos_control_combustible`
 --
 ALTER TABLE `equipos_control_combustible`
-  MODIFY `id_equipo_control_combustible` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_equipo_control_combustible` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos_detalle_bomba`
@@ -1059,7 +1083,7 @@ ALTER TABLE `equipos_localizacion`
 -- AUTO_INCREMENT de la tabla `equipos_poliza`
 --
 ALTER TABLE `equipos_poliza`
-  MODIFY `id_equipo_poliza` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_equipo_poliza` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `inspection_vehiculos`
@@ -1071,7 +1095,7 @@ ALTER TABLE `inspection_vehiculos`
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo`
 --
 ALTER TABLE `mantenimiento_correctivo`
-  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo_fotos`
@@ -1083,19 +1107,19 @@ ALTER TABLE `mantenimiento_correctivo_fotos`
 -- AUTO_INCREMENT de la tabla `mantenimiento_preventivo`
 --
 ALTER TABLE `mantenimiento_preventivo`
-  MODIFY `id_preventivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_preventivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_trabajo`
 --
 ALTER TABLE `orden_trabajo`
-  MODIFY `id_orden_trabajo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_orden_trabajo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_trabajo_estado`
 --
 ALTER TABLE `orden_trabajo_estado`
-  MODIFY `id_orden_trabajo_estado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_orden_trabajo_estado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `param_clase_vehiculo`
