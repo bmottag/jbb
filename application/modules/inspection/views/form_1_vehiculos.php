@@ -42,7 +42,7 @@
 	}
 ?> 
 
-					<?php if($fotosEquipos[0]["equipo_foto"]){ ?>
+					<?php if($fotosEquipos && $fotosEquipos[0]["equipo_foto"]){ ?>
 						<div class="form-group">
 							<div class="row" align="center">
 								<img src="<?php echo base_url($fotosEquipos[0]["equipo_foto"]); ?>" class="img-rounded" alt="Vehicle Photo" />
