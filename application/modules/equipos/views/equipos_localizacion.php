@@ -138,7 +138,7 @@ $(function(){
 						<?php
 							foreach ($listadoLocalizacion as $lista):
 									echo "<tr>";
-									echo "<td class='text-center'>" . $lista['fecha_localizacion'] . "</td>";
+									echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_localizacion']))) . "</td>";
 									echo "<td>" . $lista['localizacion'] . "</td>";
 									echo "<td class='text-center'>" . $lista['name'] . "</td>";
 									echo "<td class='text-center'>";

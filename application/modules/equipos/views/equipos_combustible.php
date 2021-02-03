@@ -139,7 +139,7 @@ $(function(){
 						<?php
 							foreach ($listadoControlCombustible as $lista):
 									echo "<tr>";
-									echo "<td class='text-center'>" . $lista['fecha_combustible'] . "</td>";
+									echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_combustible']))) . "</td>";
 									echo "<td class='text-right'>" . number_format($lista['kilometros_actuales']) . "</td>";
 									echo "<td>" . $lista['name'] . "</td>";
 									echo "<td class='text-center'>";

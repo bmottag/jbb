@@ -136,7 +136,7 @@ $(function(){
 						<?php
 							foreach ($listadoCorrectivos as $data):
 								echo "<tr>";					
-								echo "<td class='text-center'>" . $data['fecha'] . "</td>";
+								echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($data['fecha']))) . "</td>";
 								echo "<td>" . $data['descripcion'] . "</td>";
 								echo "<td>" . $data['consideracion'] . "</td>";
 								echo "<td>" . $data['name'] . "</td>";

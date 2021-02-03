@@ -159,7 +159,7 @@ $(function(){
 							foreach ($infoOrdenesTrabajo as $lista):
                                 echo "<tr>";
                                 echo "<td class='text-center'>" . $lista['id_orden_trabajo'] . "</td>";
-                                echo "<td class='text-center'>" . $lista['fecha_asignacion'] . "</td>";
+                                echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_asignacion']))) . "</td>";
                                 echo "<td >" . $lista['encargado'] . "</td>";
                                 echo "<td class='text-center'>";
 								switch ($lista['estado_actual']) {

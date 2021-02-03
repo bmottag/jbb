@@ -61,15 +61,15 @@ $(function(){
 					<?php 
 						if($information[0]['tipo_mantenimiento'] == 1){
 					?>
-					<strong>Fecha Registro: </strong><?php echo $infoMantenimiento[0]['fecha']; ?><br>
+					<strong>Fecha Registro: </strong><?php echo ucfirst(strftime("%b %d, %G",strtotime($infoMantenimiento[0]['fecha']))); ?><br>
 					<strong>Descripción Falla: </strong><br><?php echo $infoMantenimiento[0]['descripcion']; ?><br>
-					<strong>Consideración: </strong><br><?php echo $infoMantenimiento[0]['consideracion']; ?><br>
-					<strong>Tipo de Mantenimiento: </strong>Correctivo
+					<strong>Consideración: </strong><br><?php echo $infoMantenimiento[0]['consideracion']; ?>
+					<p class='text-danger'><strong>Tipo de Mantenimiento:</strong> Correctivo</p>
 					<?php 
 						}else{
 					?>
-					<strong>Descripción: </strong><br><?php echo $infoMantenimiento[0]['descripcion']; ?><br>
-					<strong>Tipo de Mantenimiento: </strong>Preventivo
+					<strong>Descripción: </strong><br><?php echo $infoMantenimiento[0]['descripcion']; ?>
+					<p class='text-info'><strong>Tipo de Mantenimiento:</strong> Preventivo</p>
 					<?php
 						}
 					?>
@@ -81,13 +81,12 @@ $(function(){
 		<div class="col-lg-4">
 			<div class="panel panel-violeta">
 				<div class="panel-heading">
-					<i class="fa fa-wrench"></i> <strong>INFORMACIÓN ORDEN DE TRABAJO</strong>
+					<i class="fa fa-briefcase"></i> <strong>INFORMACIÓN ORDEN DE TRABAJO</strong>
 				</div>
 				<div class="panel-body">
 
 					<strong>No. OT: </strong><?php echo $information[0]['id_orden_trabajo']; ?><br>
-					<strong>Encargado: </strong><?php echo $information[0]['encargado']; ?><br>
-					<strong>Estado Actual: </strong>
+					<strong>Encargado: </strong><?php echo $information[0]['encargado']; ?>
 					<?php
 					switch ($information[0]['estado_actual']) {
 						case 1:
@@ -103,7 +102,7 @@ $(function(){
 							$clase = "text-danger";
 							break;
 					}
-					echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+					echo '<p class="' . $clase . '"><strong>Estado Actual:</strong> ' . $valor . '</p>';
 					?>
 				</div>
 			</div>
@@ -116,7 +115,7 @@ $(function(){
 		<div class="col-lg-12">
 			<div class="panel panel-violeta">
 				<div class="panel-heading">
-					<i class="fa fa-wrench"></i> HISTORIAL ORDEN DE TRABAJO <strong>No. <?php echo $information[0]["id_orden_trabajo"]; ?></strong>
+					<i class="fa fa-briefcase"></i> HISTORIAL ORDEN DE TRABAJO <strong>No. <?php echo $information[0]["id_orden_trabajo"]; ?></strong>
 				</div>
 				<div class="panel-body">
 				
@@ -165,7 +164,7 @@ $(function(){
 						<?php
 							foreach ($infoEstado as $lista):
 									echo "<tr>";
-									echo "<td class='text-center'>" . $lista['fecha_registro_estado'] . "</td>";
+									echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_registro_estado']))) . "</td>";
 									echo "<td>" . $lista['name'] . "</td>";
 									echo "<td>" . $lista['informacion_adicional_estado'] . "</td>";
 									echo "<td class='text-center'>";

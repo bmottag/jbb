@@ -53,9 +53,7 @@ if ($retornoError) {
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?php echo $noOrdenesTrabajo; ?></div>
-                            <div>Ordenes de Trabajo<br>Asignadas
-
-                            </div>
+                            <div>Ordenes de Trabajo Asignadas</div>
                         </div>
                     </div>
                 </div>
@@ -251,7 +249,7 @@ if ($retornoError) {
                             foreach ($infoOrdenesTrabajo as $lista):
                                 echo "<tr>";
                                 echo "<td class='text-center'>" . $lista['id_orden_trabajo'] . "</td>";
-                                echo "<td class='text-center'>" . $lista['fecha_asignacion'] . "</td>";
+                                echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_asignacion']))) . "</td>";
                                 echo "<td >" . $lista['encargado'] . "</td>";
                                 echo "<td class='text-center'>";
                                 switch ($lista['tipo_mantenimiento']) {

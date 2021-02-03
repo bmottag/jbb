@@ -72,7 +72,7 @@ $(function(){
 		<div class="col-lg-12">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-				<i class="fa fa-truck"></i> <?php echo $tituloListado; ?>
+				<i class="fa fa-wrench"></i> <?php echo $tituloListado; ?>
 				</div>
 				<div class="panel-body">	
 				<br>
