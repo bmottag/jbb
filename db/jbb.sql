@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-02-2021 a las 19:53:56
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.4
+-- Tiempo de generación: 04-02-2021 a las 21:53:59
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -204,7 +204,6 @@ CREATE TABLE `equipos_fotos` (
 --
 
 INSERT INTO `equipos_fotos` (`id_equipo_foto`, `fk_id_equipo_foto`, `fk_id_user_ef`, `equipo_foto`, `fecha_foto`, `descripcion`) VALUES
-(2, 1, 0, 'images/equipos/1.PNG', '2020-12-16', ''),
 (3, 1, 1, 'images/equipos/formulario_equipos.png', '2021-01-19', 'Imagen principal'),
 (4, 11, 1, 'images/equipos/SUDS_1.png', '2021-01-22', 'Imagen principal'),
 (5, 12, 1, 'images/equipos/SUDS_2.png', '2021-01-22', 'Imagen principal'),
@@ -417,7 +416,8 @@ INSERT INTO `mantenimiento_correctivo` (`id_correctivo`, `fecha`, `fk_id_equipo_
 (3, '2021-02-01 13:19:03', 16, 1, 'El cable de alimentación se rompio', 'EL cambio lo podemos hacer en la entidad', 3),
 (4, '2021-02-01 14:11:34', 2, 1, 'Llanta trasera derecha pinchada', 'Esto se puede arreglarar en la entidad', 3),
 (5, '2021-02-01 18:18:33', 2, 1, 'Es necesario cambiar los frenos, tienen un ruido extraño cuando se usan.', 'Que es provedor los revise si a se requiere el cambio.', 3),
-(6, '2021-02-01 20:43:19', 1, 1, 'Motor con gotera de aceite', 'Revisar con el fabricante', 3);
+(6, '2021-02-01 20:43:19', 1, 1, 'Motor con gotera de aceite', 'Revisar con el fabricante', 3),
+(7, '2021-02-03 14:16:31', 1, 1, 'La silla del copiloto se daño', 'Revisar con el proveedor', 3);
 
 -- --------------------------------------------------------
 
@@ -490,7 +490,9 @@ INSERT INTO `orden_trabajo` (`id_orden_trabajo`, `fecha_asignacion`, `fk_id_mant
 (7, '2021-02-01', 5, 2, 1, 1, 4, 'Se cambiaron las pastillas de frenos', 2),
 (8, '2021-02-01', 1, 3, 2, 1, 4, 'Se necesita realizar cambio de aceite', 1),
 (9, '2021-02-01', 6, 1, 1, 1, 4, 'Se reparo el motor', 2),
-(10, '2021-02-01', 4, 22, 2, 1, 4, 'Esta bomba se vendio', 3);
+(10, '2021-02-01', 4, 22, 2, 1, 4, 'Esta bomba se vendio', 3),
+(11, '2021-02-03', 7, 1, 1, 1, 4, 'Se instalo la silla', 2),
+(12, '2021-02-03', 2, 4, 2, 1, 4, 'este equipo no se debe engrasar', 3);
 
 -- --------------------------------------------------------
 
@@ -531,7 +533,13 @@ INSERT INTO `orden_trabajo_estado` (`id_orden_trabajo_estado`, `fk_id_orden_trab
 (20, 9, 1, '2021-02-01 20:47:17', 'El motor necesita reparacion, demora 4 dias', 1),
 (21, 9, 1, '2021-02-01 20:48:03', 'Se reparo el motor', 2),
 (22, 10, 1, '2021-02-01 20:52:29', 'Por favor realizarlo el dia de hoy', 1),
-(23, 10, 1, '2021-02-01 20:53:16', 'Esta bomba se vendio', 3);
+(23, 10, 1, '2021-02-01 20:53:16', 'Esta bomba se vendio', 3),
+(24, 11, 1, '2021-02-03 14:17:36', 'La silla se debe cambiar por una nueva', 1),
+(25, 11, 1, '2021-02-03 14:18:59', 'La silla se compro y llega en 4 dias', 1),
+(26, 11, 1, '2021-02-03 14:19:34', 'La siila llego, el proveedor la instala mañana', 1),
+(27, 11, 1, '2021-02-03 14:19:51', 'Se instalo la silla', 2),
+(28, 12, 1, '2021-02-03 14:24:56', 'Por favor engrasar el vehículo', 1),
+(29, 12, 1, '2021-02-03 14:26:34', 'este equipo no se debe engrasar', 3);
 
 -- --------------------------------------------------------
 
@@ -1095,7 +1103,7 @@ ALTER TABLE `inspection_vehiculos`
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo`
 --
 ALTER TABLE `mantenimiento_correctivo`
-  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_correctivo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimiento_correctivo_fotos`
@@ -1113,13 +1121,13 @@ ALTER TABLE `mantenimiento_preventivo`
 -- AUTO_INCREMENT de la tabla `orden_trabajo`
 --
 ALTER TABLE `orden_trabajo`
-  MODIFY `id_orden_trabajo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_orden_trabajo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_trabajo_estado`
 --
 ALTER TABLE `orden_trabajo_estado`
-  MODIFY `id_orden_trabajo_estado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_orden_trabajo_estado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `param_clase_vehiculo`
@@ -1199,6 +1207,12 @@ ALTER TABLE `equipos`
   ADD CONSTRAINT `equipos_ibfk_2` FOREIGN KEY (`fk_id_tipo_equipo`) REFERENCES `param_tipo_equipos` (`id_tipo_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `equipos_control_combustible`
+--
+ALTER TABLE `equipos_control_combustible`
+  ADD CONSTRAINT `equipos_control_combustible_ibfk_1` FOREIGN KEY (`fk_id_equipo_combustible`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `equipos_detalle_bomba`
 --
 ALTER TABLE `equipos_detalle_bomba`
@@ -1223,6 +1237,48 @@ ALTER TABLE `equipos_fotos`
 --
 ALTER TABLE `equipos_localizacion`
   ADD CONSTRAINT `equipos_localizacion_ibfk_1` FOREIGN KEY (`fk_id_equipo_localizacion`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `equipos_poliza`
+--
+ALTER TABLE `equipos_poliza`
+  ADD CONSTRAINT `equipos_poliza_ibfk_1` FOREIGN KEY (`fk_id_equipo_poliza`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `inspection_vehiculos`
+--
+ALTER TABLE `inspection_vehiculos`
+  ADD CONSTRAINT `inspection_vehiculos_ibfk_1` FOREIGN KEY (`fk_id_equipo_vehiculo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `mantenimiento_correctivo`
+--
+ALTER TABLE `mantenimiento_correctivo`
+  ADD CONSTRAINT `mantenimiento_correctivo_ibfk_1` FOREIGN KEY (`fk_id_equipo_correctivo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `mantenimiento_correctivo_fotos`
+--
+ALTER TABLE `mantenimiento_correctivo_fotos`
+  ADD CONSTRAINT `mantenimiento_correctivo_fotos_ibfk_1` FOREIGN KEY (`fk_id_correctivo`) REFERENCES `mantenimiento_correctivo` (`id_correctivo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `mantenimiento_preventivo`
+--
+ALTER TABLE `mantenimiento_preventivo`
+  ADD CONSTRAINT `mantenimiento_preventivo_ibfk_1` FOREIGN KEY (`fk_id_tipo_equipo_preventivo`) REFERENCES `param_tipo_equipos` (`id_tipo_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `orden_trabajo`
+--
+ALTER TABLE `orden_trabajo`
+  ADD CONSTRAINT `orden_trabajo_ibfk_1` FOREIGN KEY (`fk_id_equipo_ot`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `orden_trabajo_estado`
+--
+ALTER TABLE `orden_trabajo_estado`
+  ADD CONSTRAINT `orden_trabajo_estado_ibfk_1` FOREIGN KEY (`fk_id_orden_trabajo_estado`) REFERENCES `orden_trabajo` (`id_orden_trabajo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `param_menu_access`
