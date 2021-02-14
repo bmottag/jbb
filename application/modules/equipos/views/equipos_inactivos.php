@@ -59,16 +59,7 @@
 							
 									echo "<tr>";
 									echo "<td class='text-center'>" . $lista['numero_inventario'];
-									
-									if(!$deshabilitar){
-						?>			<br>
-									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo']; ?>" >
-										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
-									</button>
-						<?php
-									}
 									echo "</td>";
-
 									echo "<td class='text-center'>" . $lista['dependencia'] . "</td>";
 									echo "<td>" . $lista['marca'] . "</td>";
 									echo "<td>" . $lista['modelo'] . "</td>";
@@ -87,7 +78,6 @@
 									echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
 									echo "</td>";
 									echo "<td>" . $lista['observacion'] . "</td>";
-									
 									echo "</tr>";
 
 							endforeach;
