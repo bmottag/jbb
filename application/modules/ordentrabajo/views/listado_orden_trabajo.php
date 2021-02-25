@@ -7,7 +7,7 @@
 				<div class="panel-heading">
 					<?php $dashboardURL = $this->session->userdata("dashboardURL"); ?>
 					<a class="btn btn-violeta btn-xs" href="<?php echo base_url($dashboardURL); ?>"><span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Dashboard </a> 
-					<i class="fa fa-briefcase"></i> <strong>ORDENS DE TRABAJO</strong>
+					<i class="fa fa-briefcase"></i> <strong>ORDENES DE TRABAJO</strong>
 				</div>
 				<div class="panel-body">
 
