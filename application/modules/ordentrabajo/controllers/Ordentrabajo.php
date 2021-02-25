@@ -217,6 +217,133 @@ class Ordentrabajo extends CI_Controller {
 
 			$this->load->view("ordentrabajo_modal", $data);
     }
+
+	/**
+	 * Buscar OT
+     * @since 11/02/2021
+     * @author BMOTTAG
+	 */
+    public function search($goBack = 'x') 
+	{
+			//filtrar por estado y fecha, para el cuadro de notificaciones
+			$year = date('Y');
+			$firstDay = date('Y-m-d', mktime(0,0,0, 1, 1, $year));//primer dia del año, para filtrar por año
+
+			$arrParam = array(
+				'estado' => 1,
+				'from' => $firstDay
+			);
+			$data['asignadas'] = $this->general_model->get_orden_trabajo($arrParam);
+			$data['asignadas'] = $data['asignadas']?count($data['asignadas']):0;
+
+			$arrParam['estado'] = 2;
+			$data['solucionadas'] = $this->general_model->get_orden_trabajo($arrParam);
+			$data['solucionadas'] = $data['solucionadas']?count($data['solucionadas']):0;
+
+			$arrParam['estado'] = 3;
+			$data['canceladas'] = $this->general_model->get_orden_trabajo($arrParam);
+			$data['canceladas'] = $data['canceladas']?count($data['canceladas']):0;
+
+			$arrParam = array(
+				"table" => "param_tipo_equipos",
+				"order" => "tipo_equipo",
+				"id" => "x"
+			);
+			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
+			
+			$data['view'] = 'form_search';
+
+			//viene desde el boton go back
+			if($goBack == 'y')
+			{
+				$workOrderGoBackInfo = $this->workorders_model->get_workorder_go_back();
+
+				if(!$workOrderGoBackInfo){
+					redirect(base_url('workorders'), 'refresh');
+				}else{	
+					//le sumo un dia al dia final para que ingrese ese dia en la consulta
+					$to = date('Y-m-d',strtotime ( '+1 day ' , strtotime ( formatear_fecha($workOrderGoBackInfo['post_to']) ) ) );
+					//$from = formatear_fecha($workOrderGoBackInfo['post_from']);
+					
+					$arrParam = array(
+						"jobId" => $workOrderGoBackInfo['post_id_job'],
+						"idWorkOrder" => $workOrderGoBackInfo['post_id_work_order'],
+						"idWorkOrderFrom" => $workOrderGoBackInfo['post_id_wo_from'],
+						"idWorkOrderTo" => $workOrderGoBackInfo['post_id_wo_to'],
+						"from" => $workOrderGoBackInfo['post_from'],//$from,
+						"to" => $to,
+						"state" => $workOrderGoBackInfo['post_state']
+					);
+
+					$data['workOrderInfo'] = $this->workorders_model->get_workorder_by_idJob($arrParam);
+
+					$data["view"] = "asign_rate_list";
+					$this->load->view("layout_calendar", $data);
+				}
+			}
+			//Si envian los datos del filtro entonces lo direcciono a la lista respectiva con los datos de la consulta
+			elseif($this->input->post('id_tipo_equipo') || $this->input->post('idEquipo') || $this->input->post('OTNumber') || $this->input->post('estado'))
+			{								
+				$data['id_tipo_equipo'] =  $this->input->post('id_tipo_equipo');
+				$data['idEquipo'] =  $this->input->post('idEquipo');
+				$data['OTNumber'] =  $this->input->post('OTNumber');
+				$data['estado'] =  $this->input->post('estado');
+				$data['from'] =  $this->input->post('from');
+				$data['to'] =  $this->input->post('to');
+			
+				//le sumo un dia al dia final para que ingrese ese dia en la consulta
+				if($data['to']){
+					$to = date('Y-m-d',strtotime ( '+1 day ' , strtotime ( formatear_fecha($data['to']) ) ) );
+				}else{
+					$to = "";
+				}
+				if($data['from']){
+					$from = formatear_fecha($data['from']);
+				}else{
+					$from = "";
+				}
+				
+				$arrParam = array(
+					"idTipoEquipo" => $this->input->post('id_tipo_equipo'),
+					"idEquipo" => $this->input->post('idEquipo'),
+					"OTNumber" => $this->input->post('OTNumber'),
+					"estado" => $this->input->post('estado'),
+					"from" => $from,
+					"to" => $to
+				);
+				
+				//guardo la informacion en la base de datos para el boton de regresar
+				$this->ordentrabajo_model->saveInfoGoBack($arrParam);
+	
+				//informacion Ordenes de trabajo
+				$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam);
+	
+				$data["view"] = "listado_orden_trabajo";
+				$this->load->view("layout", $data);
+			}else{
+				$this->load->view("layout", $data);
+			}
+    }
+
+	/**
+	 * Lista de equipos
+     * @since 25/2/2021
+     * @author BMOTTAG
+	 */
+    public function listaEquipos() {
+        header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+		
+		//lista de equipos
+		$arrParam = array("idTipoEquipo" => $this->input->post('idTipoEquipo'));
+		$lista = $this->general_model->get_equipos_info($arrParam);
+
+        echo "<option value=''>Select...</option>";
+        if ($lista) {
+            foreach ($lista as $fila) {
+                echo "<option value='" . $fila["id_equipo"] . "' >" . $fila["numero_inventario"] . "</option>";
+            }
+        }
+    }
 	
 	
 	

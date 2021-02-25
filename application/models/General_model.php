@@ -445,6 +445,7 @@ class General_model extends CI_Model {
 				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name, CONCAT(X.first_name, ' ', X.last_name) encargado");
 				$this->db->join('usuarios U', 'U.id_user = C.fk_id_user_orden', 'INNER');
 				$this->db->join('usuarios X', 'X.id_user = C.fk_id_user_encargado', 'INNER');
+				$this->db->join('equipos E', 'E.id_equipo = C.fk_id_equipo_ot ', 'INNER');
 				if (array_key_exists("idOrdenTrabajo", $arrData)) {
 					$this->db->where('C.id_orden_trabajo ', $arrData["idOrdenTrabajo"]);
 				}
@@ -454,10 +455,13 @@ class General_model extends CI_Model {
 				if (array_key_exists("tipoMantenimiento", $arrData)) {
 					$this->db->where('C.tipo_mantenimiento ', $arrData["tipoMantenimiento"]);
 				}
-				if (array_key_exists("idEquipo", $arrData)) {
+				if (array_key_exists("idEquipo", $arrData) && $arrData["idEquipo"] != '') {
 					$this->db->where('C.fk_id_equipo_ot', $arrData["idEquipo"]);
 				}
-				if (array_key_exists("estado", $arrData)) {
+				if (array_key_exists("idTipoEquipo", $arrData)) {
+					$this->db->where('E.fk_id_tipo_equipo', $arrData["idTipoEquipo"]);
+				}
+				if (array_key_exists("estado", $arrData) && $arrData["estado"] != '') {
 					$this->db->where('C.estado_actual', $arrData["estado"]);
 				}
 				if (array_key_exists("from", $arrData) && $arrData["from"] != '') {

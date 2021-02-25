@@ -107,6 +107,42 @@
 				}
 		}
 
+		/**
+		 * Add info boton go back
+		 * @since 25/2/2021
+		 */
+		public function saveInfoGoBack($arrData) 
+		{
+			$idUser = $this->session->userdata("id");
+			
+			//delete datos anteriores del usuario
+			$this->db->delete('orden_trabajo_go_back', array('fk_id_user_go_back' => $idUser));
+			
+			$data = array('fk_id_user_go_back' => $idUser);
+
+			if (array_key_exists("idTipoEquipo", $arrData)) {
+				$data['post_id_tipo_equipo'] = $arrData["idTipoEquipo"];
+			}
+			if (array_key_exists("idEquipo", $arrData)) {
+				$data['post_id_equipo'] = $arrData["idEquipo"];
+			}
+			if (array_key_exists("OTNumber", $arrData)) {
+				$data['post_id_orden_trabajo'] = $arrData["OTNumber"];
+			}
+			if (array_key_exists("estado", $arrData)) {
+				$data['post_estado'] = $arrData["estado"];
+			}
+			if (array_key_exists("from", $arrData)) {
+				$data['post_from'] = $arrData["from"];
+			}
+			if (array_key_exists("to", $arrData)) {
+				$data['post_to'] = $arrData["to"];
+			}
+			
+			$query = $this->db->insert('orden_trabajo_go_back', $data);
+
+		}
+
 		
 		
 
