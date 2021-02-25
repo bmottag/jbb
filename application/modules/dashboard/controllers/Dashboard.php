@@ -126,8 +126,59 @@ class Dashboard extends CI_Controller {
 			}
 
 			echo  ']';
-
     }
+
+	/**
+	 * OPERADOR DASHBOARD
+	 */
+	public function operador()
+	{				
+			$data = array();
+			$arrParam = array();
+
+			//filtrar por estado y fecha, para el cuadro de notificaciones
+			$year = date('Y');
+			$firstDay = date('Y-m-d', mktime(0,0,0, 1, 1, $year));//primer dia del año, para filtrar por año
+
+			$arrParam['from'] = $firstDay;//filtro registros desde el primeri dia del año
+			$arrParam['estado'] = 1;
+			$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam);
+			$data['noOrdenesTrabajo'] = $data['infoOrdenesTrabajo']?count($data['infoOrdenesTrabajo']):0;
+
+			$arrParam['estadoMantenimiento'] = 1;
+			$arrParam['idUser'] = $this->session->id;
+			$data['infoMantenimientoCorrectivo'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
+
+			$data['asignadas'] = $this->general_model->get_orden_trabajo($arrParam);
+			$data['asignadas'] = $data['asignadas']?count($data['asignadas']):0;
+
+			$arrParam['estado'] = 2;
+			$data['solucionadas'] = $this->general_model->get_orden_trabajo($arrParam);
+			$data['solucionadas'] = $data['solucionadas']?count($data['solucionadas']):0;
+
+			$arrParam['estado'] = 3;
+			$data['canceladas'] = $this->general_model->get_orden_trabajo($arrParam);
+			$data['canceladas'] = $data['canceladas']?count($data['canceladas']):0;
+
+			//Tipo -> vehiculos
+			$arrParam = array(
+				"idTipoEquipo" => 1,
+				"estadoEquipo" => 1
+			);
+			$infoVehiculos = $this->general_model->get_equipos_info($arrParam);//info de vehiculos
+			$data['noVehiculos'] = $infoVehiculos?count($infoVehiculos):0;
+
+			//Tipo -> Bombas
+			$arrParam = array(
+				"idTipoEquipo" => 2,
+				"estadoEquipo" => 1
+			);
+			$infoBombas = $this->general_model->get_equipos_info($arrParam);//info de bombas
+			$data['noBombas'] = $infoBombas?count($infoBombas):0;
+			
+			$data["view"] = "dashboard";
+			$this->load->view("layout", $data);
+	}
 	
 	
 }

@@ -89,84 +89,84 @@
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="dimension">Dimensión: </label>
-								<input type="text" id="dimension" name="dimension" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["dimension"]:""; ?>" placeholder="Dimension" >
+								<input type="text" id="dimension" name="dimension" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["dimension"]:""; ?>" placeholder="Dimension" <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="motor_frecuencia">Frecuencia Motor: </label>
-								<input type="text" id="motor_frecuencia" name="motor_frecuencia" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["motor_frecuencia"]:""; ?>" placeholder="Frecuencia Motor" >
+								<input type="text" id="motor_frecuencia" name="motor_frecuencia" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["motor_frecuencia"]:""; ?>" placeholder="Frecuencia Motor" <?php echo $deshabilitar; ?>>
 							</div>							
 						</div>
 												
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="motor_velocidad">Velocidad Motor: </label>
-								<input type="text" id="motor_velocidad" name="motor_velocidad" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["motor_velocidad"]:""; ?>" placeholder="Velocidad Motor" >
+								<input type="text" id="motor_velocidad" name="motor_velocidad" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["motor_velocidad"]:""; ?>" placeholder="Velocidad Motor" <?php echo $deshabilitar; ?>>
 							</div>
 							
 							<div class="col-sm-6">
 								<label for="motor_voltaje">Voltaje Motor: </label>
-								<input type="text" id="motor_voltaje" name="motor_voltaje" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["motor_voltaje"]:""; ?>" placeholder="Voltaje Motor" >
+								<input type="text" id="motor_voltaje" name="motor_voltaje" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["motor_voltaje"]:""; ?>" placeholder="Voltaje Motor" <?php echo $deshabilitar; ?>>
 							</div>
 						</div>
 												
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="potencia">Potencia: </label>
-								<input type="text" id="potencia" name="potencia" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["potencia"]:""; ?>" placeholder="Potencia"  >
+								<input type="text" id="potencia" name="potencia" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["potencia"]:""; ?>" placeholder="Potencia"  <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="consumo">Consumo: </label>
-								<input type="text" id="consumo" name="consumo" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["consumo"]:""; ?>" placeholder="Consumo"  >
+								<input type="text" id="consumo" name="consumo" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["consumo"]:""; ?>" placeholder="Consumo"  <?php echo $deshabilitar; ?>>
 							</div>						
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="hmax">Hmax: </label>
-								<input type="text" id="hmax" name="hmax" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["hmax"]:""; ?>" placeholder="Hmax" >
+								<input type="text" id="hmax" name="hmax" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["hmax"]:""; ?>" placeholder="Hmax" <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="qmax">Qmax: </label>
-								<input type="text" id="qmax" name="qmax" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["qmax"]:""; ?>" placeholder="Qmax" >
+								<input type="text" id="qmax" name="qmax" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["qmax"]:""; ?>" placeholder="Qmax" <?php echo $deshabilitar; ?>>
 							</div>					
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="succion">Succión: </label>
-								<input type="text" id="succion" name="succion" class="form-control" value='<?php echo $infoEspecifica?$infoEspecifica[0]["succion"]:""; ?>' placeholder="Succión" >
+								<input type="text" id="succion" name="succion" class="form-control" value='<?php echo $infoEspecifica?$infoEspecifica[0]["succion"]:""; ?>' placeholder="Succión" <?php echo $deshabilitar; ?>>
 							</div>					
 							
 							<div class="col-sm-6">
 								<label for="salida">Salida: </label>
-								<input type="text" id="salida" name="salida" class="form-control" value='<?php echo $infoEspecifica?$infoEspecifica[0]["salida"]:""; ?>' placeholder="Salida" >
+								<input type="text" id="salida" name="salida" class="form-control" value='<?php echo $infoEspecifica?$infoEspecifica[0]["salida"]:""; ?>' placeholder="Salida" <?php echo $deshabilitar; ?>>
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="color">Color: </label>
-								<input type="text" id="color" name="color" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["color"]:""; ?>" placeholder="Color" >
+								<input type="text" id="color" name="color" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["color"]:""; ?>" placeholder="Color" <?php echo $deshabilitar; ?>>
 							</div>					
 							
 							<div class="col-sm-6">
 								<label for="peso">Peso: </label>
-								<input type="text" id="peso" name="peso" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["peso"]:""; ?>" placeholder="Peso" >
+								<input type="text" id="peso" name="peso" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["peso"]:""; ?>" placeholder="Peso" <?php echo $deshabilitar; ?>>
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="caracteristicas">Características: </label>
-								<textarea id="caracteristicas" name="caracteristicas" placeholder="Características" class="form-control" rows="3"><?php echo $infoEspecifica?$infoEspecifica[0]["caracteristicas"]:""; ?></textarea>
+								<textarea id="caracteristicas" name="caracteristicas" placeholder="Características" class="form-control" rows="3" <?php echo $deshabilitar; ?>><?php echo $infoEspecifica?$infoEspecifica[0]["caracteristicas"]:""; ?></textarea>
 							</div>
 						
 							<div class="col-sm-6">
 								<label for="condiciones_operacion">Condiciones de Operación: </label>
-								<textarea id="condiciones_operacion" name="condiciones_operacion" placeholder="Condiciones de Operación" class="form-control" rows="3"><?php echo $infoEspecifica?$infoEspecifica[0]["condiciones_operacion"]:""; ?></textarea>
+								<textarea id="condiciones_operacion" name="condiciones_operacion" placeholder="Condiciones de Operación" class="form-control" rows="3" <?php echo $deshabilitar; ?>><?php echo $infoEspecifica?$infoEspecifica[0]["condiciones_operacion"]:""; ?></textarea>
 							</div>
 						</div>
 
@@ -187,6 +187,7 @@
 							</div>
 						</div>	
 
+						<?php if(!$deshabilitar){ ?>
 						<div class="form-group">
 							<div class="row" align="center">
 								<div style="width:100%;" align="center">							
@@ -196,6 +197,7 @@
 								</div>
 							</div>
 						</div>
+						<?php } ?>
 															
 					</form>
 

@@ -147,29 +147,19 @@ if ($retornoError) {
 
 	</div>
 
+
+<?php
+    if(!$infoMantenimientoCorrectivo){ 
+?>
     <!-- /.row -->
     <div class="row">
-
         <div class="col-lg-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <i class="fa fa-wrench fa-fw"></i> Lista Mantenimiento Correctivo <strong>Nuevas - <?php echo date("Y"); ?></strong>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
-
-<?php
-    if(!$infoMantenimientoCorrectivo){ 
-?>
-        <div class="col-lg-12">
-            <small>
-                <p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en la base de datos.</p>
-            </small>
-        </div>
-<?php
-    }else{
-?>                      
-                    
+                <div class="panel-body">              
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
                         <thead>
                             <tr>
@@ -199,16 +189,13 @@ if ($retornoError) {
                             endforeach;
                         ?>
                         </tbody>
-                    </table>
-                    
-<?php   } ?>                    
+                    </table>                   
                 </div>
                 <!-- /.panel-body -->
             </div>
-
         </div>
-    
     </div>
+<?php   } ?> 
 
     <!-- /.row -->
     <div class="row">

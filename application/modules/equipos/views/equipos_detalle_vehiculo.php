@@ -90,24 +90,24 @@
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="placa">Placa: </label>
-								<input type="text" id="placa" name="placa" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["placa"]:""; ?>" placeholder="Placa" required >
+								<input type="text" id="placa" name="placa" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["placa"]:""; ?>" placeholder="Placa" required <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="linea">Línea: </label>
-								<input type="text" id="linea" name="linea" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["linea"]:""; ?>" placeholder="Línea" >
+								<input type="text" id="linea" name="linea" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["linea"]:""; ?>" placeholder="Línea" <?php echo $deshabilitar; ?>>
 							</div>						
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="color">Color: </label>
-								<input type="text" id="color" name="color" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["color"]:""; ?>" placeholder="Color" >
+								<input type="text" id="color" name="color" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["color"]:""; ?>" placeholder="Color" <?php echo $deshabilitar; ?>>
 							</div>
 							
 							<div class="col-sm-6">
 								<label for="from">Clase Vehículo: </label>
-								<select name="id_clase_vechiculo" id="id_clase_vechiculo" class="form-control" >
+								<select name="id_clase_vechiculo" id="id_clase_vechiculo" class="form-control" <?php echo $deshabilitar; ?>>
 									<option value="">Seleccione...</option>
 									<?php 									
 									for ($i = 0; $i < count($claseVehiculo); $i++) { ?>
@@ -120,7 +120,7 @@
 						<div class="form-group">							
 							<div class="col-sm-6">
 								<label for="from">Tipo Carrocería: </label>
-								<select name="id_tipo_carroceria" id="id_tipo_carroceria" class="form-control" >
+								<select name="id_tipo_carroceria" id="id_tipo_carroceria" class="form-control" <?php echo $deshabilitar; ?>>
 									<option value="">Seleccione...</option>
 									<?php for ($i = 0; $i < count($tipoCarroceria); $i++) { ?>
 										<option value="<?php echo $tipoCarroceria[$i]["id_tipo_carroceria"]; ?>" <?php if($infoEspecifica && $infoEspecifica[0]["fk_id_tipo_carroceria"] == $tipoCarroceria[$i]["id_tipo_carroceria"]) { echo "selected"; }  ?>><?php echo $tipoCarroceria[$i]["tipo_carroceria"]; ?></option>	
@@ -130,7 +130,7 @@
 						
 							<div class="col-sm-6">
 								<label for="from">Combustible: </label>
-								<select name="combustible" id="combustible" class="form-control" >
+								<select name="combustible" id="combustible" class="form-control" <?php echo $deshabilitar; ?>>
 									<option value=''>Select...</option>
 									<option value=1 <?php if($infoEspecifica && $infoEspecifica[0]["combustible"] == 1) { echo "selected"; }  ?>>Gasolina</option>
 									<option value=2 <?php if($infoEspecifica && $infoEspecifica[0]["combustible"] == 2) { echo "selected"; }  ?>>Diesel</option>
@@ -141,24 +141,24 @@
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="capacidad">Capacidad: </label>
-								<input type="text" id="capacidad" name="capacidad" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["capacidad"]:""; ?>" placeholder="Capacidad"  >
+								<input type="text" id="capacidad" name="capacidad" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["capacidad"]:""; ?>" placeholder="Capacidad"  <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="servicio">Servicio: </label>
-								<input type="text" id="servicio" name="servicio" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["servicio"]:""; ?>" placeholder="Servicio"  >
+								<input type="text" id="servicio" name="servicio" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["servicio"]:""; ?>" placeholder="Servicio"  <?php echo $deshabilitar; ?>>
 							</div>						
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="numero_motor">Número Motor: </label>
-								<input type="text" id="numero_motor" name="numero_motor" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_motor"]:""; ?>" placeholder="Número Motor" >
+								<input type="text" id="numero_motor" name="numero_motor" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_motor"]:""; ?>" placeholder="Número Motor" <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="multas">Multas: </label>
-								<select name="multas" id="multas" class="form-control" >
+								<select name="multas" id="multas" class="form-control" <?php echo $deshabilitar; ?>>
 									<option value=''>Select...</option>
 									<option value=1 <?php if($infoEspecifica && $infoEspecifica[0]["multas"] == 1) { echo "selected"; }  ?>>Si</option>
 									<option value=2 <?php if($infoEspecifica && $infoEspecifica[0]["multas"] == 2) { echo "selected"; }  ?>>No</option>
@@ -183,6 +183,7 @@
 							</div>
 						</div>	
 
+						<?php if(!$deshabilitar){ ?>
 						<div class="form-group">
 							<div class="row" align="center">
 								<div style="width:100%;" align="center">							
@@ -192,6 +193,7 @@
 								</div>
 							</div>
 						</div>
+						<?php } ?>
 															
 					</form>
 

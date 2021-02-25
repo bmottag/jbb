@@ -146,11 +146,13 @@
 						echo "<td class='text-center'>" . $data['name'] . "</td>";
 						echo "<td >" . $data['descripcion'] . "</td>";
 						echo "<td class='text-center'><small>";
+						if(!$deshabilitar){ 
 				?>					
 			<button type="button" id="<?php echo $data['id_equipo_foto']; ?>" class='btn btn-danger' title="Eliminar">
 					<i class="fa fa-trash-o"></i>
 			</button>
 				<?php
+						}
 						echo "</small></td>";                     
 						echo "</tr>";
 					endforeach;

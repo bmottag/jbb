@@ -421,6 +421,9 @@ class General_model extends CI_Model {
 				if (array_key_exists("idMantenimiento", $arrData)) {
 					$this->db->where('C.id_correctivo', $arrData["idMantenimiento"]);
 				}
+				if (array_key_exists("idUser", $arrData)) {
+					$this->db->where('C.fk_id_user_correctivo', $arrData["idUser"]);
+				}
 				if (array_key_exists("filtroFecha", $arrData)) {
 					$this->db->where('C.fecha >=', $arrData["filtroFecha"]);
 				}

@@ -215,7 +215,6 @@ class Equipos extends CI_Controller {
 			//DESHABILITAR
 			$data['deshabilitar'] = '';
 			$userRol = $this->session->role;
-
 			//si el rol es: Usuario Consulta; Encargado; Operador - Conductor
 			if($userRol == 2 || $userRol == 3 || $userRol == 5)
 			{
@@ -249,6 +248,15 @@ class Equipos extends CI_Controller {
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//DESHABILITAR
+			$data['deshabilitar'] = '';
+			$userRol = $this->session->role;
+			//si el rol es: Usuario Consulta; Encargado; Operador - Conductor
+			if($userRol == 2 || $userRol == 3 || $userRol == 5)
+			{
+				$data['deshabilitar'] = 'disabled';
+			}
 			
 			$consulta = $data['info'][0]['formulario_especifico'];
 
@@ -310,6 +318,15 @@ class Equipos extends CI_Controller {
 			//busco datos del equipo
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//DESHABILITAR
+			$data['deshabilitar'] = '';
+			$userRol = $this->session->role;
+			//si el rol es: Usuario Consulta; Encargado; Operador - Conductor
+			if($userRol == 2 || $userRol == 3 || $userRol == 5)
+			{
+				$data['deshabilitar'] = 'disabled';
+			}
 			
 			//Lista fotos de equipo
 			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
@@ -517,6 +534,15 @@ class Equipos extends CI_Controller {
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//DESHABILITAR
+			$data['deshabilitar'] = '';
+			$userRol = $this->session->role;
+			//si el rol es: Usuario Consulta; Encargado; Operador - Conductor
+			if($userRol == 2 || $userRol == 3 || $userRol == 5)
+			{
+				$data['deshabilitar'] = 'disabled';
+			}
 			
 			$data['listadoPolizas'] = $this->equipos_model->get_poliza($arrParam);
 						

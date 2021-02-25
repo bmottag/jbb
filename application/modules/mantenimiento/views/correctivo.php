@@ -161,14 +161,22 @@ $(function(){
 
 								//DESHABILITAR BOTONES
 								$deshabilitar = '';
+								$bandera = '';
 								$userRol = $this->session->rol;
+								$idUser = $this->session->id;
 								$estadoMantenimiento = $data['estado'];
-								if($userRol != 99 && $estadoMantenimiento > 1)
+								
+								if($userRol != 99 && $estadoMantenimiento > 1 )
 								{
 									$deshabilitar = 'disabled';
 								}
+
+								if($userRol != 99 && $data['fk_id_user_correctivo']!=$idUser )
+								{
+									$bandera = 'disabled';
+								}
 								?>
-								<?php if(!$deshabilitar){ ?>
+								<?php if(!$deshabilitar && !$bandera){ ?>
 								<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $data['id_correctivo']; ?>" >
 									Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 								</button>

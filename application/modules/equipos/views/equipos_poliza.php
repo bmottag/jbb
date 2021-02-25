@@ -93,9 +93,11 @@ $(function(){
 				</div>
 				<div class="panel-body">
 				
+					<?php if(!$deshabilitar){ ?>
 					<button type="button" class="btn btn-violeta btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Póliza del Equipo
 					</button><br>
+					<?php } ?>
 
 <?php
 	$retornoExito = $this->session->flashdata('retornoExito');
@@ -134,7 +136,9 @@ $(function(){
 								<th class="text-center">Descripción</th>
 			<!--					<th class="text-center">Proveedor</th> -->
 								<th class="text-center">Usuario</th>
+								<?php if(!$deshabilitar){ ?>
 								<th class="text-center">Editar</th>
+								<?php } ?>
 							</tr>
 						</thead>
 						<tbody>							
@@ -146,6 +150,8 @@ $(function(){
 									echo "<td class='text-center'>" . $lista['numero_poliza'] . "</td>";
 									echo "<td>" . $lista['descripcion'] . "</td>";
 									echo "<td class='text-center'>" . $lista['name'] . "</td>";
+
+									if(!$deshabilitar){
 									echo "<td class='text-center'>";
 						?>
 									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo_poliza']; ?>" >
@@ -153,6 +159,7 @@ $(function(){
 									</button>
 						<?php
 									echo "</td>";
+									}
 									echo "</tr>";
 							endforeach;
 						?>
