@@ -28,19 +28,15 @@ class Dashboard extends CI_Controller {
 			$arrParam['estadoMantenimiento'] = 1;
 			$data['infoMantenimientoCorrectivo'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
 
-			$arrParam2 = array(
-				'estado' => 1,
-				'filtroFecha' => $firstDay
-			);
-			$data['asignadas'] = $this->general_model->get_orden_trabajo($arrParam2);
+			$data['asignadas'] = $this->general_model->get_orden_trabajo($arrParam);
 			$data['asignadas'] = $data['asignadas']?count($data['asignadas']):0;
 
-			$arrParam2['estado'] = 2;
-			$data['solucionadas'] = $this->general_model->get_orden_trabajo($arrParam2);
+			$arrParam['estado'] = 2;
+			$data['solucionadas'] = $this->general_model->get_orden_trabajo($arrParam);
 			$data['solucionadas'] = $data['solucionadas']?count($data['solucionadas']):0;
 
-			$arrParam2['estado'] = 3;
-			$data['canceladas'] = $this->general_model->get_orden_trabajo($arrParam2);
+			$arrParam['estado'] = 3;
+			$data['canceladas'] = $this->general_model->get_orden_trabajo($arrParam);
 			$data['canceladas'] = $data['canceladas']?count($data['canceladas']):0;
 
 			//Tipo -> vehiculos
