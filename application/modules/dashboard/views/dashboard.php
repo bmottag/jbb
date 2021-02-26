@@ -149,7 +149,7 @@ if ($retornoError) {
 
 
 <?php
-    if(!$infoMantenimientoCorrectivo){ 
+    if($infoMantenimientoCorrectivo){ 
 ?>
     <!-- /.row -->
     <div class="row">
