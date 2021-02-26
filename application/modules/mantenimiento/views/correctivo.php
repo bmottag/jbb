@@ -93,7 +93,7 @@ $(function(){
 				</div>
 				<div class="panel-body">
 					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantenimiento Correctivo
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Solicitar Mantenimiento Correctivo
 					</button><br>
 					<?php
 					$retornoExito = $this->session->flashdata('retornoExito');
