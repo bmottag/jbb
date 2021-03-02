@@ -27,7 +27,7 @@ if($listadoLocalizacion)
 						<th bgcolor="#86bd62" style="color:white;"><strong>Usuario </strong></th>
 					</tr>
 					<tr>
-						<th >' . $lista['fecha_localizacion']. '</th>
+						<th >' . strftime("%b %d, %G",strtotime($lista['fecha_localizacion'])) . '</th>
 						<th >' . $lista['localizacion']. '</th>
 						<th >' . $lista['name']. '</th>
 					</tr>

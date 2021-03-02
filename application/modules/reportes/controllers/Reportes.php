@@ -21,9 +21,15 @@ class Reportes extends CI_Controller {
 			// create new PDF document
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-			$arrParam = array("idEquipo" => $idEquipo);
+			$arrParam = array('idEquipo' => $idEquipo);
 			$data['infoEquipo'] = $this->reportes_model->get_equipos_info($arrParam);
 			$data['listadoLocalizacion'] = $this->reportes_model->get_localizacion($arrParam);
+
+			$arrParam = array(
+				'idEquipo' => $idEquipo,
+				'to' => date('Y-m-d')
+			);
+			$data['listadoPolizas'] = $this->reportes_model->get_polizas($arrParam);
 
 			$consulta = $data['infoEquipo'][0]['formulario_especifico'];
 			$data['infoEspecifica'] = $this->reportes_model->$consulta($arrParam);
@@ -85,7 +91,9 @@ class Reportes extends CI_Controller {
 			if($data['listadoLocalizacion']){
 				$html .= $this->load->view('reporte_localizacion', $data, true);
 			}
-			
+			if($data['listadoPolizas']){
+				$html .= $this->load->view('reporte_polizas', $data, true);
+			}
 
 			// output the HTML content
 			$pdf->writeHTML($html, true, false, true, false, '');
