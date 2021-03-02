@@ -27,7 +27,7 @@
 			</div>
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="consideracion">Información Adicional: *</label>
+					<label class="control-label" for="consideracion">Observación: *</label>
 					<textarea id="informacion" name="informacion" placeholder="Información Adicional" class="form-control" rows="3" ><?php echo $information?$information[0]["informacion_adicional"]:""; ?></textarea>
 				</div>
 			</div>

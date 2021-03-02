@@ -13,8 +13,7 @@
 				$idUser = $this->session->userdata("id");
 		
 				$data = array(
-					'fk_id_user_encargado' => $this->input->post('id_encargado'),
-					'informacion_adicional' => $this->input->post('informacion')
+					'fk_id_user_encargado' => $this->input->post('id_encargado')
 				);	
 
 				//revisar si es para adicionar o editar
@@ -26,6 +25,8 @@
 					$data['fecha_asignacion'] = date("Y-m-d");
 					$data['fk_id_user_orden'] = $idUser;
 					$data['estado_actual'] = $this->input->post('estado');
+					$data['observacion'] = $this->input->post('informacion');
+					$data['informacion_adicional'] = 'O.T. Creada y asignada';
 					$query = $this->db->insert('orden_trabajo', $data);
 					$idOrdenTrabajo = $this->db->insert_id();
 				} else {
@@ -51,7 +52,7 @@
 					'fk_id_orden_trabajo_estado' => $idOrdenTrabajo,
 					'fk_id_user_ote' => $idUser,
 					'fecha_registro_estado' => date("Y-m-d G:i:s"),
-					'informacion_adicional_estado' => $this->input->post('informacion'),
+					'informacion_adicional_estado' => 'O.T. Creada y asignada',
 					'estado' => $this->input->post('estado')
 				);	
 

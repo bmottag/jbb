@@ -227,7 +227,7 @@ if ($retornoError) {
                                 <th class='text-center'>Fecha Asignación</th>
                                 <th class='text-center'>Encargado</th>
                                 <th class='text-center'>Tipo Mantenimiento</th>
-                                <th class='text-center'>Información Adicional</th>
+                                <th class='text-center'>Observación</th>
                                 <th class='text-center'>Ver</th>
                             </tr>
                         </thead>
@@ -251,7 +251,7 @@ if ($retornoError) {
                                 }
                                 echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
                                 echo "</td>";
-                                echo "<td>" . $lista['informacion_adicional'] . "</td>";
+                                echo "<td>" . $lista['observacion'] . "</td>";
                                 echo "<td class='text-center'>";
                                 ?>
                                 <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver OT <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>

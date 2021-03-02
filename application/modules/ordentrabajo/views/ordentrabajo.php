@@ -87,6 +87,7 @@ $(function(){
 
 					<strong>No. OT: </strong><?php echo $information[0]['id_orden_trabajo']; ?><br>
 					<strong>Encargado: </strong><?php echo $information[0]['encargado']; ?>
+					<strong>Obserbación: </strong><br><?php echo $information[0]['observacion']; ?>
 					<?php
 					switch ($information[0]['estado_actual']) {
 						case 1:
