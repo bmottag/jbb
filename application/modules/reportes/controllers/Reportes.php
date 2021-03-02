@@ -24,6 +24,7 @@ class Reportes extends CI_Controller {
 			$arrParam = array('idEquipo' => $idEquipo);
 			$data['infoEquipo'] = $this->reportes_model->get_equipos_info($arrParam);
 			$data['listadoLocalizacion'] = $this->reportes_model->get_localizacion($arrParam);
+			$data['listadoControlCombustible'] = $this->reportes_model->get_control_combustible($arrParam);
 
 			$arrParam = array(
 				'idEquipo' => $idEquipo,
@@ -97,7 +98,14 @@ class Reportes extends CI_Controller {
 
 			// output the HTML content
 			$pdf->writeHTML($html, true, false, true, false, '');
-			
+
+			if($data['listadoControlCombustible']){
+
+				$pdf->AddPage();
+				$html = $this->load->view('reporte_combustible', $data, true);
+				// output the HTML content
+				$pdf->writeHTML($html, true, false, true, false, '');
+			}
 			// Print some HTML Cells
 
 			// reset pointer to the last page

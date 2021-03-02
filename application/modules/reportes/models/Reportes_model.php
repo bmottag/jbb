@@ -129,6 +129,32 @@
 					return false;
 				}			
 		}
+
+		/**
+		 * Lista de control combustile por equipo
+		 * @since 17/12/2020
+		 */
+		public function get_control_combustible($arrData) 
+		{		
+				$this->db->select('A.*, CONCAT(first_name, " ", last_name) name');				
+				$this->db->join('usuarios U', 'U.id_user = A.fk_id_operador_combustible', 'INNER');
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.fk_id_equipo_combustible', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idControlCombustible", $arrData)) {
+					$this->db->where('A.id_equipo_control_combustible', $arrData["idControlCombustible"]);
+				}
+				
+				$this->db->order_by('A.id_equipo_control_combustible', 'desc');
+				$query = $this->db->get('equipos_control_combustible A');
+
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
 		
 		
 		
