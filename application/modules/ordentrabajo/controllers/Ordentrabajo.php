@@ -307,7 +307,7 @@ class Ordentrabajo extends CI_Controller {
 				$arrParam = array(
 					"idTipoEquipo" => $this->input->post('id_tipo_equipo'),
 					"idEquipo" => $this->input->post('idEquipo'),
-					"OTNumber" => $this->input->post('OTNumber'),
+					"idOrdenTrabajo" => $this->input->post('OTNumber'),
 					"estado" => $this->input->post('estado'),
 					"from" => $from,
 					"to" => $to
@@ -315,10 +315,10 @@ class Ordentrabajo extends CI_Controller {
 				
 				//guardo la informacion en la base de datos para el boton de regresar
 				$this->ordentrabajo_model->saveInfoGoBack($arrParam);
-	
+
 				//informacion Ordenes de trabajo
 				$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam);
-	
+
 				$data["view"] = "listado_orden_trabajo";
 				$this->load->view("layout", $data);
 			}else{

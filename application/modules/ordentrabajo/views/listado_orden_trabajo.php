@@ -30,7 +30,7 @@
                                 <th class='text-center'>Fecha Asignación</th>
                                 <th class='text-center'>Encargado</th>
                                 <th class='text-center'>Tipo Mantenimiento</th>
-                                <th class='text-center'>Información Adicional</th>
+                                <th class='text-center'>Observacion</th>
                                 <th class='text-center'>Estado Actual</th>
                                 <th class='text-center'>Ver</th>
 							</tr>
@@ -55,7 +55,7 @@
                                 }
                                 echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
                                 echo "</td>";
-                                echo "<td>" . $lista['informacion_adicional'] . "</td>";
+                                echo "<td>" . $lista['observacion'] . "</td>";
                                 echo "<td class='text-center'>";
 								switch ($lista['estado_actual']) {
 									case 1:

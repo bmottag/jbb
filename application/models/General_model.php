@@ -449,7 +449,7 @@ class General_model extends CI_Model {
 				$this->db->join('usuarios U', 'U.id_user = C.fk_id_user_orden', 'INNER');
 				$this->db->join('usuarios X', 'X.id_user = C.fk_id_user_encargado', 'INNER');
 				$this->db->join('equipos E', 'E.id_equipo = C.fk_id_equipo_ot ', 'INNER');
-				if (array_key_exists("idOrdenTrabajo", $arrData)) {
+				if (array_key_exists("idOrdenTrabajo", $arrData) && $arrData["idOrdenTrabajo"] != '') {
 					$this->db->where('C.id_orden_trabajo ', $arrData["idOrdenTrabajo"]);
 				}
 				if (array_key_exists("idMantenimiento", $arrData) && array_key_exists("tipoMantenimiento", $arrData)) {
@@ -461,7 +461,7 @@ class General_model extends CI_Model {
 				if (array_key_exists("idEquipo", $arrData) && $arrData["idEquipo"] != '') {
 					$this->db->where('C.fk_id_equipo_ot', $arrData["idEquipo"]);
 				}
-				if (array_key_exists("idTipoEquipo", $arrData)) {
+				if (array_key_exists("idTipoEquipo", $arrData) && $arrData["idTipoEquipo"] != '') {
 					$this->db->where('E.fk_id_tipo_equipo', $arrData["idTipoEquipo"]);
 				}
 				if (array_key_exists("estado", $arrData) && $arrData["estado"] != '') {
