@@ -390,6 +390,48 @@ class Settings extends CI_Controller {
                 }
 
 	}
+
+	/**
+	 * Genera todas las imagenes de QR de os equipos
+     * @since 20/3/2021
+     * @author BMOTTAG
+	 */
+	public function generarImagenesQREquipos()
+	{
+				//primero eliminar imagenes de QR
+				$files = glob('images/equipos/QR/*.png'); //obtenemos todos los nombres de los ficheros
+
+				foreach($files as $file){
+				    if(is_file($file))
+				    unlink($file); //elimino el fichero
+				}
+
+				//informacion equipos
+				$arrParam = array('estadoEquipo' => 1);	
+				$infoEquipos = $this->general_model->get_equipos_info($arrParam);
+
+				$this->load->library('ciqrcode');
+
+				$tot = count($infoEquipos);
+				for ($i = 0; $i < $tot; $i++) 
+				{
+					//INCIO - genero imagen con la libreria y la subo 
+					$valorQRcode = base_url('login/index/' . $infoEquipos[$i]['qr_code_encryption']);
+					$rutaImagen = $infoEquipos[$i]['qr_code_img'];
+					
+					$params['data'] = $valorQRcode;
+					$params['level'] = 'H';
+					$params['size'] = 10;
+					$params['savename'] = FCPATH.$rutaImagen;
+									
+					$this->ciqrcode->generate($params);
+					//FIN - genero imagen con la libreria y la subo
+				}
+				
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> Se actualizarón las imagenes de QR de los equipos');
+				
+				redirect("/equipos",'refresh');
+	}
 	
 
 	
