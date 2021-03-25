@@ -349,6 +349,33 @@
 					return false;
 				}
 		}
+
+		/**
+		 * Lista de Diagnostico
+		 * @since 20/3/2021
+		 */
+		public function get_diagnostico($arrData) 
+		{		
+				$this->db->select("I.*, CONCAT(first_name, ' ', last_name) name");
+				$this->db->join('usuarios U', 'U.id_user = I.fk_id_user_responsable', 'INNER');			
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('I.fk_id_equipo_vehiculo', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idInspeccion", $arrData)) {
+					$this->db->where('I.id_inspection_vehiculos', $arrData["idInspeccion"]);
+				}
+				
+				$this->db->order_by('I.id_inspection_vehiculos', 'desc');
+				$query = $this->db->get('inspection_vehiculos I');
+
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
 		
 		
 		

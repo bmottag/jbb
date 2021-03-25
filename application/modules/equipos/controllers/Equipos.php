@@ -632,6 +632,31 @@ class Equipos extends CI_Controller {
 			$this->load->view("combustible_modal", $data);
     }
 
+	/**
+	 * Listado de diagnosticos
+     * @since 20/3/2021
+     * @author BMOTTAG
+	 */
+	public function diagnostico($idEquipo)
+	{
+			$arrParam = array("idEquipo" => $idEquipo);
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//DESHABILITAR
+			$data['deshabilitar'] = '';
+			$userRol = $this->session->role;
+			//si el rol es: Usuario Consulta; Encargado; Operador - Conductor
+			if($userRol == 2 || $userRol == 3 || $userRol == 5)
+			{
+				$data['deshabilitar'] = 'disabled';
+			}
+			
+			$data['listadoDiagnostico'] = $this->equipos_model->get_diagnostico($arrParam);
+						
+			$data["view"] = 'equipos_diagnostico';
+			$this->load->view("layout_calendar", $data);
+	}
+
 
 	
 }
