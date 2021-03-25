@@ -26,7 +26,7 @@
 				<a href="<?php echo base_url('equipos/detalle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa <?php echo $info[0]['icono']; ?>"></i> Información General
 				</a>
-				<a href="<?php echo base_url('equipos/especifico/' . $info[0]['id_equipo']); ?>" class="btn btn-success btn-block">
+				<a href="<?php echo base_url('equipos/especifico/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
 					<i class="fa fa-tags"></i> Información Específica
 				</a>
 				<a href="<?php echo base_url('equipos/foto/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
@@ -47,7 +47,7 @@
 				<a href="<?php echo base_url('mantenimiento/preventivo_equipo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-wrench"></i> Mantenimiento Preventivo
 				</a>
-				<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+				<a href="<?php echo base_url('equipos/diagnostico/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tasks"></i> Diagnóstico Periódico
 				</a>
 			</div>
@@ -55,7 +55,7 @@
 		</div>
 
 		<div class="col-lg-9">
-			<div class="panel panel-success">
+			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-tags"></i> <strong>INFORMACIÓN ESPECÍFICA</strong>
 				</div>

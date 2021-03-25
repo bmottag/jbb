@@ -3,7 +3,7 @@
 
 <script>
 $(function(){ 
-	$(".btn-danger").click(function () {	
+	$(".btn-info").click(function () {	
 			var oID = $(this).attr("id");
             $.ajax ({
                 type: 'POST',
@@ -64,7 +64,7 @@ $(function(){
 				<a href="<?php echo base_url('equipos/foto/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-photo"></i> Foto Equipo
 				</a>
-				<a href="<?php echo base_url('equipos/localizacion/' . $info[0]['id_equipo']); ?>" class="btn btn-danger btn-block">
+				<a href="<?php echo base_url('equipos/localizacion/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
 					<i class="fa fa-thumb-tack"></i> Localización
 				</a>
 				<a href="<?php echo base_url('equipos/combustible/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
@@ -79,7 +79,7 @@ $(function(){
 				<a href="<?php echo base_url('mantenimiento/preventivo_equipo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-wrench"></i> Mantenimiento Preventivo
 				</a>
-				<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+				<a href="<?php echo base_url('equipos/diagnostico/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tasks"></i> Diagnóstico Periódico
 				</a>
 			</div>
@@ -87,13 +87,13 @@ $(function(){
 		</div>
 
 		<div class="col-lg-9">
-			<div class="panel panel-danger">
+			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-thumb-tack"></i> <strong>LOCALIZACIÓN DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 				
-					<button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
+					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Localización del Equipo
 					</button><br>
 

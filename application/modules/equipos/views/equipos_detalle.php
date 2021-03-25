@@ -49,7 +49,7 @@
 				<a href="<?php echo base_url('mantenimiento/preventivo_equipo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-wrench"></i> Mantenimiento Preventivo
 				</a>
-				<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+				<a href="<?php echo base_url('equipos/diagnostico/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tasks"></i> Diagnóstico Periódico
 				</a>
 			</div>
@@ -59,7 +59,19 @@
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa <?php echo $info[0]['icono']; ?>"></i> <strong>INFORMACIÓN GENERAL DEL EQUIPO</strong>
+					<div class="row">
+						 <div class="col-lg-4">
+							<i class="fa <?php echo $info[0]['icono']; ?>"></i> <strong>INFORMACIÓN GENERAL DEL EQUIPO</strong>
+						</div>
+	                    <div class="col-lg-2">
+	                        <form  name="form_descarga" id="form_descarga" method="post" action="<?php echo base_url("reportes/infoEquipoPDF"); ?>" target="_blank">
+	                            <input type="hidden" class="form-control" id="idEquipo" name="idEquipo" value="<?php echo $info[0]['id_equipo']; ?>" />
+	                            <button type="submit" class="btn btn-info btn-xs" id="btnSubmit2" name="btnSubmit2" value="1" >
+	                                Descargar Listado PDF <span class="fa fa-file-pdf-o" aria-hidden="true" />
+	                            </button>
+	                        </form>
+	                    </div>
+                   </div>
 				</div>
 				<div class="panel-body">
 

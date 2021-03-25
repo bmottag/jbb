@@ -3,7 +3,7 @@
 
 <script>
 $(function(){ 
-	$(".btn-violeta").click(function () {	
+	$(".btn-info").click(function () {	
 			var oID = $(this).attr("id");
             $.ajax ({
                 type: 'POST',
@@ -70,7 +70,7 @@ $(function(){
 				<a href="<?php echo base_url('equipos/combustible/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tint"></i> Seguimiento Operación
 				</a>
-				<a href="<?php echo base_url('equipos/poliza/' . $info[0]['id_equipo']); ?>" class="btn btn-violeta btn-block">
+				<a href="<?php echo base_url('equipos/poliza/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
 					<i class="fa fa-book"></i> Pólizas
 				</a>
 				<a href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
@@ -79,7 +79,7 @@ $(function(){
 				<a href="<?php echo base_url('mantenimiento/preventivo_equipo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-wrench"></i> Mantenimiento Preventivo
 				</a>
-				<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+				<a href="<?php echo base_url('equipos/diagnostico/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tasks"></i> Diagnóstico Periódico
 				</a>
 			</div>
@@ -87,14 +87,14 @@ $(function(){
 		</div>
 
 		<div class="col-lg-9">
-			<div class="panel panel-violeta">
+			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-book"></i> <strong>PÓLIZAS DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 				
 					<?php if(!$deshabilitar){ ?>
-					<button type="button" class="btn btn-violeta btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
+					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Póliza del Equipo
 					</button><br>
 					<?php } ?>
