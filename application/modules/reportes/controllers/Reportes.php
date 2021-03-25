@@ -14,13 +14,14 @@ class Reportes extends CI_Controller {
      * @since 1/3/2021
      * @author BMOTTAG
 	 */
-	public function infoEquipoPDF($idEquipo)
+	public function infoEquipoPDF()
 	{
 			$this->load->library('Pdf');
 			
 			// create new PDF document
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
+			$idEquipo = $this->input->post('idEquipo');
 			$arrParam = array('idEquipo' => $idEquipo);
 			$data['infoEquipo'] = $this->reportes_model->get_equipos_info($arrParam);
 			$data['listadoLocalizacion'] = $this->reportes_model->get_localizacion($arrParam);

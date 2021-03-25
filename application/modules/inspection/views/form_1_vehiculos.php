@@ -162,7 +162,7 @@ if($information)
 								<input type="radio" name="radiador" id="radiador1" value=0 <?php if($information && $information[0]["radiador"] == 0) { echo "checked"; }  ?>>Mal Estado
 							</label>
 							<label class="radio-inline">
-								<input type="radio" name="radiador" id="radiador2" value=1 <?php if($information && $information[0]["radiador"] == 1) { echo "checked"; }  ?>>Mal Estado
+								<input type="radio" name="radiador" id="radiador2" value=1 <?php if($information && $information[0]["radiador"] == 1) { echo "checked"; }  ?>>Buen Estado
 							</label>
 							<label class="radio-inline">
 								<input type="radio" name="radiador" id="radiador3" value=99 <?php if($information && $information[0]["radiador"] == 99) { echo "checked"; }  ?>>N/A
