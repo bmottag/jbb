@@ -20,7 +20,9 @@
 
 			<div class="form-group">
 				<div class="row" align="center">
-						<?php echo '<strong>No. Inventario:</strong> ' . $info[0]['numero_inventario']; ?>
+						<strong>No. Inventario: </strong><?php echo $info[0]['numero_inventario']; ?>
+						<br>
+						<strong>Tipo Equipo: </strong><?php echo  $info[0]['tipo_equipo']; ?>
 				</div>
 			</div>
 		
