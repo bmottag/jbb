@@ -267,13 +267,18 @@
 		public function guardarControlCombustible() 
 		{
 				$idControlCombustible = $this->input->post('hddidControlCombustibler');
-				
+				$cantidad = $this->input->post('cantidad');
+				$valorGalon = $this->input->post('valor_x_galon');
+				$valorTotal = $valorGalon * $cantidad;
+			
 				$data = array(
 					'kilometros_actuales' => $this->input->post('kilometros_actuales'),
 					'fk_id_operador_combustible' => $this->input->post('id_operador'),
 					'tipo_consumo' => $this->input->post('tipo_consumo'),
-					'cantidad' => $this->input->post('cantidad'),
-					'valor' => $this->input->post('valor'),
+					'cantidad' => $cantidad,
+					'valor_x_galon' => $valorGalon,
+					'valor_total' => $valorTotal,
+					'lugar' => $this->input->post('lugar'),
 					'labor_realizada' => $this->input->post('labor_realizada')
 				);	
 

@@ -58,11 +58,20 @@
 		<div class="row">
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
-					<label class="control-label" for="valor">Valor: *</label>
-					<input type="text" id="valor" name="valor" class="form-control" value="<?php echo $information?$information[0]["valor"]:""; ?>" placeholder="Valor" >
+					<label class="control-label" for="valor_x_galon">Valor por Galón: *</label>
+					<input type="text" id="valor_x_galon" name="valor_x_galon" class="form-control" value="<?php echo $information?$information[0]["valor_x_galon"]:""; ?>" placeholder="Valor por Galón" >
 				</div>
 			</div>
 
+			<div class="col-sm-6">		
+				<div class="form-group text-left">
+					<label class="control-label" for="lugar">Lugar: *</label>
+					<input type="text" id="lugar" name="lugar" class="form-control" value="<?php echo $information?$information[0]["lugar"]:""; ?>" placeholder="Lugar" >
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
 					<label class="control-label" for="labor_realizada">Labor realizada: *</label>

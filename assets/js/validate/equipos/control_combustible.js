@@ -1,7 +1,7 @@
 $( document ).ready( function () {
 
 	$("#kilometros_actuales").bloquearTexto().maxlength(7);
-	$("#valor").bloquearTexto().maxlength(7);
+	$("#valor_x_galon").bloquearTexto().maxlength(7);
 	
 	$( "#formCombustible" ).validate( {
 		rules: {
@@ -9,7 +9,8 @@ $( document ).ready( function () {
 			id_operador:				{ required: true },
 			tipo_consumo:				{ required: true },
 			cantidad:					{ required: true, maxlength: 20 },
-			valor:		 				{ required: true, minlength: 3, maxlength: 7 },
+			valor_x_galon:		 		{ required: true, minlength: 3, maxlength: 7 },
+			lugar:		 				{ required: true, maxlength: 100 },
 			labor_realizada:		 	{ required: true }
 		},
 		errorElement: "em",

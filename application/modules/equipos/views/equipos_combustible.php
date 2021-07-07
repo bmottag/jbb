@@ -132,7 +132,9 @@ $(function(){
 								<th class="text-center">Operador</th>
 								<th class="text-center">Tipo de Consumo</th>
 								<th class="text-center">Cantidad</th>
-								<th class="text-center">Valor</th>
+								<th class="text-center">Lugar</th>
+								<th class="text-center">Valor X Galón</th>
+								<th class="text-center">Valor Total</th>
 								<th class="text-center">Labor Realizada</th>
 								<th class="text-center">Editar</th>
 							</tr>
@@ -171,7 +173,9 @@ $(function(){
 									echo "</td>";
 
 									echo "<td>" . $lista['cantidad'] . "</td>";
-									echo "<td class='text-right'>$" . number_format($lista['valor'], 2) . "</td>";
+									echo "<td>" . $lista['lugar'] . "</td>";
+									echo "<td class='text-right'>$" . number_format($lista['valor_x_galon'], 2) . "</td>";
+									echo "<td class='text-right'>$" . number_format($lista['valor_total'], 2) . "</td>";
 									echo "<td>" . $lista['labor_realizada'] . "</td>";
 									
 									echo "<td class='text-center'>";
