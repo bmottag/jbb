@@ -174,10 +174,17 @@
 </script>
 						<div class="form-group">
 							<div class="col-sm-6">
+								<label for="placa">Placa: </label>
+								<input type="text" id="placa" name="placa" class="form-control" value="<?php echo $info?$info[0]["placa"]:""; ?>" placeholder="Placa" <?php echo $deshabilitar; ?>>
+							</div>
+
+							<div class="col-sm-6">
 								<label for="fecha_adquisicion">Fecha Adquisición: </label>
 								<input type="text" class="form-control" id="fecha_adquisicion" name="fecha_adquisicion" value="<?php echo $info?$info[0]["fecha_adquisicion"]:""; ?>" placeholder="Fecha Adquisición" <?php echo $deshabilitar; ?>/>
 							</div>
-						
+						</div>
+
+						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="observacion">Observación: </label>
 								<textarea id="observacion" name="observacion" placeholder="Observación" class="form-control" rows="3" <?php echo $deshabilitar; ?>><?php echo $info?$info[0]["observacion"]:""; ?></textarea>

@@ -5,11 +5,13 @@ $( document ).ready( function () {
 	
 	$( "#form" ).validate( {
 		rules: {
-			placa: 				{ required: true, minlength: 4, maxlength:8 },
+			dimensiones: 		{ minlength: 4, maxlength:20 },
 			linea: 				{ maxlength: 20 },
 			color: 				{ maxlength: 20 },
 			capacidad: 			{ maxlength: 20 },
 			servicio: 			{ maxlength: 20 },
+			codigo_gps: 		{ minlength: 4, maxlength:20 },
+			numero_chasis: 		{ minlength: 4, maxlength:30 },
 			numero_motor: 		{ maxlength: 25 }
 		},
 		errorElement: "em",

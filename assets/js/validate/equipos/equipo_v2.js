@@ -12,6 +12,7 @@ $( document ).ready( function () {
 			id_tipo_equipo: 		{ required: true },
 			estado: 				{ required: true },
 			valor_comercial: 		{ number: true, maxlength:10 },
+			placa: 					{ minlength: 4, maxlength:8 },
 			fecha_adquisicion: 		{ required: true }
 		},
 		errorElement: "em",

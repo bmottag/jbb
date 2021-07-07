@@ -20,6 +20,7 @@
 					'fk_id_tipo_equipo' => $this->input->post('id_tipo_equipo'),
 					'estado_equipo' => $this->input->post('estado'),
 					'valor_comercial' => $this->input->post('valor_comercial'),
+					'placa' => $this->input->post('placa'),
 					'fecha_adquisicion' => $this->input->post('fecha_adquisicion'),
 					'observacion' => $this->input->post('observacion')
 				);	
@@ -58,7 +59,7 @@
 				
 				$data = array(
 					'fk_id_equipo' => $this->input->post('hddIdEquipo'),
-					'placa' => $this->input->post('placa'),
+					'dimensiones' => $this->input->post('dimensiones'),
 					'linea' => $this->input->post('linea'),
 					'color' => $this->input->post('color'),
 					'fk_id_clase_vechiculo' => $this->input->post('id_clase_vechiculo'),
@@ -67,6 +68,8 @@
 					'capacidad' => $this->input->post('capacidad'),
 					'servicio' => $this->input->post('servicio'),
 					'numero_motor' => $this->input->post('numero_motor'),
+					'codigo_gps' => $this->input->post('codigo_gps'),
+					'numero_chasis' => $this->input->post('numero_chasis'),
 					'multas' => $this->input->post('multas')
 				);	
 

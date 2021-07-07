@@ -91,8 +91,8 @@
 
 						<div class="form-group">
 							<div class="col-sm-6">
-								<label for="placa">Placa: </label>
-								<input type="text" id="placa" name="placa" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["placa"]:""; ?>" placeholder="Placa" required <?php echo $deshabilitar; ?>>
+								<label for="dimensiones">Dimensiones: </label>
+								<input type="text" id="dimensiones" name="dimensiones" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["dimensiones"]:""; ?>" placeholder="Dimensiones" <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">
@@ -156,6 +156,18 @@
 							<div class="col-sm-6">
 								<label for="numero_motor">Número Motor: </label>
 								<input type="text" id="numero_motor" name="numero_motor" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_motor"]:""; ?>" placeholder="Número Motor" <?php echo $deshabilitar; ?>>
+							</div>
+
+							<div class="col-sm-6">
+								<label for="codigo_gps">Código GPS: </label>
+								<input type="text" id="codigo_gps" name="codigo_gps" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["codigo_gps"]:""; ?>" placeholder="Código GPS" <?php echo $deshabilitar; ?>>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label for="numero_chasis">Número Chasis: </label>
+								<input type="text" id="numero_chasis" name="numero_chasis" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_chasis"]:""; ?>" placeholder="Número Chasis" <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">
