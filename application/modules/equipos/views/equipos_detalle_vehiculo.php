@@ -159,15 +159,27 @@
 							</div>
 
 							<div class="col-sm-6">
-								<label for="codigo_gps">Código GPS: </label>
-								<input type="text" id="codigo_gps" name="codigo_gps" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["codigo_gps"]:""; ?>" placeholder="Código GPS" <?php echo $deshabilitar; ?>>
+								<label for="numero_chasis">Número Chasis: </label>
+								<input type="text" id="numero_chasis" name="numero_chasis" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_chasis"]:""; ?>" placeholder="Número Chasis" <?php echo $deshabilitar; ?>>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-6">
-								<label for="numero_chasis">Número Chasis: </label>
-								<input type="text" id="numero_chasis" name="numero_chasis" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_chasis"]:""; ?>" placeholder="Número Chasis" <?php echo $deshabilitar; ?>>
+								<label for="codigo_gps">Código GPS: </label>
+								<input type="text" id="codigo_gps" name="codigo_gps" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["codigo_gps"]:""; ?>" placeholder="Código GPS" <?php echo $deshabilitar; ?>>
+							</div>
+
+							<div class="col-sm-6">
+								<label for="codigo_ship">Código Ship: </label>
+								<input type="text" id="codigo_ship" name="codigo_ship" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["codigo_ship"]:""; ?>" placeholder="Código Ship" <?php echo $deshabilitar; ?>>
+							</div>						
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label for="numero_licencia_transito">Número de Licencia de Tránsito: </label>
+								<input type="text" id="numero_licencia_transito" name="numero_licencia_transito" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_licencia_transito"]:""; ?>" placeholder="Número de Licencia de Tránsito" <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">

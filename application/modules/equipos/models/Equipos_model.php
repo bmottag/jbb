@@ -68,8 +68,10 @@
 					'capacidad' => $this->input->post('capacidad'),
 					'servicio' => $this->input->post('servicio'),
 					'numero_motor' => $this->input->post('numero_motor'),
-					'codigo_gps' => $this->input->post('codigo_gps'),
 					'numero_chasis' => $this->input->post('numero_chasis'),
+					'codigo_gps' => $this->input->post('codigo_gps'),
+					'codigo_ship' => $this->input->post('codigo_ship'),
+					'numero_licencia_transito' => $this->input->post('numero_licencia_transito'),
 					'multas' => $this->input->post('multas')
 				);	
 
