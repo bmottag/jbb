@@ -124,7 +124,7 @@ $(function(){
 			</div>';
 	}else{
 ?>
-					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th class="text-center">Fecha</th>
