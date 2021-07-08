@@ -2,12 +2,11 @@
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="exampleModalLabel">Formulario de Equipos
-	<br><small>Adicionar/Editar Equipo</small>
-	</h4>
+	<h4 class="modal-title" id="exampleModalLabel">Formulario de Equipos</h4>
 </div>
 
 <div class="modal-body">
+	<p class="text-danger text-left">Los campos con * son obligatorios.</p>
 	<form name="form" id="form" role="form" method="post" >
 		<input type="hidden" id="hddId" name="hddId" value="<?php echo $information?$information[0]["id_equipo"]:""; ?>"/>
 
@@ -48,8 +47,7 @@
 			</div>
 		</div>
 
-		<div class="row">
-	
+		<div class="row">	
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
 					<label class="control-label" for="numero_serial">Número Serial: *</label>
@@ -68,7 +66,27 @@
 					</select>
 				</div>
 			</div>		
- 
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">		
+				<div class="form-group text-left">
+					<label class="control-label" for="id_contrato">Contrato de Mantenimiento: *</label>
+					<select name="id_contrato" id="id_contrato" class="form-control" required>
+						<option value="">Seleccione...</option>
+						<?php for ($i = 0; $i < count($contratosMantenimiento); $i++) { ?>
+							<option value="<?php echo $contratosMantenimiento[$i]["id_contrato_mantenimiento"]; ?>" <?php if($information && $information[0]["fk_id_contrato_mantenimiento"] == $contratosMantenimiento[$i]["id_contrato_mantenimiento"]) { echo "selected"; }  ?>><?php echo $contratosMantenimiento[$i]["numero_contrato"]; ?></option>	
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="estado">Placa: </label>
+					<input type="text" id="placa" name="placa" class="form-control" value="<?php echo $information?$information[0]["placa"]:""; ?>" placeholder="Placa" >
+				</div>
+			</div>
 		</div>
 
 <script>
@@ -82,6 +100,22 @@
 </script>
 		
 		<div class="row">
+			<div class="col-sm-6">		
+				<div class="form-group text-left">
+					<label class="control-label" for="valor_comercial">Valor Comercial: </label>
+					<input type="text" id="valor_comercial" name="valor_comercial" class="form-control" value="<?php echo $information?$information[0]["valor_comercial"]:""; ?>" placeholder="Valor Comercial" >
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="estado">Fecha Adquisición: *</label>
+					<input type="text" class="form-control" id="fecha_adquisicion" name="fecha_adquisicion" value="" placeholder="Fecha Adquisición" required />
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="estado">Estado: *</label>
@@ -92,24 +126,10 @@
 					</select>
 				</div>
 			</div>	
-			<div class="col-sm-6">
-				<div class="form-group text-left">
-					<label class="control-label" for="estado">Fecha Adquisición: *</label>
-					<input type="text" class="form-control" id="fecha_adquisicion" name="fecha_adquisicion" value="" placeholder="Fecha Adquisición" required />
-				</div>
-			</div>
-
 		</div>
-		
-		<div class="row">
-			<div class="col-sm-6">		
-				<div class="form-group text-left">
-					<label class="control-label" for="valor_comercial">Valor Comercial: </label>
-					<input type="text" id="valor_comercial" name="valor_comercial" class="form-control" value="<?php echo $information?$information[0]["valor_comercial"]:""; ?>" placeholder="Valor Comercial" >
-				</div>
-			</div>
 			
-			<div class="col-sm-6">		
+		<div class="row">
+			<div class="col-sm-12">
 				<div class="form-group text-left">
 					<label class="control-label" for="observacion">Observación: </label>
 					<textarea id="observacion" name="observacion" placeholder="Observación" class="form-control" rows="3"><?php echo $information?$information[0]["observacion"]:""; ?></textarea>

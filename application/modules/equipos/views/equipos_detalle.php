@@ -146,23 +146,29 @@
 								</select>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<div class="col-sm-6">
-								<label for="from">Estado: </label>
-								<select name="estado" id="estado" class="form-control" required <?php echo $deshabilitar; ?>>
-									<option value=''>Select...</option>
-									<option value=1 <?php if($info && $info[0]["estado_equipo"] == 1) { echo "selected"; }  ?>>Activo</option>
-									<option value=2 <?php if($info && $info[0]["estado_equipo"] == 2) { echo "selected"; }  ?>>Inactivo</option>
+								<label for="from">Contrato de Mantenimiento: *</label>
+								<select name="id_contrato" id="id_contrato" class="form-control" required>
+									<option value="">Seleccione...</option>
+									<?php for ($i = 0; $i < count($contratosMantenimiento); $i++) { ?>
+										<option value="<?php echo $contratosMantenimiento[$i]["id_contrato_mantenimiento"]; ?>" <?php if($info && $info[0]["fk_id_contrato_mantenimiento"] == $contratosMantenimiento[$i]["id_contrato_mantenimiento"]) { echo "selected"; }  ?>><?php echo $contratosMantenimiento[$i]["numero_contrato"]; ?></option>	
+									<?php } ?>
 								</select>
 							</div>
 						
 							<div class="col-sm-6">
+								<label for="placa">Placa: </label>
+								<input type="text" id="placa" name="placa" class="form-control" value="<?php echo $info?$info[0]["placa"]:""; ?>" placeholder="Placa" <?php echo $deshabilitar; ?>>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-6">
 								<label for="valor_comercial">Valor Comercial: </label>
 								<input type="text" id="valor_comercial" name="valor_comercial" class="form-control" value="<?php echo $info?$info[0]["valor_comercial"]:""; ?>" placeholder="Valor Comercial" <?php echo $deshabilitar; ?>>
 							</div>
-						</div>
-												
 <script>
 	$( function() {
 		$( "#fecha_adquisicion" ).datepicker({
@@ -172,20 +178,26 @@
 		});
 	});
 </script>
-						<div class="form-group">
-							<div class="col-sm-6">
-								<label for="placa">Placa: </label>
-								<input type="text" id="placa" name="placa" class="form-control" value="<?php echo $info?$info[0]["placa"]:""; ?>" placeholder="Placa" <?php echo $deshabilitar; ?>>
-							</div>
-
 							<div class="col-sm-6">
 								<label for="fecha_adquisicion">Fecha Adquisición: </label>
 								<input type="text" class="form-control" id="fecha_adquisicion" name="fecha_adquisicion" value="<?php echo $info?$info[0]["fecha_adquisicion"]:""; ?>" placeholder="Fecha Adquisición" <?php echo $deshabilitar; ?>/>
 							</div>
+
+						</div>
+												
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label for="from">Estado: </label>
+								<select name="estado" id="estado" class="form-control" required <?php echo $deshabilitar; ?>>
+									<option value=''>Select...</option>
+									<option value=1 <?php if($info && $info[0]["estado_equipo"] == 1) { echo "selected"; }  ?>>Activo</option>
+									<option value=2 <?php if($info && $info[0]["estado_equipo"] == 2) { echo "selected"; }  ?>>Inactivo</option>
+								</select>
+							</div>
 						</div>
 
 						<div class="form-group">
-							<div class="col-sm-6">
+							<div class="col-sm-12">
 								<label for="observacion">Observación: </label>
 								<textarea id="observacion" name="observacion" placeholder="Observación" class="form-control" rows="3" <?php echo $deshabilitar; ?>><?php echo $info?$info[0]["observacion"]:""; ?></textarea>
 							</div>

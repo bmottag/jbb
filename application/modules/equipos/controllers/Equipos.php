@@ -88,6 +88,9 @@ class Equipos extends CI_Controller {
 				"id" => "x"
 			);
 			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
+
+			$arrParam = array();
+			$data['contratosMantenimiento'] = $this->general_model->get_contratos($arrParam);
 							
 			$this->load->view("equipos_modal", $data);
     }
@@ -235,6 +238,9 @@ class Equipos extends CI_Controller {
 				"id" => "x"
 			);
 			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
+
+			$arrParam = array();
+			$data['contratosMantenimiento'] = $this->general_model->get_contratos($arrParam);
 			
 			$data["view"] = 'equipos_detalle';
 			$this->load->view("layout_calendar", $data);

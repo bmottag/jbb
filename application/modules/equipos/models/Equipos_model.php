@@ -21,6 +21,7 @@
 					'estado_equipo' => $this->input->post('estado'),
 					'valor_comercial' => $this->input->post('valor_comercial'),
 					'placa' => $this->input->post('placa'),
+					'fk_id_contrato_mantenimiento' => $this->input->post('id_contrato'),
 					'fecha_adquisicion' => $this->input->post('fecha_adquisicion'),
 					'observacion' => $this->input->post('observacion')
 				);	
