@@ -657,6 +657,77 @@ class Equipos extends CI_Controller {
 			$this->load->view("layout_calendar", $data);
 	}
 
+	/**
+	 * Lista de contratos
+     * @since 8/7/2021
+     * @author BMOTTAG
+	 */
+	public function contratos()
+	{
+			$arrParam = array();
+			$data['info'] = $this->general_model->get_contratos($arrParam);
+
+			$data["view"] = 'contratos_mantenimiento';
+			$this->load->view("layout", $data);
+	}
+	
+    /**
+     * Cargo modal - formulario contratos mantenimientos
+     * @since 8/7/2021
+     */
+    public function cargarModalContratos() 
+	{
+			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+			
+			$data['information'] = FALSE;
+			$data["idContrato"] = $this->input->post("idContrato");
+
+			$arrParam = array(
+				"table" => "param_proveedores",
+				"order" => "nombre_proveedor",
+				"id" => "x"
+			);
+			$data['proveedores'] = $this->general_model->get_basic_search($arrParam);
+			//Lista de operadores activos
+			$arrParam = array("filtroState" => TRUE);
+			$data['listaUsuarios'] = $this->general_model->get_user($arrParam);//workers list
+			
+			if ($data["idContrato"] != 'x') {
+				$arrParam = array("idContrato" => $data["idContrato"]);
+				$data['information'] = $this->general_model->get_contratos($arrParam);
+			}
+			
+			$this->load->view("contratos_mantenimiento_modal", $data);
+    }
+	
+	/**
+	 * Guardar contratos mantenimiento
+     * @since 8/7/2021
+     * @author BMOTTAG
+	 */
+	public function save_contratos()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+	
+			$idContrato = $this->input->post('hddId');
+			
+			$msj = "Se adicionó el Contrato de Mantenimiento!";
+			if ($idContrato != '') {
+				$msj = "Se actualizó el Contrato de Mantenimiento!";
+			}
+
+			if ($idContrato = $this->equipos_model->saveContrato()) {
+				$data["result"] = true;				
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
+			} else {
+				$data["result"] = "error";				
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
+			}
+
+			echo json_encode($data);	
+    }
+
 
 	
 }

@@ -387,7 +387,37 @@
 				}
 		}
 		
-		
+			/**
+		 * Add/Edit ONTRATOS MANTENIINETO
+		 * @since 8/7/2021
+		 */
+		public function saveContrato() 
+		{
+				$idContrato = $this->input->post('hddId');
+				
+				$data = array(
+					'numero_contrato' => $this->input->post('numero_contrato'),
+					'objeto_contrato' => $this->input->post('objeto_contrato'),
+					'fk_id_supervisor ' => $this->input->post('id_supervidor'),
+					'fk_id_proveedor ' => $this->input->post('id_proveedor'),
+					'fecha_desde' => formatear_fecha($this->input->post('fecha_desde')),
+					'fecha_hasta ' => formatear_fecha($this->input->post('fecha_hasta'))
+				);
+				
+				//revisar si es para adicionar o editar
+				if ($idContrato == '') {
+					$query = $this->db->insert('contratos_mantenimiento', $data);
+					$idContrato = $this->db->insert_id();				
+				} else {
+					$this->db->where('id_contrato_mantenimiento ', $idContrato);
+					$query = $this->db->update('contratos_mantenimiento', $data);
+				}
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}	
 		
 		
 	    
