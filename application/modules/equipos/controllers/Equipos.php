@@ -512,6 +512,35 @@ class Equipos extends CI_Controller {
 			$data["view"] = 'equipos_combustible';
 			$this->load->view("layout_calendar", $data);
 	}
+
+    /**
+     * Cargo modal- formulario de consumo combustible
+     * @since 15/1/2021
+     */
+    public function cargarModalCombustible() 
+	{
+			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+			
+			$data['information'] = FALSE;
+			$data["idEquipo"] = $this->input->post("idEquipo");
+			$data["idControlCombustible"] = $this->input->post("idControlCombustible");
+
+			//Lista de operadores activos
+			$arrParam = array(
+						"filtroState" => TRUE,
+						'idRole' => 5
+						);
+			$data['listaOperadores'] = $this->general_model->get_user($arrParam);//workers list
+			
+			if ($data["idControlCombustible"] != 'x') {
+				$arrParam = array("idControlCombustible" => $data["idControlCombustible"]);
+				$data['information'] = $this->equipos_model->get_control_combustible($arrParam);//info bloques
+				
+				$data["idEquipo"] = $data['information'][0]['fk_id_equipo_combustible'];
+			}
+			
+			$this->load->view("combustible_modal", $data);
+    }
 	
 	/**
 	 * Guardar Control del combustible
@@ -617,35 +646,6 @@ class Equipos extends CI_Controller {
 			echo json_encode($data);
     }
 
-    /**
-     * Cargo modal- formulario de consumo combustible
-     * @since 15/1/2021
-     */
-    public function cargarModalCombustible() 
-	{
-			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
-			
-			$data['information'] = FALSE;
-			$data["idEquipo"] = $this->input->post("idEquipo");
-			$data["idControlCombustible"] = $this->input->post("idControlCombustible");
-
-			//Lista de operadores activos
-			$arrParam = array(
-						"filtroState" => TRUE,
-						'idRole' => 5
-						);
-			$data['listaOperadores'] = $this->general_model->get_user($arrParam);//workers list
-			
-			if ($data["idControlCombustible"] != 'x') {
-				$arrParam = array("idControlCombustible" => $data["idControlCombustible"]);
-				$data['information'] = $this->equipos_model->get_control_combustible($arrParam);//info bloques
-				
-				$data["idEquipo"] = $data['information'][0]['fk_id_equipo_combustible'];
-			}
-			
-			$this->load->view("combustible_modal", $data);
-    }
-
 	/**
 	 * Listado de diagnosticos
      * @since 20/3/2021
@@ -742,6 +742,118 @@ class Equipos extends CI_Controller {
 			echo json_encode($data);	
     }
 
+	/**
+	 * Lista de recorridos
+     * @since 9/7/2021
+     * @author BMOTTAG
+	 */
+	public function recorridos()
+	{
+			//se filtra por company_type para que solo se pueda editar los subcontratistas
+			$arrParam = array();
+			$data['info'] = $this->general_model->get_recorridos($arrParam);
+			
+			$data["view"] = 'recorridos';
+			$this->load->view("layout", $data);
+	}
+	
+    /**
+     * Cargo modal - formulario company
+     * @since 15/12/2016
+     */
+    public function cargarModalRecorrido() 
+	{
+			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+			
+			$data['information'] = FALSE;
+			$data["idRecorrido"] = $this->input->post("idRecorrido");	
 
+			$arrParam = array(
+				"table" => "param_tipo_equipos",
+				"order" => "tipo_equipo",
+				"id" => "x"
+			);
+			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
+
+			$arrParam = array(
+				"table" => "param_dependencias",
+				"order" => "dependencia",
+				"id" => "x"
+			);
+			$data['dependencias'] = $this->general_model->get_basic_search($arrParam);
+
+			//Lista de operadores activos
+			$arrParam = array(
+						"filtroState" => TRUE,
+						'idRole' => 5
+						);
+			$data['listaOperadores'] = $this->general_model->get_user($arrParam);
+
+			$arrParam = array(
+				"table" => "param_meses",
+				"order" => "id_mes",
+				"id" => "x"
+			);
+			$data['listaMeses'] = $this->general_model->get_basic_search($arrParam);
+			
+			if ($data["idRecorrido"] != 'x') {
+				$arrParam = array("idRecorrido" => $data["idRecorrido"]);
+				$data['information'] = $this->general_model->get_recorridos($arrParam);
+				
+				$arrParam['idTipoEquipo'] = $data['information'][0]['fk_id_tipo_equipo'];
+				$data['infoEquipos'] = $this->general_model->get_equipos_info($arrParam);
+			}
+			
+			$this->load->view("recorrido_modal", $data);
+    }
+	
+	/**
+	 * Adicionar recorrido
+     * @since 9/7/2021
+     * @author BMOTTAG
+	 */
+	public function save_recorrido()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			
+			$idRecorrido = $this->input->post('hddidRecorrido');
+			
+			$msj = "Se adicionó el Recorrido del Equipo!";
+			if ($idRecorrido != '') {
+				$msj = "Se actualizó el Recorrido del Equipo!";
+			}
+
+			if ($idRecorrido = $this->equipos_model->saveRecorrido()) {
+				$data["result"] = true;				
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
+			} else {
+				$data["result"] = "error";				
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
+			}
+
+			echo json_encode($data);	
+    }
+
+	/**
+	 * Lista de equipos por tipo de equipo
+     * @since 9/7/2021
+     * @author BMOTTAG
+	 */
+    public function listaEquiposInfo() {
+        header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+        $idTipoEquipo = $this->input->post('idTipoEquipo');
+				
+		//busco listado de links activos para un menu
+		$arrParam = array("idTipoEquipo" => $idTipoEquipo);
+		$listaEquipos = $this->general_model->get_equipos_info($arrParam);
+
+        echo "<option value=''>Seleccione...</option>";
+        if ($listaEquipos) {
+            foreach ($listaEquipos as $fila) {
+                echo "<option value='" . $fila["id_equipo"] . "' >" . $fila["numero_inventario"] . "</option>";
+            }
+        }
+    }
 	
 }

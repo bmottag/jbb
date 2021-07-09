@@ -420,6 +420,35 @@
 					return false;
 				}
 		}	
+
+		/**
+		 * Add/Edit RECORRIDO
+		 * @since 9/7/2021
+		 */
+		public function saveRecorrido() 
+		{
+				$idRecorrido = $this->input->post('hddidRecorrido');
+				
+				$data = array(
+					'fk_id_equipo_recorrido' => $this->input->post('idEquipo'),
+					'fk_id_coductor_recorrido' => $this->input->post('idConductor'),
+					'fk_id_dependencia_recorrido' => $this->input->post('idDependencia'),
+					'fk_id_mes_recorrdio' => $this->input->post('idMes')
+				);
+				
+				//revisar si es para adicionar o editar
+				if ($idRecorrido == '') {
+					$query = $this->db->insert('equipos_recorrido', $data);			
+				} else {
+					$this->db->where('id_equipo_recorrido', $idRecorrido);
+					$query = $this->db->update('equipos_recorrido', $data);
+				}
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
 		
 		
 	    
