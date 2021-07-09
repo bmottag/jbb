@@ -91,6 +91,10 @@ class Equipos extends CI_Controller {
 
 			$arrParam = array();
 			$data['contratosMantenimiento'] = $this->general_model->get_contratos($arrParam);
+
+			//Lista de usuarios activos
+			$arrParam = array("filtroState" => TRUE);
+			$data['listaUsuarios'] = $this->general_model->get_user($arrParam);//workers list
 							
 			$this->load->view("equipos_modal", $data);
     }
@@ -241,6 +245,10 @@ class Equipos extends CI_Controller {
 
 			$arrParam = array();
 			$data['contratosMantenimiento'] = $this->general_model->get_contratos($arrParam);
+
+			//Lista de usuarios activos
+			$arrParam = array("filtroState" => TRUE);
+			$data['listaUsuarios'] = $this->general_model->get_user($arrParam);//workers list
 			
 			$data["view"] = 'equipos_detalle';
 			$this->load->view("layout_calendar", $data);
@@ -694,7 +702,7 @@ class Equipos extends CI_Controller {
 				"id" => "x"
 			);
 			$data['proveedores'] = $this->general_model->get_basic_search($arrParam);
-			//Lista de operadores activos
+			//Lista de usuarios activos
 			$arrParam = array("filtroState" => TRUE);
 			$data['listaUsuarios'] = $this->general_model->get_user($arrParam);//workers list
 			

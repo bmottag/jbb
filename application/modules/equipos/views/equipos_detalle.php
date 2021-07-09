@@ -187,6 +187,16 @@
 												
 						<div class="form-group">
 							<div class="col-sm-6">
+								<label for="id_responsable">Responsable del Equipo: *</label>
+								<select name="id_responsable" id="id_responsable" class="form-control" required <?php echo $deshabilitar; ?>>
+									<option value="">Seleccione...</option>
+									<?php for ($i = 0; $i < count($listaUsuarios); $i++) { ?>
+										<option value="<?php echo $listaUsuarios[$i]["id_user"]; ?>" <?php if($info && $info[0]["fk_id_responsable"] == $listaUsuarios[$i]["id_user"]) { echo "selected"; }  ?>><?php echo $listaUsuarios[$i]["first_name"] . ' ' . $listaUsuarios[$i]["last_name"]; ?></option>		
+									<?php } ?>
+								</select>
+							</div>
+
+							<div class="col-sm-6">
 								<label for="from">Estado: </label>
 								<select name="estado" id="estado" class="form-control" required <?php echo $deshabilitar; ?>>
 									<option value=''>Select...</option>
