@@ -89,6 +89,8 @@ $(function(){
 									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo_recorrido']; ?>" >
 										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 									</button>
+
+									<a href="<?php echo base_url("equipos/consumos/" . $lista['id_equipo_recorrido']); ?>" class="btn btn-primary btn-xs">Consumo</a>
 						<?php
 									echo "</td>";
 							endforeach;

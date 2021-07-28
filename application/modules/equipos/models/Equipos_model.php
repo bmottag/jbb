@@ -449,6 +449,44 @@
 					return false;
 				}
 		}
+
+		/**
+		 * Guardar consumo recorrido
+		 * @since 27/7/2021
+		 */
+		public function guardarConsumoRecorrido() 
+		{
+				$idConsumo = $this->input->post('hddidConsumo');
+				$cantidad = $this->input->post('cantidad');
+				$valorGalon = $this->input->post('valor_x_galon');
+				$valorTotal = $valorGalon * $cantidad;
+
+				$idUser = $this->session->userdata("id");
+			
+				$data = array(
+					'fk_id_conductor_consumo' => $idUser,
+					'fecha_consumo' => $this->input->post('fecha_consumo'),
+					'valor_x_galon_consumo' => $valorGalon,
+					'numero_galones' => $cantidad,
+					'valor_total_consumo' => $valorTotal,
+					'kilometraje' => $this->input->post('Kilometraje')
+				);	
+
+				//revisar si es para adicionar o editar
+				if ($idConsumo == '') 
+				{
+					$data['fk_id_equipo_recorrido'] = $this->input->post('hddidRecorrido');
+					$query = $this->db->insert('equipos_recorrido_consumo', $data);
+				} else {
+					$this->db->where('id_equipo_recorrido_consumo', $idConsumo);
+					$query = $this->db->update('equipos_recorrido_consumo', $data);
+				}
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
 		
 		
 	    

@@ -570,7 +570,7 @@ class General_model extends CI_Model {
 	public function get_recorridos($arrData) 
 	{			
 		$this->db->select("R.*, T.tipo_equipo, E.numero_inventario, E.fk_id_tipo_equipo, CONCAT(U.first_name, ' ', U.last_name) conductor, D.dependencia, M.mes");
-		$this->db->join('equipos E', 'E.id_equipo = R.fk_id_equipo_recorrido', 'INNER');
+		$this->db->join('equipos E', 'E.id_equipo = R.fk_id_equipo_r', 'INNER');
 		$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = E.fk_id_tipo_equipo', 'INNER');
 		$this->db->join('usuarios U', 'U.id_user = R.fk_id_coductor_recorrido', 'INNER');
 		$this->db->join('param_dependencias D', 'D.id_dependencia = R.fk_id_dependencia_recorrido', 'INNER');
@@ -579,7 +579,7 @@ class General_model extends CI_Model {
 			$this->db->where('R.id_equipo_recorrido ', $arrData["idRecorrido"]);
 		}
 		if (array_key_exists("idEquipo", $arrData)) {
-			$this->db->where('R.fk_id_equipo_recorrido', $arrData["idEquipo"]);
+			$this->db->where('R.fk_id_equipo_r', $arrData["idEquipo"]);
 		}
 		if (array_key_exists("idConductor", $arrData)) {
 			$this->db->where('R.fk_id_coductor_recorrdio', $arrData["idConductor"]);
@@ -589,8 +589,32 @@ class General_model extends CI_Model {
 
 		if ($query->num_rows() >= 1) {
 			return $query->result_array();
-		} else
+		} else{
 			return false;
+		}
+	}
+
+	/**
+	 * Lista de consumos de los recorridos
+	 * @since 27/7/2021
+	 */
+	public function get_consumos($arrData) 
+	{			
+		$this->db->select();
+		if (array_key_exists("idRecorrido", $arrData)) {
+			$this->db->where('R.fk_id_equipo_recorrido', $arrData["idRecorrido"]);
+		}
+		if (array_key_exists("idConsumo", $arrData)) {
+			$this->db->where('R.id_equipo_recorrido_consumo', $arrData["idConsumo"]);
+		}
+		$this->db->order_by("fecha_consumo ", "ASC");
+		$query = $this->db->get("equipos_recorrido_consumo R");
+
+		if ($query->num_rows() >= 1) {
+			return $query->result_array();
+		} else{
+			return false;
+		}
 	}
 
 

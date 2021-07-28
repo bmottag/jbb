@@ -836,6 +836,82 @@ class Equipos extends CI_Controller {
     }
 
 	/**
+	 * Lista de consumos 
+	 * @param int $idRecorrido
+	 * @since 27/7/2021
+	 */
+	public function consumos($idRecorrido)
+	{
+			if (empty($idRecorrido)) {
+				show_error('ERROR!!! - You are in the wrong place.');
+			}
+						
+			//busco datos del recorrido
+			$arrParam = array("idRecorrido" => $idRecorrido);
+			$data['infoRecorridos'] = $this->general_model->get_recorridos($arrParam);
+
+			$data['listadoControlConsumos'] = $this->general_model->get_consumos($arrParam);
+
+			$arrParam = array("idEquipo" => $data['infoRecorridos'][0]['fk_id_equipo_r']);
+			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);
+			
+//pr($data['listadoControlConsumos']); exit;
+
+			$data["view"] = 'recorridos_consumos';
+			$this->load->view("layout", $data);
+	}
+
+    /**
+     * Cargo modal- formulario de consumo
+     * @since 15/1/2021
+     */
+    public function cargarModalConsumo() 
+	{
+			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+			
+			$data['information'] = FALSE;
+			$data["idConsumo"] = $this->input->post("idConsumo");
+			$data["idRecorrido"] = $this->input->post("idRecorrido");
+			
+			if ($data["idConsumo"] != 'x') {
+				$arrParam = array("idConsumo" => $data["idConsumo"]);
+				$data['information'] = $this->general_model->get_consumos($arrParam);
+
+				$data["idRecorrido"] = $data['information'][0]['fk_id_equipo_recorrido'];
+			}
+			
+			$this->load->view("recorridos_consumos_modal", $data);
+    }
+	
+	/**
+	 * Guardar Consumo Recorrido
+	 * @since 27/7/2021
+     * @author BMOTTAG
+	 */
+	public function guardar_consumo()
+	{		
+			header('Content-Type: application/json');
+			$data = array();
+
+			$idConsumo = $this->input->post('hddidConsumo');
+			$data["idRecord"] = $this->input->post('hddidRecorrido');
+
+		
+			$msj = "Se guardo la información!";
+
+			if ($idConsumo = $this->equipos_model->guardarConsumoRecorrido()) 
+			{				
+				$data["result"] = true;		
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
+			} else {
+				$data["result"] = "error";
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
+			}
+		
+			echo json_encode($data);
+    }
+
+	/**
 	 * Lista de equipos por tipo de equipo
      * @since 9/7/2021
      * @author BMOTTAG
