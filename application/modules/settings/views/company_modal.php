@@ -7,6 +7,7 @@
 </div>
 
 <div class="modal-body">
+	<p class="text-danger text-left">Los campos con * son obligatorios.</p>
 	<form name="form" id="form" role="form" method="post" >
 		<input type="hidden" id="hddId" name="hddId" value="<?php echo $information?$information[0]["id_proveedor"]:""; ?>"/>
 		

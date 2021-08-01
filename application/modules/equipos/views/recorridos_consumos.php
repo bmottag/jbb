@@ -107,7 +107,7 @@ $(function(){
 					<strong>No. Inventario: </strong><?php echo $infoEquipo[0]['numero_inventario']; ?><br>
 					<strong>Marca: </strong><?php echo $infoEquipo[0]['marca']; ?><br>
 					<strong>Modelo: </strong><?php echo $infoEquipo[0]['modelo']; ?><br>
-					<strong>No. Serial </strong><?php echo $infoEquipo[0]['numero_serial']; ?>
+					<strong>No. Serial: </strong><?php echo $infoEquipo[0]['numero_serial']; ?>
 									
 					
 				</div>

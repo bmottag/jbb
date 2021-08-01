@@ -775,13 +775,6 @@ class Equipos extends CI_Controller {
 			);
 			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
 
-			$arrParam = array(
-				"table" => "param_dependencias",
-				"order" => "dependencia",
-				"id" => "x"
-			);
-			$data['dependencias'] = $this->general_model->get_basic_search($arrParam);
-
 			//Lista de operadores activos
 			$arrParam = array(
 						"filtroState" => TRUE,

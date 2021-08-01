@@ -90,7 +90,7 @@ $(function(){
 										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 									</button>
 
-									<a href="<?php echo base_url("equipos/consumos/" . $lista['id_equipo_recorrido']); ?>" class="btn btn-primary btn-xs">Consumo</a>
+									<a href="<?php echo base_url("equipos/consumos/" . $lista['id_equipo_recorrido']); ?>" class="btn btn-primary btn-xs">Consumos de Recorrido <span class="glyphicon glyphicon-plus" aria-hidden="true"></a>
 						<?php
 									echo "</td>";
 							endforeach;

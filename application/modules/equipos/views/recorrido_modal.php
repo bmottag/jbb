@@ -3,10 +3,11 @@
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="exampleModalLabel">RECORRIDOS </h4>
+	<h4 class="modal-title" id="exampleModalLabel">Formulario de Recorridos </h4>
 </div>
 
 <div class="modal-body">
+	<p class="text-danger text-left">Los campos con * son obligatorios.</p>
 	<form  name="form" id="form" role="form" method="post" >
 		<input type="hidden" id="hddidRecorrido" name="hddidRecorrido" value="<?php echo $information?$information[0]["id_equipo_recorrido"]:""; ?>"/>
 				
@@ -25,7 +26,7 @@
 		
 <?php 
 	$mostrar = "none";
-	if($information && !IS_NULL($information[0]["fk_id_equipo_recorrido"]) && $information[0]["fk_id_equipo_recorrido"] > 0 && $infoEquipos){
+	if($information && !IS_NULL($information[0]["fk_id_equipo_r"]) && $information[0]["fk_id_equipo_r"] > 0 && $infoEquipos){
 		$mostrar = "inline";
 	}
 ?>
@@ -36,7 +37,7 @@
 					<select name="idEquipo" id="idEquipo" class="form-control" required>
 						<option value="">Select...</option>
 						<?php for ($i = 0; $i < count($infoEquipos); $i++) { ?>
-							<option value="<?php echo $infoEquipos[$i]["id_equipo"]; ?>" <?php if($information && $information[0]["fk_id_equipo_recorrido"] == $infoEquipos[$i]["id_equipo"]) { echo "selected"; }  ?>><?php echo $infoEquipos[$i]["numero_inventario"]; ?></option>	
+							<option value="<?php echo $infoEquipos[$i]["id_equipo"]; ?>" <?php if($information && $information[0]["fk_id_equipo_r"] == $infoEquipos[$i]["id_equipo"]) { echo "selected"; }  ?>><?php echo $infoEquipos[$i]["numero_inventario"]; ?></option>	
 						<?php } ?>
 					</select>
 				</div>
@@ -58,20 +59,6 @@
 		
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
-					<label class="control-label" for="idDependencia">Dependencia: *</label>
-					<select name="idDependencia" id="idDependencia" class="form-control" required >
-						<option value="">Seleccione...</option>
-						<?php for ($i = 0; $i < count($dependencias); $i++) { ?>
-							<option value="<?php echo $dependencias[$i]["id_dependencia"]; ?>" <?php if($information && $information[0]["fk_id_dependencia_recorrido"] == $dependencias[$i]["id_dependencia"]) { echo "selected"; }  ?>><?php echo $dependencias[$i]["dependencia"]; ?></option>	
-						<?php } ?>
-					</select>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-6">		
-				<div class="form-group text-left">
 					<label class="control-label" for="idMes">Mes: *</label>
 					<select name="idMes" id="idMes" class="form-control" required >
 						<option value="">Seleccione...</option>
@@ -82,9 +69,6 @@
 				</div>
 			</div>
 
-			<div class="col-sm-6">		
-
-			</div>
 		</div>
 
 		<div class="form-group">

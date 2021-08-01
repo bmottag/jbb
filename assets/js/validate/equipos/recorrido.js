@@ -5,7 +5,6 @@ $( document ).ready( function () {
 			idTipoEquipo:			{ required: true },
 			idEquipo:				{ required: true },
 			idConductor:			{ required: true },
-			idDependencia:			{ required: true },
 			idMes:					{ required: true }
 		},
 		errorElement: "em",

@@ -432,7 +432,6 @@
 				$data = array(
 					'fk_id_equipo_r' => $this->input->post('idEquipo'),
 					'fk_id_coductor_recorrido' => $this->input->post('idConductor'),
-					'fk_id_dependencia_recorrido' => $this->input->post('idDependencia'),
 					'fk_id_mes_recorrdio' => $this->input->post('idMes')
 				);
 				

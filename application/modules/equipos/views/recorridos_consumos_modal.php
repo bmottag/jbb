@@ -3,10 +3,11 @@
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="exampleModalLabel">CONSUMOS DEL RECORRIDO </h4>
+	<h4 class="modal-title" id="exampleModalLabel">Consumo del Recorrido</h4>
 </div>
 
 <div class="modal-body">
+	<p class="text-danger text-left">Los campos con * son obligatorios.</p>
 	<form  name="formConsumo" id="formConsumo" role="form" method="post" >
 		<input type="hidden" id="hddidConsumo" name="hddidConsumo" value="<?php echo $information?$information[0]["id_equipo_recorrido_consumo"]:""; ?>"/>
 		<input type="hidden" id="hddidRecorrido" name="hddidRecorrido" value="<?php echo $idRecorrido; ?>"/>
@@ -41,7 +42,7 @@
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
 					<label class="control-label" for="cantidad">Número de Galones: *</label>
-					<input type="text" id="cantidad" name="cantidad" class="form-control" value="<?php echo $information?$information[0]["numero_galones"]:""; ?>" placeholder="Cantidad" >
+					<input type="text" id="cantidad" name="cantidad" class="form-control" value="<?php echo $information?$information[0]["numero_galones"]:""; ?>" placeholder="Número de Galones" >
 				</div>
 			</div>
 		</div>
