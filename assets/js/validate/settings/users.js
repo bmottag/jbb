@@ -11,7 +11,8 @@ $( document ).ready( function () {
 			user: 				{ required: true, minlength: 4, maxlength:15 },
 			email: 				{ required: true, email: true },
 			movilNumber: 		{ required: true },
-			id_role: 			{ required: true }
+			id_role: 			{ required: true },
+			idDependencia: 			{ required: true }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
@@ -42,7 +43,7 @@ $( document ).ready( function () {
 			
 				$.ajax({
 					type: "POST",	
-					url: base_url + "settings/save_employee",	
+					url: base_url + "settings/save_user",	
 					data: $("#form").serialize(),
 					dataType: "json",
 					contentType: "application/x-www-form-urlencoded;charset=UTF-8",
@@ -64,7 +65,7 @@ $( document ).ready( function () {
 							$("#div_load").css("display", "none");
 							$('#btnSubmit').removeAttr('disabled');
 
-							var url = base_url + "settings/employee/" + data.state;
+							var url = base_url + "settings/users/" + data.state;
 							$(location).attr("href", url);
 						}
 						else

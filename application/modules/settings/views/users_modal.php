@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/settings/employee_v3.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/settings/users.js"); ?>"></script>
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	<h4 class="modal-title" id="exampleModalLabel">Formulario de Usuario
@@ -44,10 +44,15 @@
 		</div>
 				
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-6">		
 				<div class="form-group text-left">
-					<label class="control-label" for="movilNumber">Número Celular: *</label>
-					<input type="text" id="movilNumber" name="movilNumber" class="form-control" value="<?php echo $information?$information[0]["movil"]:""; ?>" placeholder="Número Celular" required >
+					<label class="control-label" for="idDependencia">Dependencia: *</label>
+					<select name="idDependencia" id="idDependencia" class="form-control" required >
+						<option value="">Seleccione...</option>
+						<?php for ($i = 0; $i < count($dependencias); $i++) { ?>
+							<option value="<?php echo $dependencias[$i]["id_dependencia"]; ?>" <?php if($information && $information[0]["fk_id_dependencia_u"] == $dependencias[$i]["id_dependencia"]) { echo "selected"; }  ?>><?php echo $dependencias[$i]["dependencia"]; ?></option>	
+						<?php } ?>
+					</select>
 				</div>
 			</div>
 				
@@ -60,6 +65,15 @@
 							<option value="<?php echo $roles[$i]["id_role"]; ?>" <?php if($information && $information[0]["fk_id_user_role"] == $roles[$i]["id_role"]) { echo "selected"; }  ?>><?php echo $roles[$i]["role_name"]; ?></option>	
 						<?php } ?>
 					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="movilNumber">Número Celular: *</label>
+					<input type="text" id="movilNumber" name="movilNumber" class="form-control" value="<?php echo $information?$information[0]["movil"]:""; ?>" placeholder="Número Celular" required >
 				</div>
 			</div>
 			

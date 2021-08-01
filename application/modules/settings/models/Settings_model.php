@@ -27,7 +27,7 @@
 		 * Add/Edit USER
 		 * @since 8/11/2016
 		 */
-		public function saveEmployee() 
+		public function saveUser() 
 		{
 				$idUser = $this->input->post('hddId');
 				
@@ -37,7 +37,8 @@
 					'log_user' => $this->input->post('user'),
 					'movil' => $this->input->post('movilNumber'),
 					'email' => $this->input->post('email'),
-					'fk_id_user_role' => $this->input->post('id_role')
+					'fk_id_user_role' => $this->input->post('id_role'),
+					'fk_id_dependencia_u' => $this->input->post('idDependencia')
 				);	
 
 				//revisar si es para adicionar o editar

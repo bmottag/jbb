@@ -8,7 +8,7 @@
 
 <div class="modal-body">
 	<form  name="form" id="form" role="form" method="post" >
-		<input type="hidden" id="hddidRecorrido" name="hddidRecorrido" value="<?php echo $idRecorrido; ?>"/>
+		<input type="hidden" id="hddidRecorrido" name="hddidRecorrido" value="<?php echo $information?$information[0]["id_equipo_recorrido"]:""; ?>"/>
 				
 		<div class="row">
 			<div class="col-sm-6">		

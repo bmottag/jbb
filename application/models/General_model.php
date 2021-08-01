@@ -121,6 +121,7 @@ class General_model extends CI_Model {
 	{			
 		$this->db->select();
 		$this->db->join('param_role R', 'R.id_role = U.fk_id_user_role', 'INNER');
+		$this->db->join('param_dependencias D', 'D.id_dependencia = U.fk_id_dependencia_u', 'INNER');
 		if (array_key_exists("state", $arrData)) {
 			$this->db->where('U.state', $arrData["state"]);
 		}

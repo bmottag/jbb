@@ -7,7 +7,7 @@ $(function(){
 			var oID = $(this).attr("id");
             $.ajax ({
                 type: 'POST',
-				url: base_url + '/settings/cargarModalEmployee',
+				url: base_url + '/settings/cargarModalUsers',
                 data: {'idEmployee': oID},
                 cache: false,
                 success: function (data) {
@@ -91,10 +91,10 @@ $(function(){
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-								<th class="text-center">ID</th>
 								<th class="text-center">Nombre</th>
 								<th class="text-center">Apellido</th>
 								<th class="text-center">Usuario</th>
+								<th class="text-center">Dependencia</th>
 								<th class="text-center">Celular</th>
 								<th class="text-center">Rol</th>
 								<th class="text-center">Estado</th>
@@ -111,10 +111,10 @@ $(function(){
 						<?php
 							foreach ($info as $lista):
 									echo "<tr>";
-									echo "<td>" . $lista['id_user'] . "</td>";
 									echo "<td>" . $lista['first_name'] . "</td>";
 									echo "<td>" . $lista['last_name'] . "</td>";
 									echo "<td class='text-center'>" . $lista['log_user'] . "</td>";
+									echo "<td>" . $lista['dependencia'] . "</td>";
 $movil = $lista["movil"];
 // Separa en grupos de tres 
 $count = strlen($movil); 

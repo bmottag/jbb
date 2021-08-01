@@ -11,11 +11,11 @@ class Settings extends CI_Controller {
     }
 	
 	/**
-	 * employee List
+	 * users List
      * @since 15/12/2016
      * @author BMOTTAG
 	 */
-	public function employee($state)
+	public function users($state=1)
 	{			
 			$data['state'] = $state;
 			
@@ -27,15 +27,15 @@ class Settings extends CI_Controller {
 			
 			$data['info'] = $this->general_model->get_user($arrParam);
 			
-			$data["view"] = 'employee';
-			$this->load->view("layout", $data);
+			$data["view"] = 'users';
+			$this->load->view("layout_calendar", $data);
 	}
 	
     /**
-     * Cargo modal - formulario Employee
+     * Cargo modal - formulario Users
      * @since 15/12/2016
      */
-    public function cargarModalEmployee() 
+    public function cargarModalUsers() 
 	{
 			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
 			
@@ -44,6 +44,13 @@ class Settings extends CI_Controller {
 			
 			$arrParam = array("filtro" => TRUE);
 			$data['roles'] = $this->general_model->get_roles($arrParam);
+
+			$arrParam = array(
+				"table" => "param_dependencias",
+				"order" => "dependencia",
+				"id" => "x"
+			);
+			$data['dependencias'] = $this->general_model->get_basic_search($arrParam);
 
 			if ($data["idEmployee"] != 'x') {
 				$arrParam = array(
@@ -55,15 +62,15 @@ class Settings extends CI_Controller {
 				$data['information'] = $this->general_model->get_basic_search($arrParam);
 			}
 			
-			$this->load->view("employee_modal", $data);
+			$this->load->view("users_modal", $data);
     }
 	
 	/**
-	 * Update Employee
+	 * Update User
      * @since 15/12/2016
      * @author BMOTTAG
 	 */
-	public function save_employee()
+	public function save_user()
 	{			
 			header('Content-Type: application/json');
 			$data = array();
@@ -121,7 +128,7 @@ class Settings extends CI_Controller {
 					$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> El Usuario y el Correo ya existen.');
 				}
 			} else {
-					if ($this->settings_model->saveEmployee()) {
+					if ($this->settings_model->saveUser()) {
 						$data["result"] = true;					
 						$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 					} else {
