@@ -52,6 +52,28 @@ if($information){
 ?>
 		
 		<div class="row">	
+			<div class="col-sm-6">		
+				<div class="form-group text-left">
+					<label class="control-label" for="tipo_documento">Tipo Documento: *</label>
+					<select name="tipo_documento" id="tipo_documento" class="form-control" required>
+						<option value=''>Seleccione...</option>
+						<option value=1 <?php if($information[0]["tipo_documento"] == 1) { echo "selected"; }  ?>>Impuesto de Semaforización </option>
+						<option value=2 <?php if($information[0]["tipo_documento"] == 2) { echo "selected"; }  ?>>Póliza</option>
+						<option value=3 <?php if($information[0]["tipo_documento"] == 3) { echo "selected"; }  ?>>SOAT</option>
+						<option value=4 <?php if($information[0]["tipo_documento"] == 4) { echo "selected"; }  ?>>Tecno mecánica</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="numero_documento">No. Documento: *</label>
+					<input type="text" class="form-control" id="numero_documento" name="numero_documento" value="<?php echo $information?$information[0]["numero_documento"]:""; ?>" placeholder="No. Documento" required/>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">	
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="fecha_inicio">Fecha Inicio: *</label>
@@ -67,15 +89,8 @@ if($information){
 			</div>
 		</div>
 
-		<div class="row">	
-			<div class="col-sm-6">
-				<div class="form-group text-left">
-					<label class="control-label" for="numero_documento">No. Documento: *</label>
-					<input type="text" class="form-control" id="numero_documento" name="numero_documento" value="<?php echo $information?$information[0]["numero_documento"]:""; ?>" placeholder="No. Documento" required/>
-				</div>
-			</div>
-			
-			<div class="col-sm-6">		
+		<div class="row">				
+			<div class="col-sm-12">		
 				<div class="form-group text-left">
 					<label class="control-label" for="descripcion">Descripción: *</label>
 					<textarea id="descripcion" name="descripcion" placeholder="Descripción" class="form-control" rows="3"><?php echo $information?$information[0]["descripcion"]:""; ?></textarea>

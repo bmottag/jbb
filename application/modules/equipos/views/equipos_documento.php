@@ -129,9 +129,10 @@ $(function(){
 			</div>';
 	}else{
 ?>
-					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+					<table class="table table-hover">
 						<thead>
 							<tr>
+								<th class="text-center">Tipo Documento</th>
 								<th class="text-center">Fecha Inicio</th>
 								<th class="text-center">Fecha Vencimiento</th>
 								<th class="text-center">No. Documento</th>
@@ -147,6 +148,22 @@ $(function(){
 						<?php
 							foreach ($listadoDocumentos as $lista):
 									echo "<tr>";
+									echo "<td>";
+									switch ($lista['tipo_documento']) {
+										case 1:
+											echo 'Impuesto de Semaforización';
+											break;
+										case 2:
+											echo 'Póliza';
+											break;
+										case 3:
+											echo 'SOAT';
+											break;
+										case 4:
+											echo 'Tecno mecánica';
+											break;
+									}
+									echo "</td>";
 									echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_inicio'])) . "</td>";
 									echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_vencimiento'])) . "</td>";
 									echo "<td class='text-center'>" . $lista['numero_documento'] . "</td>";

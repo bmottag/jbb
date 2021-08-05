@@ -339,6 +339,7 @@
 				$idUser = $this->session->userdata("id");
 				
 				$data = array(
+					'tipo_documento' => $this->input->post('tipo_documento'),
 					'fk_id_equipo_d' => $idEquipo,
 					'fecha_inicio' => formatear_fecha($this->input->post('fecha_inicio')),
 					'fecha_vencimiento' => formatear_fecha($this->input->post('fecha_vencimiento')),
