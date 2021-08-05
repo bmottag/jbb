@@ -570,11 +570,11 @@ class Equipos extends CI_Controller {
     }
 
 	/**
-	 * Control de póliza del equipo
+	 * Control de documentos del equipo
      * @since 6/1/2021
      * @author BMOTTAG
 	 */
-	public function poliza($idEquipo)
+	public function documento($idEquipo)
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
@@ -588,53 +588,53 @@ class Equipos extends CI_Controller {
 				$data['deshabilitar'] = 'disabled';
 			}
 			
-			$data['listadoPolizas'] = $this->equipos_model->get_poliza($arrParam);
+			$data['listadoDocumentos'] = $this->equipos_model->get_documento($arrParam);
 						
-			$data["view"] = 'equipos_poliza';
+			$data["view"] = 'equipos_documento';
 			$this->load->view("layout_calendar", $data);
 	}
 
     /**
-     * Cargo modal - formulario poliz
+     * Cargo modal - formulario documento
      * @since 20/1/2021
      */
-    public function cargarModalPoliza() 
+    public function cargarModalDocumento() 
 	{
 			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
 			
 			$data['information'] = FALSE;
 			$data["idEquipo"] = $this->input->post("idEquipo");
-			$data["idPoliza"] = $this->input->post("idPoliza");
+			$data["idDocumento"] = $this->input->post("idDocumento");
 			
-			if ($data["idPoliza"] != 'x') 
+			if ($data["idDocumento"] != 'x') 
 			{
 				$arrParam = array(
-					"idPoliza" => $data["idPoliza"]
+					"idDocumento" => $data["idDocumento"]
 				);
-				$data['information'] = $this->equipos_model->get_poliza($arrParam);
+				$data['information'] = $this->equipos_model->get_documento($arrParam);
 				
-				$data["idEquipo"] = $data['information'][0]['fk_id_equipo_poliza'];
+				$data["idEquipo"] = $data['information'][0]['fk_id_equipo_d'];
 			}
 			
-			$this->load->view("poliza_modal", $data);
+			$this->load->view("documento_modal", $data);
     }
 	
 	/**
-	 * Guardar Control de poliza
+	 * Guardar documento
 	 * @since 6/1/2021
      * @author BMOTTAG
 	 */
-	public function guardar_poliza()
+	public function guardar_documento()
 	{			
 			header('Content-Type: application/json');
 			$data = array();
 
-			$idPoliza = $this->input->post('hddId');
+			$idDocumento = $this->input->post('hddId');
 			$data["idRecord"] = $this->input->post('hddIdEquipo');
 		
 			$msj = "Se guardo la información!";
 
-			if ($idPoliza = $this->equipos_model->guardarPoliza()) 
+			if ($idDocumento = $this->equipos_model->guardarDocumento()) 
 			{				
 				$data["result"] = true;		
 				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);

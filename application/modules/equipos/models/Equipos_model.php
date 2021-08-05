@@ -302,23 +302,23 @@
 		}
 		
 		/**
-		 * Lista de Polizas por equipo
+		 * Lista de Documentos por equipo
 		 * @since 6/1/2021
 		 */
-		public function get_poliza($arrData) 
+		public function get_documento($arrData) 
 		{		
 				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name");
-				$this->db->join('usuarios U', 'U.id_user = A.fk_id_user_poliza', 'INNER');			
+				$this->db->join('usuarios U', 'U.id_user = A.fk_id_user_d', 'INNER');			
 
 				if (array_key_exists("idEquipo", $arrData)) {
-					$this->db->where('A.fk_id_equipo_poliza', $arrData["idEquipo"]);
+					$this->db->where('A.fk_id_equipo_d', $arrData["idEquipo"]);
 				}
-				if (array_key_exists("idPoliza", $arrData)) {
-					$this->db->where('A.id_equipo_poliza', $arrData["idPoliza"]);
+				if (array_key_exists("idDocumento", $arrData)) {
+					$this->db->where('A.id_equipo_documento', $arrData["idDocumento"]);
 				}
 				
-				$this->db->order_by('A.id_equipo_poliza', 'desc');
-				$query = $this->db->get('equipos_poliza A');
+				$this->db->order_by('A.id_equipo_documento', 'desc');
+				$query = $this->db->get('equipos_documento A');
 
 
 				if ($query->num_rows() > 0) {
@@ -329,31 +329,31 @@
 		}
 	
 		/**
-		 * Guardar Poliza
+		 * Guardar Documento
 		 * @since 6/1/2021
 		 */
-		public function guardarPoliza() 
+		public function guardarDocumento() 
 		{
-				$idPoliza = $this->input->post('hddId');
+				$idDocumento = $this->input->post('hddId');
 				$idEquipo = $this->input->post('hddIdEquipo');
 				$idUser = $this->session->userdata("id");
 				
 				$data = array(
-					'fk_id_equipo_poliza' => $idEquipo,
+					'fk_id_equipo_d' => $idEquipo,
 					'fecha_inicio' => formatear_fecha($this->input->post('fecha_inicio')),
 					'fecha_vencimiento' => formatear_fecha($this->input->post('fecha_vencimiento')),
-					'numero_poliza' => $this->input->post('numero_poliza'),
+					'numero_documento' => $this->input->post('numero_documento'),
 					'descripcion' => $this->input->post('descripcion')
 				);	
 
 				//revisar si es para adicionar o editar
-				if ($idPoliza == '') 
+				if ($idDocumento == '') 
 				{
-					$data['fk_id_user_poliza'] = $idUser;
-					$query = $this->db->insert('equipos_poliza', $data);
+					$data['fk_id_user_d'] = $idUser;
+					$query = $this->db->insert('equipos_documento', $data);
 				} else {
-					$this->db->where('id_equipo_poliza', $idPoliza);
-					$query = $this->db->update('equipos_poliza', $data);
+					$this->db->where('id_equipo_documento', $idDocumento);
+					$query = $this->db->update('equipos_documento', $data);
 				}
 				if ($query) {
 					return true;

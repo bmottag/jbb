@@ -1,12 +1,12 @@
 $( document ).ready( function () {
 	
-	$("#numero_poliza").convertirMayuscula().maxlength(15);
+	$("#numero_documento").convertirMayuscula().maxlength(15);
 	
 	$( "#form" ).validate( {
 		rules: {
 			fecha_inicio: 			{ required: true },
 			fecha_vencimiento:		{ required: true },
-			numero_poliza:			{ required: true, minlength:3, maxlength:15 },
+			numero_documento:		{ minlength:3, maxlength:15 },
 			descripcion:		 	{ required: true }
 		},
 		errorElement: "em",
@@ -38,7 +38,7 @@ $( document ).ready( function () {
 			
 				$.ajax({
 					type: "POST",	
-					url: base_url + "equipos/guardar_poliza",	
+					url: base_url + "equipos/guardar_documento",	
 					data: $("#form").serialize(),
 					dataType: "json",
 					contentType: "application/x-www-form-urlencoded;charset=UTF-8",
@@ -60,7 +60,7 @@ $( document ).ready( function () {
 							$("#div_load").css("display", "none");
 							$('#btnSubmit').removeAttr('disabled');
 
-							var url = base_url + "equipos/poliza/" + data.idRecord;
+							var url = base_url + "equipos/documento/" + data.idRecord;
 							$(location).attr("href", url);
 						}
 						else

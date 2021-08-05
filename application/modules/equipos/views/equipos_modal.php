@@ -119,10 +119,10 @@
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="id_responsable">Responsable del Equipo: *</label>
-					<select name="id_responsable" id="id_responsable" class="form-control" required <?php echo $deshabilitar; ?>>
+					<select name="id_responsable" id="id_responsable" class="form-control" required>
 						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($listaUsuarios); $i++) { ?>
-							<option value="<?php echo $listaUsuarios[$i]["id_user"]; ?>" <?php if($information && $information[0]["fk_id_responsable"] == $listaUsuarios[$i]["id_user"]) { echo "selected"; }  ?>><?php echo $listaUsuarios[$i]["first_name"] . ' ' . $listaUsuarios[$i]["last_name"]; ?></option>		
+							<option value="<?php echo $listaUsuarios[$i]["id_user"]; ?>" <?php if($information && $information[0]["fk_id_responsable"] == $listaUsuarios[$i]["id_user"]) { echo "selected"; }  ?>><?php echo $listaUsuarios[$i]["first_name"] . ' ' . $listaUsuarios[$i]["last_name"]; ?></option>	
 						<?php } ?>
 					</select>
 				</div>

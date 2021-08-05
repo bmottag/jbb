@@ -103,7 +103,7 @@
 					<li>Foto Equipo</li>
 					<li>Localización</li>
 					<li>Seguimiento Operación</li>
-					<li>Pólizas</li>
+					<li>Documentos</li>
 					<li>Mantenimiento Correctivo</li>
 					<li>Diagnóstico Periódico</li>
 					</ul>

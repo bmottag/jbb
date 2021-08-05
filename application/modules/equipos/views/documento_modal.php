@@ -1,16 +1,16 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/poliza.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/documento.js"); ?>"></script>
 
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<h4 class="modal-title" id="exampleModalLabel">Póliza del Equipo
-	<br><small>Adicionar/Editar Póliza</small>
+	<h4 class="modal-title" id="exampleModalLabel">Documento del Equipo
+	<br><small>Adicionar/Editar Documento</small>
 	</h4>
 </div>
 
 <div class="modal-body">
 	<form name="form" id="form" role="form" method="post" >
 		<input type="hidden" id="hddIdEquipo" name="hddIdEquipo" value="<?php echo $idEquipo; ?>"/>
-		<input type="hidden" id="hddId" name="hddId" value="<?php echo $information?$information[0]["id_equipo_poliza"]:""; ?>"/>
+		<input type="hidden" id="hddId" name="hddId" value="<?php echo $information?$information[0]["id_equipo_documento"]:""; ?>"/>
 
 <script>
 $( function() {
@@ -70,8 +70,8 @@ if($information){
 		<div class="row">	
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="numero_poliza">No. Póliza: *</label>
-					<input type="text" class="form-control" id="numero_poliza" name="numero_poliza" value="<?php echo $information?$information[0]["numero_poliza"]:""; ?>" placeholder="No. Póliza" required/>
+					<label class="control-label" for="numero_documento">No. Documento: *</label>
+					<input type="text" class="form-control" id="numero_documento" name="numero_documento" value="<?php echo $information?$information[0]["numero_documento"]:""; ?>" placeholder="No. Documento" required/>
 				</div>
 			</div>
 			

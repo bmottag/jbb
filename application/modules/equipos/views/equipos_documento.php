@@ -7,8 +7,8 @@ $(function(){
 			var oID = $(this).attr("id");
             $.ajax ({
                 type: 'POST',
-				url: base_url + 'equipos/cargarModalPoliza',
-				data: {'idEquipo': oID, 'idPoliza': 'x'},
+				url: base_url + 'equipos/cargarModalDocumento',
+				data: {'idEquipo': oID, 'idDocumento': 'x'},
                 cache: false,
                 success: function (data) {
                     $('#tablaDatos').html(data);
@@ -20,8 +20,8 @@ $(function(){
 			var oID = $(this).attr("id");
             $.ajax ({
                 type: 'POST',
-				url: base_url + 'equipos/cargarModalPoliza',
-				data: {'idEquipo': '', 'idPoliza': oID},
+				url: base_url + 'equipos/cargarModalDocumento',
+				data: {'idEquipo': '', 'idDocumento': oID},
                 cache: false,
                 success: function (data) {
                     $('#tablaDatos').html(data);
@@ -72,8 +72,8 @@ $(function(){
 				<a href="<?php echo base_url('equipos/combustible/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tint"></i> Seguimiento Operación
 				</a>
-				<a href="<?php echo base_url('equipos/poliza/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
-					<i class="fa fa-book"></i> Pólizas
+				<a href="<?php echo base_url('equipos/documento/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
+					<i class="fa fa-book"></i> Documentos
 				</a>
 				<a href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-wrench"></i> Mantenimiento Correctivo
@@ -91,13 +91,13 @@ $(function(){
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-book"></i> <strong>PÓLIZAS DEL EQUIPO</strong>
+					<i class="fa fa-book"></i> <strong>DOCUMENTOS DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
 				
 					<?php if(!$deshabilitar){ ?>
 					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Póliza del Equipo
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Documento del Equipo
 					</button><br>
 					<?php } ?>
 
@@ -123,7 +123,7 @@ $(function(){
 ?> 
 
 <?php 										
-	if(!$listadoPolizas){ 
+	if(!$listadoDocumentos){ 
 		echo '<div class="col-lg-12">
 				<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en el sistema.</p>
 			</div>';
@@ -134,7 +134,7 @@ $(function(){
 							<tr>
 								<th class="text-center">Fecha Inicio</th>
 								<th class="text-center">Fecha Vencimiento</th>
-								<th class="text-center">No. Póliza</th>
+								<th class="text-center">No. Documento</th>
 								<th class="text-center">Descripción</th>
 			<!--					<th class="text-center">Proveedor</th> -->
 								<th class="text-center">Usuario</th>
@@ -145,18 +145,18 @@ $(function(){
 						</thead>
 						<tbody>							
 						<?php
-							foreach ($listadoPolizas as $lista):
+							foreach ($listadoDocumentos as $lista):
 									echo "<tr>";
 									echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_inicio'])) . "</td>";
 									echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_vencimiento'])) . "</td>";
-									echo "<td class='text-center'>" . $lista['numero_poliza'] . "</td>";
+									echo "<td class='text-center'>" . $lista['numero_documento'] . "</td>";
 									echo "<td>" . $lista['descripcion'] . "</td>";
 									echo "<td class='text-center'>" . $lista['name'] . "</td>";
 
 									if(!$deshabilitar){
 									echo "<td class='text-center'>";
 						?>
-									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo_poliza']; ?>" >
+									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo_documento']; ?>" >
 										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 									</button>
 						<?php
