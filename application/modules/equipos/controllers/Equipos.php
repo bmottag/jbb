@@ -924,5 +924,89 @@ class Equipos extends CI_Controller {
             }
         }
     }
+
+	/**
+	 * Form Upload Documents 
+     * @since 6/8/2021
+     * @author BMOTTAG
+	 */
+	public function documents_form($idEquipo, $idDocumento='x', $error = '')
+	{			
+			$arrParam = array("idEquipo" => $idEquipo);
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			$data['tiposDocumento'] = $this->general_model->get_tipo_documento($arrParam);
+
+			$data['information'] = FALSE;
+
+			if ($idDocumento != 'x' && $idDocumento != '') {
+				$arrParam = array('idDocumento' => $idDocumento);
+				$data['information'] = $this->equipos_model->get_documento($arrParam);
+			}
+			
+			$data['error'] = $error; //se usa para mostrar los errores al cargar la imagen 			
+
+			$data["view"] = "form_documentos";
+			$this->load->view("layout", $data);
+	}
+
+	/**
+	 * FUNCIÓN PARA SUBIR el archivo
+	 */
+    function do_upload_doc() 
+	{
+        $idEquipo = $this->input->post("hddIdEquipo");
+        $nuevoDocumento = $idDocumento = $this->input->post("hddidDocumento");
+ 
+		$config['upload_path'] = './files/equipos/';
+        $config['overwrite'] = FALSE;
+        $config['allowed_types'] = 'pdf|xls|xlsx|xltx|doc|docx';
+        $config['max_size'] = '3000';
+        $config['max_width'] = '2024';
+        $config['max_height'] = '2008';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload() && $_FILES['userfile']['name']!= "") {
+        	//SI EL ARCHIVO FALLA AL SUBIR MOSTRAMOS EL ERROR EN LA VISTA 
+            $error = $this->upload->display_errors();
+            $this->documents_form($idEquipo,$idDocumento,$error);
+        }else{
+			if($_FILES['userfile']['name']== ""){
+				$archivo = 'xxx';
+			}else{
+				$config['file_name'] = $idEquipo . "_" . $idDocumento;
+	            $file_info = $this->upload->data();//subimos ARCHIVO
+				
+				$data = array('upload_data' => $this->upload->data());
+				$archivo = $file_info['file_name'];			
+			}
+			//insertar datos
+			if($idDocumento = $this->equipos_model->guardarDocumento($archivo))
+			{
+				//guardo regitro en la tabla auditoria
+				$this->equipos_model->saveAuditoriaDocumentos($idDocumento, $archivo);
+				$this->session->set_flashdata('retornoExito', 'Se guardó la información.');
+			}else{
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+			}
+			redirect('equipos/documento/' . $idEquipo);
+        }
+    }
+
+	/**
+	 * Historial de documentos
+     * @since 6/8/2021
+     * @author BMOTTAG
+	 */
+	public function historial_documentos()
+	{
+			$arrParam = array('idDocumento' => $this->input->post('hddidDocumento'));
+			$data['infoDocumento'] = $this->equipos_model->get_documento($arrParam);
+			$data['infoDocumentoHistorial'] = $this->equipos_model->get_documentos_historial($arrParam);
+
+			$data['view'] = 'documentos_historial';
+			$this->load->view("layout_calendar", $data);
+	}
 	
 }

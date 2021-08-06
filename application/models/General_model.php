@@ -618,5 +618,21 @@ class General_model extends CI_Model {
 		}
 	}
 
+	/**
+	 * Consultar tipos de documentos
+	 * @since 6/8/2021
+	 */
+	public function get_tipo_documento($arrData)
+	{
+			$this->db->select();
+			$this->db->order_by('tipo_documento', 'asc');
+			$query = $this->db->get('param_tipo_documento');
+			if ($query->num_rows() > 0) {
+				return $query->result_array();
+			} else {
+				return false;
+			}
+	}
+
 
 }

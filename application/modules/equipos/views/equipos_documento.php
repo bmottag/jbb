@@ -134,15 +134,14 @@ $(function(){
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th class="text-center">Tipo Documento</th>
+								<th>Tipo Documento</th>
 								<th class="text-center">Fecha Inicio</th>
 								<th class="text-center">Fecha Vencimiento</th>
 								<th class="text-center">No. Documento</th>
-								<th class="text-center">Descripción</th>
-			<!--					<th class="text-center">Proveedor</th> -->
+								<th>Descripción</th>
 								<th class="text-center">Usuario</th>
 								<?php if(!$deshabilitar){ ?>
-								<th class="text-center">Editar</th>
+								<th class="text-center">Enlaces</th>
 								<?php } ?>
 							</tr>
 						</thead>
@@ -165,22 +164,7 @@ $(function(){
 										$estilosFila = 'danger text-danger';
 									}
 									echo "<tr class='$estilosFila'>";
-									echo "<td>";
-									switch ($lista['tipo_documento']) {
-										case 1:
-											echo 'Impuesto de Semaforización';
-											break;
-										case 2:
-											echo 'Póliza';
-											break;
-										case 3:
-											echo 'SOAT';
-											break;
-										case 4:
-											echo 'Tecno mecánica';
-											break;
-									}
-									echo "</td>";
+									echo "<td>" . $lista['tipo_documento'] . "</td>";
 									echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_inicio'])) . "</td>";
 									echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_vencimiento'])) . "</td>";
 									echo "<td class='text-center'>" . $lista['numero_documento'] . "</td>";
@@ -189,10 +173,27 @@ $(function(){
 
 									if(!$deshabilitar){
 									echo "<td class='text-center'>";
+									
+									if($lista['url_documento']){
+										$enlace = '../files/equipos/' . $lista['url_documento'];
+										echo "<a href='$enlace' target='_blank'>Ver Documento</a>";
+										echo "<br><br>";
+									}
 						?>
-									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo_documento']; ?>" >
-										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
-									</button>
+
+								<a class="btn btn-info btn-xs" href="<?php echo base_url('equipos/documents_form/' . $lista['fk_id_equipo_d'] . '/' . $lista['id_equipo_documento']); ?>">Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
+								</a>
+								<br><br>
+
+	                            <form  name="formHistorial" id="formHistorial" method="post" action="<?php echo base_url("equipos/historial_documentos"); ?>">
+	                                <input type="hidden" class="form-control" id="hddidDocumento" name="hddidDocumento" value="<?php echo $lista['id_equipo_documento']; ?>" />
+	                                
+	                                <button type="submit" class="btn btn-default btn-xs" id="btnSubmit2" name="btnSubmit2">
+	                                    Ver Cambios <span class="fa fa-th-list" aria-hidden="true" />
+	                                </button>
+	         
+	                            </form>
+
 						<?php
 									echo "</td>";
 									}

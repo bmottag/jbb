@@ -307,8 +307,9 @@
 		 */
 		public function get_documento($arrData) 
 		{		
-				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name");
-				$this->db->join('usuarios U', 'U.id_user = A.fk_id_user_d', 'INNER');			
+				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name, t.tipo_documento");
+				$this->db->join('usuarios U', 'U.id_user = A.fk_id_user_d', 'INNER');
+				$this->db->join('param_tipo_documento T', 'T.id_tipo_documento = A.fk_id_tipo_documento', 'INNER');		
 
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.fk_id_equipo_d', $arrData["idEquipo"]);
@@ -332,20 +333,23 @@
 		 * Guardar Documento
 		 * @since 6/1/2021
 		 */
-		public function guardarDocumento() 
+		public function guardarDocumento($archivo) 
 		{
-				$idDocumento = $this->input->post('hddId');
-				$idEquipo = $this->input->post('hddIdEquipo');
+				$idDocumento = $this->input->post('hddidDocumento');
 				$idUser = $this->session->userdata("id");
-				
+			
 				$data = array(
-					'tipo_documento' => $this->input->post('tipo_documento'),
-					'fk_id_equipo_d' => $idEquipo,
+					'fk_id_tipo_documento' => $this->input->post('tipo_documento'),
+					'fk_id_equipo_d' => $this->input->post('hddIdEquipo'),
 					'fecha_inicio' => formatear_fecha($this->input->post('fecha_inicio')),
 					'fecha_vencimiento' => formatear_fecha($this->input->post('fecha_vencimiento')),
 					'numero_documento' => $this->input->post('numero_documento'),
 					'descripcion' => $this->input->post('descripcion')
-				);	
+				);
+
+				if($archivo != 'xxx'){
+					$data['url_documento'] = $archivo;
+				}
 
 				//revisar si es para adicionar o editar
 				if ($idDocumento == '') 
@@ -357,7 +361,7 @@
 					$query = $this->db->update('equipos_documento', $data);
 				}
 				if ($query) {
-					return true;
+					return $idDocumento;
 				} else {
 					return false;
 				}
@@ -483,6 +487,65 @@
 				}
 				if ($query) {
 					return true;
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Add Auditoria Documentos
+		 * @since 6/8/2021
+		 */
+		public function saveAuditoriaDocumentos($idDocumento, $archivo) 
+		{
+				$idUser = $this->session->userdata("id");
+				$idDocumentoInfo = $this->input->post('hddidDocumento');
+
+				if($archivo != 'xxx'){
+					$url = $archivo;
+				}else{
+					$url = '';
+				}
+				
+				$data = array(
+					'fk_id_documento' => $idDocumento,
+					'fk_id_equipo' => $this->input->post('hddIdEquipo'),
+					'fk_id_tipo_documento' => $this->input->post('tipo_documento'),
+					'fk_id_usuario' => $idUser,
+					'fecha_inicio' => formatear_fecha($this->input->post('fecha_inicio')),
+					'fecha_vencimiento' => formatear_fecha($this->input->post('fecha_vencimiento')),
+					'numero_documento' => $this->input->post('numero_documento'),
+					'descripcion' => $this->input->post('descripcion'),
+					'url_documento' => $url,
+					'fecha_registro' => date("Y-m-d G:i:s")
+				);	
+				$query = $this->db->insert('auditoria_documentos', $data);
+
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Consultar registros de historial de documentos
+		 * @since 6/8/2021
+		 */
+		public function get_documentos_historial($arrData)
+		{
+				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name, t.tipo_documento");
+				$this->db->join('usuarios U', 'U.id_user = A.fk_id_usuario', 'INNER');
+				$this->db->join('param_tipo_documento T', 'T.id_tipo_documento = A.fk_id_tipo_documento', 'INNER');	
+				if (array_key_exists("idDocumento", $arrData)) {
+					$this->db->where('A.fk_id_documento', $arrData["idDocumento"]);
+				}
+				$this->db->order_by('A.id_auditoria_documento', 'desc');
+
+				$query = $this->db->get('auditoria_documentos A');
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
 				} else {
 					return false;
 				}
