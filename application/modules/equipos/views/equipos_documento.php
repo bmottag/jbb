@@ -129,6 +129,8 @@ $(function(){
 			</div>';
 	}else{
 ?>
+					<p class="text-danger"><strong>Nota:</strong><br> Cuando la fila esta en rojo, es porque el documento esta vencido.</p>
+					<p class="text-warning"> Cuando la fila esta en amarillo, es porque el documento tiene menos de 30 días para vencerse.</p>
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -146,8 +148,23 @@ $(function(){
 						</thead>
 						<tbody>							
 						<?php
+							$filtroFecha = strtotime(date('Y-m-d'));
 							foreach ($listadoDocumentos as $lista):
-									echo "<tr>";
+									//semaforo de acuerdo a fecha de vencimiento
+									$fechaVencimiento = strtotime($lista['fecha_vencimiento']);
+									$diferencia = $fechaVencimiento - $filtroFecha;
+									//2678400 --> equivalen a 30 dias
+									//si la diferencia es mayor a 30 dias no hay problema
+									if($diferencia > 2678400){
+										$estilosFila = '';
+									}elseif($diferencia <= 2678400 && $diferencia >= 0){
+										//si la diferencia es entre 0 y 30 dias, entonces se va a vencer pronto
+										$estilosFila = 'warning text-warning';
+									}else{
+										//si la diferencia es menor que 0 entonces esta vencida
+										$estilosFila = 'danger text-danger';
+									}
+									echo "<tr class='$estilosFila'>";
 									echo "<td>";
 									switch ($lista['tipo_documento']) {
 										case 1:
