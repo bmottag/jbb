@@ -76,6 +76,8 @@ $(function(){
 								<th class="text-center">Vigencia Desde</th>
 								<th class="text-center">Vigencia Hasta</th>
 								<th>Supervisor</th>
+								<th class="text-right">Valor</th>
+								<th class="text-right">Saldo</th>
 								<th class="text-center">Editar</th>
 							</tr>
 						</thead>
@@ -88,6 +90,8 @@ $(function(){
 									echo "<td class='text-center'>" . $lista['fecha_desde'] . "</td>";
 									echo "<td class='text-center'>" . $lista['fecha_hasta'] . "</td>";
 									echo "<td>" . $lista['name'] . "</td>";
+									echo "<td class='text-right'>$" . $lista['valor_contrato'] . "</td>";
+									echo "<td class='text-right'>$" . $lista['saldo_contrato'] . "</td>";
 									echo "<td class='text-center'>";
 						?>
 									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_contrato_mantenimiento']; ?>" >

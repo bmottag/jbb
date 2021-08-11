@@ -102,7 +102,8 @@ if($information){
 			
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-
+					<label class="control-label" for="valor_contrato">Valor de Contrato: *</label>
+					<input type="number" id="valor_contrato" name="valor_contrato" class="form-control" value="<?php echo $information?$information[0]["valor_contrato"]:""; ?>" placeholder="Valor de Contrato" required >
 				</div>
 			</div>
 		</div>

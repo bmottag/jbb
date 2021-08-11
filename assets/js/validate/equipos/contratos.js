@@ -8,9 +8,10 @@ $( document ).ready( function () {
 		rules: {
 			numero_contrato:			{ required: true, minlength: 3, maxlength:20 },
 			id_proveedor:				{ required: true },
-			id_supervidor:				{ required: true },
 			fecha_desde:				{ required: true },
-			fecha_hasta:				{ required: true }
+			fecha_hasta:				{ required: true },
+			id_supervidor:				{ required: true },
+			valor_contrato:				{ required: true, minlength: 4, maxlength:9 },
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

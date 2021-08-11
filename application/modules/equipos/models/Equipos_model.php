@@ -409,7 +409,8 @@
 					'fk_id_supervisor ' => $this->input->post('id_supervidor'),
 					'fk_id_proveedor ' => $this->input->post('id_proveedor'),
 					'fecha_desde' => formatear_fecha($this->input->post('fecha_desde')),
-					'fecha_hasta ' => formatear_fecha($this->input->post('fecha_hasta'))
+					'fecha_hasta ' => formatear_fecha($this->input->post('fecha_hasta')),
+					'valor_contrato ' => $this->input->post('valor_contrato')
 				);
 				
 				//revisar si es para adicionar o editar
