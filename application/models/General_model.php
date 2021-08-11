@@ -560,8 +560,9 @@ class General_model extends CI_Model {
 
 		if ($query->num_rows() >= 1) {
 			return $query->result_array();
-		} else
+		} else{
 			return false;
+		}
 	}
 
 	/**
@@ -632,6 +633,32 @@ class General_model extends CI_Model {
 			} else {
 				return false;
 			}
+	}
+
+	/**
+	 * Informacion del contrato para un equipo
+	 * @since 8/7/2021
+	 */
+	public function get_contratos_by_equipo($arrData) 
+	{			
+		$this->db->select("C.*, P.nombre_proveedor, CONCAT(U.first_name, ' ', U.last_name) name");
+		$this->db->join('usuarios U', 'U.id_user = C.fk_id_supervisor', 'INNER');
+		$this->db->join('param_proveedores P', 'P.id_proveedor = C.fk_id_proveedor', 'INNER');
+		$this->db->join('equipos E', 'E.fk_id_contrato_mantenimiento = C.id_contrato_mantenimiento', 'LEFT');
+		if (array_key_exists("idContrato", $arrData)) {
+			$this->db->where('C.id_contrato_mantenimiento', $arrData["idContrato"]);
+		}
+		if (array_key_exists("idEquipo", $arrData)) {
+			$this->db->where('E.id_equipo', $arrData["idEquipo"]);
+		}
+		$this->db->order_by("fecha_hasta", "ASC");
+		$query = $this->db->get("contratos_mantenimiento C");
+
+		if ($query->num_rows() >= 1) {
+			return $query->result_array();
+		} else{
+			return false;
+		}
 	}
 
 

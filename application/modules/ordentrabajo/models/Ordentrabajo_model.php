@@ -25,6 +25,7 @@
 					$data['fecha_asignacion'] = date("Y-m-d");
 					$data['fk_id_user_orden'] = $idUser;
 					$data['estado_actual'] = $this->input->post('estado');
+					$data['usar_contrato'] = $this->input->post('usar_contrato');
 					$data['observacion'] = $this->input->post('informacion');
 					$data['informacion_adicional'] = 'O.T. Creada y asignada';
 					$query = $this->db->insert('orden_trabajo', $data);

@@ -16,7 +16,9 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="descripcion">Encargado: *</label>
+					<label class="control-label" for="descripcion">Encargado: *
+						<p class="text-danger">Gestionar el mantenimiento</p>
+					</label>
 					<select name="id_encargado" id="id_encargado" class="form-control" required>
 						<option value=''>Seleccione...</option>
 						<?php for ($i = 0; $i < count($listaEncargados); $i++) { ?>
@@ -25,13 +27,44 @@
 					</select>
 				</div>
 			</div>
+		</div>
+
+		<div class="row">
 			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="descripcion">Usar contrato de Mantenimiento: *</label>
+					<select name="usar_contrato" id="usar_contrato" class="form-control" required>
+						<option value=''>Seleccione...</option>
+						<option value=1 <?php if($information && $information[0]["usar_contrato"] == 1) { echo "selected"; }  ?>>Si</option>
+						<option value=2 <?php if($information && $information[0]["usar_contrato"] == 2) { echo "selected"; }  ?>>No</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="descripcion">
+						<p class="text-danger">
+							<?php 
+								echo $infoContrato[0]['numero_contrato'];
+								echo '<br>Proveedor: ' . $infoContrato[0]['nombre_proveedor']; 
+								echo '<br>Saldo Disponible: ' . $infoContrato[0]['saldo_contrato']; 
+							?>
+						</p>
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
 				<div class="form-group text-left">
 					<label class="control-label" for="consideracion">Observación: *</label>
 					<textarea id="informacion" name="informacion" placeholder="Información Adicional" class="form-control" rows="3" ><?php echo $information?$information[0]["informacion_adicional"]:""; ?></textarea>
 				</div>
 			</div>
 		</div>
+
 		<div class="form-group">
 			<div id="div_load" style="display:none">		
 				<div class="progress progress-striped active">

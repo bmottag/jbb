@@ -3,6 +3,7 @@ $( document ).ready( function () {
 	$( "#form" ).validate( {
 		rules: {
 			id_encargado: 		{ required: true },
+			usar_contrato: 		{ required: true },
 			informacion: 		{ required: true }
 		},
 		errorElement: "em",

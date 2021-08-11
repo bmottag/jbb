@@ -18,13 +18,16 @@
 		}
 		?>
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-12">
 				<div class="form-group text-left">
 					<label class="control-label" for="descripcion">Descripción de la Falla o Daño: *</label>
 					<textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripción de la Falla o Daño" rows="3" required><?php echo $infoCorrectivo?$descripcion:""; ?></textarea>
 				</div>
 			</div>
-			<div class="col-sm-6">
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
 				<div class="form-group text-left">
 					<label class="control-label" for="consideracion">Consideración o Requerimiento: *</label>
 					<textarea class="form-control" id="consideracion" name="consideracion" placeholder="Consideración o Requerimiento" rows="3" required><?php echo $infoCorrectivo?$consideracion:""; ?></textarea>

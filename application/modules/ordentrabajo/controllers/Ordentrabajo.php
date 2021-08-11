@@ -205,6 +205,9 @@ class Ordentrabajo extends CI_Controller {
 			//busco datos del equipo
 			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);
 
+			//seleccionar el contrato
+			$data['infoContrato'] = $this->general_model->get_contratos_by_equipo($arrParam);
+
 			//buscar informacion de la orden de trabajo
 			$data['information'] = FALSE;
 			//$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
