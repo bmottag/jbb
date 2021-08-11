@@ -356,6 +356,7 @@
 				{
 					$data['fk_id_user_d'] = $idUser;
 					$query = $this->db->insert('equipos_documento', $data);
+					$idDocumento = $this->db->insert_id();
 				} else {
 					$this->db->where('id_equipo_documento', $idDocumento);
 					$query = $this->db->update('equipos_documento', $data);

@@ -175,7 +175,7 @@ $(function(){
 									echo "<td class='text-center'>";
 									
 									if($lista['url_documento']){
-										$enlace = '../files/equipos/' . $lista['url_documento'];
+										$enlace = '../../files/equipos/' . $lista['url_documento'];
 										echo "<a href='$enlace' target='_blank'>Ver Documento</a>";
 										echo "<br><br>";
 									}

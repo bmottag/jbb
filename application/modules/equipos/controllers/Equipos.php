@@ -634,15 +634,17 @@ class Equipos extends CI_Controller {
 		
 			$msj = "Se guardo la información!";
 
-			if ($idDocumento = $this->equipos_model->guardarDocumento()) 
+			$archivo = 'xxx';
+			if ($idDocumento = $this->equipos_model->guardarDocumento($archivo)) 
 			{				
+				//guardo regitro en la tabla auditoria
+				$this->equipos_model->saveAuditoriaDocumentos($idDocumento, $archivo);
 				$data["result"] = true;		
 				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 			} else {
 				$data["result"] = "error";
 				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
 			}
-		
 			echo json_encode($data);
     }
 
@@ -964,6 +966,7 @@ class Equipos extends CI_Controller {
         $config['max_size'] = '3000';
         $config['max_width'] = '2024';
         $config['max_height'] = '2008';
+        $config['file_name'] = $idEquipo . "_" . $idDocumento;
 
         $this->load->library('upload', $config);
 
@@ -975,7 +978,6 @@ class Equipos extends CI_Controller {
 			if($_FILES['userfile']['name']== ""){
 				$archivo = 'xxx';
 			}else{
-				$config['file_name'] = $idEquipo . "_" . $idDocumento;
 	            $file_info = $this->upload->data();//subimos ARCHIVO
 				
 				$data = array('upload_data' => $this->upload->data());

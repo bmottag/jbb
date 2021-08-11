@@ -359,7 +359,7 @@ class Settings extends CI_Controller {
 
                     $mail->Body = nl2br ($mensaje,false);
 
-                    $data['linkBack'] = "settings/employee/1";
+                    $data['linkBack'] = "settings/users";
 					$data['titulo'] = "<i class='fa fa-unlock fa-fw'></i>CAMBIAR CONTRASEÑA";
 
                     if($mail->Send())
