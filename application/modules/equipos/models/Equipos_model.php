@@ -402,6 +402,7 @@
 		public function saveContrato() 
 		{
 				$idContrato = $this->input->post('hddId');
+				$valorContrato = $this->input->post('valor_contrato');
 				
 				$data = array(
 					'numero_contrato' => $this->input->post('numero_contrato'),
@@ -409,15 +410,20 @@
 					'fk_id_supervisor ' => $this->input->post('id_supervidor'),
 					'fk_id_proveedor ' => $this->input->post('id_proveedor'),
 					'fecha_desde' => formatear_fecha($this->input->post('fecha_desde')),
-					'fecha_hasta ' => formatear_fecha($this->input->post('fecha_hasta')),
-					'valor_contrato ' => $this->input->post('valor_contrato')
+					'fecha_hasta' => formatear_fecha($this->input->post('fecha_hasta')),
+					'valor_contrato' => $valorContrato
 				);
 				
 				//revisar si es para adicionar o editar
 				if ($idContrato == '') {
+					$data['gastos_contrato'] = 0;
+					$data['saldo_contrato'] = $valorContrato;
 					$query = $this->db->insert('contratos_mantenimiento', $data);
 					$idContrato = $this->db->insert_id();				
 				} else {
+					$gastoContrato = $this->input->post('hddGastoContrato');
+					$saldoContrato = $valorContrato - $gastoContrato;
+					$data['saldo_contrato'] = $saldoContrato;
 					$this->db->where('id_contrato_mantenimiento ', $idContrato);
 					$query = $this->db->update('contratos_mantenimiento', $data);
 				}

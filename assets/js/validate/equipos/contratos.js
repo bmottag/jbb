@@ -11,7 +11,7 @@ $( document ).ready( function () {
 			fecha_desde:				{ required: true },
 			fecha_hasta:				{ required: true },
 			id_supervidor:				{ required: true },
-			valor_contrato:				{ required: true, minlength: 4, maxlength:9 },
+			valor_contrato:				{ required: true, minlength: 4, maxlength:9 }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
