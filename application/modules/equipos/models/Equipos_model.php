@@ -428,11 +428,40 @@
 					$query = $this->db->update('contratos_mantenimiento', $data);
 				}
 				if ($query) {
+					return $idContrato;
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Add Auditoria Contratos
+		 * @since 13/8/2021
+		 */
+		public function saveAuditoriaContrato($idContrato) 
+		{
+				$idUser = $this->session->userdata("id");
+
+				$data = array(
+					'fk_id_contrato_mantenimiento' => $idContrato,
+					'numero_contrato' => $this->input->post('numero_contrato'),
+					'objeto_contrato' => $this->input->post('objeto_contrato'),
+					'fk_id_supervisor ' => $this->input->post('id_supervidor'),
+					'fk_id_proveedor ' => $this->input->post('id_proveedor'),
+					'fecha_desde' => formatear_fecha($this->input->post('fecha_desde')),
+					'fecha_hasta' => formatear_fecha($this->input->post('fecha_hasta')),
+					'valor_contrato' => $this->input->post('valor_contrato'),
+					'fk_id_usuario' => $idUser,
+					'fecha_registro' => date("Y-m-d G:i:s")
+				);	
+				$query = $this->db->insert('auditoria_contratos_mantenimiento', $data);
+
+				if ($query) {
 					return true;
 				} else {
 					return false;
 				}
-		}	
+		}
 
 		/**
 		 * Add/Edit RECORRIDO
@@ -558,6 +587,31 @@
 					return false;
 				}
 		}
+
+		/**
+		 * Consultar registros de historial de CONTRATOS
+		 * @since 13/8/2021
+		 */
+		public function get_contratos_historial($arrData)
+		{
+				$this->db->select("A.*, P.nombre_proveedor, CONCAT(U.first_name, ' ', U.last_name) name, CONCAT(X.first_name, ' ', X.last_name) supervisor");
+				$this->db->join('usuarios U', 'U.id_user = A.fk_id_usuario', 'INNER');
+				$this->db->join('usuarios X', 'X.id_user = A.fk_id_supervisor', 'INNER');
+				$this->db->join('param_proveedores P', 'P.id_proveedor = A.fk_id_proveedor', 'INNER');
+				if (array_key_exists("idContrato", $arrData)) {
+					$this->db->where('A.fk_id_contrato_mantenimiento', $arrData["idContrato"]);
+				}
+				$this->db->order_by('A.id_auditoria_contrato_mantenimiento', 'desc');
+
+				$query = $this->db->get('auditoria_contratos_mantenimiento A');
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
 		
 		
 	    

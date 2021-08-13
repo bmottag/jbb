@@ -67,7 +67,9 @@ $(function(){
 
 				<?php
 					if($info){
-				?>				
+				?>			
+					<p class="text-danger"><strong>Nota:</strong><br> Cuando la fila esta en rojo, es porque el documento esta vencido.</p>
+					<p class="text-warning"> Cuando la fila esta en amarillo, es porque el documento tiene menos de 30 días para vencerse.</p>
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -78,13 +80,28 @@ $(function(){
 								<th>Supervisor</th>
 								<th class="text-right">Valor</th>
 								<th class="text-right">Saldo</th>
-								<th class="text-center">Editar</th>
+								<th class="text-center">Enlaces</th>
 							</tr>
 						</thead>
 						<tbody>							
 						<?php
+							$filtroFecha = strtotime(date('Y-m-d'));
 							foreach ($info as $lista):
-									echo "<tr>";
+									//semaforo de acuerdo a fecha de vencimiento
+									$fechaVencimiento = strtotime($lista['fecha_hasta']);
+									$diferencia = $fechaVencimiento - $filtroFecha;
+									//2678400 --> equivalen a 30 dias
+									//si la diferencia es mayor a 30 dias no hay problema
+									if($diferencia > 2678400){
+										$estilosFila = '';
+									}elseif($diferencia <= 2678400 && $diferencia >= 0){
+										//si la diferencia es entre 0 y 30 dias, entonces se va a vencer pronto
+										$estilosFila = 'warning text-warning';
+									}else{
+										//si la diferencia es menor que 0 entonces esta vencida
+										$estilosFila = 'danger text-danger';
+									}
+									echo "<tr class='$estilosFila'>";
 									echo "<td>" . $lista['numero_contrato'] . "</td>";
 									echo "<td>" . $lista['nombre_proveedor'] . "</td>";
 									echo "<td class='text-center'>" . $lista['fecha_desde'] . "</td>";
@@ -97,6 +114,17 @@ $(function(){
 									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_contrato_mantenimiento']; ?>" >
 										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 									</button>
+
+								<br><br>
+
+	                            <form  name="formHistorial" id="formHistorial" method="post" action="<?php echo base_url("equipos/historial_contratos"); ?>">
+	                                <input type="hidden" class="form-control" id="hddidContrato" name="hddidContrato" value="<?php echo $lista['id_contrato_mantenimiento']; ?>" />
+	                                
+	                                <button type="submit" class="btn btn-default btn-xs" id="btnSubmit2" name="btnSubmit2">
+	                                    Ver Cambios <span class="fa fa-th-list" aria-hidden="true" />
+	                                </button>
+	         
+	                            </form>
 						<?php
 									echo "</td>";
 							endforeach;

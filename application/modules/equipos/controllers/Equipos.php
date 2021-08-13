@@ -733,7 +733,10 @@ class Equipos extends CI_Controller {
 				$msj = "Se actualizó el Contrato de Mantenimiento!";
 			}
 
-			if ($idContrato = $this->equipos_model->saveContrato()) {
+			if ($idContrato = $this->equipos_model->saveContrato()) 
+			{
+				//guardo regitro en la tabla auditoria
+				$this->equipos_model->saveAuditoriaContrato($idContrato);
 				$data["result"] = true;				
 				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 			} else {
@@ -1008,6 +1011,21 @@ class Equipos extends CI_Controller {
 			$data['infoDocumentoHistorial'] = $this->equipos_model->get_documentos_historial($arrParam);
 
 			$data['view'] = 'documentos_historial';
+			$this->load->view("layout_calendar", $data);
+	}
+
+	/**
+	 * Historial de Contratos
+     * @since 13/8/2021
+     * @author BMOTTAG
+	 */
+	public function historial_contratos()
+	{
+			$arrParam = array('idContrato' => $this->input->post('hddidContrato'));
+			$data['information'] = $this->general_model->get_contratos($arrParam);
+			$data['infoContratosHistorial'] = $this->equipos_model->get_contratos_historial($arrParam);
+
+			$data['view'] = 'contratos_mantenimiento_historial';
 			$this->load->view("layout_calendar", $data);
 	}
 	
