@@ -555,6 +555,12 @@ class General_model extends CI_Model {
 		if (array_key_exists("idContrato", $arrData)) {
 			$this->db->where('C.id_contrato_mantenimiento', $arrData["idContrato"]);
 		}
+		if (array_key_exists("estado", $arrData)) {
+			$this->db->where('C.estado_contrato', $arrData["estado"]);
+		}
+		if (array_key_exists("filtroEstado", $arrData)) {
+			$this->db->where('C.estado_contrato !=', 3);
+		}
 		$this->db->order_by("fecha_hasta", "ASC");
 		$query = $this->db->get("contratos_mantenimiento C");
 

@@ -41,6 +41,14 @@ $(function(){
 					<i class="fa fa-book"></i> LISTA CONTRATOS DE MANTENIMIENTO
 				</div>
 				<div class="panel-body">
+					<ul class="nav nav-pills">
+						<li <?php if($estado == 1){ echo "class='active'";} ?>><a href="<?php echo base_url("contratos/contratos/1"); ?>">Contratos en Ejecución</a>
+						</li>
+						<li <?php if($estado == 2){ echo "class='active'";} ?>><a href="<?php echo base_url("equipos/contratos/3"); ?>">Contratos Finalizados</a>
+						</li>
+					</ul>
+					<br>
+
 					<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Contrato de Mantenimiento
 					</button><br>
@@ -80,7 +88,7 @@ $(function(){
 								<th>Supervisor</th>
 								<th class="text-right">Valor</th>
 								<th class="text-right">Saldo</th>
-								<th class="text-center">Enlaces</th>
+								<th class="text-center"></th>
 							</tr>
 						</thead>
 						<tbody>							
@@ -126,6 +134,17 @@ $(function(){
 	         
 	                            </form>
 						<?php
+									switch ($lista['estado_contrato']) {
+										case 1:
+											echo '<small><strong>En Ejecución</strong></small>';
+											break;
+										case 2:
+											echo '<small><strong>En Ejecución - Prorroga</strong></small>';
+											break;
+										case 3:
+											echo '<small><strong>Finalizado</strong></small>';
+											break;
+									}
 									echo "</td>";
 							endforeach;
 						?>

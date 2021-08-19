@@ -109,6 +109,25 @@ if($information){
 			</div>
 		</div>
 
+	<?php if($information){ ?>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="estado">Estado: *</label>
+					<select name="estado" id="estado" class="form-control" required>
+						<option value=''>Seleccione...</option>
+						<option value=1 <?php if($information[0]["estado_contrato"] == 1) { echo "selected"; }  ?>>En Ejecución</option>
+						<option value=2 <?php if($information[0]["estado_contrato"] == 2) { echo "selected"; }  ?>>Prorroga</option>
+						<option value=3 <?php if($information[0]["estado_contrato"] == 3) { echo "selected"; }  ?>>Finalizado</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	<?php }else{ ?>
+			<input type="hidden" id="estado" name="estado" value=1 />
+	<?php } ?>
+		
+		
 		<div class="row">
 			<div class="col-sm-12">		
 				<div class="form-group text-left">

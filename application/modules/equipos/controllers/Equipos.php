@@ -678,9 +678,15 @@ class Equipos extends CI_Controller {
      * @since 8/7/2021
      * @author BMOTTAG
 	 */
-	public function contratos()
+	public function contratos($estado=1)
 	{
-			$arrParam = array();
+			$data['estado'] = $estado;
+			
+			if($estado == 1){
+				$arrParam = array("filtroEstado" => TRUE);
+			}else{
+				$arrParam = array("estado" => $estado);
+			}
 			$data['info'] = $this->general_model->get_contratos($arrParam);
 
 			$data["view"] = 'contratos_mantenimiento';

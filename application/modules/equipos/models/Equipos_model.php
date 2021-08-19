@@ -418,12 +418,14 @@
 				if ($idContrato == '') {
 					$data['gastos_contrato'] = 0;
 					$data['saldo_contrato'] = $valorContrato;
+					$data['estado_contrato'] = 1;
 					$query = $this->db->insert('contratos_mantenimiento', $data);
 					$idContrato = $this->db->insert_id();				
 				} else {
 					$gastoContrato = $this->input->post('hddGastoContrato');
 					$saldoContrato = $valorContrato - $gastoContrato;
 					$data['saldo_contrato'] = $saldoContrato;
+					$data['estado_contrato'] = $this->input->post('estado');
 					$this->db->where('id_contrato_mantenimiento ', $idContrato);
 					$query = $this->db->update('contratos_mantenimiento', $data);
 				}
@@ -451,6 +453,7 @@
 					'fecha_desde' => formatear_fecha($this->input->post('fecha_desde')),
 					'fecha_hasta' => formatear_fecha($this->input->post('fecha_hasta')),
 					'valor_contrato' => $this->input->post('valor_contrato'),
+					'estado_contrato' => $this->input->post('estado'),
 					'fk_id_usuario' => $idUser,
 					'fecha_registro' => date("Y-m-d G:i:s")
 				);	

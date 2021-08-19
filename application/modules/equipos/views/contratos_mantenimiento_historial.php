@@ -24,6 +24,7 @@
 								<th class="text-center">Vigencia Hasta</th>
 								<th>Supervisor</th>
 								<th class="text-right">Valor</th>
+								<th class="text-right">Estado</th>
 							</tr>
 						</thead>
 						<tbody>							
@@ -38,6 +39,23 @@
 								echo "<td class='text-center'>" . $lista['fecha_hasta'] . "</td>";
 								echo "<td>" . $lista['supervisor'] . "</td>";
 								echo "<td class='text-right'>$" . $lista['valor_contrato'] . "</td>";
+								echo "<td class='text-center'>";
+								switch ($lista['estado_contrato']) {
+									case 1:
+										$valor = 'En Ejecución';
+										$clase = "text-primary";
+										break;
+									case 2:
+										$valor = 'En Ejecución - Prorroga';
+										$clase = "text-warning";
+										break;
+									case 3:
+										$valor = 'Finalizado';
+										$clase = "text-danger";
+										break;
+								}
+								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+								echo "</td>";
                                 echo '</tr>';
 							endforeach;
 						?>
