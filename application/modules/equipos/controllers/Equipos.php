@@ -89,7 +89,7 @@ class Equipos extends CI_Controller {
 			);
 			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
 
-			$arrParam = array();
+			$arrParam = array("filtroEstado" => TRUE);
 			$data['contratosMantenimiento'] = $this->general_model->get_contratos($arrParam);
 
 			//Lista de usuarios activos
@@ -243,7 +243,7 @@ class Equipos extends CI_Controller {
 			);
 			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
 
-			$arrParam = array();
+			$arrParam = array("filtroEstado" => TRUE);
 			$data['contratosMantenimiento'] = $this->general_model->get_contratos($arrParam);
 
 			//Lista de usuarios activos
