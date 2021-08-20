@@ -325,9 +325,11 @@ class Settings extends CI_Controller {
 			$paramUsername = $parametric[1]["parametro_valor"];
 			$paramPassword = $parametric[2]["parametro_valor"];
 			$paramFromName = $parametric[3]["parametro_valor"];
+			$paramCompanyName = $parametric[4]["parametro_valor"];
+			$paramAPPName = $parametric[5]["parametro_valor"];
 
 			//mensaje del correo
-			$msj = '<p>Sr.(a) ' . $infoUsuario[0]['first_name'] . ' se activo su ingreso a la plataforma de Gestión y mantenimiento de bienes del Jardín Botánico,';
+			$msj = '<p>Sr.(a) ' . $infoUsuario[0]['first_name'] . ' se activo su ingreso a la plataforma de Gestión y mantenimiento de bienes del ' . $paramCompanyName . ',';
 			$msj .= ' siga el enlace con las credenciales para acceder.</p>';
 			$msj .= '<p>Recuerde cambiar su contraseña para activar su cuenta.</p>';
 			$msj .= '<p><strong>Enlace: </strong>' . base_url();
@@ -336,7 +338,7 @@ class Settings extends CI_Controller {
 									
 			$mensaje = "<p>$msj</p>
 						<p>Cordialmente,</p>
-						<p><strong>Jardín Botánico de Bogotá</strong></p>";		
+						<p><strong>$paramCompanyName</strong></p>";		
 
 			require_once(APPPATH.'libraries/PHPMailer/class.phpmailer.php');
             $mail = new PHPMailer(true);
@@ -351,11 +353,11 @@ class Settings extends CI_Controller {
                     $mail->Password = $paramPassword; // SMTP password
                     $mail->FromName = $paramFromName;
                     $mail->From = $paramUsername;
-                    $mail->AddAddress($to, 'Usuario JJB Bienes');
+                    $mail->AddAddress($to, 'Usuario JBB Bienes');
                     $mail->WordWrap = 50;
                     $mail->CharSet = 'UTF-8';
                     $mail->IsHTML(true); // set email format to HTML
-                    $mail->Subject = 'Jardín Botánico - Bienes';
+                    $mail->Subject = $paramCompanyName . ' - ' . $paramAPPName;
 
                     $mail->Body = nl2br ($mensaje,false);
 
