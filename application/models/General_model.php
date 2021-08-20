@@ -268,6 +268,7 @@ class General_model extends CI_Model {
 				$this->db->select();
 				$this->db->join('param_dependencias D', 'D.id_dependencia = A.fk_id_dependencia', 'INNER');
 				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = A.fk_id_tipo_equipo', 'INNER');
+				$this->db->join('contratos_mantenimiento C', 'C.id_contrato_mantenimiento = A.fk_id_contrato_mantenimiento', 'INNER');
 
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.id_equipo', $arrData["idEquipo"]);

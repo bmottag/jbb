@@ -86,7 +86,14 @@ $(function(){
 				<div class="panel-body">
 
 					<strong>No. OT: </strong><?php echo $information[0]['id_orden_trabajo']; ?><br>
-					<strong>Encargado: </strong><?php echo $information[0]['encargado']; ?>
+					<strong>Encargado: </strong><?php echo $information[0]['encargado']; ?><br>
+					<?php 
+						if($information[0]['usar_contrato']){
+							echo "<b>No. Contrato: </b>" . $infoEquipo[0]['numero_contrato'] . "</br>";
+							echo "<small class='text-danger'>Para esta OT se va hacer uso del contrato de mantenimiento.</small><br>";
+
+						}
+					?>
 					<strong>Obserbación: </strong><br><?php echo $information[0]['observacion']; ?>
 					<?php
 					switch ($information[0]['estado_actual']) {
