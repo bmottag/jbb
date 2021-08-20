@@ -14,39 +14,22 @@ class Mantenimiento extends CI_Controller {
      * @since 10/12/2020
      * @author BMOTTAG
 	 */
-	public function preventivo($estado=1)
+	public function preventivo($tipoEquipo=1)
 	{
-		$data['estadoMantenimiento'] = $estado;
-		$data['tituloListado'] = FALSE;
-		if(!$_POST)
-		{
-			$data['tituloListado'] = 'LISTA DE ÚLTIMOS 10 MANTENIMIENTOS PREVENTIVOS REGISTRADOS';
-			$arrParam = array(
-				"estadoMantenimiento" => $estado,
-				'limit' => 10
-			);
-			$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
-		} elseif ($this->input->post('tipo_equipo'))
-		{
-			$data['tituloListado'] = 'LISTA DE MANTENIMIENTOS PREVENTIVOS QUE COINCIDEN CON SU BUSQUEDA';
-			$data['tipoEquipo'] =  $this->input->post('tipo_equipo');
-			$arrParam = array(
-				"tipoEquipo" => $this->input->post('tipo_equipo'),
-				"estadoMantenimiento" => $estado
-			);
-			$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
-		} else {
-			$data['infoPreventivo'] = FALSE;
-		}
+		$data['tipoEquipo'] = $tipoEquipo;
+		$arrParam = array(
+			"tipoEquipo" => $tipoEquipo
+		);
+		$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
 		$arrParam = array(
 			"table" => "param_tipo_equipos",
 			"order" => "tipo_equipo",
 			"id" => "x"
 		);
-		$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
+		$data['listadoTipoEquipo'] = $this->general_model->get_basic_search($arrParam);
 
 		$data["view"] = 'preventivo';
-		$this->load->view("layout", $data);
+		$this->load->view("layout_calendar", $data);
 	}
 
 	/**

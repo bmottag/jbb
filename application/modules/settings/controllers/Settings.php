@@ -239,7 +239,7 @@ class Settings extends CI_Controller {
 			$data['info'] = $this->general_model->get_basic_search($arrParam);
 			
 			$data["view"] = 'company';
-			$this->load->view("layout", $data);
+			$this->load->view("layout_calendar", $data);
 	}
 	
     /**

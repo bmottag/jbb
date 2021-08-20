@@ -1,9 +1,11 @@
 $( document ).ready( function () {
-	
+
+	$("#frecuencia").bloquearTexto().maxlength(9);
+
 	$( "#form" ).validate( {
 		rules: {
 			id_tipo_equipo: 		{ required: true, minlength: 1, maxlength:1 },
-			frecuencia:				{ required: true, minlength: 5, maxlength:180 },
+			frecuencia:				{ required: true, minlength: 2, maxlength:9 },
 			descripcion: 			{ required: true }
 		},
 		errorElement: "em",

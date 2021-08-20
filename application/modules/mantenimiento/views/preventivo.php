@@ -1,18 +1,6 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/mantenimiento/buscarPreventivo.js"); ?>"></script>
 <script>
 $(function(){
-	$(".btn-primary").click(function () {
-		var oID = $(this).attr("id");
-        $.ajax ({
-            type: 'POST',
-			url: base_url + 'mantenimiento/cargarModalPreventivo',
-			data: {'idPreventivo': 'x'},
-            cache: false,
-            success: function (data) {
-                $('#tablaDatos').html(data);
-            }
-        });
-	});
 	$(".btn-success").click(function () {
 		var oID = $(this).attr("id");
         $.ajax ({
@@ -28,53 +16,42 @@ $(function(){
 });
 </script>
 <div id="page-wrapper">
-	<br>	
+	<br>
 	<div class="row">
-		<div class="col-lg-6">
-			<div class="panel panel-info">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<i class="fa fa-search"></i> <strong>BUSCAR MANTENIMIENTOS PREVENTIVOS</strong>
-				</div>
-				<div class="panel-body">
-					<form name="formBuscar" id="formBuscar" role="form" method="post" class="form-horizontal" >
-						<div class="form-group">
-							<div class="col-sm-6">
-								<label class="control-label" for="from">Tipo Equipo</label>
-								<select name="tipo_equipo" id="tipo_equipo" class="form-control" >
-									<option value="">Seleccione...</option>
-									<?php for ($i = 0; $i < count($tipoEquipo); $i++) { ?>
-										<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>" <?php if($_POST && $_POST["tipo_equipo"] == $tipoEquipo[$i]["id_tipo_equipo"]) { echo "selected"; }  ?>><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>
-									<?php } ?>
-								</select>
-							</div>
-							<div class="col-sm-6">
-								<br>
-								<div class="form-group">
-									<div class="row" align="center">
-										<div style="width80%;" align="center">
-										<button type="submit" class="btn btn-info" id='btnBuscar' name='btnBuscar'><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar </button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
+					<h4 class="list-group-item-heading">
+					<i class="fa fa-gear fa-fw"></i> CONFIGURACIÓN - PLANTILLAS MANTENIMIENTO PREVENTIVO
+					</h4>
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-6">
-			<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal" id="x">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantenimiento Preventivo
-			</button>
-		</div>
+		<!-- /.col-lg-12 -->				
 	</div>
+
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="panel panel-info">
+			<div class="panel panel-default">
 				<div class="panel-heading">
-				<i class="fa fa-wrench"></i> <?php echo $tituloListado; ?>
+				<i class="fa fa-wrench"></i> LISTA DE MANTENIMIENTOS PREVENTIVOS
 				</div>
 				<div class="panel-body">	
+					<ul class="nav nav-pills">
+						<?php
+							foreach ($listadoTipoEquipo as $tipo):
+						?>
+							<li <?php if($tipoEquipo == $tipo['id_tipo_equipo']){ echo "class='active'";} ?>><a href="<?php echo base_url("mantenimiento/preventivo/" . $tipo['id_tipo_equipo']); ?>"><?php echo $tipo['tipo_equipo'];?></a>
+							</li>
+						<?php
+							endforeach;
+						?>
+					</ul>
+					<br>
+
+			<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantenimiento Preventivo
+			</button>
 				<br>
 				<?php
 					if(!$infoPreventivo){
@@ -88,9 +65,8 @@ $(function(){
 							<tr>
 								<th class="text-center">Tipo Equipo</th>
 								<th class="text-center">Frecuencia</th>
-								<th class="text-center">Usuario</th>
-								<th class="text-center">Estado</th>
 								<th class="text-center">Descripción</th>
+								<th class="text-center">Usuario</th>
 								<th class="text-center">Editar</th>
 							</tr>
 						</thead>
@@ -99,22 +75,9 @@ $(function(){
 							foreach ($infoPreventivo as $lista):
 								echo "<tr>";
 								echo "<td>" . $lista['tipo_equipo'] . "</td>";
-								echo "<td>" . $lista['frecuencia'] . "</td>";
-								echo "<td>" . $lista['name'] . "</td>";
-								echo "<td class='text-center'>";
-								switch ($lista['estado']) {
-									case 1:
-										$valor = 'Activo';
-										$clase = "text-success";
-										break;
-									case 2:
-										$valor = 'Inactivo';
-										$clase = "text-danger";
-										break;
-								}
-								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
-								echo "</td>";
+								echo "<td class='text-right'>" . $lista['frecuencia'] . "</td>";
 								echo "<td>" . $lista['descripcion'] . "</td>";
+								echo "<td>" . $lista['name'] . "</td>";
 								echo "<td class='text-center'>";
 								?>
 								<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_preventivo']; ?>" >
@@ -139,12 +102,13 @@ $(function(){
 		</div>
 	</div>
 </div>
+
+<!-- Tables -->
 <script>
 $(document).ready(function() {
 	$('#dataTables').DataTable({
 		responsive: true,
 		paging: false,
-		"searching": false,
 		"pageLength": 25
 	});
 });

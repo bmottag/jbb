@@ -27,8 +27,8 @@
 			</div>
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="frecuencia">Frecuencia: *</label>
-					<input type="text" id="frecuencia" name="frecuencia" class="form-control" value="<?php echo $infoPreventivo?$infoPreventivo[0]["frecuencia"]:""; ?>" placeholder="Frecuencia" required >
+					<label class="control-label" for="frecuencia">Frecuencia: * <small class="text-danger">(Horas o Kilometros)</small></label>
+					<input type="number" id="frecuencia" name="frecuencia" class="form-control" value="<?php echo $infoPreventivo?$infoPreventivo[0]["frecuencia"]:""; ?>" placeholder="Frecuencia" required >
 				</div>
 			</div>
 		</div>
