@@ -35,14 +35,14 @@
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
 					<label class="control-label" for="valor_x_galon">Valor por Galón: *</label>
-					<input type="text" id="valor_x_galon" name="valor_x_galon" class="form-control" value="<?php echo $information?$information[0]["valor_x_galon_consumo"]:""; ?>" placeholder="Valor por Galón" >
+					<input type="number" id="valor_x_galon" name="valor_x_galon" class="form-control" value="<?php echo $information?$information[0]["valor_x_galon_consumo"]:""; ?>" placeholder="Valor por Galón" >
 				</div>
 			</div>
 
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
 					<label class="control-label" for="cantidad">Número de Galones: *</label>
-					<input type="text" id="cantidad" name="cantidad" class="form-control" value="<?php echo $information?$information[0]["numero_galones"]:""; ?>" placeholder="Número de Galones" >
+					<input type="number" id="cantidad" name="cantidad" class="form-control" value="<?php echo $information?$information[0]["numero_galones"]:""; ?>" placeholder="Número de Galones" >
 				</div>
 			</div>
 		</div>
@@ -53,7 +53,7 @@
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
 					<label class="control-label" for="Kilometraje">Horas o Kilometraje: *</label>
-					<input type="text" id="Kilometraje" name="Kilometraje" class="form-control" value="<?php echo $information?$information[0]["kilometraje"]:""; ?>" placeholder="Horas o Kilometraje" >
+					<input type="number" id="Kilometraje" name="Kilometraje" class="form-control" value="<?php echo $information?$information[0]["kilometraje"]:""; ?>" placeholder="Horas o Kilometraje" >
 				</div>
 			</div>
 		</div>

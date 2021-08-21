@@ -124,14 +124,14 @@ $(function(){
 					?>
 					<table class="table table-bordered table-striped table-hover table-condensed">
 						<tr class="dafault">
-							<th class="text-center">Fecha Solicitud</th>
-							<th class="text-center">Descripción Falla</th>
-							<th class="text-center">Consideración</th>
-							<th class="text-center">Solicitante</th>
-							<th class="text-center">Estado</th>
-							<th class="text-center">Editar</th>
-							<th class="text-center">Foto Falla</th>
-							<th class="text-center">Orden Trabajo</th>
+							<th class="text-center"><small>Fecha Solicitud</small></th>
+							<th class="text-center"><small>Descripción Falla</small></th>
+							<th class="text-center"><small>Consideración</small></th>
+							<th class="text-center"><small>Solicitante</small></th>
+							<th class="text-center"><small>Estado</small></th>
+							<th class="text-center"><small>Editar</small></th>
+							<th class="text-center"><small>Foto Falla</small></th>
+							<th class="text-center"><small>Orden Trabajo</small></th>
 						</tr>
 						<?php
 							foreach ($listadoCorrectivos as $data):
@@ -140,7 +140,7 @@ $(function(){
 								echo "<td><small>" . $data['descripcion'] . "</small></td>";
 								echo "<td><small>" . $data['consideracion'] . "</small></td>";
 								echo "<td><small>" . $data['name'] . "</small></td>";
-								echo "<td class='text-center'><small>";
+								echo "<td class='text-center'>";
 								switch ($data['estado']) {
 									case 1:
 										$valor = 'Nuevo';
@@ -155,8 +155,8 @@ $(function(){
 										$clase = "text-success";
 										break;
 								}
-								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
-								echo "</small></td>";
+								echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
+								echo "</td>";
 								echo "<td class='text-center'>";
 
 								//DESHABILITAR BOTONES

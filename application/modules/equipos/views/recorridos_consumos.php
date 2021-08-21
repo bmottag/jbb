@@ -39,7 +39,7 @@ $(function(){
 		<div class="col-lg-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<a class="btn btn-info btn-xs" href="<?php echo base_url('equipos/recorridos'); ?> "><span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Regresar </a> 
+					<a class="btn btn-primary btn-xs" href="<?php echo base_url('equipos/recorridos'); ?> "><span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Regresar </a> 
 					<i class="fa fa-wrench"></i> <strong>CONSUMOS DE LOS RECORRIDOS</strong>
 				</div>
 				<div class="panel-body">

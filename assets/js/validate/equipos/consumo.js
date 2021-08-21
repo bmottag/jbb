@@ -7,7 +7,7 @@ $( document ).ready( function () {
 		rules: {
 			valor_x_galon:		 		{ required: true, minlength: 3, maxlength: 7 },
 			cantidad:					{ required: true, maxlength: 20 },
-			Kilometraje: 		{ required: true, minlength: 2, maxlength:7 },
+			Kilometraje: 				{ required: true, minlength: 2, maxlength:7 },
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

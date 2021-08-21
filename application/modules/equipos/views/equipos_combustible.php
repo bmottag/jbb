@@ -127,25 +127,25 @@ $(function(){
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th class="text-center">Fecha</th>
-								<th class="text-center">Horas o Kilometros Actuales</th>
-								<th class="text-center">Operador</th>
-								<th class="text-center">Tipo de Consumo</th>
-								<th class="text-center">Cantidad</th>
-								<th class="text-center">Lugar</th>
-								<th class="text-center">Valor X Galón</th>
-								<th class="text-center">Valor Total</th>
-								<th class="text-center">Labor Realizada</th>
-								<th class="text-center">Editar</th>
+								<th class="text-center"><small>Fecha</small></th>
+								<th class="text-center"><small>Horas o Kilometros Actuales</small></th>
+								<th class="text-center"><small>Operador</small></th>
+								<th class="text-center"><small>Tipo de Consumo</small></th>
+								<th class="text-center"><small>Cantidad</small></th>
+								<th class="text-center"><small>Lugar</small></th>
+								<th class="text-center"><small>Valor X Galón</small></th>
+								<th class="text-center"><small>Valor Total</small></th>
+								<th class="text-center"><small>Labor Realizada</small></th>
+								<th class="text-center"><small>Editar</small></th>
 							</tr>
 						</thead>
 						<tbody>							
 						<?php
 							foreach ($listadoControlCombustible as $lista):
 									echo "<tr>";
-									echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_combustible']))) . "</td>";
-									echo "<td class='text-right'>" . number_format($lista['kilometros_actuales']) . "</td>";
-									echo "<td>" . $lista['name'] . "</td>";
+									echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_combustible']))) . "</small></td>";
+									echo "<td class='text-right'><small>" . number_format($lista['kilometros_actuales']) . "</small></td>";
+									echo "<td><small>" . $lista['name'] . "</small></td>";
 									echo "<td class='text-center'>";
 									switch ($lista['tipo_consumo']) {
 										case 1:
@@ -169,14 +169,14 @@ $(function(){
 											$clase = "text-violeta";
 											break;
 									}
-									echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+									echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
 									echo "</td>";
 
-									echo "<td>" . $lista['cantidad'] . "</td>";
-									echo "<td>" . $lista['lugar'] . "</td>";
-									echo "<td class='text-right'>$" . number_format($lista['valor_x_galon'], 2) . "</td>";
-									echo "<td class='text-right'>$" . number_format($lista['valor_total'], 2) . "</td>";
-									echo "<td>" . $lista['labor_realizada'] . "</td>";
+									echo "<td><small>" . $lista['cantidad'] . "</small></td>";
+									echo "<td><small>" . $lista['lugar'] . "</small></td>";
+									echo "<td class='text-right'><small>$" . number_format($lista['valor_x_galon'], 2) . "</small></td>";
+									echo "<td class='text-right'><small>$" . number_format($lista['valor_total'], 2) . "</small></td>";
+									echo "<td><small>" . $lista['labor_realizada'] . "</small></td>";
 									
 									echo "<td class='text-center'>";
 						?>
