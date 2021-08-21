@@ -50,7 +50,7 @@ class Mantenimiento extends CI_Controller {
 		if ($data["idPreventivo"] != 'x')
 		{
 			$arrParam = array(
-				"idPreventivo" => $data["idPreventivo"]
+				"idMantenimiento" => $data["idPreventivo"]
 			);
 			$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
 		}

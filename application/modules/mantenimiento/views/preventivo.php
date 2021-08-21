@@ -49,9 +49,9 @@ $(function(){
 					</ul>
 					<br>
 
-			<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantenimiento Preventivo
-			</button>
+				<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantenimiento Preventivo
+				</button>
 				<br>
 				<?php
 					if(!$infoPreventivo){
