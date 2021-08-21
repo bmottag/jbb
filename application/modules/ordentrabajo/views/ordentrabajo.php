@@ -61,9 +61,11 @@ $(function(){
 					<?php 
 						if($information[0]['tipo_mantenimiento'] == 1){
 					?>
-					<strong>Fecha Registro: </strong><?php echo ucfirst(strftime("%b %d, %G",strtotime($infoMantenimiento[0]['fecha']))); ?><br>
-					<strong>Descripción Falla: </strong><br><?php echo $infoMantenimiento[0]['descripcion']; ?><br>
-					<strong>Consideración: </strong><br><?php echo $infoMantenimiento[0]['consideracion']; ?>
+					<strong>Fecha Solicitud: </strong><?php echo ucfirst(strftime("%b %d, %G",strtotime($infoMantenimiento[0]['fecha']))); ?><br>
+					<strong>Descripción Falla: </strong><br>
+					<?php echo $infoMantenimiento[0]['descripcion']; ?><br>
+					<strong>Consideración o Requerimiento: </strong><br>
+					<?php echo $infoMantenimiento[0]['consideracion']; ?>
 					<p class='text-danger'><strong>Tipo de Mantenimiento:</strong> Correctivo</p>
 					<?php 
 						}else{
@@ -73,6 +75,7 @@ $(function(){
 					<?php
 						}
 					?>
+					<strong>Solicitante: </strong><?php echo $infoMantenimiento[0]['name']; ?>
 					
 				</div>
 			</div>

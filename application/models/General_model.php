@@ -416,8 +416,10 @@ class General_model extends CI_Model {
 		 */
 		public function get_mantenimiento_correctivo($arrData)
 		{
-				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name");
+				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name, E.numero_inventario, T.tipo_equipo");
 				$this->db->join('usuarios U', 'C.fk_id_user_correctivo = U.id_user', 'INNER');
+				$this->db->join('equipos E', 'E.id_equipo = C.fk_id_equipo_correctivo', 'INNER');
+				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = E.fk_id_tipo_equipo', 'INNER');
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('C.fk_id_equipo_correctivo', $arrData["idEquipo"]);
 				}

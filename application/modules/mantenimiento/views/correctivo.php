@@ -128,7 +128,7 @@ $(function(){
 						<tr class="dafault">
 							<th class="text-center"><small>Fecha Solicitud</small></th>
 							<th class="text-center"><small>Descripción Falla</small></th>
-							<th class="text-center"><small>Consideración</small></th>
+							<th class="text-center"><small>Consideración o Requerimiento</small></th>
 							<th class="text-center"><small>Solicitante</small></th>
 							<th class="text-center"><small>Estado</small></th>
 							<th class="text-center"><small>Editar</small></th>

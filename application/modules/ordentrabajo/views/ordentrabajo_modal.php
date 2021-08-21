@@ -48,7 +48,7 @@
 							<?php 
 								echo $infoContrato[0]['numero_contrato'];
 								echo '<br>Proveedor: ' . $infoContrato[0]['nombre_proveedor']; 
-								echo '<br>Saldo Disponible: ' . $infoContrato[0]['saldo_contrato']; 
+								echo '<br>Saldo Disponible: $' . number_format($infoContrato[0]['saldo_contrato']); 
 							?>
 						</p>
 					</label>

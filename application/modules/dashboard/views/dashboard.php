@@ -159,15 +159,17 @@ if ($retornoError) {
                     <i class="fa fa-wrench fa-fw"></i> Lista Mantenimiento Correctivo <strong>Nuevas - <?php echo date("Y"); ?></strong>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">              
+                <div class="panel-body">
+
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
                         <thead>
                             <tr>
-                                <th class='text-center'>Fecha Registro</th>
-                                <th class='text-center'>Descripción Falla</th>
-                                <th class='text-center'>Requerimiento</th>
-                                <th class='text-center'>Usuario</th>
-                                <th class='text-center'>Ver</th>
+                                <th class='text-center'><small>No. Inventario</small></th>
+                                <th class='text-center'><small>Fecha Solicitud</small></th>
+                                <th class='text-center'><small>Descripción Falla</small></th>
+                                <th class='text-center'><small>Consideración o Requerimiento</small></th>
+                                <th class='text-center'><small>Solicitante</small></th>
+                                <th class='text-center'><small>Ver</small></th>
                             </tr>
                         </thead>
                         <tbody>                         
@@ -175,11 +177,18 @@ if ($retornoError) {
                             foreach ($infoMantenimientoCorrectivo as $lista):
                                 echo "<tr>";
                                 echo "<td class='text-center'>";
-                                echo $lista['fecha']; 
+?>
+<div class="tooltip-demo">
+<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="right" title="Tipo Equipo: <?php echo $lista['tipo_equipo'];?>"><?php echo $lista['numero_inventario']; ?> <i class='fa fa-info-circle fa-fw'></i></button>
+</div>
+<?php
+                                
+
                                 echo "</td>";
-                                echo "<td>" . $lista['descripcion'] . "</td>";
-                                echo "<td>" . $lista['consideracion'] . "</td>";
-                                echo "<td>" . $lista['name'] . "</td>";
+                                echo "<td class='text-center'><small>" . $lista['fecha'] . "</small></td>";
+                                echo "<td><small>" . $lista['descripcion'] . "</small></td>";
+                                echo "<td><small>" . $lista['consideracion'] . "</small></td>";
+                                echo "<td><small>" . $lista['name'] . "</small></td>";
                                 echo "<td class='text-center'>";
                                 ?>
                                 <a href="<?php echo base_url("mantenimiento/correctivo/" . $lista['fk_id_equipo_correctivo']); ?>" class="btn btn-success btn-xs">Ver <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
@@ -223,21 +232,21 @@ if ($retornoError) {
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
                         <thead>
                             <tr>
-                                <th class='text-center'>No. OT</th>
-                                <th class='text-center'>Fecha Asignación</th>
-                                <th class='text-center'>Encargado</th>
-                                <th class='text-center'>Tipo Mantenimiento</th>
-                                <th class='text-center'>Observación</th>
-                                <th class='text-center'>Ver</th>
+                                <th class='text-center'><small>No. OT</small></th>
+                                <th class='text-center'><small>Fecha Asignación</small></th>
+                                <th class='text-center'><small>Encargado</small></th>
+                                <th class='text-center'><small>Tipo Mantenimiento</small></th>
+                                <th class='text-center'><small>Observación</small></th>
+                                <th class='text-center'><small>Ver</small></th>
                             </tr>
                         </thead>
                         <tbody>                         
                         <?php
                             foreach ($infoOrdenesTrabajo as $lista):
                                 echo "<tr>";
-                                echo "<td class='text-center'>" . $lista['id_orden_trabajo'] . "</td>";
-                                echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_asignacion']))) . "</td>";
-                                echo "<td >" . $lista['encargado'] . "</td>";
+                                echo "<td class='text-center'><small>" . $lista['id_orden_trabajo'] . "</small></td>";
+                                echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_asignacion']))) . "</small></td>";
+                                echo "<td ><small>" . $lista['encargado'] . "</small></td>";
                                 echo "<td class='text-center'>";
                                 switch ($lista['tipo_mantenimiento']) {
                                     case 1:
@@ -249,9 +258,9 @@ if ($retornoError) {
                                         $clase = "text-info";
                                         break;
                                 }
-                                echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+                                echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
                                 echo "</td>";
-                                echo "<td>" . $lista['observacion'] . "</td>";
+                                echo "<td><small>" . $lista['observacion'] . "</small></td>";
                                 echo "<td class='text-center'>";
                                 ?>
                                 <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver OT <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
@@ -326,3 +335,14 @@ if ($retornoError) {
     </div>
 
 </div>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?php echo base_url("assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"); ?>"></script>
+
+<script>
+    // tooltip demo
+    $('.tooltip-demo').tooltip({
+        selector: "[data-toggle=tooltip]",
+        container: "body"
+    })
+</script>

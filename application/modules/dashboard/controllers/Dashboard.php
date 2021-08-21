@@ -57,7 +57,7 @@ class Dashboard extends CI_Controller {
 			$data['noBombas'] = $infoBombas?count($infoBombas):0;
 			
 			$data["view"] = "dashboard";
-			$this->load->view("layout", $data);
+			$this->load->view("layout_calendar", $data);
 	}
 	
 	/**
