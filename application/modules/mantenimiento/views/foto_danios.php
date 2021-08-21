@@ -13,7 +13,9 @@
 			<?php } ?>
 			<div class="form-group">
 				<div class="row" align="center">
-						<?php echo '<strong>No. Inventario:</strong> ' . $info[0]['numero_inventario']; ?>
+						<strong>No. Inventario: </strong><?php echo $info[0]['numero_inventario']; ?>
+						<br>
+						<strong>Tipo Equipo: </strong><?php echo  $info[0]['tipo_equipo']; ?>
 				</div>
 			</div>
 			<div class="list-group">
@@ -49,15 +51,19 @@
 		<div class="col-lg-9 col-md-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
+					<a class="btn btn-info btn-xs" href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?> "><span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Regresar </a> 
 					<i class="fa fa-image"></i> <strong>FOTO DEL DAÑO</strong>
 				</div>
 				<div class="panel-body">
 					<div class="col-lg-8">
 						<div class="form-group">
 							<div class="alert alert-success ">
-								<strong>Fecha de Registro:</strong> <?php echo $infoCorrectivo[0]['fecha']; ?>
+								<strong>Fecha Solicitud:</strong> <?php echo $infoCorrectivo[0]['fecha']; ?>
 								<br>
-								<strong>Descripción de la Falla o Daño:</strong> <?php echo $infoCorrectivo[0]['descripcion']; ?>
+								<strong>Descripción de la Falla o Daño:</strong><br> 
+								<?php echo $infoCorrectivo[0]['descripcion']; ?><br> 
+								<strong>Consideración o Requerimiento:</strong><br> 
+								<?php echo $infoCorrectivo[0]['consideracion']; ?>
 							</div>
 						</div>
 						<div class="form-group">

@@ -16,7 +16,9 @@
 
 			<div class="form-group">
 				<div class="row" align="center">
-						<?php echo '<strong>No. Inventario:</strong> ' . $info[0]['numero_inventario']; ?>
+						<strong>No. Inventario: </strong><?php echo $info[0]['numero_inventario']; ?>
+						<br>
+						<strong>Tipo Equipo: </strong><?php echo  $info[0]['tipo_equipo']; ?>
 				</div>
 			</div>
 		
@@ -36,7 +38,7 @@
 				<a href="<?php echo base_url('equipos/combustible/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tint"></i> Seguimiento Operación
 				</a>
-				<a href="<?php echo base_url('equipos/documento/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-block">
+				<a href="<?php echo base_url('equipos/documento/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-book"></i> Documentos
 				</a>
 				<a href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">

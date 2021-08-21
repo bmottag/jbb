@@ -27,7 +27,9 @@ $(function(){
 			<?php } ?>
 			<div class="form-group">
 				<div class="row" align="center">
-						<?php echo '<strong>No. Inventario:</strong> ' . $info[0]['numero_inventario']; ?>
+						<strong>No. Inventario: </strong><?php echo $info[0]['numero_inventario']; ?>
+						<br>
+						<strong>Tipo Equipo: </strong><?php echo  $info[0]['tipo_equipo']; ?>
 				</div>
 			</div>
 			<div class="list-group">
@@ -55,7 +57,7 @@ $(function(){
 				<a href="<?php echo base_url('mantenimiento/preventivo_equipo/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
 					<i class="fa fa-wrench"></i> Mantenimiento Preventivo
 				</a>
-				<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
+				<a href="<?php echo base_url('equipos/diagnostico/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tasks"></i> Diagnóstico Periódico
 				</a>
 			</div>
