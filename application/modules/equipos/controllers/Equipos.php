@@ -690,7 +690,7 @@ class Equipos extends CI_Controller {
 			$data['info'] = $this->general_model->get_contratos($arrParam);
 
 			$data["view"] = 'contratos_mantenimiento';
-			$this->load->view("layout", $data);
+			$this->load->view("layout_calendar", $data);
 	}
 	
     /**
@@ -765,7 +765,7 @@ class Equipos extends CI_Controller {
 			$data['info'] = $this->general_model->get_recorridos($arrParam);
 			
 			$data["view"] = 'recorridos';
-			$this->load->view("layout", $data);
+			$this->load->view("layout_calendar", $data);
 	}
 	
     /**
@@ -862,7 +862,7 @@ class Equipos extends CI_Controller {
 //pr($data['listadoControlConsumos']); exit;
 
 			$data["view"] = 'recorridos_consumos';
-			$this->load->view("layout", $data);
+			$this->load->view("layout_calendar", $data);
 	}
 
     /**

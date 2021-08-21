@@ -42,9 +42,9 @@ $(function(){
 				</div>
 				<div class="panel-body">
 					<ul class="nav nav-pills">
-						<li <?php if($estado == 1){ echo "class='active'";} ?>><a href="<?php echo base_url("contratos/contratos/1"); ?>">Contratos en Ejecución</a>
+						<li <?php if($estado == 1){ echo "class='active'";} ?>><a href="<?php echo base_url("equipos/contratos/1"); ?>">Contratos en Ejecución</a>
 						</li>
-						<li <?php if($estado == 2){ echo "class='active'";} ?>><a href="<?php echo base_url("equipos/contratos/3"); ?>">Contratos Finalizados</a>
+						<li <?php if($estado == 3){ echo "class='active'";} ?>><a href="<?php echo base_url("equipos/contratos/3"); ?>">Contratos Finalizados</a>
 						</li>
 					</ul>
 					<br>
@@ -76,8 +76,21 @@ $(function(){
 				<?php
 					if($info){
 				?>			
-					<p class="text-danger"><strong>Nota:</strong><br> Cuando la fila esta en rojo, es porque el documento esta vencido.</p>
-					<p class="text-warning"> Cuando la fila esta en amarillo, es porque el documento tiene menos de 30 días para vencerse.</p>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="alert alert-danger">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							Cuando la fila esta en rojo, es porque el documento esta vencido.
+						</div>		
+					</div>
+					<div class="col-lg-6">
+						<div class="alert alert-warning">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							Cuando la fila esta en amarillo, es porque el documento tiene menos de 30 días para vencerse.
+						</div>		
+					</div>
+				</div>
+				
 					<table class="table table-hover">
 						<thead>
 							<tr>

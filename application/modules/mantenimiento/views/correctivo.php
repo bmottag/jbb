@@ -124,10 +124,10 @@ $(function(){
 					?>
 					<table class="table table-bordered table-striped table-hover table-condensed">
 						<tr class="dafault">
-							<th class="text-center">Fecha</th>
+							<th class="text-center">Fecha Solicitud</th>
 							<th class="text-center">Descripción Falla</th>
 							<th class="text-center">Consideración</th>
-							<th class="text-center">Usuario</th>
+							<th class="text-center">Solicitante</th>
 							<th class="text-center">Estado</th>
 							<th class="text-center">Editar</th>
 							<th class="text-center">Foto Falla</th>
@@ -136,11 +136,11 @@ $(function(){
 						<?php
 							foreach ($listadoCorrectivos as $data):
 								echo "<tr>";					
-								echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($data['fecha']))) . "</td>";
-								echo "<td>" . $data['descripcion'] . "</td>";
-								echo "<td>" . $data['consideracion'] . "</td>";
-								echo "<td>" . $data['name'] . "</td>";
-								echo "<td class='text-center'>";
+								echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($data['fecha']))) . "</small></td>";
+								echo "<td><small>" . $data['descripcion'] . "</small></td>";
+								echo "<td><small>" . $data['consideracion'] . "</small></td>";
+								echo "<td><small>" . $data['name'] . "</small></td>";
+								echo "<td class='text-center'><small>";
 								switch ($data['estado']) {
 									case 1:
 										$valor = 'Nuevo';
@@ -156,7 +156,7 @@ $(function(){
 										break;
 								}
 								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
-								echo "</td>";
+								echo "</small></td>";
 								echo "<td class='text-center'>";
 
 								//DESHABILITAR BOTONES
