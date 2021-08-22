@@ -67,7 +67,7 @@ class Ordentrabajo extends CI_Controller {
 			$data['listaEncargados'] = $this->general_model->get_user($arrParam);
 
 			$data["view"] = 'ordentrabajo';
-			$this->load->view("layout", $data);
+			$this->load->view("layout_calendar", $data);
 	}
 
 	/**

@@ -1,9 +1,10 @@
 <div id="page-wrapper">
     <div class="row"><br>
 		<div class="col-md-12">
-			<div class="panel panel-primary">
+			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h4 class="list-group-item-heading">
+                        <i class="fa fa-dashboard fa-fw"></i>
 						DASHBOARD
 					</h4>
 				</div>
@@ -45,7 +46,7 @@ if ($retornoError) {
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
+            <div class="panel panel-yellow">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
@@ -60,90 +61,115 @@ if ($retornoError) {
 				
                 <a href="#anclaOT">
                     <div class="panel-footer">
-                        <span class="pull-left">Últimos registros</span>
+                        <span class="pull-left">Ver registros</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
             </div>
         </div>
-		
+
         <div class="col-lg-3 col-md-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-car fa-5x"></i>
+                            <i class="fa fa-check fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?php echo $noVehiculos; ?></div>
-                            <div>Vehículos</div>
+                            <div class="huge"><?php echo $solucionadas; ?></div>
+                            <div>Ordenes de Trabajo Solucionadas</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="panel-footer">
-                    <form  name="formBuscarVehiculos" id="formBuscarVehiculos" method="post" action="<?php echo base_url("equipos"); ?>">
-                        <input type="hidden" id="id_tipo_equipo" name="id_tipo_equipo" class="form-control" value="1" placeholder="Número Inventario Entidad" >
-                            <button type="submit" class="btn btn-link btn-xs" id='btnBuscar' name='btnBuscar'>
-                                    <span class="pull-right"> Ver registros <i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                            </button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-yellow">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-bomb fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><?php echo $noBombas; ?></div>
-                            <div>Bombas</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel-footer">
-                    <form  name="formBuscarVehiculos" id="formBuscarVehiculos" method="post" action="<?php echo base_url("equipos"); ?>">
-                        <input type="hidden" id="id_tipo_equipo" name="id_tipo_equipo" class="form-control" value="2" placeholder="Número Inventario Entidad" >
-                            <button type="submit" class="btn btn-link btn-xs" id='btnBuscar' name='btnBuscar'>
-                                    <span class="pull-right"> Ver registros <i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                            </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-truck fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">0</div>
-                            <div>Maquinas</div>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="#">
+                <a href="<?php echo base_url("ordentrabajo/orden_estado/2/" . date("Y")) ?>">
                     <div class="panel-footer">
-                        <span class="pull-left">NO HAY REGISTROS </span>
+                        <span class="pull-left">Ver registros</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
                 </a>
             </div>
         </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-times fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge"><?php echo $canceladas; ?></div>
+                            <div>Ordenes de Trabajo Canceladas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="<?php echo base_url("ordentrabajo/orden_estado/3/" . date("Y")) ?>">
+                    <div class="panel-footer">
+                        <span class="pull-left">Ver registros</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i> Equipos
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+
+                    <form  name="formBuscarVehiculos" id="formBuscarVehiculos" method="post" action="<?php echo base_url("equipos"); ?>">
+                        <input type="hidden" id="id_tipo_equipo" name="id_tipo_equipo" class="form-control" value="1" >
+                            <button type="submit" class="btn list-group-item">
+                            <p class="text-default"><i class="fa fa-car fa-fw"></i><strong> Vehículos</strong>
+                                <span class="pull-right text-muted small"><em><?php echo $noVehiculos; ?></em>
+                                </span>
+                            </p>
+                            </button>
+                    </form>
+
+                    <form  name="formBuscarVehiculos" id="formBuscarVehiculos" method="post" action="<?php echo base_url("equipos"); ?>">
+                        <input type="hidden" id="id_tipo_equipo" name="id_tipo_equipo" class="form-control" value="2" placeholder="Número Inventario Entidad" >
+                            <button type="submit" class="btn list-group-item">
+                            <p class="text-default"><i class="fa fa-bomb fa-fw"></i><strong> Bombas</strong>
+                                <span class="pull-right text-muted small"><em><?php echo $noBombas; ?></em>
+                                </span>
+                            </p>
+                            </button>
+                    </form>
+
+                    <form  name="formBuscarVehiculos" id="formBuscarVehiculos" method="post" action="<?php echo base_url("equipos"); ?>">
+                        <input type="hidden" id="id_tipo_equipo" name="id_tipo_equipo" class="form-control" value="2" placeholder="Número Inventario Entidad" >
+                            <button type="submit" class="btn list-group-item">
+                            <p class="text-default"><i class="fa fa-truck fa-fw"></i><strong> Maquinas</strong>
+                                <span class="pull-right text-muted small"><em>0</em>
+                                </span>
+                            </p>
+                            </button>
+                    </form>
+
+
+
+                    </div>
+                    <!-- /.list-group -->
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+
+        </div>
+        <!-- /.col-lg-4 -->
+	
+
 
 	</div>
 
@@ -154,7 +180,7 @@ if ($retornoError) {
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-info">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <i class="fa fa-wrench fa-fw"></i> Lista Mantenimiento Correctivo <strong>Nuevas - <?php echo date("Y"); ?></strong>
                 </div>
@@ -209,8 +235,8 @@ if ($retornoError) {
     <!-- /.row -->
     <div class="row">
 <a name="anclaOT" ></a>
-        <div class="col-lg-9">
-            <div class="panel panel-violeta">
+        <div class="col-lg-12">
+            <div class="panel panel-success">
                 <div class="panel-heading">
                     <i class="fa fa-briefcase fa-fw"></i> Ordenes de Trabajo <strong>Asignadas - <?php echo date("Y"); ?></strong>
                 </div>
@@ -232,11 +258,12 @@ if ($retornoError) {
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
                         <thead>
                             <tr>
-                                <th class='text-center'><small>No. OT</small></th>
+                                <th class='text-center'><small>No. O.T.</small></th>
                                 <th class='text-center'><small>Fecha Asignación</small></th>
                                 <th class='text-center'><small>Asignado a</small></th>
                                 <th class='text-center'><small>Tipo Mantenimiento</small></th>
                                 <th class='text-center'><small>Observación</small></th>
+                                <th class='text-center'><small>Última Actualización</small></th>
                                 <th class='text-center'><small>Ver</small></th>
                             </tr>
                         </thead>
@@ -245,7 +272,7 @@ if ($retornoError) {
                             foreach ($infoOrdenesTrabajo as $lista):
                                 echo "<tr>";
                                 echo "<td class='text-center'><small>" . $lista['id_orden_trabajo'] . "</small></td>";
-                                echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_asignacion']))) . "</small></td>";
+                                echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($lista['fecha_asignacion']))) . "</small></td>";
                                 echo "<td ><small>" . $lista['encargado'] . "</small></td>";
                                 echo "<td class='text-center'>";
                                 switch ($lista['tipo_mantenimiento']) {
@@ -261,9 +288,10 @@ if ($retornoError) {
                                 echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
                                 echo "</td>";
                                 echo "<td><small>" . $lista['observacion'] . "</small></td>";
+                                echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($lista['fecha_ultima_actualizacion']))) . "</small></td>";
                                 echo "<td class='text-center'>";
                                 ?>
-                                <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver OT <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+                                <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver O.T. <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
                                 <?php
                                 echo "</td>";
                                 echo "</tr>";
@@ -279,58 +307,7 @@ if ($retornoError) {
 
         </div>
 
-        <div class="col-lg-3">
-            <div class="panel panel-violeta">
-                <div class="panel-heading">
-                    <i class="fa fa-bell fa-fw"></i> OT - <?php echo date("Y"); ?>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="list-group">
-                        <?php 
-                            $enlace = '#';
-                            $enlace2 = '#';
-                            $enlace3 = '#';
-                            if($asignadas){
-                                $enlace = base_url("ordentrabajo/orden_estado/1/" . date("Y"));
-                            }
-                            if($solucionadas){
-                                $enlace2 = base_url("ordentrabajo/orden_estado/2/" . date("Y"));
-                            }
-                            if($canceladas){
-                                $enlace3 = base_url("ordentrabajo/orden_estado/3/" . date("Y"));
-                            }
-                        ?>
-                        <a href="<?php echo $enlace; ?>" class="list-group-item" disabled>
-                            <p class="text-info"><i class="fa fa-thumb-tack fa-fw"></i><strong> Asignadas</strong>
-                                <span class="pull-right text-muted small"><em><?php echo $asignadas; ?></em>
-                                </span>
-                            </p>
-                        </a>
 
-                        <a href="<?php echo $enlace2; ?>" class="list-group-item">
-                            <p class="text-success"><i class="fa fa-check fa-fw"></i><strong> Solucionadas</strong>
-                                <span class="pull-right text-muted small"><em><?php echo $solucionadas; ?></em>
-                                </span>
-                            </p>
-                        </a>
-                        <a href="<?php echo $enlace3; ?>" class="list-group-item">
-                            <p class="text-danger"><i class="fa fa-times fa-fw"></i><strong> Canceladas</strong>
-                                <span class="pull-right text-muted small"><em><?php echo $canceladas; ?></em>
-                                </span>
-                            </p>
-                        </a>
-
-                    </div>
-                    <!-- /.list-group -->
-
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-
-        </div>
-        <!-- /.col-lg-4 -->
     
     </div>
 

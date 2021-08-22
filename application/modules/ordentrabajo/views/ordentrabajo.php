@@ -61,11 +61,13 @@ $(function(){
 					<?php 
 						if($information[0]['tipo_mantenimiento'] == 1){
 					?>
-					<strong>Fecha Solicitud: </strong><?php echo ucfirst(strftime("%b %d, %G",strtotime($infoMantenimiento[0]['fecha']))); ?><br>
+					<strong>Fecha Solicitud: </strong>
+					<?php echo ucfirst(strftime("%b %d, %G %H:%M",strtotime($infoMantenimiento[0]['fecha']))); ?><br>
 					<strong>Descripción Falla: </strong><br>
 					<?php echo $infoMantenimiento[0]['descripcion']; ?><br>
 					<strong>Consideración o Requerimiento: </strong><br>
-					<?php echo $infoMantenimiento[0]['consideracion']; ?>
+					<?php echo $infoMantenimiento[0]['consideracion']; ?><br>
+					<strong>Solicitante: </strong><?php echo $infoMantenimiento[0]['name']; ?>
 					<p class='text-danger'><strong>Tipo de Mantenimiento:</strong> Correctivo</p>
 					<?php 
 						}else{
@@ -75,7 +77,7 @@ $(function(){
 					<?php
 						}
 					?>
-					<strong>Solicitante: </strong><?php echo $infoMantenimiento[0]['name']; ?>
+					
 					
 				</div>
 			</div>
@@ -88,16 +90,20 @@ $(function(){
 				</div>
 				<div class="panel-body">
 
-					<strong>No. OT: </strong><?php echo $information[0]['id_orden_trabajo']; ?><br>
-					<strong>Encargado: </strong><?php echo $information[0]['encargado']; ?><br>
+					<strong>No. O.T.: </strong><?php echo $information[0]['id_orden_trabajo']; ?><br>
+					<strong>Fecha Asignación: </strong>
+					<?php echo ucfirst(strftime("%b %d, %G %H:%M",strtotime($information[0]['fecha_asignacion']))); ?><br>
+					<strong>Asignado a: </strong><?php echo $information[0]['encargado']; ?><br>
 					<?php 
 						if($information[0]['usar_contrato']){
 							echo "<b>No. Contrato: </b>" . $infoEquipo[0]['numero_contrato'] . "</br>";
-							echo "<small class='text-danger'>Para esta OT se va hacer uso del contrato de mantenimiento.</small><br>";
+							echo "<small class='text-danger'>Para esta O.T. se va hace uso del contrato de mantenimiento.</small><br>";
 
 						}
 					?>
-					<strong>Obserbación: </strong><br><?php echo $information[0]['observacion']; ?>
+					<strong>Observación: </strong><br><?php echo $information[0]['observacion']; ?><br>
+					<strong>Última Actualización: </strong>
+					<?php echo ucfirst(strftime("%b %d, %G %H:%M",strtotime($information[0]['fecha_ultima_actualizacion']))); ?>
 					<?php
 					switch ($information[0]['estado_actual']) {
 						case 1:

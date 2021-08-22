@@ -198,7 +198,7 @@ $(function(){
 								?>
 								<?php if(!$deshabilitar){ ?>
 								<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $idCompuesto; ?>" >
-									Crear OT <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
+									Crear O.T. <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
 								</button>
 								<?php 
 								}else{ 
@@ -214,7 +214,7 @@ $(function(){
 									$infoOT = $this->general_model->get_orden_trabajo($arrParam);
 									$idOT = $infoOT[0]['id_orden_trabajo'];
 								?>
-								<a href="<?php echo base_url("ordentrabajo/ver_orden/" . $idOT); ?>" class="btn btn-success btn-xs">Ver OT <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+								<a href="<?php echo base_url("ordentrabajo/ver_orden/" . $idOT); ?>" class="btn btn-success btn-xs">Ver O.T. <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
 								<?php } ?>
 
 								<?php

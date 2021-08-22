@@ -26,7 +26,7 @@
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-                                <th class='text-center'><small>No. OT</small></th>
+                                <th class='text-center'><small>No. O.T.</small></th>
                                 <th class='text-center'><small>Fecha Asignación</small></th>
                                 <th class='text-center'><small>Asignado a</small></th>
                                 <th class='text-center'><small>Tipo Mantenimiento</small></th>
@@ -75,7 +75,7 @@
 								echo "</td>";
                                 echo "<td class='text-center'>";
                                 ?>
-                                <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver OT <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+                                <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver O.T. <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
                                 <?php
                                 echo "</td>";
                                 echo "</tr>";

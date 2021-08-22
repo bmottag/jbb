@@ -59,7 +59,7 @@
 			<div class="col-sm-12">
 				<div class="form-group text-left">
 					<label class="control-label" for="consideracion">Observación: *</label>
-					<textarea id="informacion" name="informacion" placeholder="Información Adicional" class="form-control" rows="3" ><?php echo $information?$information[0]["informacion_adicional"]:""; ?></textarea>
+					<textarea id="informacion" name="informacion" placeholder="Observación" class="form-control" rows="3" ><?php echo $information?$information[0]["informacion_adicional"]:""; ?></textarea>
 				</div>
 			</div>
 		</div>
