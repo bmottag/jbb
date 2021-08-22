@@ -26,22 +26,22 @@
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-                                <th class='text-center'>No. OT</th>
-                                <th class='text-center'>Fecha Asignación</th>
-                                <th class='text-center'>Encargado</th>
-                                <th class='text-center'>Tipo Mantenimiento</th>
-                                <th class='text-center'>Observacion</th>
-                                <th class='text-center'>Estado Actual</th>
-                                <th class='text-center'>Ver</th>
+                                <th class='text-center'><small>No. OT</small></th>
+                                <th class='text-center'><small>Fecha Asignación</small></th>
+                                <th class='text-center'><small>Asignado a</small></th>
+                                <th class='text-center'><small>Tipo Mantenimiento</small></th>
+                                <th class='text-center'><small>Observacion</small></th>
+                                <th class='text-center'><small>Estado Actual</small></th>
+                                <th class='text-center'><small>Ver</small></th>
 							</tr>
 						</thead>
 						<tbody>							
 						<?php
                             foreach ($infoOrdenesTrabajo as $lista):
                                 echo "<tr>";
-                                echo "<td class='text-center'>" . $lista['id_orden_trabajo'] . "</td>";
-                                echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_asignacion']))) . "</td>";
-                                echo "<td >" . $lista['encargado'] . "</td>";
+                                echo "<td class='text-center'><small>" . $lista['id_orden_trabajo'] . "</small></td>";
+                                echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_asignacion']))) . "</small></td>";
+                                echo "<td ><small>" . $lista['encargado'] . "</small></td>";
                                 echo "<td class='text-center'>";
                                 switch ($lista['tipo_mantenimiento']) {
                                     case 1:
@@ -53,9 +53,9 @@
                                         $clase = "text-info";
                                         break;
                                 }
-                                echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+                                echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
                                 echo "</td>";
-                                echo "<td>" . $lista['observacion'] . "</td>";
+                                echo "<td><small>" . $lista['observacion'] . "</small></td>";
                                 echo "<td class='text-center'>";
 								switch ($lista['estado_actual']) {
 									case 1:
@@ -71,7 +71,7 @@
 										$clase = "text-danger";
 										break;
 								}
-								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+								echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
 								echo "</td>";
                                 echo "<td class='text-center'>";
                                 ?>

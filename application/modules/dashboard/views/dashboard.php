@@ -234,7 +234,7 @@ if ($retornoError) {
                             <tr>
                                 <th class='text-center'><small>No. OT</small></th>
                                 <th class='text-center'><small>Fecha Asignación</small></th>
-                                <th class='text-center'><small>Encargado</small></th>
+                                <th class='text-center'><small>Asignado a</small></th>
                                 <th class='text-center'><small>Tipo Mantenimiento</small></th>
                                 <th class='text-center'><small>Observación</small></th>
                                 <th class='text-center'><small>Ver</small></th>

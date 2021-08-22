@@ -182,7 +182,7 @@ class Ordentrabajo extends CI_Controller {
 			$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam);
 
 			$data["view"] = "listado_orden_trabajo";
-			$this->load->view("layout", $data);	
+			$this->load->view("layout_calendar", $data);	
 	}
 
 	/**

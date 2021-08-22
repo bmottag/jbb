@@ -16,8 +16,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="descripcion">Encargado: *
-						<p class="text-danger">Gestionar el mantenimiento</p>
+					<label class="control-label" for="descripcion">Asignado a o encargado de gestionar el mantenimiento: *
 					</label>
 					<select name="id_encargado" id="id_encargado" class="form-control" required>
 						<option value=''>Seleccione...</option>
