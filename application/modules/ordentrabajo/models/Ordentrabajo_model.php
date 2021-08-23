@@ -148,6 +148,36 @@
 
 		}
 
+		/**
+		 * Add Auditoria Contratos - Saldo
+		 * @since 23/8/2021
+		 */
+		public function saveAuditoriaContratoSaldo($idContrato) 
+		{
+				$idUser = $this->session->userdata("id");
+
+				$saldoContrato = $this->input->post('hddSaldoContrato');
+				$costoMantenimiento = $this->input->post('costo_mantenimiento');
+				$saldoContrato = $saldoContrato - $costoMantenimiento;
+
+				$data = array(
+					'fk_id_contrato_mantenimiento' => $idContrato,
+					'estado_contrato' => 1,
+					'fk_id_usuario' => $idUser,
+					'valor_contrato' => $this->input->post('hddValorContrato'),
+					'saldo_contrato' => $saldoContrato,
+					'fk_id_orden_trabajo' => $this->input->post('hddIdOrdenTrabajo'),
+					'fecha_registro' => date("Y-m-d G:i:s")
+				);	
+				$query = $this->db->insert('auditoria_contratos_mantenimiento', $data);
+
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
+
 
 		
 		

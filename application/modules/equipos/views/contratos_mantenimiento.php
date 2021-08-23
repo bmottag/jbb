@@ -80,13 +80,13 @@ $(function(){
 					<div class="col-lg-6">
 						<div class="alert alert-danger">
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-							Cuando la fila esta en rojo, es porque el documento esta vencido.
+							Cuando la fila esta en rojo, es porque el <b>Contrato de Mantenimiento esta vencido.</b>
 						</div>		
 					</div>
 					<div class="col-lg-6">
 						<div class="alert alert-warning">
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-							Cuando la fila esta en amarillo, es porque el documento tiene menos de 30 días para vencerse.
+							Cuando la fila esta en amarillo, es porque el <b>Contrato de Mantenimiento tiene menos de 30 días para vencerse.</b>
 						</div>		
 					</div>
 				</div>
@@ -94,13 +94,13 @@ $(function(){
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>Número Contrato</th>
-								<th>Proveedor</th>
-								<th class="text-center">Vigencia Desde</th>
-								<th class="text-center">Vigencia Hasta</th>
-								<th>Supervisor</th>
-								<th class="text-right">Valor</th>
-								<th class="text-right">Saldo</th>
+								<th><small>Número Contrato</small></th>
+								<th><small>Proveedor</small></th>
+								<th class="text-center"><small>Vigencia Desde</small></th>
+								<th class="text-center"><small>Vigencia Hasta</small></th>
+								<th><small>Supervisor</small></th>
+								<th class="text-right"><small>Valor</small></th>
+								<th class="text-right"><small>Saldo</small></th>
 								<th class="text-center"></th>
 							</tr>
 						</thead>
@@ -123,13 +123,13 @@ $(function(){
 										$estilosFila = 'danger text-danger';
 									}
 									echo "<tr class='$estilosFila'>";
-									echo "<td>" . $lista['numero_contrato'] . "</td>";
-									echo "<td>" . $lista['nombre_proveedor'] . "</td>";
-									echo "<td class='text-center'>" . $lista['fecha_desde'] . "</td>";
-									echo "<td class='text-center'>" . $lista['fecha_hasta'] . "</td>";
-									echo "<td>" . $lista['name'] . "</td>";
-									echo "<td class='text-right'>$" . $lista['valor_contrato'] . "</td>";
-									echo "<td class='text-right'>$" . $lista['saldo_contrato'] . "</td>";
+									echo "<td><small>" . $lista['numero_contrato'] . "</small></td>";
+									echo "<td><small>" . $lista['nombre_proveedor'] . "</small></td>";
+									echo "<td class='text-center'><small>" . $lista['fecha_desde'] . "</small></td>";
+									echo "<td class='text-center'><small>" . $lista['fecha_hasta'] . "</small></td>";
+									echo "<td><small>" . $lista['name'] . "</small></td>";
+									echo "<td class='text-right'><small>$" . number_format($lista['valor_contrato']) . "</small></td>";
+									echo "<td class='text-right'><small>$" . number_format($lista['saldo_contrato']) . "</small></td>";
 									echo "<td class='text-center'>";
 						?>
 									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_contrato_mantenimiento']; ?>" >

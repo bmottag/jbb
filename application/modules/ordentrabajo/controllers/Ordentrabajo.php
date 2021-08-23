@@ -166,18 +166,20 @@ class Ordentrabajo extends CI_Controller {
 					$saldoContrato = $this->input->post('hddSaldoContrato');
 					$costoMantenimiento = $this->input->post('costo_mantenimiento');
 					$saldoContrato = $saldoContrato - $costoMantenimiento;
+					$idContrato = $this->input->post('hddIdContratoMantenimiento');
 					//actualizamos el campo costo
 					$arrParam = array(
 						"table" => "contratos_mantenimiento",
 						"primaryKey" => "id_contrato_mantenimiento",
-						"id" => $this->input->post('hddIdContratoMantenimiento'),
+						"id" => $idContrato,
 						"column" => "saldo_contrato",
 						"value" => $saldoContrato
 					);
 			
-					if($this->general_model->updateRecord($arrParam)){
-						//actualizar el historial del contrato
-
+					if($this->general_model->updateRecord($arrParam))
+					{
+						//guardo regitro en la tabla auditoria
+						$this->ordentrabajo_model->saveAuditoriaContratoSaldo($idContrato);
 					}
 
 				}

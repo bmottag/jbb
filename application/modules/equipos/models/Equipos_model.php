@@ -599,8 +599,8 @@
 		{
 				$this->db->select("A.*, P.nombre_proveedor, CONCAT(U.first_name, ' ', U.last_name) name, CONCAT(X.first_name, ' ', X.last_name) supervisor");
 				$this->db->join('usuarios U', 'U.id_user = A.fk_id_usuario', 'INNER');
-				$this->db->join('usuarios X', 'X.id_user = A.fk_id_supervisor', 'INNER');
-				$this->db->join('param_proveedores P', 'P.id_proveedor = A.fk_id_proveedor', 'INNER');
+				$this->db->join('usuarios X', 'X.id_user = A.fk_id_supervisor', 'LEFT');
+				$this->db->join('param_proveedores P', 'P.id_proveedor = A.fk_id_proveedor', 'LEFT');
 				if (array_key_exists("idContrato", $arrData)) {
 					$this->db->where('A.fk_id_contrato_mantenimiento', $arrData["idContrato"]);
 				}

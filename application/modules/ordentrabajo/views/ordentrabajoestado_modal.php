@@ -27,9 +27,14 @@ $(document).ready(function () {
 		<input type="hidden" id="hddIdOrdenTrabajo" name="hddIdOrdenTrabajo" value="<?php echo $idOrdenTrabajo; ?>"/>
 		<input type="hidden" id="hddtipoMantenimiento" name="hddtipoMantenimiento" value="<?php echo $information[0]['tipo_mantenimiento']; ?>"/>
 		<input type="hidden" id="hddIdMantenimiento" name="hddIdMantenimiento" value="<?php echo $information[0]['fk_id_mantenimiento']; ?>"/>
+		<!-- los siguientes campos se pasan para actualizar datos de la tabla de Contratos de mantenimiento y AUDITORIA -->
 		<input type="hidden" id="hddUsarContrato" name="hddUsarContrato" value="<?php echo $information[0]['usar_contrato']; ?>"/>
 		<input type="hidden" id="hddSaldoContrato" name="hddSaldoContrato" value="<?php echo $info[0]['saldo_contrato']; ?>"/>
 		<input type="hidden" id="hddIdContratoMantenimiento" name="hddIdContratoMantenimiento" value="<?php echo $info[0]['fk_id_contrato_mantenimiento']; ?>"/>
+		
+		<input type="hidden" id="hddValorContrato" name="hddValorContrato" value="<?php echo $info[0]['valor_contrato']; ?>"/>
+
+
 
 		<?php
 			if($information[0]['usar_contrato'] == 1 ){
