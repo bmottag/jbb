@@ -40,7 +40,7 @@
                             foreach ($infoOrdenesTrabajo as $lista):
                                 echo "<tr>";
                                 echo "<td class='text-center'><small>" . $lista['id_orden_trabajo'] . "</small></td>";
-                                echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_asignacion']))) . "</small></td>";
+                                echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($lista['fecha_asignacion']))) . "</small></td>";
                                 echo "<td ><small>" . $lista['encargado'] . "</small></td>";
                                 echo "<td class='text-center'>";
                                 switch ($lista['tipo_mantenimiento']) {

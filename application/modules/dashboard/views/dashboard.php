@@ -182,7 +182,7 @@ if ($retornoError) {
         <div class="col-lg-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <i class="fa fa-wrench fa-fw"></i> Lista Mantenimiento Correctivo <strong>Nuevas - <?php echo date("Y"); ?></strong>
+                    <i class="fa fa-wrench fa-fw"></i> Mantenimientos Correctivo <strong>Pendientes - <?php echo date("Y"); ?></strong>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -204,12 +204,8 @@ if ($retornoError) {
                                 echo "<tr>";
                                 echo "<td class='text-center'>";
 ?>
-<div class="tooltip-demo">
 <button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="right" title="Tipo Equipo: <?php echo $lista['tipo_equipo'];?>"><?php echo $lista['numero_inventario']; ?> <i class='fa fa-info-circle fa-fw'></i></button>
-</div>
 <?php
-                                
-
                                 echo "</td>";
                                 echo "<td class='text-center'><small>" . $lista['fecha'] . "</small></td>";
                                 echo "<td><small>" . $lista['descripcion'] . "</small></td>";
@@ -259,6 +255,7 @@ if ($retornoError) {
                         <thead>
                             <tr>
                                 <th class='text-center'><small>No. O.T.</small></th>
+                                <th class='text-center'><small>No. Inventario</small></th>
                                 <th class='text-center'><small>Fecha Asignación</small></th>
                                 <th class='text-center'><small>Asignado a</small></th>
                                 <th class='text-center'><small>Tipo Mantenimiento</small></th>
@@ -272,6 +269,11 @@ if ($retornoError) {
                             foreach ($infoOrdenesTrabajo as $lista):
                                 echo "<tr>";
                                 echo "<td class='text-center'><small>" . $lista['id_orden_trabajo'] . "</small></td>";
+                                echo "<td class='text-center'>";
+?>
+<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="right" title="Tipo Equipo: <?php echo $lista['tipo_equipo'];?>"><?php echo $lista['numero_inventario']; ?> <i class='fa fa-info-circle fa-fw'></i></button>
+<?php
+                                echo "</td>";
                                 echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($lista['fecha_asignacion']))) . "</small></td>";
                                 echo "<td ><small>" . $lista['encargado'] . "</small></td>";
                                 echo "<td class='text-center'>";
@@ -312,14 +314,3 @@ if ($retornoError) {
     </div>
 
 </div>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo base_url("assets/bootstrap/vendor/bootstrap/js/bootstrap.min.js"); ?>"></script>
-
-<script>
-    // tooltip demo
-    $('.tooltip-demo').tooltip({
-        selector: "[data-toggle=tooltip]",
-        container: "body"
-    })
-</script>

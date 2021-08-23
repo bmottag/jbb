@@ -54,7 +54,7 @@ class Ordentrabajo extends CI_Controller {
 
 			//busco datos del vehiculo
 			$arrParam['idEquipo'] = $data['information'][0]['fk_id_equipo_ot'];
-			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
 
 			//Lista fotos de equipo
 			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
@@ -66,7 +66,7 @@ class Ordentrabajo extends CI_Controller {
 						);
 			$data['listaEncargados'] = $this->general_model->get_user($arrParam);
 
-			$data["view"] = 'ordentrabajo';
+			$data["view"] = 'info_ordentrabajo';
 			$this->load->view("layout_calendar", $data);
 	}
 

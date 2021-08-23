@@ -450,10 +450,11 @@ class General_model extends CI_Model {
 		 */
 		public function get_orden_trabajo($arrData)
 		{
-				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name, CONCAT(X.first_name, ' ', X.last_name) encargado");
+				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name, CONCAT(X.first_name, ' ', X.last_name) encargado, E.numero_inventario, T.tipo_equipo");
 				$this->db->join('usuarios U', 'U.id_user = C.fk_id_user_orden', 'INNER');
 				$this->db->join('usuarios X', 'X.id_user = C.fk_id_user_encargado', 'INNER');
 				$this->db->join('equipos E', 'E.id_equipo = C.fk_id_equipo_ot ', 'INNER');
+				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = E.fk_id_tipo_equipo', 'INNER');
 				if (array_key_exists("idOrdenTrabajo", $arrData) && $arrData["idOrdenTrabajo"] != '') {
 					$this->db->where('C.id_orden_trabajo ', $arrData["idOrdenTrabajo"]);
 				}
