@@ -28,7 +28,7 @@ class Ordentrabajo extends CI_Controller {
 			$data['deshabilitar'] = '';
 			$userRol = $this->session->rol;
 			$estadoOT = $data['information'][0]['estado_actual'];
-			if($userRol != 99 && $estadoOT > 1)
+			if($estadoOT > 1)
 			{
 				$data['deshabilitar'] = 'disabled';
 			}
@@ -124,6 +124,10 @@ class Ordentrabajo extends CI_Controller {
 			$data['idOrdenTrabajo'] = $this->input->post("idOrdenTrabajo");
 			$data['information'] = $this->general_model->get_orden_trabajo($data);
 
+			//busco datos del vehiculo
+			$arrParam['idEquipo'] = $data['information'][0]['fk_id_equipo_ot'];
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
+
 			$this->load->view("ordentrabajoestado_modal", $data);
     }
 
@@ -152,6 +156,30 @@ class Ordentrabajo extends CI_Controller {
 				if($tipoMantenimiento == 1 && $estadoActual>1){
 					$estadoMantenimiento = 3;//FINALIZADO
 					$this->ordentrabajo_model->updateEstadoMantenimientoCorrectivo($estadoMantenimiento);
+				}
+
+				//si la OT utiliza el contrato y ya se soluciona 
+				//entonces actualizar el costo del contrato de mantenimiento
+				$usarContrato = $this->input->post('hddUsarContrato');
+				if($usarContrato == 1 && $estadoActual==2 )
+				{
+					$saldoContrato = $this->input->post('hddSaldoContrato');
+					$costoMantenimiento = $this->input->post('costo_mantenimiento');
+					$saldoContrato = $saldoContrato - $costoMantenimiento;
+					//actualizamos el campo costo
+					$arrParam = array(
+						"table" => "contratos_mantenimiento",
+						"primaryKey" => "id_contrato_mantenimiento",
+						"id" => $this->input->post('hddIdContratoMantenimiento'),
+						"column" => "saldo_contrato",
+						"value" => $saldoContrato
+					);
+			
+					if($this->general_model->updateRecord($arrParam)){
+						//actualizar el historial del contrato
+
+					}
+
 				}
 
 				$data["result"] = true;		

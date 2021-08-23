@@ -127,8 +127,9 @@ $(function(){
 
 							<div class="alert alert-danger">
 								<span class="fa fa-info-circle" aria-hidden="true"></span>
-								<strong>Nota:</strong> Para esta O.T. se hace uso del contrato de mantenimiento.<br>
-								<strong>No. Contrato Mantenimiento:</strong> <?php echo $info[0]['numero_contrato']; ?>
+								<strong>Nota: </strong>Para esta O.T. se hace uso del contrato de mantenimiento.<br>
+								<strong>No. Contrato Mantenimiento: </strong><?php echo $info[0]['numero_contrato']; ?><br>
+								<strong>Saldo Disponible: </strong> $<?php echo number_format($info[0]['saldo_contrato']); ?> 
 							</div>
 					<?php
 						}
@@ -145,6 +146,8 @@ $(function(){
                             <th class='text-center'><small>Observación</small></th>
                             <th class='text-center'><small>Última Actualización</small></th>
                             <th class='text-center'><small>Estado Actual</small></th>
+                            <th class='text-center'><small>Tiempo de Solución</small></th>
+                            <th class="text-center"><small>Costo Mantenimiento</small></th>	
 						</tr>
 						<?php
 							foreach ($information as $lista):
@@ -171,6 +174,11 @@ $(function(){
 								}
 								echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
 								echo "</td>";
+								echo "<td>";
+								echo "</td>";
+								echo "<td class='text-center'>";
+								echo "<small>$" . number_format($lista['costo_mantenimiento']) . '<small>';
+								echo "</td>";
                                 echo "</tr>";
                             endforeach;
 						?>
@@ -189,7 +197,7 @@ $(function(){
 								<th class="text-center"><small>Fecha Registro</small></th>
 								<th class="text-center"><small>Registrado por</small></th>
 								<th class="text-center"><small>Información Adicional</small></th>
-								<th class="text-center"><small>Estado</small></th>								
+								<th class="text-center"><small>Estado</small></th>
 							</tr>
 						</thead>
 						<tbody>							
@@ -216,6 +224,7 @@ $(function(){
 									}
 									echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
 									echo "</td>";
+
 									echo "</tr>";
 							endforeach;
 						?>

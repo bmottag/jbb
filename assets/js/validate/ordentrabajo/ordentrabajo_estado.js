@@ -1,9 +1,20 @@
 $( document ).ready( function () {
+
+jQuery.validator.addMethod("fieldCosto", function(value, element, param) {
+	var estado = $('#estado').val();
+	if(estado==2 && value == ""){
+		return false;
+	}else{
+		return true;
+	}
+}, "Este campo es requerido.");
 		
 	$( "#form" ).validate( {
 		rules: {
-			id_encargado: 		{ required: true },
-			informacion: 		{ required: true }
+			estado: 			{ required: true },
+			costo_mantenimiento:	{ fieldCosto: "#estado" },
+			informacion: 			{ required: true }
+			
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
@@ -14,9 +25,11 @@ $( document ).ready( function () {
 		},
 		highlight: function ( element, errorClass, validClass ) {
 			$( element ).parents( ".col-sm-6" ).addClass( "has-error" ).removeClass( "has-success" );
+			$( element ).parents( ".col-sm-12" ).addClass( "has-error" ).removeClass( "has-success" );
 		},
 		unhighlight: function (element, errorClass, validClass) {
 			$( element ).parents( ".col-sm-6" ).addClass( "has-success" ).removeClass( "has-error" );
+			$( element ).parents( ".col-sm-12" ).addClass( "has-success" ).removeClass( "has-error" );
 		},
 		submitHandler: function (form) {
 			return true;

@@ -54,7 +54,7 @@
 					'fk_id_orden_trabajo_estado' => $idOrdenTrabajo,
 					'fk_id_user_ote' => $idUser,
 					'fecha_registro_estado' => date("Y-m-d G:i:s"),
-					'informacion_adicional_estado' => 'O.T. Creada y asignada',
+					'informacion_adicional_estado' => trim($this->security->xss_clean($this->input->post('informacion'))),
 					'estado' => $this->input->post('estado')
 				);	
 
@@ -78,6 +78,7 @@
 				$data = array(
 					'informacion_adicional' => $this->input->post('informacion'),
 					'estado_actual' => $this->input->post('estado'),
+					'costo_mantenimiento' => $this->input->post('costo_mantenimiento'),
 					'fecha_ultima_actualizacion' => date("Y-m-d G:i:s")
 				);
 
@@ -146,6 +147,7 @@
 			$query = $this->db->insert('orden_trabajo_go_back', $data);
 
 		}
+
 
 		
 		
