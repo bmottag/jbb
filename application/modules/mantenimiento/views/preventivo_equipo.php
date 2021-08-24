@@ -92,6 +92,11 @@ $(function(){
 					    <?php
 					}
 					?> 
+
+					<!-- boton para cargue de mantenimiento desde la plantilla -->
+					<a class='btn btn-info btn-block' href='<?php echo base_url('mantenimiento/add_mantenimiento_preventivo/' . $info[0]['id_equipo'] . '/' . $info[0]['fk_id_tipo_equipo']) ?>'>
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"> </span>  Adicionar Mantinimientos Preventivos
+					</a>
 					<?php 										
 						if(!$infoPreventivo){ 
 							echo '<div class="col-lg-12">

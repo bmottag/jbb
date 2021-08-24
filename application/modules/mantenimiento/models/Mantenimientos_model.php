@@ -42,17 +42,17 @@ class Mantenimientos_model extends CI_Model {
 		$idPreventivo = $this->input->post('hddId');
 		$idUser = $this->session->userdata("id");
 		$data = array(
-			'fk_id_tipo_equipo_preventivo' => $this->input->post('id_tipo_equipo'),
+			'fk_id_tipo_equipo_mpp' => $this->input->post('id_tipo_equipo'),
 			'frecuencia' => $this->input->post('frecuencia'),
 			'descripcion' => $this->input->post('descripcion'),
 			'estado' => 1
 		);	
 		if ($idPreventivo == '') {
-			$data['fk_id_user_preventivo'] = $idUser;
-			$query = $this->db->insert('mantenimiento_preventivo', $data);
+			$data['fk_id_user_mpp'] = $idUser;
+			$query = $this->db->insert('mantenimiento_preventivo_plantilla', $data);
 		} else {
-			$this->db->where('id_preventivo', $idPreventivo);
-			$query = $this->db->update('mantenimiento_preventivo', $data);
+			$this->db->where('id_preventivo_plantilla', $idPreventivo);
+			$query = $this->db->update('mantenimiento_preventivo_plantilla', $data);
 		}
 		if ($query) {
 			return true;
@@ -153,6 +153,31 @@ class Mantenimientos_model extends CI_Model {
 		if ($query) {
 			return true;
 		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Adicionar mantenimiento preventivo
+	 * @since 6/12/2016
+	 * @review 10/12/2016
+	 */
+	public function guardarMantenimientoPreventivoEquipo($idEquipo) 
+	{
+		$query = 1;
+		if ($mantenimiento = $this->input->post('mantenimiento')) {
+			$tot = count($mantenimiento);
+			for ($i = 0; $i < $tot; $i++) {
+				$data = array(
+					'fk_id_safety' => $idEquipo,
+					'fk_id_user' => $mantenimiento[$i]
+				);
+				$query = $this->db->insert('safety_workers', $data);
+			}
+		}
+		if ($query) {
+			return true;
+		} else{
 			return false;
 		}
 	}

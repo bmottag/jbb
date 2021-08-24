@@ -7,7 +7,7 @@
 </div>
 <div class="modal-body">
 	<form name="form" id="form" role="form" method="post" >
-		<input type="hidden" id="hddId" name="hddId" value="<?php echo $infoPreventivo?$infoPreventivo[0]['id_preventivo']:""; ?>"/>
+		<input type="hidden" id="hddId" name="hddId" value="<?php echo $infoPreventivo?$infoPreventivo[0]['id_preventivo_plantilla']:""; ?>"/>
 		<?php 
 		if($infoPreventivo){
 			$descripcion = $infoPreventivo[0]['descripcion'];
@@ -20,7 +20,7 @@
 					<select name="id_tipo_equipo" id="id_tipo_equipo" class="form-control" required >
 						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($tipoEquipo); $i++) { ?>
-							<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>" <?php if($infoPreventivo && $infoPreventivo[0]["fk_id_tipo_equipo_preventivo"] == $tipoEquipo[$i]["id_tipo_equipo"]) { echo "selected"; } ?>><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>
+							<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>" <?php if($infoPreventivo && $infoPreventivo[0]["fk_id_tipo_equipo_mpp"] == $tipoEquipo[$i]["id_tipo_equipo"]) { echo "selected"; } ?>><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>
 						<?php } ?>
 					</select>
 				</div>

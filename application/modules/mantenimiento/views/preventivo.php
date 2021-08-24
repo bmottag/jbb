@@ -80,7 +80,7 @@ $(function(){
 								echo "<td>" . $lista['name'] . "</td>";
 								echo "<td class='text-center'>";
 								?>
-								<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_preventivo']; ?>" >
+								<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_preventivo_plantilla']; ?>" >
 									Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
 								</button>
 								<?php

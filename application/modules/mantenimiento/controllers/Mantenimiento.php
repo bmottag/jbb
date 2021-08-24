@@ -7,6 +7,7 @@ class Mantenimiento extends CI_Controller {
         parent::__construct();
         $this->load->model("mantenimientos_model");
         $this->load->model("general_model");
+        $this->load->helper('form');
     }
 
 	/**
@@ -49,9 +50,7 @@ class Mantenimiento extends CI_Controller {
 		$data["idPreventivo"] = $this->input->post("idPreventivo");
 		if ($data["idPreventivo"] != 'x')
 		{
-			$arrParam = array(
-				"idMantenimiento" => $data["idPreventivo"]
-			);
+			$arrParam = array("idMantenimiento" => $data["idPreventivo"]);
 			$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
 		}
 		$this->load->view("preventivo_modal", $data);
@@ -232,8 +231,7 @@ class Mantenimiento extends CI_Controller {
 		$arrParam = array("idEquipo" => $idEquipo);
 		$data['info'] = $this->general_model->get_equipos_info($arrParam);
 		$arrParam = array(
-			'tipoEquipo' => $data['info'][0]['fk_id_tipo_equipo'],
-			'limit' => 10
+			'tipoEquipo' => $data['info'][0]['fk_id_tipo_equipo']
 		);
 		$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
 
@@ -246,4 +244,49 @@ class Mantenimiento extends CI_Controller {
 		$data["view"] = 'preventivo_equipo';
 		$this->load->view("layout_calendar", $data);
 	}
+
+	/**
+	 * Fomulario para adicionar mantenimientos preventivos a un Equipo
+     * @since 27/11/2017
+     * @author BMOTTAG
+	 */
+	public function add_mantenimiento_preventivo($idEquipo, $tipoEquipo)
+	{
+			if (empty($idEquipo) || empty($tipoEquipo)) {
+				show_error('ERROR!!! - You are in the wrong place.');
+			}
+			
+			$arrParam = array('tipoEquipo' => $tipoEquipo);
+			$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
+			
+			$data["idEquipo"] = $idEquipo;
+			$data["view"] = 'form_add_preventivo';
+			$this->load->view("layout", $data);
+	}
+
+	/**
+	 * Guardar mantenimientos preventivos para el equipo
+     * @since 24/8/2021
+     * @author BMOTTAG
+	 */
+	public function guardar_mantenimiento_preventivo_equipo()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			$idEquipo = $this->input->post('hddId');
+
+			if ($this->mantenimientos_model->guardarMantenimientoPreventivoEquipo($idEquipo)) {
+				$data["result"] = true;
+				$data["idEquipo"] = $idEquipo;
+				$this->session->set_flashdata('retornoExito', 'Solicitud guardada correctamente.');
+			} else {
+				$data["result"] = "error";
+				$data["mensaje"] = "Error al guardar. Intente nuevamente o actualice la p\u00e1gina.";
+				$data["idEquipo"] = "";
+				
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+			}
+
+			echo json_encode($data);
+    }
 }

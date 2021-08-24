@@ -137,7 +137,7 @@ $(function(){
 
 					<table class="table table-bordered table-striped table-hover table-condensed">
 						<tr>
-							<th colspan="5">Información Orden de Trabajo</th>
+							<th colspan="8">Información Orden de Trabajo</th>
 						</tr>
 						<tr class="dafault">
                             <th class='text-center'><small>No. O.T.</small></th>

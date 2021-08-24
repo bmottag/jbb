@@ -16,35 +16,35 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-                                <th class='text-center'>Fecha cambio</th>
-                                <th>Realizado por</th>
-                                <th>Tipo Documento</th>
-								<th class="text-center">Fecha Inicio</th>
-								<th class="text-center">Fecha Vencimiento</th>
-								<th class="text-center">No. Documento</th>
-								<th>Descripción</th>
-                                <th>URL</th>
+                                <th class='text-center'><small>Fecha cambio</small></th>
+                                <th><small>Realizado por</small></th>
+                                <th><small>Tipo Documento</small></th>
+								<th class="text-center"><small>Fecha Inicio</small></th>
+								<th class="text-center"><small>Fecha Vencimiento</small></th>
+								<th class="text-center"><small>No. Documento</small></th>
+								<th><small>Descripción</small></th>
+                                <th><small>URL</small></th>
 							</tr>
 						</thead>
 						<tbody>							
 						<?php
 							foreach ($infoDocumentoHistorial as $lista):
 								echo '<tr>';
-                                echo '<td class="text-center">' . $lista['fecha_registro'] . '</td>';
-                                echo '<td>' . $lista['name'] . '</td>';
-                                echo '<td>' . $lista['tipo_documento'] . '</td>';
-								echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_inicio'])) . "</td>";
-								echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_vencimiento'])) . "</td>";
-                                echo "<td class='text-center'>" . $lista['numero_documento'] . "</td>";
-                                echo '<td>' . $lista['descripcion'] . '</td>';
-                                echo '<td>';
+                                echo '<td class="text-center"><small>' . $lista['fecha_registro'] . '</small></td>';
+                                echo '<td><small>' . $lista['name'] . '</small></td>';
+                                echo '<td><small>' . $lista['tipo_documento'] . '</small></td>';
+								echo "<td class='text-center'><small>" . strftime("%B %d, %G",strtotime($lista['fecha_inicio'])) . "</small></td>";
+								echo "<td class='text-center'><small>" . strftime("%B %d, %G",strtotime($lista['fecha_vencimiento'])) . "</small></td>";
+                                echo "<td class='text-center'><small>" . $lista['numero_documento'] . "</small></td>";
+                                echo '<td><small>' . $lista['descripcion'] . '</small></td>';
+                                echo '<td><small>';
 								if($lista['url_documento']){
 									$enlace = '../files/equipos/' . $lista['url_documento'];
 									echo "<a href='$enlace' target='_blank'>Ver Documento</a>";
 								}else{
 									echo "---";
 								}
-                                echo  '</td>';
+                                echo  '</small></td>';
                                 echo '</tr>';
 							endforeach;
 						?>

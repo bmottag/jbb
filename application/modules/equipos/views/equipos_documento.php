@@ -129,8 +129,20 @@ $(function(){
 			</div>';
 	}else{
 ?>
-					<p class="text-danger"><strong>Nota:</strong><br> Cuando la fila esta en rojo, es porque el documento esta vencido.</p>
-					<p class="text-warning"> Cuando la fila esta en amarillo, es porque el documento tiene menos de 30 días para vencerse.</p>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="alert alert-danger">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							Cuando la fila esta en rojo, es porque el <b>documento esta vencido.</b>
+						</div>		
+					</div>
+					<div class="col-lg-6">
+						<div class="alert alert-warning">
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+							Cuando la fila esta en amarillo, es porque el <b>Documento tiene menos de 30 días para vencerse.</b>
+						</div>		
+					</div>
+				</div>
 					<table class="table table-hover">
 						<thead>
 							<tr>
