@@ -8,11 +8,22 @@ jQuery.validator.addMethod("fieldCosto", function(value, element, param) {
 		return true;
 	}
 }, "Este campo es requerido.");
+
+jQuery.validator.addMethod("fieldProximoMantenimiento", function(value, element, param) {
+	var estado = $('#estado').val();
+	var tipoMantenimiento = $('#hddtipoMantenimiento').val();
+	if(estado==2 && value == "" && tipoMantenimiento==2){
+		return false;
+	}else{
+		return true;
+	}
+}, "Este campo es requerido.");
 		
 	$( "#form" ).validate( {
 		rules: {
-			estado: 			{ required: true },
+			estado: 				{ required: true },
 			costo_mantenimiento:	{ fieldCosto: "#estado" },
+			proximo_mantenimiento:	{ fieldProximoMantenimiento: "#estado" },
 			informacion: 			{ required: true }
 			
 		},

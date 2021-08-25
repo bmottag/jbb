@@ -104,17 +104,19 @@ $(function(){
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-								<th class="text-center">Descripción</th>
-								<th class="text-center">Frecuencia</th>						
-								<th class="text-center">Orden Trabajo</th>
+								<th class="text-center"><small>Descripción</small></th>
+								<th class="text-center"><small>Frecuencia Km/Horas</small></th>
+								<th class="text-center"><small>Próximo Mantenimiento Km/Horas</small></th>
+								<th class="text-center"><small>Orden Trabajo</small></th>
 							</tr>
 						</thead>
 						<tbody>							
 						<?php
 							foreach ($infoPreventivo as $lista):
 								echo "<tr>";
-								echo "<td>" . $lista['descripcion'] . "</td>";
-								echo "<td class='text-right'>" . $lista['frecuencia'] . "</td>";
+								echo "<td><small>" . $lista['descripcion'] . "</small></td>";
+								echo "<td class='text-right'><small>" . number_format($lista['frecuencia']) . "</small></td>";
+								echo "<td class='text-right'><small>" . number_format($lista['proximo_mantemiento_kilometros_horas']) . "</small></td>";
 								echo "<td class='text-center'>";
 								$idCompuesto = $lista['id_preventivo_equipo'] . '-' . $info[0]['id_equipo'];
 								?>

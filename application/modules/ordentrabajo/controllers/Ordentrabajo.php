@@ -49,7 +49,7 @@ class Ordentrabajo extends CI_Controller {
 			{
 				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
 			}else{
-				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
+				$data['infoMantenimiento'] = $this->general_model->get_mantenimiento_preventivo_equipo($arrParam);
 			}
 
 			//busco datos del vehiculo
@@ -122,11 +122,17 @@ class Ordentrabajo extends CI_Controller {
 			header("Content-Type: text/plain; charset=utf-8");
 
 			$data['idOrdenTrabajo'] = $this->input->post("idOrdenTrabajo");
-			$data['information'] = $this->general_model->get_orden_trabajo($data);
+			$data['infoOT'] = $this->general_model->get_orden_trabajo($data);
+
+			//busco datos del mantenimiento preventivo
+			if($data['infoOT'][0]['tipo_mantenimiento'] == 2){
+				$arrParam = array("idMantenimiento" => $data['infoOT'][0]['fk_id_mantenimiento']);
+				$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo_equipo($arrParam);
+			}
 
 			//busco datos del vehiculo
-			$arrParam['idEquipo'] = $data['information'][0]['fk_id_equipo_ot'];
-			$data['info'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
+			$arrParam['idEquipo'] = $data['infoOT'][0]['fk_id_equipo_ot'];
+			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
 
 			$this->load->view("ordentrabajoestado_modal", $data);
     }
@@ -156,6 +162,23 @@ class Ordentrabajo extends CI_Controller {
 				if($tipoMantenimiento == 1 && $estadoActual>1){
 					$estadoMantenimiento = 3;//FINALIZADO
 					$this->ordentrabajo_model->updateEstadoMantenimientoCorrectivo($estadoMantenimiento);
+				}
+				//si el estado es SOLUCIONADO y el tipo de mantenimiento es PREVENTIVO entonces guardo el proximo mantenimiento en la informacion del mantenimiento
+				if($tipoMantenimiento == 2 && $estadoActual == 2)
+				{
+					$arrParam = array(
+						"table" => "mantenimiento_preventivo_equipo",
+						"primaryKey" => "id_preventivo_equipo",
+						"id" => $this->input->post('hddIdMantenimiento'),
+						"column" => "proximo_mantemiento_kilometros_horas",
+						"value" => $this->input->post('proximo_mantenimiento')
+					);
+			
+					if($this->general_model->updateRecord($arrParam))
+					{
+						//guardo regitro en la tabla auditoria de mantenimiento preventivo
+						//$this->ordentrabajo_model->saveAuditoriaContratoSaldo($idContrato);
+					}
 				}
 
 				//si la OT utiliza el contrato y ya se soluciona 

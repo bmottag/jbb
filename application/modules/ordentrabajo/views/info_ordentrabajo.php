@@ -97,28 +97,32 @@ $(function(){
 						</tr>
 						<tr class="dafault">
 							<th class="text-center"><small>Fecha Solicitud</small></th>
-							<th class="text-center"><small>Descripción Falla</small></th>
+							<th class="text-center"><small>Descripción</small></th>
 							<th class="text-center"><small>Consideración o Requerimiento</small></th>
 							<th class="text-center"><small>Solicitante</small></th>
 							<th class="text-center"><small>Tipo de Mantenimiento</small></th>
 						</tr>
+						<tr>
 						<?php
-							foreach ($infoMantenimiento as $data):
-								echo "<tr>";					
-								echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($data['fecha']))) . "</small></td>";
-								echo "<td><small>" . $data['descripcion'] . "</small></td>";
-								echo "<td><small>" . $data['consideracion'] . "</small></td>";
-								echo "<td><small>" . $data['name'] . "</small></td>";
+							if($information[0]['tipo_mantenimiento'] == 1)
+							{
+								echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($infoMantenimiento[0]['fecha']))) . "</small></td>";
+								echo "<td><small>" . $infoMantenimiento[0]['descripcion'] . "</small></td>";
+								echo "<td><small>" . $infoMantenimiento[0]['consideracion'] . "</small></td>";
+								echo "<td><small>" . $infoMantenimiento[0]['name'] . "</small></td>";
+								echo "<td><small>Correctivo</small></td>";
+							}else{
+								echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($information[0]['fecha_asignacion']))) . "</small></td>";
 								echo "<td><small>";
-								if($information[0]['tipo_mantenimiento'] == 1){
-									echo 'Correctivo';
-								}else{
-									echo 'Preventivo';
-								}
+								echo $infoMantenimiento[0]['descripcion'];
+								echo "<br><b>Frecuencia:</b><br>Cada " . number_format($infoMantenimiento[0]['frecuencia']) . " Km/Horas";
 								echo "</small></td>";
-								echo "</tr>";
-							endforeach;
+								echo "<td><small></small></td>";
+								echo "<td><small>" . $information[0]['name'] . "</small></td>";
+								echo "<td><small>Preventivo</small></td>";
+							}
 						?>
+						</tr>
 					</table>
 
 					<?php
@@ -150,37 +154,35 @@ $(function(){
                             <th class="text-center"><small>Costo Mantenimiento</small></th>	
 						</tr>
 						<?php
-							foreach ($information as $lista):
-                                echo "<tr>";
-                                echo "<td class='text-center'><small>" . $lista['id_orden_trabajo'] . "</small></td>";
-                                echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($lista['fecha_asignacion']))) . "</small></td>";
-                                echo "<td ><small>" . $lista['encargado'] . "</small></td>";
-                                echo "<td><small>" . $lista['observacion'] . "</small></td>";
-                                echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($lista['fecha_ultima_actualizacion']))) . "</small></td>";
-                                echo "<td class='text-center'>";
-								switch ($information[0]['estado_actual']) {
-									case 1:
-										$valor = 'Asignada';
-										$clase = "text-info";
-										break;
-									case 2:
-										$valor = 'Solucionado';
-										$clase = "text-success";
-										break;
-									case 3:
-										$valor = 'Cancelado';
-										$clase = "text-danger";
-										break;
-								}
-								echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
-								echo "</td>";
-								echo "<td>";
-								echo "</td>";
-								echo "<td class='text-center'>";
-								echo "<small>$" . number_format($lista['costo_mantenimiento']) . '<small>';
-								echo "</td>";
-                                echo "</tr>";
-                            endforeach;
+                            echo "<tr>";
+                            echo "<td class='text-center'><small>" . $information[0]['id_orden_trabajo'] . "</small></td>";
+                            echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($information[0]['fecha_asignacion']))) . "</small></td>";
+                            echo "<td ><small>" . $information[0]['encargado'] . "</small></td>";
+                            echo "<td><small>" . $information[0]['observacion'] . "</small></td>";
+                            echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($information[0]['fecha_ultima_actualizacion']))) . "</small></td>";
+                            echo "<td class='text-center'>";
+							switch ($information[0]['estado_actual']) {
+								case 1:
+									$valor = 'Asignada';
+									$clase = "text-info";
+									break;
+								case 2:
+									$valor = 'Solucionado';
+									$clase = "text-success";
+									break;
+								case 3:
+									$valor = 'Cancelado';
+									$clase = "text-danger";
+									break;
+							}
+							echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
+							echo "</td>";
+							echo "<td>";
+							echo "</td>";
+							echo "<td class='text-center'>";
+							echo "<small>$" . number_format($information[0]['costo_mantenimiento']) . '<small>';
+							echo "</td>";
+                            echo "</tr>";
 						?>
 					</table>
 

@@ -74,13 +74,23 @@
 		public function updateOrdentrabajo() 
 		{		
 				$idOrdenTrabajo = $this->input->post("hddIdOrdenTrabajo");
+				$estado = $this->input->post("estado");
+				$tipoMantenimiento = $this->input->post("hddtipoMantenimiento");
 
 				$data = array(
 					'informacion_adicional' => $this->input->post('informacion'),
-					'estado_actual' => $this->input->post('estado'),
-					'costo_mantenimiento' => $this->input->post('costo_mantenimiento'),
+					'estado_actual' => $estado,
 					'fecha_ultima_actualizacion' => date("Y-m-d G:i:s")
 				);
+
+				//si el estado es SOLUCIONADO entonces guardo el costo del mantenimiento
+				if($estado == 2){
+					$data['costo_mantenimiento'] = $this->input->post('costo_mantenimiento');
+					//si el estado es SOLUCIONADO y el tipo de mantenimiento es PREVENTIVO entonces guardo el proximo mantenimiento
+					if($tipoMantenimiento == 2){
+						$data['proximo_mantemiento_kilometros_horas_ot'] = $this->input->post('proximo_mantenimiento');
+					}
+				}
 
 				$this->db->where('id_orden_trabajo', $idOrdenTrabajo);
 				$query = $this->db->update('orden_trabajo', $data);

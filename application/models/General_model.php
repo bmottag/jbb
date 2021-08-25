@@ -681,10 +681,12 @@ class General_model extends CI_Model {
 			$this->db->join('mantenimiento_preventivo_plantilla P', 'P.id_preventivo_plantilla  = M.fk_id_preventivo_plantilla', 'INNER');
 			$this->db->join('usuarios U', 'P.fk_id_user_mpp = U.id_user', 'INNER');
 			$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = P.fk_id_tipo_equipo_mpp', 'INNER');
+			if (array_key_exists("idMantenimiento", $arrData)) {
+				$this->db->where('M.id_preventivo_equipo', $arrData["idMantenimiento"]);
+			}
 			if (array_key_exists("idEquipo", $arrData)) {
 				$this->db->where('M.fk_id_equipo_mpe', $arrData["idEquipo"]);
 			}
-
 			$this->db->order_by('P.descripcion', 'asc');
 
 			$query = $this->db->get('mantenimiento_preventivo_equipo M');
