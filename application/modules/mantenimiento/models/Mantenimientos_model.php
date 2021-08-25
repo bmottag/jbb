@@ -169,10 +169,10 @@ class Mantenimientos_model extends CI_Model {
 			$tot = count($mantenimiento);
 			for ($i = 0; $i < $tot; $i++) {
 				$data = array(
-					'fk_id_safety' => $idEquipo,
-					'fk_id_user' => $mantenimiento[$i]
+					'fk_id_equipo_mpe' => $idEquipo,
+					'fk_id_preventivo_plantilla' => $mantenimiento[$i]
 				);
-				$query = $this->db->insert('safety_workers', $data);
+				$query = $this->db->insert('mantenimiento_preventivo_equipo', $data);
 			}
 		}
 		if ($query) {

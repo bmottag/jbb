@@ -230,10 +230,7 @@ class Mantenimiento extends CI_Controller {
 	{
 		$arrParam = array("idEquipo" => $idEquipo);
 		$data['info'] = $this->general_model->get_equipos_info($arrParam);
-		$arrParam = array(
-			'tipoEquipo' => $data['info'][0]['fk_id_tipo_equipo']
-		);
-		$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
+		$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo_equipo($arrParam);
 
 		$arrParam2 = array(
 			'tipoMantenimiento' => 2,

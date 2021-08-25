@@ -68,35 +68,32 @@ $(function(){
 					<i class="fa fa-wrench"></i> <strong>MANTENIMIENTOS PREVENTIVOS DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
-					<?php
-					$retornoExito = $this->session->flashdata('retornoExito');
-					if ($retornoExito) {
-					    ?>
-						<div class="col-lg-12">	
-							<div class="alert alert-success ">
-								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-								<?php echo $retornoExito ?>		
-							</div>
-						</div>
-					    <?php
-					}
-					$retornoError = $this->session->flashdata('retornoError');
-					if ($retornoError) {
-					    ?>
-						<div class="col-lg-12">	
-							<div class="alert alert-danger ">
-								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-								<?php echo $retornoError ?>
-							</div>
-						</div>
-					    <?php
-					}
-					?> 
-
 					<!-- boton para cargue de mantenimiento desde la plantilla -->
 					<a class='btn btn-info btn-block' href='<?php echo base_url('mantenimiento/add_mantenimiento_preventivo/' . $info[0]['id_equipo'] . '/' . $info[0]['fk_id_tipo_equipo']) ?>'>
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"> </span>  Adicionar Mantinimientos Preventivos
 					</a>
+					<br>
+
+<?php
+	$retornoExito = $this->session->flashdata('retornoExito');
+	if ($retornoExito) {
+?>
+		<div class="alert alert-success ">
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			<?php echo $retornoExito ?>		
+		</div>
+<?php
+	}
+	$retornoError = $this->session->flashdata('retornoError');
+	if ($retornoError) {
+?>
+		<div class="alert alert-danger ">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<?php echo $retornoError ?>
+		</div>
+<?php
+	}
+?> 
 					<?php 										
 						if(!$infoPreventivo){ 
 							echo '<div class="col-lg-12">
@@ -117,9 +114,9 @@ $(function(){
 							foreach ($infoPreventivo as $lista):
 								echo "<tr>";
 								echo "<td>" . $lista['descripcion'] . "</td>";
-								echo "<td>" . $lista['frecuencia'] . "</td>";
+								echo "<td class='text-right'>" . $lista['frecuencia'] . "</td>";
 								echo "<td class='text-center'>";
-								$idCompuesto = $lista['id_preventivo'] . '-' . $info[0]['id_equipo'];
+								$idCompuesto = $lista['id_preventivo_equipo'] . '-' . $info[0]['id_equipo'];
 								?>
 								<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $idCompuesto; ?>" >
 									Crear OT <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
@@ -153,21 +150,21 @@ $(function(){
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-                                <th class='text-center'>No. OT</th>
-                                <th class='text-center'>Fecha Asignación</th>
-                                <th class='text-center'>Encargado</th>
-                                <th class='text-center'>Estado</th>
-                                <th class='text-center'>Información Adicional</th>
-                                <th class='text-center'>Ver</th>
+                                <th class='text-center'><small>No. O.T.</small></th>
+                                <th class='text-center'><small>Fecha Asignación</small></th>
+                                <th class='text-center'><small>Asignado a</small></th>
+                                <th class='text-center'><small>Estado</small></th>
+                                <th class='text-center'><small>Información Adicional</small></th>
+                                <th class='text-center'><small>Ver</small></th>
 							</tr>
 						</thead>
 						<tbody>							
 						<?php
 							foreach ($infoOrdenesTrabajo as $lista):
                                 echo "<tr>";
-                                echo "<td class='text-center'>" . $lista['id_orden_trabajo'] . "</td>";
-                                echo "<td class='text-center'>" . ucfirst(strftime("%b %d, %G",strtotime($lista['fecha_asignacion']))) . "</td>";
-                                echo "<td >" . $lista['encargado'] . "</td>";
+                                echo "<td class='text-center'><small>" . $lista['id_orden_trabajo'] . "</small></td>";
+                                echo "<td class='text-center'><small>" . ucfirst(strftime("%b %d, %G %H:%M",strtotime($lista['fecha_asignacion']))) . "</small></td>";
+                                echo "<td ><small>" . $lista['encargado'] . "</small></td>";
                                 echo "<td class='text-center'>";
 								switch ($lista['estado_actual']) {
 									case 1:
@@ -183,12 +180,12 @@ $(function(){
 										$clase = "text-danger";
 										break;
 								}
-								echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+								echo '<small><p class="' . $clase . '"><strong>' . $valor . '</small></strong></p>';
                                 echo "</td>";
-                                echo "<td>" . $lista['informacion_adicional'] . "</td>";
+                                echo "<td><small>" . $lista['informacion_adicional'] . "</small></td>";
                                 echo "<td class='text-center'>";
                                 ?>
-                                <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver OT <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+                                <a href="<?php echo base_url("ordentrabajo/ver_orden/" . $lista['id_orden_trabajo']); ?>" class="btn btn-success btn-xs">Ver O.T. <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
                                 <?php
                                 echo "</td>";
                                 echo "</tr>";

@@ -40,7 +40,7 @@
                                 $data = array(
                                     'name' => 'mantenimiento[]',
                                     'id' => 'mantenimiento',
-                                    'value' => $lista['id_preventivo'],
+                                    'value' => $lista['id_preventivo_plantilla'],
                                     'style' => 'margin:10px'
                                 );
                                 echo form_checkbox($data);

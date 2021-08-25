@@ -536,7 +536,7 @@ class General_model extends CI_Model {
 				}
 				$this->db->order_by('P.id_preventivo_plantilla', 'desc');
 				if (array_key_exists("limit", $arrData)) {
-					$query = $this->db->get('mantenimiento_preventivo P', $arrData["limit"]);
+					$query = $this->db->get('mantenimiento_preventivo_plantilla P', $arrData["limit"]);
 				}else{
 					$query = $this->db->get('mantenimiento_preventivo_plantilla P');
 				}
@@ -669,6 +669,30 @@ class General_model extends CI_Model {
 		} else{
 			return false;
 		}
+	}
+
+	/**
+	 * Consulta lista de mantenimientos preventivos para un equipo
+	 * @since 24/8/2021
+	 */
+	public function get_mantenimiento_preventivo_equipo($arrData)
+	{
+			$this->db->select("M.*, P.*, T.tipo_equipo, CONCAT(U.first_name, ' ', U.last_name) name");
+			$this->db->join('mantenimiento_preventivo_plantilla P', 'P.id_preventivo_plantilla  = M.fk_id_preventivo_plantilla', 'INNER');
+			$this->db->join('usuarios U', 'P.fk_id_user_mpp = U.id_user', 'INNER');
+			$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = P.fk_id_tipo_equipo_mpp', 'INNER');
+			if (array_key_exists("idEquipo", $arrData)) {
+				$this->db->where('M.fk_id_equipo_mpe', $arrData["idEquipo"]);
+			}
+
+			$this->db->order_by('P.descripcion', 'asc');
+
+			$query = $this->db->get('mantenimiento_preventivo_equipo M');
+			if ($query->num_rows() > 0) {
+				return $query->result_array();
+			} else {
+				return false;
+			}
 	}
 
 
