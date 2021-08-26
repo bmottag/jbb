@@ -177,7 +177,7 @@ class Ordentrabajo extends CI_Controller {
 					if($this->general_model->updateRecord($arrParam))
 					{
 						//guardo regitro en la tabla auditoria de mantenimiento preventivo
-						//$this->ordentrabajo_model->saveAuditoriaContratoSaldo($idContrato);
+						$this->general_model->saveAuditoriaProximoMantenimientoPreventivo($data['idRecord']);
 					}
 				}
 

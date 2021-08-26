@@ -144,12 +144,17 @@ $(function(){
 						
 							<td class='text-center'>
 								<input type="number" id="proximo_mantenimiento" name="proximo_mantenimiento" class="form-control" placeholder="Próximo Mantenimiento (Horas/Kilometros)" <?php echo $minKilometros; ?> value="<?php echo number_format($lista['proximo_mantemiento_kilometros_horas']); ?>" required >
-								<button type="submit" id="btnSubmit" name="btnSubmit" class="btn btn-primary btn-xs" title="Guardar Próximo Mantenimiento">
-									 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
-								</button> 
+								<button type="submit" id="btnSubmitProximoMantenimiento" name="btnSubmitProximoMantenimiento" class="btn btn-primary btn-xs" title="Guardar Próximo Mantenimiento" value="1" >
+									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+								</button>
+
+	                            <button type="submit" class="btn btn-default btn-xs" id="btnSubmitProximoMantenimiento" name="btnSubmitProximoMantenimiento" title="Historial" value="2" >
+	                               <span class="fa fa-th-list" aria-hidden="true" />
+	                            </button>
 							</td>
 
 						</form>
+
 						<?php
 								echo "<td class='text-center'>";
 								$idCompuesto = $lista['id_preventivo_equipo'] . '-' . $info[0]['id_equipo'];
@@ -283,7 +288,7 @@ $(function(){
 					<div class="form-group">
 						<div class="row" align="center">
 							<div style="width:50%;" align="center">
-								<button type="submit" id="btnSubmit" name="btnSubmit" class="btn btn-primary" >
+								<button type="submit" id="btnSubmitMantenimiento" name="btnSubmitMantenimiento" class="btn btn-primary" >
 									Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
 								</button> 
 							</div>

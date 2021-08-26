@@ -124,6 +124,7 @@ $(function(){
 								echo "<td><small>";
 								echo $infoMantenimiento[0]['descripcion'];
 								echo "<br><b>Frecuencia:</b><br>Cada " . number_format($infoMantenimiento[0]['frecuencia']) . " Km/Horas";
+								echo "<br><b>Próximo mantenimiento:</b><br>" . number_format($infoMantenimiento[0]['proximo_mantemiento_kilometros_horas']) . " Km/Horas";
 								echo "</small></td>";
 								echo "<td><small></small></td>";
 								echo "<td><small>" . $information[0]['name'] . "</small></td>";

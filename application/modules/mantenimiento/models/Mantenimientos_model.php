@@ -201,4 +201,28 @@ class Mantenimientos_model extends CI_Model {
 			return false;
 		}
 	}
+
+	/**
+	 * Consultar registros de historial del PROXIMOS MANTENIMIENTOS PREVENTIVOS DEL EQUIPO
+	 * @since 26/8/2021
+	 */
+	public function get_historial_mantenimiento_preventivo_equipos($arrData)
+	{
+			$this->db->select("A.*, P.*, CONCAT(first_name, ' ', last_name) name, M.fk_id_equipo_mpe");
+			$this->db->join('usuarios U', 'U.id_user = A.fk_id_usuario', 'INNER');
+			$this->db->join('mantenimiento_preventivo_equipo M', 'M.id_preventivo_equipo = A.fk_id_preventivo_equipo', 'INNER');
+			$this->db->join('mantenimiento_preventivo_plantilla P', 'P.id_preventivo_plantilla  = M.fk_id_preventivo_plantilla', 'INNER');
+			if (array_key_exists("idMantenimientoPreventivoEquipo", $arrData)) {
+				$this->db->where('A.fk_id_preventivo_equipo', $arrData["idMantenimientoPreventivoEquipo"]);
+			}
+			$this->db->order_by('A.id_auditoria_mantenimiento_preventivo_equipo', 'desc');
+
+			$query = $this->db->get('auditoria_mantenimiento_preventivo_equipo A');
+
+			if ($query->num_rows() > 0) {
+				return $query->result_array();
+			} else {
+				return false;
+			}
+	}
 }

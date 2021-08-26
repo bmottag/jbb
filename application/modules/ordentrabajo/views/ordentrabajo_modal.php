@@ -8,10 +8,10 @@
 <div class="modal-body">
 	<form name="form" id="form" role="form" method="post" >
 		<input type="hidden" id="hddtipoMantenimiento" name="hddtipoMantenimiento" value="<?php echo $tipoMantenimiento; ?>"/>
-		<input type="hidden" id="estado" name="estado" value=1/>
-		<input type="hidden" id="hddIdMantenimiento" name="hddIdMantenimiento" value="<?php echo $idMantenimiento; ?>"/>
-		<input type="hidden" id="hddIdEquipo" name="hddIdEquipo" value="<?php echo $idEquipo; ?>"/>
-		<input type="hidden" id="hddIdOrdenTrabajo" name="hddIdOrdenTrabajo" value="<?php echo $information?$information[0]["id_orden_trabajo"]:""; ?>"/>
+		<input type="hidden" id="estado" name="estado" value=1 />
+		<input type="hidden" id="hddIdMantenimiento" name="hddIdMantenimiento" value="<?php echo $idMantenimiento; ?>" />
+		<input type="hidden" id="hddIdEquipo" name="hddIdEquipo" value="<?php echo $idEquipo; ?>" />
+		<input type="hidden" id="hddIdOrdenTrabajo" name="hddIdOrdenTrabajo" value="<?php echo $information?$information[0]["id_orden_trabajo"]:""; ?>" />
 
 		<div class="row">
 			<div class="col-sm-6">

@@ -697,5 +697,35 @@ class General_model extends CI_Model {
 			}
 	}
 
+	/**
+	 * Add Auditoria Auditoria de mantenimiento preventivo
+	 * @since 26/8/2021
+	 */
+	public function saveAuditoriaProximoMantenimientoPreventivo($idOT) 
+	{
+			$idUser = $this->session->userdata("id");
+
+			$descripcion = "Ingreso desde una Orden de Trabajo Solucionada.";
+			if(is_null($idOT)){
+				$descripcion = "Ingreso desde el tablero de mantenimiento preventivo.";
+			}
+
+			$data = array(
+				'fk_id_preventivo_equipo' => $this->input->post('hddIdMantenimiento'),
+				'proximo_mantemiento_kilometros_horas' => $this->input->post('proximo_mantenimiento'),
+				'fecha_registro' => date("Y-m-d G:i:s"),
+				'fk_id_usuario' => $idUser,
+				'fk_id_orden_trabajo ' => $idOT,
+				'descripcion' => $descripcion
+			);	
+			$query = $this->db->insert('auditoria_mantenimiento_preventivo_equipo', $data);
+
+			if ($query) {
+				return true;
+			} else {
+				return false;
+			}
+	}
+
 
 }

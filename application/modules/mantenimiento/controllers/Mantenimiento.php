@@ -313,7 +313,18 @@ class Mantenimiento extends CI_Controller {
      * @author BMOTTAG
 	 */
 	public function actualizar_proximo_mantenimiento_preventivo()
-	{					
+	{			
+		$solicutud = $this->input->post('btnSubmitProximoMantenimiento');
+
+		//mostrar el historial 
+		if($solicutud == 2){
+			$arrParam = array('idMantenimientoPreventivoEquipo' => $this->input->post('hddIdMantenimiento'));
+			$data['infoPreventivoHistorial'] = $this->mantenimientos_model->get_historial_mantenimiento_preventivo_equipos($arrParam);
+
+			$data['view'] = 'preventivo_historial';
+			$this->load->view("layout_calendar", $data);
+		//guardar el proximo mantenimiento
+		}else{
 			$idEquipo = $this->input->post('hddIdEquipo');
 
 			$arrParam = array(
@@ -327,12 +338,13 @@ class Mantenimiento extends CI_Controller {
 			if($this->general_model->updateRecord($arrParam))
 			{
 				//guardo regitro en la tabla auditoria de mantenimiento preventivo
-				//$this->ordentrabajo_model->saveAuditoriaContratoSaldo($idContrato);
+				$this->general_model->saveAuditoriaProximoMantenimientoPreventivo($idOT = NULL);
 				$this->session->set_flashdata('retornoExito', 'Solicitud guardada correctamente.');
 			} else {
 				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
 			}
 
 			redirect(base_url('mantenimiento/preventivo_equipo/' . $idEquipo), 'refresh');
+		}
     }
 }
