@@ -184,9 +184,17 @@ $(function(){
 							}
 							echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
 							echo "</td>";
-							echo "<td>";
+							echo "<td class='text-right'>";
+							if($information[0]['estado_actual']==2){
+								$dteStart = new DateTime($information[0]['fecha_asignacion']);
+								$dteEnd   = new DateTime($information[0]['fecha_ultima_actualizacion']);
+								
+								$dteDiff  = $dteStart->diff($dteEnd);
+								$workingTime = $dteDiff->format("%R%a días %H:%I:%S");//days hours:minutes:seconds
+								echo $workingTime;
+							}
 							echo "</td>";
-							echo "<td class='text-center'>";
+							echo "<td class='text-right'>";
 							echo "<small>$" . number_format($information[0]['costo_mantenimiento']) . '<small>';
 							echo "</td>";
                             echo "</tr>";
