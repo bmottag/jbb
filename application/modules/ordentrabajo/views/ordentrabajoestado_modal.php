@@ -43,14 +43,14 @@ $(document).ready(function () {
 
 		<?php
 			//si se va ausar el contrato entonces el valor maximo del mantenimiento deber ser el saldo del contrato
+			$maxCosto = "";
 			if($infoOT[0]['usar_contrato'] == 1 ){
 				$maxCosto = 'max=' . $infoEquipo[0]['saldo_contrato'];
-			}else{
-				$maxCosto = "";
 			}
 
 			//si es mantenimiento preventivo entonces coloco 
 			//el valor minimo del campo es igual a los kilometros actuales del equipo, mas la frecuencia del mantenimiento
+			$minKilometros = "";
 			if($infoOT[0]['tipo_mantenimiento'] == 2){
 				$minKilometros = $infoEquipo[0]['horas_kilometros_actuales'] + $infoPreventivo[0]['frecuencia'];
 				$minKilometros = 'min=' . $minKilometros;
