@@ -31,7 +31,7 @@
 						<strong>Tipo Equipo: </strong><?php echo  $info[0]['tipo_equipo']; ?>
 						<?php 
 							if($info[0]['horas_kilometros_actuales']){ 
-								echo "<br><strong>Kilometos/Horas actuales: </strong>" . $info[0]['horas_kilometros_actuales'];
+								echo "<br><strong>Kilometos/Horas actuales: </strong>" . number_format($info[0]['horas_kilometros_actuales']);
 							}
 						?>
 				</div>

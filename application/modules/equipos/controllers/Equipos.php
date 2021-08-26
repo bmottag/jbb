@@ -573,7 +573,17 @@ class Equipos extends CI_Controller {
 			$msj = "Se guardo la información!";
 
 			if ($idControlCombustible = $this->equipos_model->guardarControlCombustible()) 
-			{				
+			{
+				//actualizar campo de kilometraje actual en la tabla de equipos
+				$arrParam = array(
+					"table" => "equipos",
+					"primaryKey" => "id_equipo",
+					"id" => $data["idRecord"],
+					"column" => "horas_kilometros_actuales",
+					"value" => $this->input->post('kilometros_actuales')
+				);
+				$this->general_model->updateRecord($arrParam);
+
 				$data["result"] = true;		
 				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
 			} else {
