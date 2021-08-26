@@ -230,7 +230,10 @@ class Mantenimiento extends CI_Controller {
 	{
 		$arrParam = array("idEquipo" => $idEquipo);
 		$data['info'] = $this->general_model->get_equipos_info($arrParam);
-		$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo_equipo($arrParam);
+		$data['infoPreventivoEquipo'] = $this->general_model->get_mantenimiento_preventivo_equipo($arrParam);
+
+		$arrParam = array('tipoEquipo' => $data['info'][0]['fk_id_tipo_equipo']);
+		$data['infoPreventivo'] = $this->general_model->get_mantenimiento_preventivo($arrParam);
 
 		$arrParam2 = array(
 			'tipoMantenimiento' => 2,
@@ -285,5 +288,22 @@ class Mantenimiento extends CI_Controller {
 			}
 
 			echo json_encode($data);
+    }
+
+    /**
+     * Guardar un manenimiento preventivo al equipo
+     * @since 26/8/2021
+     * @author BMOTTAG
+     */
+    public function guardar_un_mantenimiento_preventivo() 
+	{
+			$idEquipo = $this->input->post('hddIdEquipo');
+
+			if ($this->mantenimientos_model->guardarUnMantenimientoPreventivo()) {
+				$this->session->set_flashdata('retornoExito', 'Solicitud guardada correctamente.');
+			} else {
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+			}
+			redirect(base_url('mantenimiento/preventivo_equipo/' . $idEquipo), 'refresh');
     }
 }

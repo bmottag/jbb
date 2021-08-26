@@ -76,10 +76,17 @@ $(function(){
 					<i class="fa fa-wrench"></i> <strong>MANTENIMIENTOS PREVENTIVOS DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
-					<!-- boton para cargue de mantenimiento desde la plantilla -->
-					<a class='btn btn-info btn-block' href='<?php echo base_url('mantenimiento/add_mantenimiento_preventivo/' . $info[0]['id_equipo'] . '/' . $info[0]['fk_id_tipo_equipo']) ?>'>
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"> </span>  Adicionar Mantinimientos Preventivos
-					</a>
+
+					<?php if($infoPreventivoEquipo){ ?>
+						<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modalMantenimiento" id="x">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantinimiento Preventivo
+						</button>
+					<?php }else { ?>
+						<!-- boton para cargue de mantenimiento desde la plantilla -->
+						<a class='btn btn-info btn-block' href='<?php echo base_url('mantenimiento/add_mantenimiento_preventivo/' . $info[0]['id_equipo'] . '/' . $info[0]['fk_id_tipo_equipo']) ?>'>
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"> </span>  Adicionar Mantinimientos Preventivos
+						</a>
+					<?php } ?>
 					<br>
 
 <?php
@@ -103,7 +110,7 @@ $(function(){
 	}
 ?> 
 					<?php 										
-						if(!$infoPreventivo){ 
+						if(!$infoPreventivoEquipo){ 
 							echo '<div class="col-lg-12">
 								<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en el sistema.</p>
 								</div>';
@@ -120,7 +127,7 @@ $(function(){
 						</thead>
 						<tbody>							
 						<?php
-							foreach ($infoPreventivo as $lista):
+							foreach ($infoPreventivoEquipo as $lista):
 								echo "<tr>";
 								echo "<td><small>" . $lista['descripcion'] . "</small></td>";
 								echo "<td class='text-right'><small>" . number_format($lista['frecuencia']) . "</small></td>";
@@ -217,6 +224,61 @@ $(function(){
 		</div>
 	</div>
 </div>
+
+<!--INICIO Modal para adicionar MANTENIMIENTO -->
+<div class="modal fade text-center" id="modalMantenimiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">    
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" id="tablaDatos">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="exampleModalLabel">Adicionar Mantenimiento Preventivo</h4>
+			</div>
+
+			<div class="modal-body">
+				<form name="formMantenimiento" id="formMantenimiento" role="form" method="post" action="<?php echo base_url("mantenimiento/guardar_un_mantenimiento_preventivo") ?>" >
+					<input type="hidden" id="hddIdEquipo" name="hddIdEquipo" value="<?php echo $info[0]['id_equipo']; ?>"/>
+					
+					<div class="form-group text-left">
+						<label class="control-label" for="mantenimiento">Mantenimiento Preventivo</label>
+						<select name="mantenimiento" id="mantenimiento" class="form-control" required >
+							<option value=''>Select...</option>
+							<?php for ($i = 0; $i < count($infoPreventivo); $i++) { ?>
+								<option value="<?php echo $infoPreventivo[$i]["id_preventivo_plantilla"]; ?>" ><?php echo $infoPreventivo[$i]["descripcion"] . '. ---> Cada: ' . number_format($infoPreventivo[$i]["frecuencia"]); ?></option>	
+							<?php } ?>
+						</select>
+					</div>
+										
+					<div class="form-group">
+						<div id="div_load" style="display:none">		
+							<div class="progress progress-striped active">
+								<div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+									<span class="sr-only">45% completado</span>
+								</div>
+							</div>
+						</div>
+						<div id="div_error" style="display:none">			
+							<div class="alert alert-danger"><span class="glyphicon glyphicon-remove" id="span_msj">&nbsp;</span></div>
+						</div>	
+					</div>
+
+					<div class="form-group">
+						<div class="row" align="center">
+							<div style="width:50%;" align="center">
+								<button type="submit" id="btnSubmit" name="btnSubmit" class="btn btn-primary" >
+									Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+								</button> 
+							</div>
+						</div>
+					</div>
+						
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>                       
+<!--FIN Modal para adicionar MANTENIMIENTO -->
+
 <script>
 $(document).ready(function() {
     $('#dataTables').DataTable({

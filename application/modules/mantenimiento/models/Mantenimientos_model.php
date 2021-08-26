@@ -181,4 +181,24 @@ class Mantenimientos_model extends CI_Model {
 			return false;
 		}
 	}
+
+	/**
+	 * Guardar un manteniminento preventivo
+	 * @since 26/8/2021
+	 */
+	public function guardarUnMantenimientoPreventivo() 
+	{							
+		$data = array(
+			'fk_id_equipo_mpe' => $this->input->post('hddIdEquipo'),
+			'fk_id_preventivo_plantilla' => $this->input->post('mantenimiento')
+		);			
+
+		$query = $this->db->insert('mantenimiento_preventivo_equipo', $data);
+
+		if ($query) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

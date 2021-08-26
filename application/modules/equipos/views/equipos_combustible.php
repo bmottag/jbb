@@ -101,7 +101,7 @@ $(function(){
 				<div class="panel-body">
 				
 					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Seguimiento
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Seguimiento de Operación
 					</button><br>
 
 <?php

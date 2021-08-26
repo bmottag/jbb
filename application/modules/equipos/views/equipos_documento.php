@@ -105,7 +105,7 @@ $(function(){
 				
 					<?php if(!$deshabilitar){ ?>
 					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Documento del Equipo
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Documento
 					</button><br>
 					<?php } ?>
 
