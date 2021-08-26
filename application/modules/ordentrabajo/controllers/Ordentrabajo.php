@@ -417,6 +417,9 @@ class Ordentrabajo extends CI_Controller {
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['infoOT'] = $this->general_model->get_orden_trabajo($arrParam);
 
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
+
 			//busco datos del vehiculo
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
 

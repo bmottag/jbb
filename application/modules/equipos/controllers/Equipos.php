@@ -220,6 +220,9 @@ class Equipos extends CI_Controller {
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
 
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
+
 			//DESHABILITAR
 			$data['deshabilitar'] = '';
 			$userRol = $this->session->role;
@@ -263,6 +266,9 @@ class Equipos extends CI_Controller {
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 
 			//DESHABILITAR
 			$data['deshabilitar'] = '';
@@ -333,6 +339,9 @@ class Equipos extends CI_Controller {
 			//busco datos del equipo
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 
 			//DESHABILITAR
 			$data['deshabilitar'] = '';
@@ -438,6 +447,9 @@ class Equipos extends CI_Controller {
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 			
 			$data['listadoLocalizacion'] = $this->equipos_model->get_localizacion($arrParam);
 			
@@ -506,6 +518,9 @@ class Equipos extends CI_Controller {
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 			
 			$data['listadoControlCombustible'] = $this->equipos_model->get_control_combustible($arrParam);
 						
@@ -578,6 +593,9 @@ class Equipos extends CI_Controller {
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 
 			//DESHABILITAR
 			$data['deshabilitar'] = '';
@@ -657,6 +675,9 @@ class Equipos extends CI_Controller {
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 
 			//DESHABILITAR
 			$data['deshabilitar'] = '';

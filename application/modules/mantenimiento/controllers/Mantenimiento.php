@@ -86,6 +86,10 @@ class Mantenimiento extends CI_Controller {
 	{
 		$arrParam = array("idEquipo" => $idEquipo);
 		$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+		//Lista fotos de equipo
+		$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
+
 		$data['listadoCorrectivos'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
 		$data["view"] = 'correctivo';
 		$this->load->view("layout_calendar", $data);
@@ -230,6 +234,10 @@ class Mantenimiento extends CI_Controller {
 	{
 		$arrParam = array("idEquipo" => $idEquipo);
 		$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+		//Lista fotos de equipo
+		$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
+		
 		$data['infoPreventivoEquipo'] = $this->general_model->get_mantenimiento_preventivo_equipo($arrParam);
 
 		$arrParam = array('tipoEquipo' => $data['info'][0]['fk_id_tipo_equipo']);

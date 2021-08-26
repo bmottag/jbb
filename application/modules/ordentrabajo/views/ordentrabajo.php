@@ -2,13 +2,23 @@
 	<br>
 	<div class="row">
 		<div class="col-lg-3">
-			<?php if($info[0]["qr_code_img"]){ ?>
+			<!-- IMAGEN DEL EQUIPO -->
+			<?php 
+				$imagen = FALSE;
+				if($fotosEquipos){ 
+					$imagen = base_url($fotosEquipos[0]["equipo_foto"]);
+				}elseif($info[0]["qr_code_img"]){
+					$imagen = base_url($info[0]["qr_code_img"]);
+				}
+				if($imagen){
+			?>
 				<div class="form-group">
 					<div class="row" align="center">
-						<img src="<?php echo base_url($info[0]["qr_code_img"]); ?>" class="img-rounded" width="150" height="150" alt="QR CODE" />
+						<img src="<?php echo $imagen; ?>" class="img-rounded" width="150" height="150" alt="Imagen Equipo" />
 					</div>
 				</div>
 			<?php } ?>
+			<!-- FIN IMAGEN DEL EQUIPO -->
 			<div class="form-group">
 				<div class="row" align="center">
 						<strong>No. Inventario: </strong><?php echo $info[0]['numero_inventario']; ?>
