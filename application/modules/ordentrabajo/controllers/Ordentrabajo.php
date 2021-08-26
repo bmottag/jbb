@@ -401,6 +401,28 @@ class Ordentrabajo extends CI_Controller {
             }
         }
     }
+
+	/**
+	 * Lista de ordenes de trabajo para un equipo
+     * @since 25/8/2021
+     * @author BMOTTAG
+	 */
+	public function listar_ot($idEquipo) 
+	{		
+			if(empty($idEquipo)){
+				show_error('ERROR!!! - You are in the wrong place.');
+			}
+			
+			//buscar informacion de la orden de trabajo
+			$arrParam = array("idEquipo" => $idEquipo);
+			$data['infoOT'] = $this->general_model->get_orden_trabajo($arrParam);
+
+			//busco datos del vehiculo
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
+
+			$data["view"] = 'ordentrabajo';
+			$this->load->view("layout_calendar", $data);
+	}
 	
 	
 	

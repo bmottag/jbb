@@ -52,11 +52,14 @@ $(function(){
 				<a href="<?php echo base_url('equipos/documento/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-book"></i> Documentos
 				</a>
-				<a href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
+				<a href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-wrench"></i> Mantenimiento Correctivo
 				</a>
 				<a href="<?php echo base_url('mantenimiento/preventivo_equipo/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-wrench"></i> Mantenimiento Preventivo
+				</a>
+				<a href="<?php echo base_url('ordentrabajo/listar_ot/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
+					<i class="fa fa-briefcase"></i> Ordenes de Trabajo
 				</a>
 				<a href="<?php echo base_url('equipos/diagnostico/' . $info[0]['id_equipo']); ?>" class="btn btn-outline btn-default btn-block">
 					<i class="fa fa-tasks"></i> Diagnóstico Periódico
@@ -126,9 +129,8 @@ $(function(){
 					</table>
 
 					<?php
-						if($information[0]['usar_contrato']){
+						if($information[0]['usar_contrato'] == 1){
 					?>
-
 							<div class="alert alert-danger">
 								<span class="fa fa-info-circle" aria-hidden="true"></span>
 								<strong>Nota: </strong>Para esta O.T. se hace uso del contrato de mantenimiento.<br>
