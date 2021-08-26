@@ -306,4 +306,33 @@ class Mantenimiento extends CI_Controller {
 			}
 			redirect(base_url('mantenimiento/preventivo_equipo/' . $idEquipo), 'refresh');
     }
+
+	/**
+	 * Actualizar proximo mantenimiento preventivo del equipo
+     * @since 26/8/2021
+     * @author BMOTTAG
+	 */
+	public function actualizar_proximo_mantenimiento_preventivo()
+	{					
+			$idEquipo = $this->input->post('hddIdEquipo');
+
+			$arrParam = array(
+				"table" => "mantenimiento_preventivo_equipo",
+				"primaryKey" => "id_preventivo_equipo",
+				"id" => $this->input->post('hddIdMantenimiento'),
+				"column" => "proximo_mantemiento_kilometros_horas",
+				"value" => $this->input->post('proximo_mantenimiento')
+			);
+	
+			if($this->general_model->updateRecord($arrParam))
+			{
+				//guardo regitro en la tabla auditoria de mantenimiento preventivo
+				//$this->ordentrabajo_model->saveAuditoriaContratoSaldo($idContrato);
+				$this->session->set_flashdata('retornoExito', 'Solicitud guardada correctamente.');
+			} else {
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+			}
+
+			redirect(base_url('mantenimiento/preventivo_equipo/' . $idEquipo), 'refresh');
+    }
 }

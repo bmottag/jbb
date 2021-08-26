@@ -131,7 +131,26 @@ $(function(){
 								echo "<tr>";
 								echo "<td><small>" . $lista['descripcion'] . "</small></td>";
 								echo "<td class='text-right'><small>" . number_format($lista['frecuencia']) . "</small></td>";
-								echo "<td class='text-right'><small>" . number_format($lista['proximo_mantemiento_kilometros_horas']) . "</small></td>";
+								$idRecord = $lista['id_preventivo_equipo'];
+
+								// el valor minimo del campo es igual a los kilometros actuales del equipo
+								$minKilometros = $info[0]['horas_kilometros_actuales'];
+								$minKilometros = 'min=' . $minKilometros;
+						?>
+						<form  name="mantenimiento_<?php echo $idRecord ?>" id="mantenimiento_<?php echo $idRecord ?>" method="post" action="<?php echo base_url("mantenimiento/actualizar_proximo_mantenimiento_preventivo"); ?>">
+
+							<input type="hidden" id="hddIdMantenimiento" name="hddIdMantenimiento" value="<?php echo $idRecord; ?>"/>
+							<input type="hidden" id="hddIdEquipo" name="hddIdEquipo" value="<?php echo $info[0]['id_equipo']; ?>" />
+						
+							<td class='text-center'>
+								<input type="number" id="proximo_mantenimiento" name="proximo_mantenimiento" class="form-control" placeholder="Próximo Mantenimiento (Horas/Kilometros)" <?php echo $minKilometros; ?> value="<?php echo number_format($lista['proximo_mantemiento_kilometros_horas']); ?>" required >
+								<button type="submit" id="btnSubmit" name="btnSubmit" class="btn btn-primary btn-xs" title="Guardar Próximo Mantenimiento">
+									 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+								</button> 
+							</td>
+
+						</form>
+						<?php
 								echo "<td class='text-center'>";
 								$idCompuesto = $lista['id_preventivo_equipo'] . '-' . $info[0]['id_equipo'];
 								?>
