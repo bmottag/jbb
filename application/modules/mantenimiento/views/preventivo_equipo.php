@@ -157,10 +157,13 @@ $(function(){
 								<button type="submit" id="btnSubmitProximoMantenimiento" name="btnSubmitProximoMantenimiento" class="btn btn-primary btn-xs" title="Guardar Próximo Mantenimiento" value="1" >
 									<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
 								</button>
-
+						<?php
+							if($lista['proximo_mantemiento_kilometros_horas']>0){
+						?>
 	                            <button type="submit" class="btn btn-default btn-xs" id="btnSubmitProximoMantenimiento" name="btnSubmitProximoMantenimiento" title="Historial" value="2" >
 	                               <span class="fa fa-th-list" aria-hidden="true" />
 	                            </button>
+	                    <?php } ?>
 							</td>
 
 						</form>

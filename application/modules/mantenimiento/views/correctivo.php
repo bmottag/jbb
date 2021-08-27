@@ -215,9 +215,9 @@ $(function(){
 								$idCompuesto = $data['id_correctivo'] . '-' . $info[0]['id_equipo'];
 								?>
 								<?php if(!$deshabilitar){ ?>
-								<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $idCompuesto; ?>" >
-									Crear O.T. <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
-								</button>
+									<button type="button" class="btn btn-violeta btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $idCompuesto; ?>" >
+										Crear O.T. <span class="glyphicon glyphicon-briefcase" aria-hidden="true">
+									</button>
 								<?php 
 								}else{ 
 									//buscar numero de la OT
@@ -232,7 +232,7 @@ $(function(){
 									$infoOT = $this->general_model->get_orden_trabajo($arrParam);
 									$idOT = $infoOT[0]['id_orden_trabajo'];
 								?>
-								<a href="<?php echo base_url("ordentrabajo/ver_orden/" . $idOT); ?>" class="btn btn-success btn-xs">Ver O.T. <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
+									<a href="<?php echo base_url("ordentrabajo/ver_orden/" . $idOT); ?>" class="btn btn-success btn-xs">Ver O.T. <span class="glyphicon glyphicon-edit" aria-hidden="true"></a>
 								<?php } ?>
 
 								<?php

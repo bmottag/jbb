@@ -64,7 +64,7 @@ $(function(){
 						<thead>
 							<tr>
 								<th class="text-center">Tipo Equipo</th>
-								<th class="text-center">Frecuencia</th>
+								<th class="text-center">Frecuencia Km/Horas</th>
 								<th class="text-center">Descripción</th>
 								<th class="text-center">Usuario</th>
 								<th class="text-center">Editar</th>
@@ -75,7 +75,7 @@ $(function(){
 							foreach ($infoPreventivo as $lista):
 								echo "<tr>";
 								echo "<td>" . $lista['tipo_equipo'] . "</td>";
-								echo "<td class='text-right'>" . $lista['frecuencia'] . "</td>";
+								echo "<td class='text-right'>" . number_format($lista['frecuencia']) . "</td>";
 								echo "<td>" . $lista['descripcion'] . "</td>";
 								echo "<td>" . $lista['name'] . "</td>";
 								echo "<td class='text-center'>";

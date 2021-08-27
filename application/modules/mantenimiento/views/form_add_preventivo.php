@@ -2,18 +2,6 @@
 
 <div id="page-wrapper">
 	<br>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h4 class="list-group-item-heading">
-					<i class="fa fa-edit fa-fw"></i>	RECORD TASK(S)
-					</h4>
-				</div>
-			</div>
-		</div>
-		<!-- /.col-lg-12 -->				
-	</div>
 	
 	<!-- /.row -->
 	<div class="row">
@@ -23,7 +11,13 @@
 					<i class="fa fa-life-saver"></i> MANTENIMIENTO - ADICIONAR MANTENIMIENTOS PREVENTIVOS
 				</div>
 				<div class="panel-body">
-
+				<?php 										
+					if(!$infoPreventivo){ 
+						echo '<div class="col-lg-12">
+							<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en el sistema. Solicutar al Adminstrador adicionar Mantenimientos Preventivos para este tipo de Equipo de acuerdo al manual del fabricante.</p>
+							</div>';
+					} else {
+				?>
 					<form  name="form" id="form" class="form-horizontal" method="post" >
 						<input type="hidden" id="hddId" name="hddId" value="<?php echo $idEquipo; ?>"/>
 								
@@ -31,7 +25,7 @@
                             <tr class="info">
                                 <td ><p class="text-center"><strong>Seleccionar</strong></p></td>
                                 <td ><p class="text-center"><strong>Mantenimiento preventivo</strong></p></td>
-                                <td ><p class="text-center"><strong>Frecuencia</strong></p></td>
+                                <td ><p class="text-center"><strong>Frecuencia Km/Horas</strong></p></td>
                             </tr>
                             <?php
                             foreach ($infoPreventivo as $lista):
@@ -46,7 +40,7 @@
                                 echo form_checkbox($data);
                                 echo "</td>";
 								echo "<td>" . $lista["descripcion"] . "</td>";
-								echo "<td>" . $lista["frecuencia"] . "</td>";
+								echo "<td class='text-right'>" . number_format($lista["frecuencia"]) . "</td>";
                                 echo "</tr>";
                             endforeach
                             ?>
@@ -79,7 +73,7 @@
 						</div>
 						
 					</form>
-
+				<?php } ?>
 					<!-- /.row (nested) -->
 				</div>
 				<!-- /.panel-body -->
