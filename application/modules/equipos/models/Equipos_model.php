@@ -307,7 +307,7 @@
 		 */
 		public function get_documento($arrData) 
 		{		
-				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name, t.tipo_documento");
+				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name, T.tipo_documento");
 				$this->db->join('usuarios U', 'U.id_user = A.fk_id_user_d', 'INNER');
 				$this->db->join('param_tipo_documento T', 'T.id_tipo_documento = A.fk_id_tipo_documento', 'INNER');		
 
