@@ -91,6 +91,8 @@ class Mantenimiento extends CI_Controller {
 		$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 
 		$data['listadoCorrectivos'] = $this->general_model->get_mantenimiento_correctivo($arrParam);
+
+		$data["activarBTN7"] = true;//para activar el boton
 		$data["view"] = 'correctivo';
 		$this->load->view("layout_calendar", $data);
 	}
@@ -249,6 +251,7 @@ class Mantenimiento extends CI_Controller {
 		);
 		$data['infoOrdenesTrabajo'] = $this->general_model->get_orden_trabajo($arrParam2);
 
+		$data["activarBTN8"] = true;//para activar el boton
 		$data["view"] = 'preventivo_equipo';
 		$this->load->view("layout_calendar", $data);
 	}

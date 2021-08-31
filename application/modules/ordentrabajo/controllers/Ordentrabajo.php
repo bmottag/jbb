@@ -66,6 +66,7 @@ class Ordentrabajo extends CI_Controller {
 						);
 			$data['listaEncargados'] = $this->general_model->get_user($arrParam);
 
+			$data["activarBTN9"] = true;//para activar el boton
 			$data["view"] = 'info_ordentrabajo';
 			$this->load->view("layout_calendar", $data);
 	}
@@ -423,6 +424,7 @@ class Ordentrabajo extends CI_Controller {
 			//busco datos del vehiculo
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
 
+			$data["activarBTN9"] = true;//para activar el boton
 			$data["view"] = 'ordentrabajo';
 			$this->load->view("layout_calendar", $data);
 	}

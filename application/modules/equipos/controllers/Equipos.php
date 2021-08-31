@@ -253,6 +253,7 @@ class Equipos extends CI_Controller {
 			$arrParam = array("filtroState" => TRUE);
 			$data['listaUsuarios'] = $this->general_model->get_user($arrParam);//workers list
 			
+			$data["activarBTN1"] = true;//para activar el boton
 			$data["view"] = 'equipos_detalle';
 			$this->load->view("layout_calendar", $data);
 	}
@@ -297,6 +298,7 @@ class Equipos extends CI_Controller {
 			);
 			$data['tipoCarroceria'] = $this->general_model->get_basic_search($arrParam);
 
+			$data["activarBTN2"] = true;//para activar el boton
 			$data["view"] = $consulta;
 			$this->load->view("layout_calendar", $data);
 	}
@@ -356,6 +358,7 @@ class Equipos extends CI_Controller {
 			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 						
 			$data['error'] = $error; //se usa para mostrar los errores al cargar la imagen 
+			$data["activarBTN3"] = true;//para activar el boton
 			$data["view"] = 'equipos_foto';
 			$this->load->view("layout_calendar", $data);
 	}
@@ -453,6 +456,7 @@ class Equipos extends CI_Controller {
 			
 			$data['listadoLocalizacion'] = $this->equipos_model->get_localizacion($arrParam);
 			
+			$data["activarBTN4"] = true;//para activar el boton
 			$data["view"] = 'equipos_localizacion';
 			$this->load->view("layout_calendar", $data);
 	}
@@ -524,6 +528,7 @@ class Equipos extends CI_Controller {
 			
 			$data['listadoControlCombustible'] = $this->equipos_model->get_control_combustible($arrParam);
 						
+			$data["activarBTN5"] = true;//para activar el boton
 			$data["view"] = 'equipos_combustible';
 			$this->load->view("layout_calendar", $data);
 	}
@@ -618,6 +623,7 @@ class Equipos extends CI_Controller {
 			
 			$data['listadoDocumentos'] = $this->equipos_model->get_documento($arrParam);
 						
+			$data["activarBTN6"] = true;//para activar el boton
 			$data["view"] = 'equipos_documento';
 			$this->load->view("layout_calendar", $data);
 	}
@@ -700,6 +706,7 @@ class Equipos extends CI_Controller {
 			
 			$data['listadoDiagnostico'] = $this->equipos_model->get_diagnostico($arrParam);
 						
+			$data["activarBTN10"] = true;//para activar el boton
 			$data["view"] = 'equipos_diagnostico';
 			$this->load->view("layout_calendar", $data);
 	}
