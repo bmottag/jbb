@@ -147,10 +147,10 @@ if ($retornoError) {
                     </form>
 
                     <form  name="formBuscarVehiculos" id="formBuscarVehiculos" method="post" action="<?php echo base_url("equipos"); ?>">
-                        <input type="hidden" id="id_tipo_equipo" name="id_tipo_equipo" class="form-control" value="2" placeholder="Número Inventario Entidad" >
+                        <input type="hidden" id="id_tipo_equipo" name="id_tipo_equipo" class="form-control" value="3" placeholder="Número Inventario Entidad" >
                             <button type="submit" class="btn list-group-item">
-                            <p class="text-default"><i class="fa fa-truck fa-fw"></i><strong> Maquinas</strong>
-                                <span class="pull-right text-muted small"><em>0</em>
+                            <p class="text-default"><i class="fa fa-truck fa-fw"></i><strong> Maquinaria</strong>
+                                <span class="pull-right text-muted small"><em><?php echo $noMaquinas; ?></em>
                                 </span>
                             </p>
                             </button>

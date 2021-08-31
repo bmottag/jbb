@@ -55,6 +55,14 @@ class Dashboard extends CI_Controller {
 			);
 			$infoBombas = $this->general_model->get_equipos_info($arrParam);//info de bombas
 			$data['noBombas'] = $infoBombas?count($infoBombas):0;
+
+			//Tipo -> Bombas
+			$arrParam = array(
+				"idTipoEquipo" => 3,
+				"estadoEquipo" => 1
+			);
+			$infoMaquinas = $this->general_model->get_equipos_info($arrParam);//info de bombas
+			$data['noMaquinas'] = $infoMaquinas?count($infoMaquinas):0;
 			
 			$data["view"] = "dashboard";
 			$this->load->view("layout_calendar", $data);
