@@ -204,7 +204,8 @@ if ($retornoError) {
                                 echo "<tr>";
                                 echo "<td class='text-center'>";
 ?>
-<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="right" title="Tipo Equipo: <?php echo $lista['tipo_equipo'];?>"><?php echo $lista['numero_inventario']; ?> <i class='fa fa-info-circle fa-fw'></i></button>
+<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="right" title="Tipo Equipo: <?php echo $lista['tipo_equipo'];?>"><?php echo $lista['numero_inventario']; ?> <i class='fa fa-info-circle fa-fw'></i>
+</button>
 <?php
                                 echo "</td>";
                                 echo "<td class='text-center'><small>" . $lista['fecha'] . "</small></td>";
