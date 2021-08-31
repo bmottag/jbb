@@ -105,13 +105,16 @@ $(function(){
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-tint"></i> <strong>SEGUIMIENTO DE OPERACIÓN DE EQUIPO</strong>
+					<div class="pull-right">
+						<div class="btn-group">
+							<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Seguimiento de Operación
+							</button>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">
 				
-					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Seguimiento de Operación
-					</button><br>
-
 <?php
 	$retornoExito = $this->session->flashdata('retornoExito');
 	if ($retornoExito) {

@@ -84,20 +84,22 @@ $(function(){
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-wrench"></i> <strong>MANTENIMIENTOS PREVENTIVOS DEL EQUIPO</strong>
-				</div>
-				<div class="panel-body">
-
+					<div class="pull-right">
+						<div class="btn-group">
 					<?php if($infoPreventivoEquipo){ ?>
-						<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modalMantenimiento" id="x">
+						<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalMantenimiento" id="x">
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantinimiento Preventivo
 						</button>
 					<?php }else { ?>
 						<!-- boton para cargue de mantenimiento desde la plantilla -->
-						<a class='btn btn-info btn-block' href='<?php echo base_url('mantenimiento/add_mantenimiento_preventivo/' . $info[0]['id_equipo'] . '/' . $info[0]['fk_id_tipo_equipo']) ?>'>
+						<a class='btn btn-info btn-xs' href='<?php echo base_url('mantenimiento/add_mantenimiento_preventivo/' . $info[0]['id_equipo'] . '/' . $info[0]['fk_id_tipo_equipo']) ?>'>
 								<span class="glyphicon glyphicon-plus" aria-hidden="true"> </span>  Adicionar Mantinimientos Preventivos
 						</a>
 					<?php } ?>
-					<br>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
 
 <?php
 	$retornoExito = $this->session->flashdata('retornoExito');

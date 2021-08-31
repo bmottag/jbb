@@ -207,7 +207,7 @@ class Equipos extends CI_Controller {
 
 			
 			$data["view"] = 'equipos_inactivos';
-			$this->load->view("layout", $data);
+			$this->load->view("layout_calendar", $data);
 	}
 	
 	/**

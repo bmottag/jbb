@@ -36,12 +36,15 @@ $(function(){
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<i class="fa fa-link"></i> ENLACES MENÚ
+					<div class="pull-right">
+						<div class="btn-group">
+							<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="x">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Enlace al Menú
+							</button>
+						</div>
+					</div>
 				</div>
-				<div class="panel-body">
-					<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Enlace al Menú
-					</button><br>
-					
+				<div class="panel-body">					
 <?php
 	$retornoExito = $this->session->flashdata('retornoExito');
 	if ($retornoExito) {

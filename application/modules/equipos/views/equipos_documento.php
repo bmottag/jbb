@@ -108,15 +108,18 @@ $(function(){
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-book"></i> <strong>DOCUMENTOS DEL EQUIPO</strong>
+					<?php if(!$deshabilitar){ ?>
+					<div class="pull-right">
+						<div class="btn-group">
+							<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Documento
+							</button>
+						</div>
+					</div>
+					<?php } ?>
 				</div>
 				<div class="panel-body">
 				
-					<?php if(!$deshabilitar){ ?>
-					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Documento
-					</button><br>
-					<?php } ?>
-
 <?php
 	$retornoExito = $this->session->flashdata('retornoExito');
 	if ($retornoExito) {

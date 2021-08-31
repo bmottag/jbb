@@ -40,13 +40,20 @@ $(function(){
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<i class="fa fa-users"></i> LISTA DE USUARIOS
+					<div class="pull-right">
+						<div class="btn-group">																				
+							<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="x">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Usuario
+							</button>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">
 				
 					<ul class="nav nav-pills">
-						<li <?php if($state == 1){ echo "class='active'";} ?>><a href="<?php echo base_url("settings/employee/1"); ?>">Usuarios Activos</a>
+						<li <?php if($state == 1){ echo "class='active'";} ?>><a href="<?php echo base_url("settings/users/1"); ?>">Usuarios Activos</a>
 						</li>
-						<li <?php if($state == 2){ echo "class='active'";} ?>><a href="<?php echo base_url("settings/employee/2"); ?>">Usuarios Inactivos</a>
+						<li <?php if($state == 2){ echo "class='active'";} ?>><a href="<?php echo base_url("settings/users/2"); ?>">Usuarios Inactivos</a>
 						</li>
 					</ul>
 					<br>	
@@ -56,9 +63,6 @@ $(function(){
 	$deshabilitar = '';
 ?>
 
-					<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Usuario
-					</button><br>
 					
 <?php
 	$retornoExito = $this->session->flashdata('retornoExito');

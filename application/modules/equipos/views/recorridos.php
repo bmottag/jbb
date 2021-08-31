@@ -36,11 +36,15 @@ $(function(){
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<i class="fa fa-building"></i> LISTA DE RECORRIDOS
+					<div class="pull-right">
+						<div class="btn-group">																				
+							<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="x">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Recorrido
+							</button>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">
-					<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Recorrido
-					</button><br>
 <?php
 	$retornoExito = $this->session->flashdata('retornoExito');
 	if ($retornoExito) {

@@ -5,7 +5,7 @@
 				<div class="panel-heading">
 					<h4 class="list-group-item-heading">
                         <i class="fa fa-dashboard fa-fw"></i>
-						DASHBOARD
+						INICIO
 					</h4>
 				</div>
 			</div>

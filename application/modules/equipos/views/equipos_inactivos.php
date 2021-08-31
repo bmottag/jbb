@@ -44,13 +44,13 @@
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>							
-								<th class="text-center">No. Inventario Entidad</th>
-								<th class="text-center">Dependencia</th>
-								<th class="text-center">Marca</th>
-								<th class="text-center">Modelo</th>
-								<th class="text-center">Número Serial</th>
-								<th class="text-center">Estado</th>
-								<th class="text-center">Observación</th>
+								<th class="text-center"><small>No. Inventario Entidad</small></th>
+								<th class="text-center"><small>Dependencia</small></th>
+								<th class="text-center"><small>Marca</small></th>
+								<th class="text-center"><small>Modelo</small></th>
+								<th class="text-center"><small>Número Serial</small></th>
+								<th class="text-center"><small>Estado</small></th>
+								<th class="text-center"><small>Observación</small></th>
 							</tr>
 						</thead>
 						<tbody>							
@@ -58,12 +58,12 @@
 							foreach ($info as $lista):
 							
 									echo "<tr>";
-									echo "<td class='text-center'>" . $lista['numero_inventario'];
-									echo "</td>";
-									echo "<td class='text-center'>" . $lista['dependencia'] . "</td>";
-									echo "<td>" . $lista['marca'] . "</td>";
-									echo "<td>" . $lista['modelo'] . "</td>";
-									echo "<td class='text-center'>" . $lista['numero_serial'] . "</td>";
+									echo "<td class='text-center'><small>" . $lista['numero_inventario'];
+									echo "</small></td>";
+									echo "<td class='text-center'><small>" . $lista['dependencia'] . "</small></td>";
+									echo "<td><small>" . $lista['marca'] . "</small></td>";
+									echo "<td><small>" . $lista['modelo'] . "</small></td>";
+									echo "<td class='text-center'><small>" . $lista['numero_serial'] . "</small></td>";
 									echo "<td class='text-center'>";
 									switch ($lista['estado_equipo']) {
 										case 1:
@@ -75,9 +75,9 @@
 											$clase = "text-danger";
 											break;
 									}
-									echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+									echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
 									echo "</td>";
-									echo "<td>" . $lista['observacion'] . "</td>";
+									echo "<td><small>" . $lista['observacion'] . "</small></td>";
 									echo "</tr>";
 
 							endforeach;

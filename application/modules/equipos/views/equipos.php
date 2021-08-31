@@ -93,8 +93,6 @@ $(function(){
 		<div class="col-lg-9">
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<?php $dashboardURL = $this->session->userdata("dashboardURL"); ?>
-					<a class="btn btn-success btn-xs" href="<?php echo base_url($dashboardURL); ?> "><span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Dashboard </a> 
 <?php
 	//DESHABILITAR EDICION
 	$deshabilitar = 'disabled';
@@ -106,12 +104,15 @@ $(function(){
 ?>			
 					
 					<i class="fa fa-truck"></i> <?php echo $tituloListado; ?>
+					<div class="pull-right">
+						<div class="btn-group">														
+							<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="x">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Equipo
+							</button>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">	
-				
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal" id="x">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Equipo
-			</button><br>
 
 <?php 										
 	if(!$info){ 

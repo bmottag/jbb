@@ -19,13 +19,16 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<i class="fa fa-hand-o-up"></i> LISTA DE ENLACE DE MANUALES
+					<div class="pull-right">
+						<div class="btn-group">
+							<a class='btn btn-success btn-xs' href='<?php echo base_url('access/manuals_form') ?>'>
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Enlace Manual
+							</a>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">
 
-					<a class='btn btn-success btn-block' href='<?php echo base_url('access/manuals_form') ?>'>
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Enlace Manual
-					</a>
-					<br>
 <?php
 	$retornoExito = $this->session->flashdata('retornoExito');
 	if ($retornoExito) {

@@ -35,6 +35,13 @@ $(function(){
 			<div class="panel panel-default">
 				<div class="panel-heading">
 				<i class="fa fa-wrench"></i> LISTA DE MANTENIMIENTOS PREVENTIVOS
+					<div class="pull-right">
+						<div class="btn-group">
+							<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="x">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar
+							</button>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">	
 					<ul class="nav nav-pills">
@@ -47,12 +54,6 @@ $(function(){
 							endforeach;
 						?>
 					</ul>
-					<br>
-
-				<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
-					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Mantenimiento Preventivo
-				</button>
-				<br>
 				<?php
 					if(!$infoPreventivo){
 						echo '<div class="col-lg-12">
