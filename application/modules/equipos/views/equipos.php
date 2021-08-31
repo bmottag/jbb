@@ -109,7 +109,7 @@ $(function(){
 				</div>
 				<div class="panel-body">	
 				
-			<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#modal" id="x">
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal" id="x">
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Equipo
 			</button><br>
 
@@ -124,13 +124,13 @@ $(function(){
 					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
 						<thead>
 							<tr>
-								<th class="text-center">No. Inventario Entidad</th>
-								<th class="text-center">Dependencia</th>
-								<th class="text-center">Marca</th>
-								<th class="text-center">Modelo</th>
-								<th class="text-center">Número Serial</th>
-								<th class="text-center">Estado</th>
-								<th class="text-center">Observación</th>
+								<th class="text-center"><small>No. Inventario Entidad</small></th>
+								<th class="text-center"><small>Dependencia</small></th>
+								<th class="text-center"><small>Marca</small></th>
+								<th class="text-center"><small>Modelo</small></th>
+								<th class="text-center"><small>Número Serial</small></th>
+								<th class="text-center"><small>Estado</small></th>
+								<th class="text-center"><small>Observación</small></th>
 							</tr>
 						</thead>
 						<tbody>							
@@ -140,13 +140,7 @@ $(function(){
 									echo "<tr>";
 									echo "<td class='text-center'>";
 						?>
-
-<a href='<?php echo base_url('equipos/detalle/' . $lista['id_equipo']); ?>'>
-		  <?php echo $lista['numero_inventario'] ?>
-</a>
-<br>
-<a href='<?php echo base_url('equipos/detalle/' . $lista['id_equipo']); ?>' class="btn btn-primary btn-xs" title="View"><i class="fa <?php echo $lista['icono'] ?>"></i></a>
-
+<a href='<?php echo base_url('equipos/detalle/' . $lista['id_equipo']); ?>' class="btn btn-primary btn-xs" title=" <?php echo $lista['numero_inventario'] ?>"> <?php echo $lista['numero_inventario'] ?>&nbsp;<i class="fa <?php echo $lista['icono'] ?>"></i></a>
 						<?php
 									
 									
@@ -159,10 +153,10 @@ $(function(){
 									}
 									echo "</td>";
 
-									echo "<td class='text-center'>" . $lista['dependencia'] . "</td>";
-									echo "<td>" . $lista['marca'] . "</td>";
-									echo "<td>" . $lista['modelo'] . "</td>";
-									echo "<td class='text-center'>" . $lista['numero_serial'] . "</td>";
+									echo "<td class='text-center'><small>" . $lista['dependencia'] . "</small></td>";
+									echo "<td><small>" . $lista['marca'] . "</small></td>";
+									echo "<td><small>" . $lista['modelo'] . "</small></td>";
+									echo "<td class='text-center'><small>" . $lista['numero_serial'] . "</small></td>";
 									echo "<td class='text-center'>";
 									switch ($lista['estado_equipo']) {
 										case 1:
@@ -174,9 +168,9 @@ $(function(){
 											$clase = "text-danger";
 											break;
 									}
-									echo '<p class="' . $clase . '"><strong>' . $valor . '</strong></p>';
+									echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
 									echo "</td>";
-									echo "<td>" . $lista['observacion'] . "</td>";
+									echo "<td><small>" . $lista['observacion'] . "</small></td>";
 									
 									echo "</tr>";
 
