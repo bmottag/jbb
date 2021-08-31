@@ -5,16 +5,15 @@ $( document ).ready( function () {
 	
 	$( "#form" ).validate( {
 		rules: {
-			dimensiones: 		{ minlength: 4, maxlength:20 },
-			linea: 				{ maxlength: 20 },
-			color: 				{ maxlength: 20 },
-			capacidad: 			{ maxlength: 20 },
-			servicio: 			{ maxlength: 20 },
-			numero_motor: 		{ maxlength: 25 },
-			numero_chasis: 		{ minlength: 4, maxlength:30 },
-			codigo_gps: 		{ minlength: 4, maxlength:20 },
-			codigo_ship: 		{ minlength: 4, maxlength:30 },
-			numero_licencia_transito: 		{ minlength: 4, maxlength:30 }
+			dimensiones: 					{ minlength: 4, maxlength:20 },
+			linea: 							{ maxlength: 20 },
+			color: 							{ maxlength: 20 },
+			capacidad: 						{ maxlength: 20 },
+			servicio: 						{ maxlength: 20 },
+			numero_motor: 					{ maxlength: 25 },
+			numero_chasis: 					{ minlength: 4, maxlength:30 },
+			codigo_gps: 					{ minlength: 4, maxlength:20 },
+			codigo_ship: 					{ minlength: 4, maxlength:30 }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

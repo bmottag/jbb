@@ -12,15 +12,18 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-book"></i> <strong>DIAGNÓSTICO PERIÓDICO DEL EQUIPO</strong>
+					<?php if(!$deshabilitar){ ?>
+					<div class="pull-right">
+						<div class="btn-group">
+							<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Diagnóstico Periódico
+							</a>
+						</div>
+					</div>
+					<?php } ?>
 				</div>
 				<div class="panel-body">
 				
-					<?php if(!$deshabilitar){ ?>
-					<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-block">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Diagnóstico Periódico
-					</a><br>
-					<?php } ?>
-
 <?php
 	$retornoExito = $this->session->flashdata('retornoExito');
 	if ($retornoExito) {

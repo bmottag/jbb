@@ -60,7 +60,19 @@
 								<label for="color">Color: </label>
 								<input type="text" id="color" name="color" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["color"]:""; ?>" placeholder="Color" <?php echo $deshabilitar; ?>>
 							</div>
-							
+
+							<div class="col-sm-6">
+								<label for="from">Combustible: </label>
+								<select name="combustible" id="combustible" class="form-control" <?php echo $deshabilitar; ?>>
+									<option value=''>Select...</option>
+									<option value=1 <?php if($infoEspecifica && $infoEspecifica[0]["combustible"] == 1) { echo "selected"; }  ?>>Gasolina</option>
+									<option value=2 <?php if($infoEspecifica && $infoEspecifica[0]["combustible"] == 2) { echo "selected"; }  ?>>Diesel</option>
+								</select>
+							</div>
+						</div>
+
+<?php if($info[0]['fk_id_tipo_equipo'] == 1){ ?>						
+						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="from">Clase Vehículo: </label>
 								<select name="id_clase_vechiculo" id="id_clase_vechiculo" class="form-control" <?php echo $deshabilitar; ?>>
@@ -71,9 +83,7 @@
 									<?php } ?>
 								</select>
 							</div>
-						</div>
-						
-						<div class="form-group">							
+
 							<div class="col-sm-6">
 								<label for="from">Tipo Carrocería: </label>
 								<select name="id_tipo_carroceria" id="id_tipo_carroceria" class="form-control" <?php echo $deshabilitar; ?>>
@@ -83,16 +93,8 @@
 									<?php } ?>
 								</select>
 							</div>
-						
-							<div class="col-sm-6">
-								<label for="from">Combustible: </label>
-								<select name="combustible" id="combustible" class="form-control" <?php echo $deshabilitar; ?>>
-									<option value=''>Select...</option>
-									<option value=1 <?php if($infoEspecifica && $infoEspecifica[0]["combustible"] == 1) { echo "selected"; }  ?>>Gasolina</option>
-									<option value=2 <?php if($infoEspecifica && $infoEspecifica[0]["combustible"] == 2) { echo "selected"; }  ?>>Diesel</option>
-								</select>
-							</div>
 						</div>
+<?php } ?>
 						
 						<div class="form-group">
 							<div class="col-sm-6">
@@ -130,10 +132,11 @@
 							</div>						
 						</div>
 
+<?php if($info[0]['fk_id_tipo_equipo'] == 1){ ?>
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="numero_licencia_transito">Número de Licencia de Tránsito: </label>
-								<input type="text" id="numero_licencia_transito" name="numero_licencia_transito" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_licencia_transito"]:""; ?>" placeholder="Número de Licencia de Tránsito" <?php echo $deshabilitar; ?>>
+								<input type="text" id="numero_licencia_transito" name="numero_licencia_transito" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_licencia_transito"]:""; ?>" placeholder="Número de Licencia de Tránsito" maxlength="30" <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">
@@ -145,6 +148,7 @@
 								</select>
 							</div>						
 						</div>
+<?php } ?>
 
 						<div class="form-group">
 							<div class="row" align="center">
@@ -167,7 +171,7 @@
 						<div class="form-group">
 							<div class="row" align="center">
 								<div style="width:100%;" align="center">							
-									<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-success'>
+									<button type="button" id="btnSubmit" name="btnSubmit" class='btn btn-info'>
 										Guardar <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
 									</button>
 								</div>
