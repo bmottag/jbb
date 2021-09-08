@@ -716,7 +716,7 @@ class General_model extends CI_Model {
 				'fecha_registro' => date("Y-m-d G:i:s"),
 				'fk_id_usuario' => $idUser,
 				'fk_id_orden_trabajo ' => $idOT,
-				'descripcion' => $descripcion
+				'descripcion_auditoria' => $descripcion
 			);	
 			$query = $this->db->insert('auditoria_mantenimiento_preventivo_equipo', $data);
 

@@ -161,13 +161,14 @@ $(function(){
 					<table class="table table-bordered table-striped table-hover table-condensed">
 						<thead>
 							<tr>
-								<th colspan="4">Histórico</th>
+								<th colspan="5">Histórico</th>
 							</tr>
 							<tr>
 								<th class="text-center"><small>Fecha Registro</small></th>
 								<th class="text-center"><small>Registrado por</small></th>
 								<th class="text-center"><small>Información Adicional</small></th>
 								<th class="text-center"><small>Estado</small></th>
+								<th class="text-center"><small>Documentos</small></th>
 							</tr>
 						</thead>
 						<tbody>							
@@ -194,7 +195,15 @@ $(function(){
 									}
 									echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
 									echo "</td>";
-
+									echo "<td class='text-center'>";
+									//habilito boton para cargar la factura y el informe de mantenimiento si esta solcionado
+									if($lista['estado'] == 2){
+							?>
+								<a class="btn btn-success btn-xs" href="<?php echo base_url('ordentrabajo/documents_form_ot/' . $information[0]['id_orden_trabajo']); ?>">Cargar <i class='fa fa-upload fa-fw'></i>
+								</a>
+							<?php
+									}
+									echo "</td>";
 									echo "</tr>";
 							endforeach;
 						?>

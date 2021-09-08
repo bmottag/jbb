@@ -179,6 +179,16 @@ class Ordentrabajo extends CI_Controller {
 					{
 						//guardo regitro en la tabla auditoria de mantenimiento preventivo
 						$this->general_model->saveAuditoriaProximoMantenimientoPreventivo($data['idRecord']);
+
+						//actualizar campo de kilometraje actual en la tabla de equipos
+						$arrParam = array(
+							"table" => "equipos",
+							"primaryKey" => "id_equipo",
+							"id" => $this->input->post('hddIdEquipo'),
+							"column" => "horas_kilometros_actuales",
+							"value" => $this->input->post('kilometros_actuales')
+						);
+						$this->general_model->updateRecord($arrParam);
 					}
 				}
 
@@ -428,7 +438,65 @@ class Ordentrabajo extends CI_Controller {
 			$data["view"] = 'ordentrabajo';
 			$this->load->view("layout_calendar", $data);
 	}
-	
+
+	/**
+	 * Form Upload Documents 
+     * @since 31/8/2021
+     * @author BMOTTAG
+	 */
+	public function documents_form_ot($idOT, $error = '')
+	{			
+			$data['idOT'] = $idOT;
+			
+			$data['error'] = $error; //se usa para mostrar los errores al cargar la imagen 			
+
+			$data["view"] = "form_documentos";
+			$this->load->view("layout", $data);
+	}
+
+	/**
+	 * FUNCIÓN PARA SUBIR el archivo
+	 */
+    function do_upload_doc_OT() 
+	{
+        $idOT = $this->input->post("hddIdOT");
+        $tipo_documento = $this->input->post("tipo_documento");
+        $tipoTexto = "informe_mantenimiento";
+        if($tipo_documento == 1){
+        	$tipoTexto = "factura";
+        }
+ 
+		$config['upload_path'] = './files/OT/';
+        $config['overwrite'] = FALSE;
+        $config['allowed_types'] = 'pdf|xls|xlsx|xltx|doc|docx|gif|jpg|png|jpeg';
+        $config['max_size'] = '3000';
+        $config['max_width'] = '2024';
+        $config['max_height'] = '2008';
+        $config['file_name'] = $idOT . "_" . $tipoTexto;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload()) {
+        	//SI EL ARCHIVO FALLA AL SUBIR MOSTRAMOS EL ERROR EN LA VISTA 
+            $error = $this->upload->display_errors();
+            $this->documents_form_ot($idOT,$error);
+        }else{
+
+            $file_info = $this->upload->data();//subimos ARCHIVO
+			
+			$data = array('upload_data' => $this->upload->data());
+			$archivo = $file_info['file_name'];			
+
+			//insertar datos
+			if($idDocumento = $this->ordentrabajo_model->guardarDocumentoOT($archivo))
+			{
+				$this->session->set_flashdata('retornoExito', 'Se guardó la información.');
+			}else{
+				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+			}
+			redirect('ordentrabajo/ver_orden/' . $idOT);
+        }
+    }
 	
 	
 	

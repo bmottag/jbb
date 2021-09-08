@@ -10,12 +10,14 @@ $(document).ready(function () {
                 $('#costo_mantenimiento').val("");
                 $("#div_proximo_mantenimiento").css("display", "none");
                 $('#proximo_mantenimiento').val("");
+                $("#div_kilometros_actuales").css("display", "none");
                 //si el estado es SOLUCIONADO entonces habilito campo de cosoto del mantenimiento
 				if(estado==2){
 					$("#div_costo").css("display", "inline");
 					//si el estado es SOLUCIONADO y el timpo de mantenimineto es preventivo entonces habilito campo de proximo mantenimiento
 					if(tipoMantenimiento==2){
 						$("#div_proximo_mantenimiento").css("display", "inline");
+						$("#div_kilometros_actuales").css("display", "inline");
 					}
 				}
             }
@@ -40,6 +42,7 @@ $(document).ready(function () {
 		<input type="hidden" id="hddIdContratoMantenimiento" name="hddIdContratoMantenimiento" value="<?php echo $infoEquipo[0]['fk_id_contrato_mantenimiento']; ?>"/>
 		
 		<input type="hidden" id="hddValorContrato" name="hddValorContrato" value="<?php echo $infoEquipo[0]['valor_contrato']; ?>"/>
+		<input type="hidden" id="hddIdEquipo" name="hddIdEquipo" value="<?php echo $infoEquipo[0]['id_equipo']; ?>"/>
 
 		<?php
 			//si se va ausar el contrato entonces el valor maximo del mantenimiento deber ser el saldo del contrato
@@ -51,6 +54,7 @@ $(document).ready(function () {
 			//si es mantenimiento preventivo entonces coloco 
 			//el valor minimo del campo es igual a los kilometros actuales del equipo, mas la frecuencia del mantenimiento
 			$minKilometros = "";
+			$minKilometrosActuales = 'min=' . $infoEquipo[0]['horas_kilometros_actuales'];
 			if($infoOT[0]['tipo_mantenimiento'] == 2){
 				$minKilometros = $infoEquipo[0]['horas_kilometros_actuales'] + $infoPreventivo[0]['frecuencia'];
 				$minKilometros = 'min=' . $minKilometros;
@@ -79,9 +83,16 @@ $(document).ready(function () {
 		</div>
 
 		<div class="row">
+			<div class="col-sm-6" id="div_kilometros_actuales" style="display:none">
+				<div class="form-group text-left">
+					<label class="control-label" for="kilometros_actuales">Horas/Kilometros Actuales: *<br><br></label>
+					<input type="number" id="kilometros_actuales" name="kilometros_actuales" class="form-control" placeholder="Horas/Kilometros Actuales" value="<?php echo $infoEquipo[0]['horas_kilometros_actuales']; ?>" <?php echo $minKilometrosActuales; ?>  >
+				</div>
+			</div>
+
 			<div class="col-sm-6" id="div_proximo_mantenimiento" style="display:none">
 				<div class="form-group text-left">
-					<label class="control-label" for="proximo_mantenimiento">Próximo Mantenimiento (Horas/Kilometros): *</label>
+					<label class="control-label" for="proximo_mantenimiento">Próximo Mantenimiento *<br><small>(Horas/Kilometros):</small></label>
 					<input type="number" id="proximo_mantenimiento" name="proximo_mantenimiento" class="form-control" placeholder="Próximo Mantenimiento (Horas/Kilometros)" <?php echo $minKilometros; ?>  >
 				</div>
 			</div>

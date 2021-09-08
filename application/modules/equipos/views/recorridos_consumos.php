@@ -55,7 +55,7 @@ $(function(){
 								<th class="text-center">Fecha</th>
 								<th class="text-center">Valor X Galón</th>
 								<th class="text-center">No. Galones</th>
-								<th class="text-center">Kilometraje</th>
+								<th class="text-center">Horas o Kilometraje</th>
 								<th class="text-center">Valor Total</th>
 								<th class="text-center">Editar</th>
 							</tr>
@@ -66,11 +66,11 @@ $(function(){
 																
 									echo "<tr>";
 							
-									echo "<td >" . $lista['fecha_consumo'] . "</td>";
-									echo "<td class='text-right'>$ " . $lista['valor_x_galon_consumo'] . "</td>";
+									echo "<td class='text-center'>" . $lista['fecha_consumo'] . "</td>";
+									echo "<td class='text-right'>$ " . number_format($lista['valor_x_galon_consumo']) . "</td>";
 									echo "<td class='text-right'>" . $lista['numero_galones'] . "</td>";
-									echo "<td class='text-right'>" . $lista['kilometraje'] . "</td>";
-									echo "<td class='text-right'>$ " . $lista['valor_total_consumo'] . "</td>";
+									echo "<td class='text-right'>" . number_format($lista['kilometraje']) . "</td>";
+									echo "<td class='text-right'>$ " . number_format($lista['valor_total_consumo']) . "</td>";
 									echo "<td class='text-center'>";
 						?>
 									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo_recorrido_consumo']; ?>" >
@@ -95,21 +95,33 @@ $(function(){
 					<i class="fa fa-automobile"></i> <strong>INFORMACIÓN DEL EQUIPO</strong>
 				</div>
 				<div class="panel-body">
-				
-					<?php if($infoEquipo[0]["qr_code_img"]){ ?>
+			
+					<!-- IMAGEN DEL EQUIPO -->
+					<?php 
+					$imagen = FALSE;
+					if($fotosEquipos){ 
+						$imagen = base_url($fotosEquipos[0]["equipo_foto"]);
+					}elseif($infoEquipo[0]["qr_code_img"]){
+						$imagen = base_url($infoEquipo[0]["qr_code_img"]);
+					}
+					if($imagen){
+						?>
 						<div class="form-group">
 							<div class="row" align="center">
-								<img src="<?php echo base_url($infoEquipo[0]["qr_code_img"]); ?>" class="img-rounded" width="150" height="150" alt="QR CODE" />
+								<img src="<?php echo $imagen; ?>" class="img-rounded" width="150" height="150" alt="Imagen Equipo" />
 							</div>
 						</div>
 					<?php } ?>
-				
+					<!-- FIN IMAGEN DEL EQUIPO -->
 					<strong>No. Inventario: </strong><?php echo $infoEquipo[0]['numero_inventario']; ?><br>
 					<strong>Marca: </strong><?php echo $infoEquipo[0]['marca']; ?><br>
 					<strong>Modelo: </strong><?php echo $infoEquipo[0]['modelo']; ?><br>
 					<strong>No. Serial: </strong><?php echo $infoEquipo[0]['numero_serial']; ?>
-									
-					
+					<?php 
+					if($infoEquipo[0]['horas_kilometros_actuales']){ 
+						echo "<br><strong>Kilometos/Horas actuales: </strong>" . number_format($infoEquipo[0]['horas_kilometros_actuales']);
+					}
+					?>
 				</div>
 			</div>
 
@@ -123,10 +135,7 @@ $(function(){
 					<strong>Mes: </strong><?php echo $infoRecorridos[0]['mes']; ?><br>
 				</div>
 			</div>
-		</div>
-
-		
-					
+		</div>	
 	</div>
 	
 </div>
@@ -140,5 +149,3 @@ $(function(){
 	</div>
 </div>                       
 <!--FIN Modal -->
-
-

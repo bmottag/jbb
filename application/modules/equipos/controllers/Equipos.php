@@ -548,7 +548,7 @@ class Equipos extends CI_Controller {
 			//Lista de operadores activos
 			$arrParam = array(
 						"filtroState" => TRUE,
-						'idRole' => 5
+						'idRole' => 4
 						);
 			$data['listaOperadores'] = $this->general_model->get_user($arrParam);//workers list
 			
@@ -827,7 +827,7 @@ class Equipos extends CI_Controller {
 			//Lista de operadores activos
 			$arrParam = array(
 						"filtroState" => TRUE,
-						'idRole' => 5
+						'idRole' => 4
 						);
 			$data['listaOperadores'] = $this->general_model->get_user($arrParam);
 
@@ -896,9 +896,10 @@ class Equipos extends CI_Controller {
 
 			$arrParam = array("idEquipo" => $data['infoRecorridos'][0]['fk_id_equipo_r']);
 			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);
-			
-//pr($data['listadoControlConsumos']); exit;
 
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
+			
 			$data["view"] = 'recorridos_consumos';
 			$this->load->view("layout_calendar", $data);
 	}
