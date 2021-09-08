@@ -23,6 +23,7 @@ class Ordentrabajo extends CI_Controller {
 			//buscar informacion de la orden de trabajo
 			$arrParam = array("idOrdenTrabajo" => $idOrdenTrabajo);
 			$data['information'] = $this->general_model->get_orden_trabajo($arrParam);
+			$data['infoDocumentos'] = $this->general_model->get_documento_ot($arrParam);//busco documentos
 
 			//DESHABILITAR ORDEN DE TRABAJO
 			$data['deshabilitar'] = '';
@@ -447,9 +448,7 @@ class Ordentrabajo extends CI_Controller {
 	public function documents_form_ot($idOT, $error = '')
 	{			
 			$data['idOT'] = $idOT;
-			
 			$data['error'] = $error; //se usa para mostrar los errores al cargar la imagen 			
-
 			$data["view"] = "form_documentos";
 			$this->load->view("layout", $data);
 	}

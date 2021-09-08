@@ -727,5 +727,24 @@ class General_model extends CI_Model {
 			}
 	}
 
+		/**
+		 * Lista de Documentos por OT
+		 * @since 8/9/2021
+		 */
+		public function get_documento_ot($arrData) 
+		{		
+				$this->db->select();
+				if (array_key_exists("idOrdenTrabajo", $arrData)) {
+					$this->db->where('A.fk_id_orden_trabajo', $arrData["idOrdenTrabajo"]);
+				}
+				$this->db->order_by('A.id_ot_documento', 'desc');
+				$query = $this->db->get('orden_trabajo_documento A');
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
 
 }

@@ -198,6 +198,14 @@ $(function(){
 									echo "<td class='text-center'>";
 									//habilito boton para cargar la factura y el informe de mantenimiento si esta solcionado
 									if($lista['estado'] == 2){
+										if($infoDocumentos){
+											foreach ($infoDocumentos as $listaDoc):
+												$enlace = '../../files/OT/' . $listaDoc['url_documento'];
+												echo "<a href='$enlace' target='_blank'>" . $listaDoc['url_documento'] . "</a>";
+												echo "<br>";
+											endforeach;
+										}
+
 							?>
 								<a class="btn btn-success btn-xs" href="<?php echo base_url('ordentrabajo/documents_form_ot/' . $information[0]['id_orden_trabajo']); ?>">Cargar <i class='fa fa-upload fa-fw'></i>
 								</a>

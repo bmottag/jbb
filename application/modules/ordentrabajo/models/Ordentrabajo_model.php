@@ -194,34 +194,18 @@
 		 */
 		public function guardarDocumentoOT($archivo) 
 		{
-				$idDocumento = $this->input->post('hddidDocumento');
 				$idUser = $this->session->userdata("id");
 			
 				$data = array(
+					'fk_id_orden_trabajo' => $this->input->post('hddIdOT'),
 					'fk_id_tipo_documento' => $this->input->post('tipo_documento'),
-					'fk_id_equipo_d' => $this->input->post('hddIdEquipo'),
-					'fecha_inicio' => formatear_fecha($this->input->post('fecha_inicio')),
-					'fecha_vencimiento' => formatear_fecha($this->input->post('fecha_vencimiento')),
-					'numero_documento' => $this->input->post('numero_documento'),
-					'descripcion' => $this->input->post('descripcion')
+					'fk_id_user ' => $idUser,
+					'url_documento' => $archivo
 				);
+				$query = $this->db->insert('orden_trabajo_documento', $data);
 
-				if($archivo != 'xxx'){
-					$data['url_documento'] = $archivo;
-				}
-
-				//revisar si es para adicionar o editar
-				if ($idDocumento == '') 
-				{
-					$data['fk_id_user_d'] = $idUser;
-					$query = $this->db->insert('equipos_documento', $data);
-					$idDocumento = $this->db->insert_id();
-				} else {
-					$this->db->where('id_equipo_documento', $idDocumento);
-					$query = $this->db->update('equipos_documento', $data);
-				}
 				if ($query) {
-					return $idDocumento;
+					return true;
 				} else {
 					return false;
 				}
