@@ -114,18 +114,11 @@
 				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name, T.tipo_documento");
 				$this->db->join('usuarios U', 'U.id_user = A.fk_id_user_d', 'INNER');
 				$this->db->join('param_tipo_documento T', 'T.id_tipo_documento = A.fk_id_tipo_documento', 'INNER');		
-
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.fk_id_equipo_d', $arrData["idEquipo"]);
 				}
-				if (array_key_exists("idDocumento", $arrData)) {
-					$this->db->where('A.id_equipo_documento', $arrData["idDocumento"]);
-				}
-				
 				$this->db->order_by('A.id_equipo_documento', 'desc');
 				$query = $this->db->get('equipos_documento A');
-
-
 				if ($query->num_rows() > 0) {
 					return $query->result_array();
 				} else {

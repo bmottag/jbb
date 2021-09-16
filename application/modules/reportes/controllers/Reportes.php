@@ -90,12 +90,15 @@ class Reportes extends CI_Controller {
 			if($data['listadoLocalizacion']){
 				$html .= $this->load->view('reporte_localizacion', $data, true);
 			}
-			if($data['listadoDocumentos']){
-				//$html .= $this->load->view('reporte_documentos', $data, true);
-			}
-
 			// output the HTML content
 			$pdf->writeHTML($html, true, false, true, false, '');
+
+			if($data['listadoDocumentos']){
+				$pdf->AddPage();
+				$html = $this->load->view('reporte_documentos', $data, true);
+				// output the HTML content
+				$pdf->writeHTML($html, true, false, true, false, '');
+			}
 
 			if($data['listadoControlCombustible']){
 
