@@ -24,14 +24,11 @@ class Reportes extends CI_Controller {
 			$idEquipo = $this->input->post('idEquipo');
 			$arrParam = array('idEquipo' => $idEquipo);
 			$data['infoEquipo'] = $this->reportes_model->get_equipos_info($arrParam);
+
 			$data['listadoLocalizacion'] = $this->reportes_model->get_localizacion($arrParam);
 			$data['listadoControlCombustible'] = $this->reportes_model->get_control_combustible($arrParam);
-
-			$arrParam = array(
-				'idEquipo' => $idEquipo,
-				'to' => date('Y-m-d')
-			);
-			$data['listadoPolizas'] = $this->reportes_model->get_polizas($arrParam);
+			$data['listadoDocumentos'] = $this->reportes_model->get_documento($arrParam);
+			$data['fotosEquipos'] = $this->reportes_model->get_fotos_equipos($arrParam);
 
 			$consulta = $data['infoEquipo'][0]['formulario_especifico'];
 			$data['infoEspecifica'] = $this->reportes_model->$consulta($arrParam);
@@ -75,7 +72,7 @@ class Reportes extends CI_Controller {
 			// ---------------------------------------------------------
 
 			// set font
-			$pdf->SetFont('dejavusans', '', 8);
+			$pdf->SetFont('dejavusans', '', 7);
 
 			// writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
 			// writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
@@ -93,8 +90,8 @@ class Reportes extends CI_Controller {
 			if($data['listadoLocalizacion']){
 				$html .= $this->load->view('reporte_localizacion', $data, true);
 			}
-			if($data['listadoPolizas']){
-				$html .= $this->load->view('reporte_polizas', $data, true);
+			if($data['listadoDocumentos']){
+				//$html .= $this->load->view('reporte_documentos', $data, true);
 			}
 
 			// output the HTML content

@@ -1,6 +1,6 @@
 <?php
 // create some HTML content	
-$html = '<br><p><h1 align="center" style="color:#5ea431;">LOCALIZACIÓN</h1></p>';
+$html = '<br><p><h1 align="center" style="color:#3e403e;">LOCALIZACIÓN</h1></p>';
 $html .= '
 	<style>
 	table {
@@ -22,9 +22,9 @@ if($listadoLocalizacion)
 	foreach ($listadoLocalizacion as $lista):
 		$html.= '<br><br><table cellspacing="0" cellpadding="5">
 					<tr>
-						<th bgcolor="#86bd62" style="color:white;"><strong>Fecha Registro </strong></th>
-						<th bgcolor="#86bd62" style="color:white;"><strong>Localización </strong></th>
-						<th bgcolor="#86bd62" style="color:white;"><strong>Usuario </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Fecha Registro </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Localización </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Usuario </strong></th>
 					</tr>
 					<tr>
 						<th >' . strftime("%b %d, %G",strtotime($lista['fecha_localizacion'])) . '</th>

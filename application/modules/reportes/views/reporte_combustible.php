@@ -1,6 +1,6 @@
 <?php
 // create some HTML content	
-$html = '<br><p><h1 align="center" style="color:#5ea431;">SEGUIMIENTO DE OPERACIÓN DE EQUIPO</h1></p>';
+$html = '<br><p><h1 align="center" style="color:#3e403e;">SEGUIMIENTO DE OPERACIÓN DE EQUIPO</h1></p>';
 $html .= '
 	<style>
 	table {
@@ -40,21 +40,25 @@ if($listadoControlCombustible)
 	
 		$html.= '<br><br><table cellspacing="0" cellpadding="5">
 					<tr>
-						<th bgcolor="#86bd62" style="color:white;"><strong>Fecha Registro </strong></th>
-						<th bgcolor="#86bd62" style="color:white;"><strong>Horas o Kilometros </strong></th>
-						<th bgcolor="#86bd62" style="color:white;"><strong>Tipo Consumo </strong></th>
-						<th bgcolor="#86bd62" style="color:white;"><strong>Cantidad (Galones) </strong></th>
-						<th bgcolor="#86bd62" style="color:white;"><strong>Valor </strong></th>
-						<th bgcolor="#86bd62" style="color:white;"><strong>Operador </strong></th>
-						<th bgcolor="#86bd62" style="color:white;"><strong>Labor Realizada </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Fecha Registro </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Horas o Kilometros </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Operador </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Tipo Consumo </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Cantidad (Galones) </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Lugar </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Valor X Galón </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Labor Realizada </strong></th>
+						<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Valor Total </strong></th>
 					</tr>
 					<tr>
 						<th >' . strftime("%b %d, %G",strtotime($lista['fecha_combustible'])) . '</th>
 						<th >' . $lista['kilometros_actuales']. '</th>
+						<th >' . $lista['name']. '</th>
 						<th >' . $valor. '</th>
 						<th >' . $lista['cantidad']. '</th>
-						<th >$' . number_format($lista['valor'], 2) . '</th>
-						<th >' . $lista['name']. '</th>
+						<th >' . $lista['lugar']. '</th>
+						<th >$' . number_format($lista['valor_x_galon'], 2) . '</th>
+						<th >$' . number_format($lista['valor_total'], 2) . '</th>
 						<th >' . $lista['labor_realizada']. '</th>
 					</tr>
 				</table>';
