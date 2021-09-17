@@ -178,7 +178,154 @@
 					return false;
 				}
 		}
+
+		/**
+		 * Consulta orden de trabajo
+		 * @since 27/1/2021
+		 */
+		public function get_orden_trabajo($arrData)
+		{
+				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name, CONCAT(X.first_name, ' ', X.last_name) encargado, E.numero_inventario, T.tipo_equipo");
+				$this->db->join('usuarios U', 'U.id_user = C.fk_id_user_orden', 'INNER');
+				$this->db->join('usuarios X', 'X.id_user = C.fk_id_user_encargado', 'INNER');
+				$this->db->join('equipos E', 'E.id_equipo = C.fk_id_equipo_ot ', 'INNER');
+				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = E.fk_id_tipo_equipo', 'INNER');
+				if (array_key_exists("idOrdenTrabajo", $arrData) && $arrData["idOrdenTrabajo"] != '') {
+					$this->db->where('C.id_orden_trabajo ', $arrData["idOrdenTrabajo"]);
+				}
+				if (array_key_exists("idMantenimiento", $arrData) && array_key_exists("tipoMantenimiento", $arrData)) {
+					$this->db->where('C.fk_id_mantenimiento', $arrData["idMantenimiento"]);
+				}
+				if (array_key_exists("tipoMantenimiento", $arrData)) {
+					$this->db->where('C.tipo_mantenimiento ', $arrData["tipoMantenimiento"]);
+				}
+				if (array_key_exists("idEquipo", $arrData) && $arrData["idEquipo"] != '') {
+					$this->db->where('C.fk_id_equipo_ot', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idTipoEquipo", $arrData) && $arrData["idTipoEquipo"] != '') {
+					$this->db->where('E.fk_id_tipo_equipo', $arrData["idTipoEquipo"]);
+				}
+				if (array_key_exists("estado", $arrData) && $arrData["estado"] != '') {
+					$this->db->where('C.estado_actual', $arrData["estado"]);
+				}
+				if (array_key_exists("from", $arrData) && $arrData["from"] != '') {
+					$this->db->where('C.fecha_asignacion >=', $arrData["from"]);
+				}				
+				if (array_key_exists("to", $arrData) && $arrData["to"] != '' && $arrData["from"] != '') {
+					$this->db->where('C.fecha_asignacion <=', $arrData["to"]);
+				}
+
+				$this->db->order_by('C.id_orden_trabajo', 'desc');
+				$query = $this->db->get('orden_trabajo C');
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Lista de Documentos por OT
+		 * @since 8/9/2021
+		 */
+		public function get_documento_ot($arrData) 
+		{		
+				$this->db->select();
+				if (array_key_exists("idOrdenTrabajo", $arrData)) {
+					$this->db->where('A.fk_id_orden_trabajo', $arrData["idOrdenTrabajo"]);
+				}
+				$this->db->order_by('A.id_ot_documento', 'desc');
+				$query = $this->db->get('orden_trabajo_documento A');
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
 		
+		/**
+		 * Consulta estado orden de trabajo
+		 * @since 29/1/2021
+		 */
+		public function get_estado_orden_trabajo($arrData)
+		{
+				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name");
+				$this->db->join('usuarios U', 'U.id_user = C.fk_id_user_ote', 'INNER');
+				if (array_key_exists("idOrdenTrabajoEstado", $arrData)) {
+					$this->db->where('C.id_orden_trabajo_estado', $arrData["idOrdenTrabajoEstado"]);
+				}
+				if (array_key_exists("idOrdenTrabajo", $arrData)) {
+					$this->db->where('C.fk_id_orden_trabajo_estado', $arrData["idOrdenTrabajo"]);
+				}
+
+				$this->db->order_by('C.id_orden_trabajo_estado', 'desc');
+				$query = $this->db->get('orden_trabajo_estado C');
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Consulta lista de mantenimientos correctivo por equipo
+		 * @since 26/1/2021
+		 */
+		public function get_mantenimiento_correctivo($arrData)
+		{
+				$this->db->select("C.*, CONCAT(U.first_name, ' ', U.last_name) name, E.numero_inventario, T.tipo_equipo");
+				$this->db->join('usuarios U', 'C.fk_id_user_correctivo = U.id_user', 'INNER');
+				$this->db->join('equipos E', 'E.id_equipo = C.fk_id_equipo_correctivo', 'INNER');
+				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = E.fk_id_tipo_equipo', 'INNER');
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('C.fk_id_equipo_correctivo', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idMantenimiento", $arrData)) {
+					$this->db->where('C.id_correctivo', $arrData["idMantenimiento"]);
+				}
+				if (array_key_exists("idUser", $arrData)) {
+					$this->db->where('C.fk_id_user_correctivo', $arrData["idUser"]);
+				}
+				if (array_key_exists("filtroFecha", $arrData)) {
+					$this->db->where('C.fecha >=', $arrData["filtroFecha"]);
+				}
+				if (array_key_exists("estadoMantenimiento", $arrData)) {
+					$this->db->where('C.estado', $arrData["estadoMantenimiento"]);
+				}
+				$this->db->order_by('C.id_correctivo', 'desc');
+				$query = $this->db->get('mantenimiento_correctivo C');
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
+	/**
+	 * Consulta lista de mantenimientos preventivos para un equipo
+	 * @since 24/8/2021
+	 */
+	public function get_mantenimiento_preventivo_equipo($arrData)
+	{
+			$this->db->select("M.*, P.*, T.tipo_equipo, CONCAT(U.first_name, ' ', U.last_name) name");
+			$this->db->join('mantenimiento_preventivo_plantilla P', 'P.id_preventivo_plantilla  = M.fk_id_preventivo_plantilla', 'INNER');
+			$this->db->join('usuarios U', 'P.fk_id_user_mpp = U.id_user', 'INNER');
+			$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = P.fk_id_tipo_equipo_mpp', 'INNER');
+			if (array_key_exists("idMantenimiento", $arrData)) {
+				$this->db->where('M.id_preventivo_equipo', $arrData["idMantenimiento"]);
+			}
+			if (array_key_exists("idEquipo", $arrData)) {
+				$this->db->where('M.fk_id_equipo_mpe', $arrData["idEquipo"]);
+			}
+			$this->db->order_by('P.descripcion', 'asc');
+
+			$query = $this->db->get('mantenimiento_preventivo_equipo M');
+			if ($query->num_rows() > 0) {
+				return $query->result_array();
+			} else {
+				return false;
+			}
+	}
 		
 	    
 	}

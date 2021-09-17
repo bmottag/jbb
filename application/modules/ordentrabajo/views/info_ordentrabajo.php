@@ -27,6 +27,12 @@ $(function(){
 			<div class="panel panel-violeta">
 				<div class="panel-heading">
 					<i class="fa fa-briefcase"></i> <strong>ORDEN DE TRABAJO</strong>
+					<div class="pull-right">
+						<div class="btn-group">
+							<a class="btn btn-violeta btn-xs" href="<?php echo base_url('reportes/reporteOT/' . $information[0]['id_orden_trabajo']); ?>" target="_blank">Descargar informe OT <i class='fa fa-upload fa-fw'></i>
+							</a>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">
 
