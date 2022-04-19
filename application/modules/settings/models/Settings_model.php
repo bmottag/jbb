@@ -34,6 +34,7 @@
 				$data = array(
 					'first_name' => $this->input->post('firstName'),
 					'last_name' => $this->input->post('lastName'),
+					'numero_cedula' => $this->input->post('numeroCelular'),
 					'log_user' => $this->input->post('user'),
 					'movil' => $this->input->post('movilNumber'),
 					'email' => $this->input->post('email'),

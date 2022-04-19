@@ -92,11 +92,12 @@ $(function(){
 			</div>';
 	}else{
 ?>
-					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+					<table width="100%" class="table table-striped table-bordered table-hover small" id="dataTables">
 						<thead>
 							<tr>
 								<th class="text-center">Nombre</th>
 								<th class="text-center">Apellido</th>
+								<th class="text-center">No. Cédula</th>
 								<th class="text-center">Usuario</th>
 								<th class="text-center">Dependencia</th>
 								<th class="text-center">Celular</th>
@@ -117,6 +118,7 @@ $(function(){
 									echo "<tr>";
 									echo "<td>" . $lista['first_name'] . "</td>";
 									echo "<td>" . $lista['last_name'] . "</td>";
+									echo "<td class='text-right'>" . $lista['numero_cedula'] . "</td>";
 									echo "<td class='text-center'>" . $lista['log_user'] . "</td>";
 									echo "<td>" . $lista['dependencia'] . "</td>";
 $movil = $lista["movil"];

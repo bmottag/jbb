@@ -3,11 +3,13 @@ $( document ).ready( function () {
 	$("#firstName").bloquearNumeros().maxlength(25);
 	$("#lastName").bloquearNumeros().maxlength(25);		
 	$("#movilNumber").bloquearTexto().maxlength(10);
+	$("#numeroCelular").bloquearTexto().maxlength(12);
 	
 	$( "#form" ).validate( {
 		rules: {
 			firstName: 			{ required: true, minlength: 3, maxlength:25 },
 			lastName: 			{ required: true, minlength: 3, maxlength:25 },
+			numeroCelular: 		{ required: true },
 			user: 				{ required: true, minlength: 4, maxlength:15 },
 			email: 				{ required: true, email: true },
 			movilNumber: 		{ required: true },

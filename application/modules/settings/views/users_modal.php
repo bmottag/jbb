@@ -30,20 +30,27 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
+					<label class="control-label" for="numeroCelular">Número Cédula: *</label>
+					<input type="text" id="numeroCelular" name="numeroCelular" class="form-control" value="<?php echo $information?$information[0]["numero_cedula"]:""; ?>" placeholder="Número Cédula" required >
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="form-group text-left">
 					<label class="control-label" for="user">Nombre Usuario: *</label>
 					<input type="text" id="user" name="user" class="form-control" value="<?php echo $information?$information[0]["log_user"]:""; ?>" placeholder="Nombre Usuario" required >
 				</div>
 			</div>
-			
+		</div>
+				
+		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="email">Correo: *</label>
 					<input type="text" class="form-control" id="email" name="email" value="<?php echo $information?$information[0]["email"]:""; ?>" placeholder="Correo" />
 				</div>
 			</div>
-		</div>
-				
-		<div class="row">
+
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
 					<label class="control-label" for="idDependencia">Dependencia: *</label>
@@ -55,7 +62,9 @@
 					</select>
 				</div>
 			</div>
-				
+		</div>
+
+		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="id_role">Rol Usuario: *</label>					
@@ -67,17 +76,17 @@
 					</select>
 				</div>
 			</div>
-		</div>
 
-		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="movilNumber">Número Celular: *</label>
 					<input type="text" id="movilNumber" name="movilNumber" class="form-control" value="<?php echo $information?$information[0]["movil"]:""; ?>" placeholder="Número Celular" required >
 				</div>
 			</div>
-			
+		</div>
+
 	<?php if($information){ ?>
+		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
 					<label class="control-label" for="state">Estado: *</label>
@@ -88,9 +97,8 @@
 					</select>
 				</div>
 			</div>
-	<?php } ?>
-		
 		</div>
+	<?php } ?>
 		
 		<div class="form-group">
 			<div id="div_load" style="display:none">		
