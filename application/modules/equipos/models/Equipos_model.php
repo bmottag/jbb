@@ -574,7 +574,7 @@
 		 */
 		public function get_documentos_historial($arrData)
 		{
-				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name, t.tipo_documento");
+				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name, T.tipo_documento");
 				$this->db->join('usuarios U', 'U.id_user = A.fk_id_usuario', 'INNER');
 				$this->db->join('param_tipo_documento T', 'T.id_tipo_documento = A.fk_id_tipo_documento', 'INNER');	
 				if (array_key_exists("idDocumento", $arrData)) {
