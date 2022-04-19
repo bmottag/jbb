@@ -126,6 +126,7 @@ $(function(){
 						<thead>
 							<tr>
 								<th class="text-center"><small>No. Inventario Entidad</small></th>
+								<th class="text-center"><small>Placa</small></th>
 								<th class="text-center"><small>Dependencia</small></th>
 								<th class="text-center"><small>Marca</small></th>
 								<th class="text-center"><small>Modelo</small></th>
@@ -153,7 +154,7 @@ $(function(){
 						<?php
 									}
 									echo "</td>";
-
+									echo "<td class='text-center'><small>" . $lista['placa'] . "</small></td>";
 									echo "<td class='text-center'><small>" . $lista['dependencia'] . "</small></td>";
 									echo "<td><small>" . $lista['marca'] . "</small></td>";
 									echo "<td><small>" . $lista['modelo'] . "</small></td>";
