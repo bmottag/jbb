@@ -55,13 +55,12 @@ if($information){
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
 					<label class="control-label" for="tipo_documento">Tipo Documento: *</label>
-					<select name="tipo_documento" id="tipo_documento" class="form-control" required>
-						<option value=''>Seleccione...</option>
-						<option value=1 <?php if($information && $information[0]["tipo_documento"] == 1) { echo "selected"; }  ?>>Impuesto de Semaforización </option>
-						<option value=2 <?php if($information && $information[0]["tipo_documento"] == 2) { echo "selected"; }  ?>>Póliza</option>
-						<option value=3 <?php if($information && $information[0]["tipo_documento"] == 3) { echo "selected"; }  ?>>SOAT</option>
-						<option value=4 <?php if($information && $information[0]["tipo_documento"] == 4) { echo "selected"; }  ?>>Tecno mecánica</option>
-					</select>
+						<select name="tipo_documento" id="tipo_documento" class="form-control" required>
+							<option value="">Seleccione...</option>
+							<?php for ($i = 0; $i < count($tiposDocumento); $i++) { ?>
+								<option value="<?php echo $tiposDocumento[$i]["id_tipo_documento"]; ?>" <?php if($information && $information[0]["fk_id_tipo_documento"] == $tiposDocumento[$i]["id_tipo_documento"]) { echo "selected"; }  ?>><?php echo $tiposDocumento[$i]["tipo_documento"]; ?></option>	
+							<?php } ?>
+						</select>
 				</div>
 			</div>
 

@@ -639,7 +639,8 @@ class Equipos extends CI_Controller {
 			$data['information'] = FALSE;
 			$data["idEquipo"] = $this->input->post("idEquipo");
 			$data["idDocumento"] = $this->input->post("idDocumento");
-			
+			$data['tiposDocumento'] = $this->general_model->get_tipo_documento();
+
 			if ($data["idDocumento"] != 'x') 
 			{
 				$arrParam = array(
@@ -985,7 +986,7 @@ class Equipos extends CI_Controller {
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
 
-			$data['tiposDocumento'] = $this->general_model->get_tipo_documento($arrParam);
+			$data['tiposDocumento'] = $this->general_model->get_tipo_documento();
 
 			$data['information'] = FALSE;
 
