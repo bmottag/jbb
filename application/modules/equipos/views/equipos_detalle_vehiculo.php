@@ -74,7 +74,7 @@
 <?php if($info[0]['fk_id_tipo_equipo'] == 1){ ?>						
 						<div class="form-group">
 							<div class="col-sm-6">
-								<label for="from">Clase Vehículo: </label>
+								<label for="from">Tipo Vehículo: </label>
 								<select name="id_clase_vechiculo" id="id_clase_vechiculo" class="form-control" <?php echo $deshabilitar; ?>>
 									<option value="">Seleccione...</option>
 									<?php 									
@@ -98,12 +98,12 @@
 						
 						<div class="form-group">
 							<div class="col-sm-6">
-								<label for="capacidad">Capacidad: </label>
+								<label for="capacidad">Capacidad - Peso(kg): </label>
 								<input type="text" id="capacidad" name="capacidad" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["capacidad"]:""; ?>" placeholder="Capacidad"  <?php echo $deshabilitar; ?>>
 							</div>
 
 							<div class="col-sm-6">
-								<label for="servicio">Servicio: </label>
+								<label for="servicio">Clase: </label>
 								<input type="text" id="servicio" name="servicio" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["servicio"]:""; ?>" placeholder="Servicio"  <?php echo $deshabilitar; ?>>
 							</div>						
 						</div>

@@ -688,7 +688,7 @@ class Equipos extends CI_Controller {
      * @since 20/3/2021
      * @author BMOTTAG
 	 */
-	public function diagnostico($idEquipo)
+	public function revision($idEquipo)
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
@@ -705,10 +705,10 @@ class Equipos extends CI_Controller {
 				$data['deshabilitar'] = 'disabled';
 			}
 			
-			$data['listadoDiagnostico'] = $this->equipos_model->get_diagnostico($arrParam);
+			$data['listadoRevision'] = $this->equipos_model->get_diagnostico($arrParam);
 						
 			$data["activarBTN10"] = true;//para activar el boton
-			$data["view"] = 'equipos_diagnostico';
+			$data["view"] = 'equipos_revision';
 			$this->load->view("layout_calendar", $data);
 	}
 
@@ -1072,6 +1072,35 @@ class Equipos extends CI_Controller {
 			$data['infoContratosHistorial'] = $this->equipos_model->get_contratos_historial($arrParam);
 
 			$data['view'] = 'contratos_mantenimiento_historial';
+			$this->load->view("layout_calendar", $data);
+	}
+
+	/**
+	 * Listado de diagnosticos
+     * @since 20/3/2021
+     * @author BMOTTAG
+	 */
+	public function encuesta($idEquipo)
+	{
+			$arrParam = array("idEquipo" => $idEquipo);
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
+
+			//DESHABILITAR
+			$data['deshabilitar'] = '';
+			$userRol = $this->session->role;
+			//si el rol es: Usuario Consulta; Encargado; Operador - Conductor
+			if($userRol == 2 || $userRol == 3 || $userRol == 5)
+			{
+				$data['deshabilitar'] = 'disabled';
+			}
+			
+			$data['listadoRevision'] = $this->equipos_model->get_diagnostico($arrParam);
+						
+			$data["activarBTN11"] = true;//para activar el boton
+			$data["view"] = 'equipos_encuesta';
 			$this->load->view("layout_calendar", $data);
 	}
 	

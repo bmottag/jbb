@@ -11,12 +11,12 @@
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-book"></i> <strong>DIAGNÓSTICO PERIÓDICO DEL EQUIPO</strong>
+					<i class="fa fa-book"></i> <strong>ENCUESTA DE SATISFACCIÓN</strong>
 					<?php if(!$deshabilitar){ ?>
 					<div class="pull-right">
 						<div class="btn-group">
-							<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs">
-									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Diagnóstico Periódico
+							<a href="<?php echo base_url('inspection/add_encuesta/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Encuesta
 							</a>
 						</div>
 					</div>
@@ -46,7 +46,7 @@
 ?> 
 
 <?php 										
-	if(!$listadoDiagnostico){ 
+	if(!$listadoRevision){ 
 		echo '<div class="col-lg-12">
 				<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> No hay registros en el sistema.</p>
 			</div>';
@@ -56,19 +56,18 @@
 						<thead>
 							<tr>
 								<th class="text-center">Fecha Registro</th>
-								<th class="text-center">Responsable</th>
-								<th class="text-center">Horas o Kilometros actuales</th>
-								<th class="text-center">Comentarios</th>
+								<th class="text-center">Conductor</th>
+								<th class="text-center">Recorrido</th>
 							</tr>
 						</thead>
 						<tbody>							
 						<?php
-							foreach ($listadoDiagnostico as $lista):
+							foreach ($listadoRevision as $lista):
 									echo "<tr>";
 									echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_registro'])) . "</td>";
 									echo "<td class='text-center'>" . $lista['name'] . "</td>";
-									echo "<td class='text-right'>" . $lista['horas_actuales_vehiculo'] . "</td>";
-									echo "<td>" . $lista['comments'] . "</td>";
+									echo "<td class='text-center'></td>";
+
 									echo "</tr>";
 							endforeach;
 						?>

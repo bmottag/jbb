@@ -42,7 +42,7 @@
 			<i class="fa fa-tags"></i> Información Específica
 		</a>
 		<a href="<?php echo base_url('equipos/foto/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN3)?$classActivo:$classInactivo; ?>">
-			<i class="fa fa-photo"></i> Foto Equipo
+			<i class="fa fa-photo"></i> Registro Fotográfico
 		</a>
 		<a href="<?php echo base_url('equipos/localizacion/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN4)?$classActivo:$classInactivo; ?>">
 			<i class="fa fa-thumb-tack"></i> Localización
@@ -62,8 +62,11 @@
 		<a href="<?php echo base_url('ordentrabajo/listar_ot/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN9)?$classActivo:$classInactivo; ?>">
 			<i class="fa fa-briefcase"></i> Ordenes de Trabajo
 		</a>
-		<a href="<?php echo base_url('equipos/diagnostico/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN10)?$classActivo:$classInactivo; ?>">
-			<i class="fa fa-tasks"></i> Diagnóstico Periódico
+		<a href="<?php echo base_url('equipos/revision/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN10)?$classActivo:$classInactivo; ?>">
+			<i class="fa fa-tasks"></i> Inspección Cotidiana
+		</a>
+		<a href="<?php echo base_url('equipos/encuesta/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN11)?$classActivo:$classInactivo; ?>">
+			<i class="fa fa-tasks"></i> Encuesta de Satisfcción
 		</a>
 	</div>
 </div>

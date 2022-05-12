@@ -18,7 +18,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<i class="fa fa-tasks"></i><strong> INSPECCIÓN COTIDIANA</strong>
+					<i class="fa fa-tasks"></i><strong> ENCUESTA DE SATISFACCIÓN CONDUCTORES</strong>
 				</div>
 				<div class="panel-body">
 
@@ -48,8 +48,7 @@
 					<div class="col-lg-12">
 						<div class="alert alert-info ">
 							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-				DE ACUERDO CON LA RESOLUCIÓN 1565 DE 2014, Y COMO COMPLEMENTO CON EL PLAN DE MANTENIMIENTO 
-				PREVENTIVO SE REALIZARÁ DIARIAMENTE ANTES DE PONER EL VEHÍCULO EN MARCHA, EL SIGUIENTE FORMATO DE INSPECCIÓN DIARIA, EN EL CUAL SE REVISARÁN LOS ELEMENTOS DE SEGURIDAD ACTIVA Y PASIVA. ESTE ES DILIGENCIADO POR EL CONDUCTOR DEL VEHÍCULO. 
+				Esta encuesta se realiza con el fin de conocer la percepción de los usuarios frente a la conducción y el cumplimiento de las regulaciones por parte de los conductores de los vehículos de la Entidad. 
 						</div>
 					</div>
 					<div class="col-lg-4">
@@ -90,30 +89,8 @@
 				<div class="row">
 					<div class="col-lg-4">
 						<div class="form-group">									
-							<label class="control-label" for="activo">¿El vehículo se encuentra activo? <small class="text-primary"> </small></label>
-							<select name="activo" id="activo" class="form-control" required>
-								<option value=''>Seleccione...</option>
-								<option value=1 <?php if($information && $information[0]["activo"] == 1) { echo "selected"; }  ?>>Activo</option>
-								<option value=2 <?php if($information && $information[0]["activo"] == 2) { echo "selected"; }  ?>>Inactivo</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="form-group" id="div_razon" style="display:none">						
-							<label class="control-label" for="razon">Razón por la cual no se encuentra en movimiento <small class="text-primary"> </small></label>
-							<select name="razon" id="razon" class="form-control">
-								<option value=''>Seleccione...</option>
-								<option value=1 <?php if($information && $information[0]["razon_inactivo"] == 1) { echo "selected"; }  ?>>Mantenimiento Preventivo</option>
-								<option value=2 <?php if($information && $information[0]["razon_inactivo"] == 2) { echo "selected"; }  ?>>Mantenimiento Correctivo</option>
-								<option value=3 <?php if($information && $information[0]["razon_inactivo"] == 1) { echo "selected"; }  ?>>No se requiere su servicio</option>
-								<option value=4 <?php if($information && $information[0]["razon_inactivo"] == 2) { echo "selected"; }  ?>>Otro</option>
-							</select>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="form-group" id="div_cual" style="display:none">									
-							<label class="control-label" for="cual">¿Cual?<small class="text-primary"> </small></label>
-							<input type="text" id="cual" name="cual" class="form-control" value="<?php if($information){ echo $information[0]["razon_cual"]; }?>" placeholder="¿Cual?" >
+							<label class="control-label" for="cual">Recorrido<small class="text-primary"> </small></label>
+							<input type="text" id="cual" name="cual" class="form-control" value="<?php if($information){ echo $information[0]["razon_cual"]; }?>" placeholder="Recorrido" required>
 						</div>
 					</div>
 				</div>
@@ -194,44 +171,30 @@ if($information)
 	</div>
 	<!-- /.row -->
 	
-	<div class="row" id="div_kilometros" style="display:none">
+	
+	<div class="row" id="div_second_box">
 		<div class="col-lg-12">				
 			<div class="panel panel-primary">
-				<div class="panel-heading">					
-					KILOMETRAJE DEL VEHÍCULO
-				</div>
-				<div class="panel-body">
-					<div class="form-group">									
-						<label class="col-sm-4 control-label" for="hours">Horas o Kilometros actuales <small class="text-primary"> </small></label>
-						<div class="col-sm-5">
-							<input type="number" min="0" id="hours" name="hours" class="form-control" value="<?php if($information){ echo $information[0]["horas_actuales_vehiculo"]; }?>" placeholder="Horas o Kilometros actuales" >
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="row" id="div_second_box" style="display:none">
-		<div class="col-lg-6">				
-			<div class="panel panel-primary">
 				<div class="panel-heading">
-					VERIFICAR LOS SIGUIENTES DOCUMENTOS <small>(Revisar la vigencia)</small>
+					En las siguientes preguntas le pedimos valorar al conductor. Puntúe de 1 a 4 donde 1 es completamente insatisfecho y 4 es completamente satisfecho. 
 				</div>
 				<div class="panel-body">
 
 					<div class="row">
 						<div class="form-group">
-							<label class="col-sm-5 control-label" for="licencia">Licencia de conducción</label>
+							<label class="col-sm-5 control-label" for="licencia">Amabilidad y Respeto del Conductor</label>
 							<div class="col-sm-7">
 								<label class="radio-inline">
-									<input type="radio" name="licencia" id="licencia1" value=0 <?php if($information && $information[0]["licencia"] == 0) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Cumple
+									<input type="radio" name="licencia" id="licencia1" value=0 <?php if($information && $information[0]["licencia"] == 0) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Insatisfecho
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="licencia" id="licencia2" value=1 <?php if($information && $information[0]["licencia"] == 1) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >No Cumple
+									<input type="radio" name="licencia" id="licencia2" value=1 <?php if($information && $information[0]["licencia"] == 1) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Poco Satisfecho
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="licencia" id="licencia3" value=99 <?php if($information && $information[0]["licencia"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >N/A
+									<input type="radio" name="licencia" id="licencia3" value=99 <?php if($information && $information[0]["licencia"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Muy Satisfecho
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="licencia" id="licencia3" value=99 <?php if($information && $information[0]["licencia"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Completamente Satisfecho
 								</label>
 							</div>
 						</div>
@@ -239,54 +202,29 @@ if($information)
 
 					<div class="row">
 						<div class="form-group">
-							<label class="col-sm-5 control-label" for="soat">SOAT</label>
+							<label class="col-sm-5 control-label" for="licencia">Presentación Personal del Conductor</label>
 							<div class="col-sm-7">
 								<label class="radio-inline">
-									<input type="radio" name="soat" id="soat1" value=0 <?php if($information && $information[0]["soat"] == 0) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Cumple
+									<input type="radio" name="licencia" id="licencia1" value=0 <?php if($information && $information[0]["licencia"] == 0) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Insatisfecho
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="soat" id="soat2" value=1 <?php if($information && $information[0]["soat"] == 1) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >No Cumple
+									<input type="radio" name="licencia" id="licencia2" value=1 <?php if($information && $information[0]["licencia"] == 1) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Poco Satisfecho
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="soat" id="soat3" value=99 <?php if($information && $information[0]["soat"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >N/A
+									<input type="radio" name="licencia" id="licencia3" value=99 <?php if($information && $information[0]["licencia"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Muy Satisfecho
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="licencia" id="licencia3" value=99 <?php if($information && $information[0]["licencia"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Completamente Satisfecho
 								</label>
 							</div>
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="form-group">
-							<label class="col-sm-5 control-label" for="tarjeta_propiedad">Tarjeta de propiedad</label>
-							<div class="col-sm-7">
-								<label class="radio-inline">
-									<input type="radio" name="tarjeta_propiedad" id="tarjeta_propiedad1" value=0 <?php if($information && $information[0]["tarjeta_propiedad"] == 0) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Cumple
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="tarjeta_propiedad" id="tarjeta_propiedad2" value=1 <?php if($information && $information[0]["tarjeta_propiedad"] == 1) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >No Cumple
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="tarjeta_propiedad" id="tarjeta_propiedad3" value=99 <?php if($information && $information[0]["tarjeta_propiedad"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >N/A
-								</label>
-							</div>
-						</div>
-					</div>
 
-					<div class="row">
-						<div class="form-group">
-							<label class="col-sm-5 control-label" for="seguro">Seguro de daños a terceros</label>
-							<div class="col-sm-7">
-								<label class="radio-inline">
-									<input type="radio" name="seguro" id="seguro1" value=0 <?php if($information && $information[0]["seguro"] == 0) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Cumple
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="seguro" id="seguro2" value=1 <?php if($information && $information[0]["seguro"] == 1) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >No Cumple
-								</label>
-								<label class="radio-inline">
-									<input type="radio" name="seguro" id="seguro3" value=99 <?php if($information && $information[0]["seguro"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >N/A
-								</label>
-							</div>
-						</div>
-					</div>
+
+
+
+
 					<hr>
 					<div class="row">
 	                    <div class="form-group">
@@ -295,39 +233,41 @@ if($information)
 	                        </div>
 	                    </div>
 	                </div>
-					<hr>
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label class="control-label" for="observacion_documentos">Observaciones</label>
-								<textarea id="observacion_documentos" name="observacion_documentos" placeholder="Observación" class="form-control" rows="3" ></textarea>
-							</div>
-						</div>
-					</div>
 
 				</div>
 			</div>
 		</div>
 
-		<div class="col-lg-6">				
+	</div>
+
+
+
+
+
+
+	<div class="row" id="div_second_box">
+		<div class="col-lg-12">				
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					DIRECCIONALES  <small>(Funcionamiento adecuado)</small>
+					En las siguientes preguntas le pedimos valorar al conductor. Puntúe de 1 a 4 donde 1 es completamente insatisfecho y 4 es completamente satisfecho. 
 				</div>
 				<div class="panel-body">
 
 					<div class="row">
 						<div class="form-group">
-							<label class="col-sm-5 control-label" for="dir_delanteras">Direccionales delanteras</label>
+							<label class="col-sm-5 control-label" for="licencia">Limpieza del Vehículo</label>
 							<div class="col-sm-7">
 								<label class="radio-inline">
-									<input type="radio" name="dir_delanteras" id="dir_delanteras1" value=0 <?php if($information && $information[0]["dir_delanteras"] == 0) { echo "checked"; }  ?> onclick="valid_cuadro_2()" >Cumple
+									<input type="radio" name="licencia" id="licencia1" value=0 <?php if($information && $information[0]["licencia"] == 0) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Insatisfecho
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="dir_delanteras" id="dir_delanteras2" value=1 <?php if($information && $information[0]["dir_delanteras"] == 1) { echo "checked"; }  ?> onclick="valid_cuadro_2()" >No Cumple
+									<input type="radio" name="licencia" id="licencia2" value=1 <?php if($information && $information[0]["licencia"] == 1) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Poco Satisfecho
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="dir_delanteras" id="dir_delanteras3" value=99 <?php if($information && $information[0]["dir_delanteras"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_2()" >N/A
+									<input type="radio" name="licencia" id="licencia3" value=99 <?php if($information && $information[0]["licencia"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Muy Satisfecho
+								</label>
+								<label class="radio-inline">
+									<input type="radio" name="licencia" id="licencia3" value=99 <?php if($information && $information[0]["licencia"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Completamente Satisfecho
 								</label>
 							</div>
 						</div>
@@ -335,42 +275,174 @@ if($information)
 
 					<div class="row">
 						<div class="form-group">
-							<label class="col-sm-5 control-label" for="dir_traseras">Direccionales traseras</label>
+							<label class="col-sm-5 control-label" for="licencia">Calidad del servicio en modo, tiempo y lugar</label>
 							<div class="col-sm-7">
 								<label class="radio-inline">
-									<input type="radio" name="dir_traseras" id="dir_traseras1" value=0 <?php if($information && $information[0]["dir_traseras"] == 0) { echo "checked"; }  ?> onclick="valid_cuadro_2()" >Cumple
+									<input type="radio" name="licencia" id="licencia1" value=0 <?php if($information && $information[0]["licencia"] == 0) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Insatisfecho
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="dir_traseras" id="dir_traseras2" value=1 <?php if($information && $information[0]["dir_traseras"] == 1) { echo "checked"; }  ?> onclick="valid_cuadro_2()" >No Cumple
+									<input type="radio" name="licencia" id="licencia2" value=1 <?php if($information && $information[0]["licencia"] == 1) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Poco Satisfecho
 								</label>
 								<label class="radio-inline">
-									<input type="radio" name="dir_traseras" id="dir_traseras3" value=99 <?php if($information && $information[0]["dir_traseras"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_2()" >N/A
+									<input type="radio" name="licencia" id="licencia3" value=99 <?php if($information && $information[0]["licencia"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Muy Satisfecho
 								</label>
-							</div>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-	                    <div class="form-group">
-	                        <div class="col-sm-12">
-	                            <input type="hidden" id="hdd_cuadro_2" name="hdd_cuadro_2" />
-	                        </div>
-	                    </div>
-	                </div>
-					<hr>
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label class="control-label" for="radiador">Observaciones</label>
-								<textarea id="observacion_dir" name="observacion_dir" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<label class="radio-inline">
+									<input type="radio" name="licencia" id="licencia3" value=99 <?php if($information && $information[0]["licencia"] == 99) { echo "checked"; }  ?> onclick="valid_cuadro_1()" >Completamente Satisfecho
+								</label>
 							</div>
 						</div>
 					</div>
 
+
+
+
+
+
+					<hr>
+					<div class="row">
+	                    <div class="form-group">
+	                        <div class="col-sm-12">
+	                            <input type="hidden" id="hdd_cuadro_1" name="hdd_cuadro_1" />
+	                        </div>
+	                    </div>
+	                </div>
+
 				</div>
 			</div>
 		</div>
+
 	</div>
+
+
+
+
+
+
+
+
+
+	<div class="row" id="div_second_box">
+		<div class="col-lg-12">				
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					PLAN ESTRATÉGICO DE SEGURIDAD VIAL (PESV) 
+				</div>
+				<div class="panel-body">
+
+					<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">									
+							<label class="control-label" for="activo">El conductor cumplió con las normas de Tránsito <small class="text-primary"> </small></label>
+							<select name="activo" id="activo" class="form-control" required>
+								<option value=''>Seleccione...</option>
+								<option value=1 <?php if($information && $information[0]["activo"] == 1) { echo "selected"; }  ?>>Si</option>
+								<option value=2 <?php if($information && $information[0]["activo"] == 2) { echo "selected"; }  ?>>No</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="col-lg-6">
+						<div class="form-group">									
+							<label class="control-label" for="activo">El recorrido se realizó con la velocidad permitida<small class="text-primary"> </small></label>
+							<select name="activo" id="activo" class="form-control" required >
+								<option value=''>Seleccione...</option>
+								<option value=1 <?php if($information && $information[0]["activo"] == 1) { echo "selected"; }  ?>>Si</option>
+								<option value=2 <?php if($information && $information[0]["activo"] == 2) { echo "selected"; }  ?>>No</option>
+							</select>
+						</div>
+					</div>
+
+
+
+					<div class="col-lg-6">
+						<div class="form-group">									
+							<label class="control-label" for="activo">El conductor utilizó y solicitó que usted usara el cinturón de seguridad<small class="text-primary"> </small></label>
+							<select name="activo" id="activo" class="form-control" required>
+								<option value=''>Seleccione...</option>
+								<option value=1 <?php if($information && $information[0]["activo"] == 1) { echo "selected"; }  ?>>Si</option>
+								<option value=2 <?php if($information && $information[0]["activo"] == 2) { echo "selected"; }  ?>>No</option>
+							</select>
+						</div>
+					</div>
+
+
+
+					<div class="col-lg-6">
+						<div class="form-group">									
+							<label class="control-label" for="activo">El conductor usó aparatos móviles o bidireccionales (pantallas, tablets, etc) con el vehículo en movimiento y sin audífonos o bluetooth?  <small class="text-primary"> </small></label>
+							<select name="activo" id="activo" class="form-control" required>
+								<option value=''>Seleccione...</option>
+								<option value=1 <?php if($information && $information[0]["activo"] == 1) { echo "selected"; }  ?>>Si</option>
+								<option value=2 <?php if($information && $information[0]["activo"] == 2) { echo "selected"; }  ?>>No</option>
+							</select>
+						</div>
+					</div>
+
+
+
+
+
+
+
+
+					</div>
+
+
+
+
+
+
+
+
+					<hr>
+					<div class="row">
+	                    <div class="form-group">
+	                        <div class="col-sm-12">
+	                            <input type="hidden" id="hdd_cuadro_1" name="hdd_cuadro_1" />
+	                        </div>
+	                    </div>
+	                </div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	<div class="row" id="div_third_box" style="display:none">
 		<div class="col-lg-6">				

@@ -60,7 +60,7 @@
 							</div>
 
 							<div class="col-sm-6">
-								<label for="dependencia">Dependencia: </label>
+								<label for="dependencia">Área Responsable: </label>
 								<select name="id_dependencia" id="id_dependencia" class="form-control" required <?php echo $deshabilitar; ?>>
 									<option value="">Seleccione...</option>
 									<?php for ($i = 0; $i < count($dependencias); $i++) { ?>

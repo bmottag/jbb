@@ -374,8 +374,9 @@
 		 */
 		public function get_diagnostico($arrData) 
 		{		
-				$this->db->select("I.*, CONCAT(first_name, ' ', last_name) name");
-				$this->db->join('usuarios U', 'U.id_user = I.fk_id_user_responsable', 'INNER');			
+				$this->db->select("I.*, CONCAT(first_name, ' ', last_name) name, D.dependencia");
+				$this->db->join('usuarios U', 'U.id_user = I.fk_id_user_responsable', 'INNER');
+				$this->db->join('param_dependencias D', 'D.id_dependencia = U.fk_id_dependencia_u', 'INNER');		
 
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('I.fk_id_equipo_vehiculo', $arrData["idEquipo"]);
