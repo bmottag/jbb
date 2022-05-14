@@ -265,10 +265,11 @@ class General_model extends CI_Model {
 		 */
 		public function get_equipos_info($arrData) 
 		{		
-				$this->db->select();
+				$this->db->select("A.*, D.dependencia, T.*, C.*, CONCAT(U.first_name, ' ', U.last_name) name, U.numero_cedula");
 				$this->db->join('param_dependencias D', 'D.id_dependencia = A.fk_id_dependencia', 'INNER');
 				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = A.fk_id_tipo_equipo', 'INNER');
-				$this->db->join('contratos_mantenimiento C', 'C.id_contrato_mantenimiento = A.fk_id_contrato_mantenimiento', 'INNER');
+				$this->db->join('contratos_mantenimiento C', 'C.id_contrato_mantenimiento = A.fk_id_contrato_mantenimiento', 'LEFT');
+				$this->db->join('usuarios U', 'A.fk_id_responsable = U.id_user', 'LEFT');				
 
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.id_equipo', $arrData["idEquipo"]);

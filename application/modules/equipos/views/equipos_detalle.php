@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo_v2.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo_v3.js"); ?>"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -73,19 +73,19 @@
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="marca">Marca: </label>
-								<input type="text" id="marca" name="marca" class="form-control" value="<?php echo $info?$info[0]["marca"]:""; ?>" placeholder="Marca" required <?php echo $deshabilitar; ?>>
+								<input type="text" id="marca" name="marca" class="form-control" value="<?php echo $info?$info[0]["marca"]:""; ?>" placeholder="Marca" <?php echo $deshabilitar; ?>>
 							</div>
 							
 							<div class="col-sm-6">
 								<label for="modelo">Modelo: </label>
-								<input type="text" id="modelo" name="modelo" class="form-control" value="<?php echo $info?$info[0]["modelo"]:""; ?>" placeholder="Modelo" required <?php echo $deshabilitar; ?>>
+								<input type="text" id="modelo" name="modelo" class="form-control" value="<?php echo $info?$info[0]["modelo"]:""; ?>" placeholder="Modelo" <?php echo $deshabilitar; ?>>
 							</div>	
 						</div>
 						
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="from">Número Serial: </label>
-								<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $info?$info[0]["numero_serial"]:""; ?>" placeholder="Número Serial" required <?php echo $deshabilitar; ?>>
+								<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $info?$info[0]["numero_serial"]:""; ?>" placeholder="Número Serial" <?php echo $deshabilitar; ?>>
 							</div>
 							
 							<div class="col-sm-6">
@@ -102,7 +102,7 @@
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="from">Contrato de Mantenimiento: *</label>
-								<select name="id_contrato" id="id_contrato" class="form-control" required>
+								<select name="id_contrato" id="id_contrato" class="form-control" >
 									<option value="">Seleccione...</option>
 									<?php for ($i = 0; $i < count($contratosMantenimiento); $i++) { ?>
 										<option value="<?php echo $contratosMantenimiento[$i]["id_contrato_mantenimiento"]; ?>" <?php if($info && $info[0]["fk_id_contrato_mantenimiento"] == $contratosMantenimiento[$i]["id_contrato_mantenimiento"]) { echo "selected"; }  ?>><?php echo $contratosMantenimiento[$i]["numero_contrato"]; ?></option>	
@@ -140,10 +140,16 @@
 						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="id_responsable">Responsable del Equipo: *</label>
-								<select name="id_responsable" id="id_responsable" class="form-control" required <?php echo $deshabilitar; ?>>
+								<select name="id_responsable" id="id_responsable" class="form-control" <?php echo $deshabilitar; ?>>
 									<option value="">Seleccione...</option>
-									<?php for ($i = 0; $i < count($listaUsuarios); $i++) { ?>
-										<option value="<?php echo $listaUsuarios[$i]["id_user"]; ?>" <?php if($info && $info[0]["fk_id_responsable"] == $listaUsuarios[$i]["id_user"]) { echo "selected"; }  ?>><?php echo $listaUsuarios[$i]["first_name"] . ' ' . $listaUsuarios[$i]["last_name"]; ?></option>		
+									<?php 
+										for ($i = 0; $i < count($listaUsuarios); $i++) { 
+											$nombreUsuario = $listaUsuarios[$i]["first_name"] . ' ' . $listaUsuarios[$i]["last_name"];
+											if($listaUsuarios[$i]["numero_cedula"]){
+												$nombreUsuario .= " - " . $listaUsuarios[$i]["numero_cedula"];
+											}
+									?>
+										<option value="<?php echo $listaUsuarios[$i]["id_user"]; ?>" <?php if($info && $info[0]["fk_id_responsable"] == $listaUsuarios[$i]["id_user"]) { echo "selected"; }  ?>><?php echo $nombreUsuario; ?></option>		
 									<?php } ?>
 								</select>
 							</div>

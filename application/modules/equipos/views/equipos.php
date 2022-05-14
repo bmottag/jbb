@@ -131,7 +131,7 @@ $(function(){
 								<th class="text-center"><small>Marca</small></th>
 								<th class="text-center"><small>Modelo</small></th>
 								<th class="text-center"><small>Número Serial</small></th>
-								<th class="text-center"><small>Estado</small></th>
+								<th class="text-center"><small>Responsable</small></th>
 								<th class="text-center"><small>Observación</small></th>
 							</tr>
 						</thead>
@@ -155,23 +155,16 @@ $(function(){
 									}
 									echo "</td>";
 									echo "<td class='text-center'><small>" . $lista['placa'] . "</small></td>";
-									echo "<td class='text-center'><small>" . $lista['dependencia'] . "</small></td>";
+									echo "<td><small>" . $lista['dependencia'] . "</small></td>";
 									echo "<td><small>" . $lista['marca'] . "</small></td>";
 									echo "<td><small>" . $lista['modelo'] . "</small></td>";
 									echo "<td class='text-center'><small>" . $lista['numero_serial'] . "</small></td>";
-									echo "<td class='text-center'>";
-									switch ($lista['estado_equipo']) {
-										case 1:
-											$valor = 'Activo';
-											$clase = "text-success";
-											break;
-										case 2:
-											$valor = 'Inactivo';
-											$clase = "text-danger";
-											break;
+									echo "<td class='text-center'><small>";
+									echo $lista['name']; 
+									if($lista['numero_cedula']){
+										echo " - " . $lista['numero_cedula'];
 									}
-									echo '<small><p class="' . $clase . '"><strong>' . $valor . '</strong></p></small>';
-									echo "</td>";
+									echo "</small></td>";
 									echo "<td><small>" . $lista['observacion'] . "</small></td>";
 									
 									echo "</tr>";

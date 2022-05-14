@@ -13,7 +13,7 @@
 		<div class="col-lg-9 col-md-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-image"></i> <strong>FOTO EQUIPO</strong>
+					<i class="fa fa-image"></i> <strong>REGISTRO FOTOGRÁFICO</strong>
 				</div>
 				<div class="panel-body">
 					<div class="col-lg-8">
