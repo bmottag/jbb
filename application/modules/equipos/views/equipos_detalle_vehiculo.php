@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo_detalle_vehiculo.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/equipo_detalle_vehiculo_v2.js"); ?>"></script>
 
 <div id="page-wrapper">
 	<br>
