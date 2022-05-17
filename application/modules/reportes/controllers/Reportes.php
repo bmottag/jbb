@@ -336,7 +336,7 @@ class Reportes extends CI_Controller {
 
 	/**
 	 * Descargar listado de equipos
-     * @since 1/3/2021
+     * @since 17/5/2022
      * @author BMOTTAG
 	 */
 	public function litadoEquipos()
@@ -346,19 +346,15 @@ class Reportes extends CI_Controller {
 			// create new PDF document
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-			$arrParam = array();
-			$data['infoEquipo'] = $this->reportes_model->get_equipos_info($arrParam);
-
 			// set document information
 			$pdf->SetCreator(PDF_CREATOR);
 			$pdf->SetAuthor('JBB');
-			$pdf->SetTitle('Bienes');
-			$pdf->SetSubject('TCPDF Tutorial');
+			$pdf->SetTitle('MANUAL DE PROCESOS');
+			$pdf->SetSubject('FIS');
 
 			// set default header data
 			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', PDF_HEADER_STRING, array(94,164,49), array(147,204,110));
-			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, 'LISTA EQUIPOS', 'Listdo de equipos', array(94,164,49), array(147,204,110));					
-
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, 'MANUAL DE PROCESOS Y PROCEDIMIENTOS', "LISTA EQUIPOS", array(0,140,0), array(147,204,110));	
 			// set header and footer fonts
 			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
@@ -400,26 +396,24 @@ class Reportes extends CI_Controller {
 			//$pdf->AddPage('L', 'A4');
 			$pdf->AddPage();
 
-			$vista = 'reporte_lista_equipos';
-			$html = $this->load->view($vista, $data, true);
-echo $html; exit;
+			$arrParam = array();
+			$data['infoEquipo'] = $this->reportes_model->get_equipos_info($arrParam);
+
+			$html = $this->load->view('reporte_lista_equipos', $data, true);
+
 			// output the HTML content
 			$pdf->writeHTML($html, true, false, true, false, '');
-
-
-			// Print some HTML Cells
 
 			// reset pointer to the last page
 			$pdf->lastPage();
 
-
+			ob_end_clean();
 			//Close and output PDF document
 			$pdf->Output('listado_equipos.pdf', 'I');
 
 			//============================================================+
 			// END OF FILE
 			//============================================================+		
-	}
-
+	}	
 	
 }
