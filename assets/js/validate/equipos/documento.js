@@ -16,7 +16,7 @@ $( document ).ready( function () {
 			tipo_documento: 		{ required: true },
 			fecha_inicio: 			{ fieldSpecify: "#noAplica" },
 			fecha_vencimiento:		{ fieldSpecify: "#noAplica" },
-			numero_documento:		{ required: true, minlength:3, maxlength:15 }
+			numero_documento:		{ minlength:3, maxlength:15 }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

@@ -90,7 +90,7 @@ if($information){
 						<div class="form-group">
 							<label class="col-sm-4 control-label" for="numero_documento">No. Documento: *</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="numero_documento" name="numero_documento" value="<?php echo $information?$information[0]["numero_documento"]:""; ?>" placeholder="No. Documento" required/>
+								<input type="text" class="form-control" id="numero_documento" name="numero_documento" value="<?php echo $information?$information[0]["numero_documento"]:""; ?>" placeholder="No. Documento" />
 							</div>
 						</div>
 
