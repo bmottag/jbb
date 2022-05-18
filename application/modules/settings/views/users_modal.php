@@ -206,6 +206,24 @@ if($information){
 					<input type="text" class="form-control" id="fecha_final" name="fecha_final" value="<?php echo $information?$fechaFinal:""; ?>" placeholder="Fecha Final" />
 				</div>
 			</div>
+
+			<div class="col-sm-4">
+				<div class="form-group text-left">
+					<label class="control-label" for="tiene_multas">Actualmente tiene multas?: </label>
+					<select name="tiene_multas" id="tiene_multas" class="form-control" >
+						<option value=''>Select...</option>
+						<option value=1 <?php if($information && $information[0]["tiene_multas"] == 1) { echo "selected"; }  ?>>Si</option>
+						<option value=2 <?php if($information && $information[0]["tiene_multas"] == 2) { echo "selected"; }  ?>>No</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">		
+				<div class="form-group text-left">
+					<label class="control-label" for="codigo_multa">Código multa: </label>
+					<input type="text" id="codigo_multa" name="codigo_multa" class="form-control" value="<?php echo $information?$information[0]["codigo_multa"]:""; ?>" placeholder="Código y/o motivo" maxlength="30" >
+				</div>
+			</div>
 		</div>
 		
 		<div class="form-group">

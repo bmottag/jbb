@@ -28,7 +28,7 @@ if($infoEquipo)
 					<th width="30%">' . $infoEquipo[0]['dependencia']. '</th>
 				</tr>
 				<tr>
-					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>CÓDIGO</strong></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>NÚMERO INVENTARIO</strong></th>
 					<th>' . $infoEquipo[0]['numero_inventario']. '</th>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>FIRMA</strong></th>
 					<th></th>
@@ -188,12 +188,13 @@ if($infoEquipo)
 					<th width="20%">' . $infoEquipo[0]['fecha_final_contrato']. '</th>
 				</tr>
 			</table>';
+	$tieneMultas = $infoEquipo[0]['tiene_multas']==1?"Si":"No";
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
 					<th width="25%" bgcolor="#dde1da" style="color:#3e403e;"><strong>ACTUALMENTE TIENE MULTAS</strong></th>
-					<th width="25%"></th>
+					<th width="25%">' . $tieneMultas. '</th>
 					<th width="25%" bgcolor="#dde1da" style="color:#3e403e;"><strong>CÓDIGO MULTA</strong></th>
-					<th width="25%"></th>
+					<th width="25%">' . $infoEquipo[0]['codigo_multa']. '</th>
 				</tr>
 			</table>';
 	$html.='<br><br>';

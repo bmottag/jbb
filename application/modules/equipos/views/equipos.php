@@ -131,8 +131,8 @@ $(function(){
 								<th class="text-center"><small>Dependencia</small></th>
 								<th class="text-center"><small>Marca</small></th>
 								<th class="text-center"><small>Modelo</small></th>
-								<th class="text-center"><small>Número Serial</small></th>
-								<th class="text-center"><small>Responsable</small></th>
+								<th class="text-center"><small>Número Serial/Serie</small></th>
+								<th class="text-center"><small>Operador/Conductor</small></th>
 								<th class="text-center"><small>Observación</small></th>
 							</tr>
 						</thead>

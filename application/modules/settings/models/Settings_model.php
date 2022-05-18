@@ -45,7 +45,9 @@
 					'vigencia' => $this->input->post('vigencia'),
 					'numero_contrato' => $this->input->post('numero_contrato'),
 					'fecha_inicio_contrato' => formatear_fecha($this->input->post('fecha_inicio')),
-					'fecha_final_contrato' => formatear_fecha($this->input->post('fecha_final'))
+					'fecha_final_contrato' => formatear_fecha($this->input->post('fecha_final')),
+					'tiene_multas' => $this->input->post('tiene_multas'),
+					'codigo_multa' => $this->input->post('codigo_multa')
 				);	
 
 				//revisar si es para adicionar o editar

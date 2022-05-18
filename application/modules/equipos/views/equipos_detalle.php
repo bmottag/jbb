@@ -79,7 +79,7 @@
 						
 						<div class="form-group">
 							<div class="col-sm-6">
-								<label for="from">Número Serial: </label>
+								<label for="from">Número Serial/Serie: </label>
 								<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $info?$info[0]["numero_serial"]:""; ?>" placeholder="Número Serial" <?php echo $deshabilitar; ?>>
 							</div>
 							
@@ -134,7 +134,7 @@
 												
 						<div class="form-group">
 							<div class="col-sm-6">
-								<label for="id_responsable">Responsable del Equipo: *</label>
+								<label for="id_responsable">Operador/Conductor: *</label>
 								<select name="id_responsable" id="id_responsable" class="form-control" <?php echo $deshabilitar; ?>>
 									<option value="">Seleccione...</option>
 									<?php 

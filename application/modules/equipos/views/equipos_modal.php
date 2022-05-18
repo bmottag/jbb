@@ -118,7 +118,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group text-left">
-					<label class="control-label" for="id_responsable">Responsable del Equipo: *</label>
+					<label class="control-label" for="id_responsable">Operador/Conductor: *</label>
 					<select name="id_responsable" id="id_responsable" class="form-control" >
 						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($listaUsuarios); $i++) { ?>
