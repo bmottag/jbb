@@ -172,58 +172,62 @@ if($infoEquipo)
 
 				<tr>
 					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;"><strong>No. LICENCIA DE CONUDCCIÓN</strong></th>
-					<th width="20%">' . $infoEquipo[0]['name']. '</th>
+					<th width="20%">' . $infoEquipo[0]['numero_licencia']. '</th>
 					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;"><strong>CATEGORÍA</strong></th>
-					<th width="20%">' . $infoEquipo[0]['numero_cedula']. '</th>
+					<th width="20%">' . $infoEquipo[0]['categoria']. '</th>
 					<th width="10%" bgcolor="#dde1da" style="color:#3e403e;"><strong>VIGENCIA</strong></th>
-					<th width="20%">' . $infoEquipo[0]['numero_cedula']. '</th>
+					<th width="20%">' . $infoEquipo[0]['vigencia']. '</th>
 				</tr>
 
 				<tr>
 					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;"><strong>No. CONTRATO</strong></th>
-					<th width="20%">' . $infoEquipo[0]['name']. '</th>
+					<th width="20%">' . $infoEquipo[0]['numero_contrato']. '</th>
 					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;"><strong>FECHA DE INICIO</strong></th>
-					<th width="20%">' . $infoEquipo[0]['numero_cedula']. '</th>
+					<th width="20%">' . $infoEquipo[0]['fecha_inicio_contrato']. '</th>
 					<th width="10%" bgcolor="#dde1da" style="color:#3e403e;"><strong>FECHA DE FINAL</strong></th>
-					<th width="20%">' . $infoEquipo[0]['numero_cedula']. '</th>
+					<th width="20%">' . $infoEquipo[0]['fecha_final_contrato']. '</th>
 				</tr>
 			</table>';
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
 					<th width="25%" bgcolor="#dde1da" style="color:#3e403e;"><strong>ACTUALMENTE TIENE MULTAS</strong></th>
-					<th width="25%">' . $infoEquipo[0]['name']. '</th>
+					<th width="25%"></th>
 					<th width="25%" bgcolor="#dde1da" style="color:#3e403e;"><strong>CÓDIGO MULTA</strong></th>
-					<th width="25%">' . $infoEquipo[0]['numero_cedula']. '</th>
+					<th width="25%"></th>
 				</tr>
 			</table>';
 	$html.='<br><br>';
+
+	$multas = $infoEspecifica[0]['multas']==1?"Si":"No";
+	$restricciones = $infoEspecifica[0]['restricciones']==1?"Si":"No";
+
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
 					<th colspan="6" bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>INFORMACIÓN MULTAS Y RESTRICCIONES DEL VEHÍCULO</strong></th>
 				</tr>
 				<tr>
 					<th width="33%" bgcolor="#dde1da" style="color:#3e403e;"><strong>EL VEHÍCULO CUENTA ACTUALMENTE CON MULTAS</strong></th>
-					<th width="33%" >' . $infoEquipo[0]['name']. '</th>
+					<th width="33%" >' . $multas. '</th>
 					<th width="34%" bgcolor="#dde1da" style="color:#3e403e;"><strong>CÓDIGO Y MOTIVO DE LA MULTA Y/O RESTIRCCIÓN</strong></th>
 				</tr>
 
 				<tr>
 					<th width="33%" bgcolor="#dde1da" style="color:#3e403e;"><strong>EL VEHÍCULO CUENTA ACTUALMENTE CON RESTRICCIONES</strong></th>
-					<th width="33%">' . $infoEquipo[0]['name']. '</th>
-					<th width="34%">' . $infoEquipo[0]['name']. '</th>
+					<th width="33%">' . $restricciones. '</th>
+					<th width="34%">' . $infoEspecifica[0]['motivo_multa']. '</th>
 				</tr>
 			</table>';
 	$html.='<br><br>';
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
-					<th bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>ELABORÓ </strong></th>
-					<th bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>REVISÓ </strong></th>
-					<th width="34% bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>APROBÓ </strong></th>
+					<th width="33%" bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>ELABORÓ </strong></th>
+					<th width="33%" bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>REVISÓ </strong></th>
+					<th width="34%" bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>APROBÓ </strong></th>
 				</tr>
 				<tr>
-					<th width="33%" ></th>
-					<th width="33%" ></th>
-					<th width="34%" ></th>
+					<th></th>
+					<th></th>
+					<th></th>
 				</tr>
 
 				<tr>

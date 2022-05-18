@@ -8,7 +8,7 @@
 		 */
 		public function get_equipos_info($arrData) 
 		{		
-				$this->db->select("A.*, T.*, D.dependencia, C.numero_contrato, CONCAT(first_name, ' ', last_name) name, U.numero_cedula");
+				$this->db->select("A.*, T.*, D.dependencia, C.numero_contrato, CONCAT(first_name, ' ', last_name) name, U.numero_cedula, U.numero_licencia, U.categoria, U.vigencia, U.numero_contrato, U.fecha_inicio_contrato, U.fecha_final_contrato");
 				$this->db->join('param_dependencias D', 'D.id_dependencia = A.fk_id_dependencia', 'INNER');
 				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = A.fk_id_tipo_equipo', 'INNER');
 				$this->db->join('contratos_mantenimiento C', 'C.id_contrato_mantenimiento = A.fk_id_contrato_mantenimiento', 'INNER');

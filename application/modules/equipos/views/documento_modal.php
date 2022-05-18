@@ -30,35 +30,35 @@ $(document).ready(function () {
 		<input type="hidden" id="hddId" name="hddId" value="<?php echo $information?$information[0]["id_equipo_documento"]:""; ?>"/>
 
 <script>
-$( function() {
-var dateFormat = "mm/dd/yy",
-from = $( "#fecha_inicio" )
-.datepicker({
-changeMonth: true,
-changeYear: true
-})
-.on( "change", function() {
-to.datepicker( "option", "minDate", getDate( this ) );
-}),
-to = $( "#fecha_vencimiento" ).datepicker({
-changeMonth: true,
-changeYear: true
-})
-.on( "change", function() {
-from.datepicker( "option", "maxDate", getDate( this ) );
-});
+	$( function() {
+		var dateFormat = "mm/dd/yy",
+		from = $( "#fecha_inicio" )
+		.datepicker({
+			changeMonth: true,
+			changeYear: true
+		})
+		.on( "change", function() {
+			to.datepicker( "option", "minDate", getDate( this ) );
+		}),
+		to = $( "#fecha_vencimiento" ).datepicker({
+			changeMonth: true,
+			changeYear: true
+		})
+		.on( "change", function() {
+			from.datepicker( "option", "maxDate", getDate( this ) );
+		});
 
-function getDate( element ) {
-var date;
-try {
-date = $.datepicker.parseDate( dateFormat, element.value );
-} catch( error ) {
-date = null;
-}
+		function getDate( element ) {
+			var date;
+			try {
+				date = $.datepicker.parseDate( dateFormat, element.value );
+			} catch( error ) {
+				date = null;
+			}
 
-return date;
-}
-});
+			return date;
+		}
+	});
 </script>
 
 <?php 

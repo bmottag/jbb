@@ -39,7 +39,13 @@
 					'movil' => $this->input->post('movilNumber'),
 					'email' => $this->input->post('email'),
 					'fk_id_user_role' => $this->input->post('id_role'),
-					'fk_id_dependencia_u' => $this->input->post('idDependencia')
+					'fk_id_dependencia_u' => $this->input->post('idDependencia'),
+					'numero_licencia' => $this->input->post('numero_licencia'),
+					'categoria' => $this->input->post('categoria'),
+					'vigencia' => $this->input->post('vigencia'),
+					'numero_contrato' => $this->input->post('numero_contrato'),
+					'fecha_inicio_contrato' => formatear_fecha($this->input->post('fecha_inicio')),
+					'fecha_final_contrato' => formatear_fecha($this->input->post('fecha_final'))
 				);	
 
 				//revisar si es para adicionar o editar

@@ -14,7 +14,11 @@ $( document ).ready( function () {
 			email: 				{ required: true, email: true },
 			movilNumber: 		{ required: true },
 			id_role: 			{ required: true },
-			idDependencia: 			{ required: true }
+			idDependencia: 			{ required: true },
+			numero_licencia: 		{ maxlength:15 },
+			categoria: 				{ maxlength:10 },
+			vigencia: 				{ maxlength:10 },
+			numero_contrato: 				{ maxlength:10 },
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
@@ -24,10 +28,10 @@ $( document ).ready( function () {
 
 		},
 		highlight: function ( element, errorClass, validClass ) {
-			$( element ).parents( ".col-sm-6" ).addClass( "has-error" ).removeClass( "has-success" );
+			$( element ).parents( ".col-sm-4" ).addClass( "has-error" ).removeClass( "has-success" );
 		},
 		unhighlight: function (element, errorClass, validClass) {
-			$( element ).parents( ".col-sm-6" ).addClass( "has-success" ).removeClass( "has-error" );
+			$( element ).parents( ".col-sm-4" ).addClass( "has-success" ).removeClass( "has-error" );
 		},
 		submitHandler: function (form) {
 			return true;
