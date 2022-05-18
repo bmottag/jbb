@@ -1,5 +1,22 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/documento.js"); ?>"></script>
 
+<script>
+$(document).ready(function () {
+	
+    $('#noAplica').change(function () {
+            if ($('#noAplica').prop('checked') ) {
+				$("#div_no_aplica").css("display", "inline");
+            }else{
+                $('#fecha_inicio').val("");
+                $('#fecha_vencimiento').val("");
+                $("#div_no_aplica").css("display", "none");
+            }
+
+    });
+    
+});
+</script>
+
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	<h4 class="modal-title" id="exampleModalLabel">Documento del Equipo
@@ -75,15 +92,30 @@ if($information){
 		<div class="row">	
 			<div class="col-sm-6">
 				<div class="form-group text-left">
+					<input type="checkbox" id="noAplica" name="noAplica" value="1" <?php if($information && $information[0]["aplica_fechas"]){echo "checked";} ?> > Aplica fechas
+				</div>
+			</div>
+		</div>
+
+<?php 
+	$fieldFechas = "none";
+	if($information && $information[0]["aplica_fechas"]){
+		$fieldFechas = "inline";
+	}
+?>
+						
+		<div class="row" id="div_no_aplica" style="display:<?php echo $fieldFechas; ?>">	
+			<div class="col-sm-6">
+				<div class="form-group text-left">
 					<label class="control-label" for="fecha_inicio">Fecha Inicio: *</label>
-					<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo $information?$fechaInicio:""; ?>" placeholder="Fecha Inicio" required/>
+					<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo $information?$fechaInicio:""; ?>" placeholder="Fecha Inicio" />
 				</div>
 			</div>
 			
 			<div class="col-sm-6">		
 				<div class="form-group text-left">
-					<label class="control-label" for="fecha_vencimiento">Fecha Vencimieno: *</label>
-					<input type="text" class="form-control" id="fecha_vencimiento" name="fecha_vencimiento" value="<?php echo $information?$fechaVencimiento:""; ?>" placeholder="Fecha Vencimiento" required/>
+					<label class="control-label" for="fecha_vencimiento">Fecha Vencimiento: *</label>
+					<input type="text" class="form-control" id="fecha_vencimiento" name="fecha_vencimiento" value="<?php echo $information?$fechaVencimiento:""; ?>" placeholder="Fecha Vencimiento" />
 				</div>
 			</div>
 		</div>
@@ -91,7 +123,7 @@ if($information){
 		<div class="row">				
 			<div class="col-sm-12">		
 				<div class="form-group text-left">
-					<label class="control-label" for="descripcion">Descripción: *</label>
+					<label class="control-label" for="descripcion">Descripción: </label>
 					<textarea id="descripcion" name="descripcion" placeholder="Descripción" class="form-control" rows="3"><?php echo $information?$information[0]["descripcion"]:""; ?></textarea>
 				</div>
 			</div>

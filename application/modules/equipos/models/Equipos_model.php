@@ -341,6 +341,7 @@
 				$data = array(
 					'fk_id_tipo_documento' => $this->input->post('tipo_documento'),
 					'fk_id_equipo_d' => $this->input->post('hddIdEquipo'),
+					'aplica_fechas' => $this->input->post('noAplica'),
 					'fecha_inicio' => formatear_fecha($this->input->post('fecha_inicio')),
 					'fecha_vencimiento' => formatear_fecha($this->input->post('fecha_vencimiento')),
 					'numero_documento' => $this->input->post('numero_documento'),

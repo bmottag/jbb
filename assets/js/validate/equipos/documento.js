@@ -1,14 +1,22 @@
 $( document ).ready( function () {
+
+	jQuery.validator.addMethod("fieldSpecify", function(value, element, param) {
+		var noAplica = $(param).is(":checked");
+		if(noAplica && value == ""){
+			return false;
+		}else{
+			return true;
+		}
+	}, "This field is required.");
 	
 	$("#numero_documento").convertirMayuscula().maxlength(15);
 	
 	$( "#form" ).validate( {
 		rules: {
 			tipo_documento: 		{ required: true },
-			fecha_inicio: 			{ required: true },
-			fecha_vencimiento:		{ required: true },
-			numero_documento:		{ required: true, minlength:3, maxlength:15 },
-			descripcion:		 	{ required: true }
+			fecha_inicio: 			{ fieldSpecify: "#noAplica" },
+			fecha_vencimiento:		{ fieldSpecify: "#noAplica" },
+			numero_documento:		{ required: true, minlength:3, maxlength:15 }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

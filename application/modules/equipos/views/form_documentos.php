@@ -1,6 +1,23 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<script>
+$(document).ready(function () {
+	
+    $('#noAplica').change(function () {
+            $('#fecha_inicio').val("");
+            $('#fecha_vencimiento').val("");
+            if ($('#noAplica').prop('checked') ) {
+				$("#div_no_aplica").css("display", "inline");
+            }else{
+                $("#div_no_aplica").css("display", "none");
+            }
+
+    });
+    
+});
+</script>
+
 <div id="page-wrapper">
 	<br>
 	
@@ -76,20 +93,35 @@ if($information){
 								<input type="text" class="form-control" id="numero_documento" name="numero_documento" value="<?php echo $information?$information[0]["numero_documento"]:""; ?>" placeholder="No. Documento" required/>
 							</div>
 						</div>
-				
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="numero_documento">Fechas: </label>
+							<div class="col-sm-5">
+								<input type="checkbox" id="noAplica" name="noAplica" value="1" <?php if($information && $information[0]["aplica_fechas"]){echo "checked";} ?> > Aplica fechas
+							</div>
+						</div>
+
+<?php 
+	$fieldFechas = "none";
+	if($information && $information[0]["aplica_fechas"]){
+		$fieldFechas = "inline";
+	}
+?>
+					<div class="row" id="div_no_aplica" style="display:<?php echo $fieldFechas; ?>">
 						<div class="form-group">
 							<label class="col-sm-4 control-label" for="fecha_inicio">Fecha Inicio: *</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo $information?$fechaInicio:""; ?>" placeholder="Fecha Inicio" required/>
+								<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo $information?$fechaInicio:""; ?>" placeholder="Fecha Inicio" />
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<label class="col-sm-4 control-label" for="fecha_vencimiento">Fecha Vencimiento: *</label>
 							<div class="col-sm-5">
-								<input type="text" class="form-control" id="fecha_vencimiento" name="fecha_vencimiento" value="<?php echo $information?$fechaVencimiento:""; ?>" placeholder="Fecha Vencimiento" required/>
+								<input type="text" class="form-control" id="fecha_vencimiento" name="fecha_vencimiento" value="<?php echo $information?$fechaVencimiento:""; ?>" placeholder="Fecha Vencimiento" />
 							</div>
 						</div>
+					</div>
 						
 						<div class="form-group">
 							<label class="col-sm-4 control-label" for="descripcion">Descripción: *</label>
