@@ -140,13 +140,29 @@
 							</div>
 
 							<div class="col-sm-6">
-								<label for="multas">Multas: </label>
+								<label for="multas">Actualmente tiene multas?: </label>
 								<select name="multas" id="multas" class="form-control" <?php echo $deshabilitar; ?>>
 									<option value=''>Select...</option>
 									<option value=1 <?php if($infoEspecifica && $infoEspecifica[0]["multas"] == 1) { echo "selected"; }  ?>>Si</option>
 									<option value=2 <?php if($infoEspecifica && $infoEspecifica[0]["multas"] == 2) { echo "selected"; }  ?>>No</option>
 								</select>
 							</div>						
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label for="restricciones">Actualmente tiene restricciones?: </label>
+								<select name="restricciones" id="restricciones" class="form-control" <?php echo $deshabilitar; ?>>
+									<option value=''>Select...</option>
+									<option value=1 <?php if($infoEspecifica && $infoEspecifica[0]["restricciones"] == 1) { echo "selected"; }  ?>>Si</option>
+									<option value=2 <?php if($infoEspecifica && $infoEspecifica[0]["restricciones"] == 2) { echo "selected"; }  ?>>No</option>
+								</select>
+							</div>	
+
+							<div class="col-sm-6">
+								<label for="motivo_multa">Código y/o motivo de la multa y/o restricción: </label>
+								<input type="text" id="motivo_multa" name="motivo_multa" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["motivo_multa"]:""; ?>" placeholder="Código y/o motivo" maxlength="30" <?php echo $deshabilitar; ?>>
+							</div>
 						</div>
 <?php } ?>
 

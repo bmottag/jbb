@@ -74,7 +74,9 @@
 					'codigo_gps' => $this->input->post('codigo_gps'),
 					'codigo_ship' => $this->input->post('codigo_ship'),
 					'numero_licencia_transito' => $this->input->post('numero_licencia_transito'),
-					'multas' => $this->input->post('multas')
+					'multas' => $this->input->post('multas'),
+					'restricciones' => $this->input->post('restricciones'),
+					'motivo_multa' => $this->input->post('motivo_multa')
 				);	
 
 				//revisar si es para adicionar o editar

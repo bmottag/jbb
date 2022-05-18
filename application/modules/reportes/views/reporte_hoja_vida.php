@@ -29,7 +29,7 @@ if($infoEquipo)
 				</tr>
 				<tr>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>CÓDIGO</strong></th>
-					<th>' . $infoEquipo[0]['placa']. '</th>
+					<th>' . $infoEquipo[0]['numero_inventario']. '</th>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>FIRMA</strong></th>
 					<th></th>
 				</tr>
