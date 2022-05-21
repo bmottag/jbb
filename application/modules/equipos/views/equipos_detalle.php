@@ -160,6 +160,18 @@
 						</div>
 
 						<div class="form-group">
+							<div class="col-sm-6">
+								<label for="profesional_asignado">Profesional asignado: *</label>
+								<select name="profesional_asignado" id="profesional_asignado" class="form-control" required>
+									<option value=''>Select...</option>
+									<option value=1 <?php if($info && $info[0]["profesional_asignado"] == 1) { echo "selected"; }  ?>>Director</option>
+									<option value=2 <?php if($info && $info[0]["profesional_asignado"] == 2) { echo "selected"; }  ?>>Secretario</option>
+									<option value=2 <?php if($info && $info[0]["profesional_asignado"] == 3) { echo "selected"; }  ?>>Subdirector técnico y operativo</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
 							<div class="col-sm-12">
 								<label for="observacion">Observación: </label>
 								<textarea id="observacion" name="observacion" placeholder="Observación" class="form-control" rows="3" <?php echo $deshabilitar; ?>><?php echo $info?$info[0]["observacion"]:""; ?></textarea>

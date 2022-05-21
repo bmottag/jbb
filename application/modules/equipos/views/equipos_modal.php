@@ -11,14 +11,14 @@
 		<input type="hidden" id="hddId" name="hddId" value="<?php echo $information?$information[0]["id_equipo"]:""; ?>"/>
 
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				<div class="form-group text-left">
 					<label class="control-label" for="numero_inventario">No. Inventario Entidad: *</label>
 					<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" value="<?php echo $information?$information[0]["numero_inventario"]:""; ?>" placeholder="No. Inventario Entidad" >
 				</div>
 			</div>
 			
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				<div class="form-group text-left">
 					<label class="control-label" for="id_dependencia">Depedencia: *</label>
 					<select name="id_dependencia" id="id_dependencia" class="form-control" required>
@@ -29,33 +29,32 @@
 					</select>
 				</div>
 			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-sm-6">
+
+			<div class="col-sm-4">
 				<div class="form-group text-left">
 					<label class="control-label" for="marca">Marca: *</label>
 					<input type="text" id="marca" name="marca" class="form-control" value="<?php echo $information?$information[0]["marca"]:""; ?>" placeholder="Marca" >
 				</div>
 			</div>
+		</div>
+		
+		<div class="row">
 
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				<div class="form-group text-left">
 					<label class="control-label" for="modelo">Modelo: *</label>
 					<input type="text" id="modelo" name="modelo" class="form-control" value="<?php echo $information?$information[0]["modelo"]:""; ?>" placeholder="Modelo" >
 				</div>
 			</div>
-		</div>
-
-		<div class="row">	
-			<div class="col-sm-6">		
+	
+			<div class="col-sm-4">		
 				<div class="form-group text-left">
 					<label class="control-label" for="numero_serial">Número Serial: *</label>
 					<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $information?$information[0]["numero_serial"]:""; ?>" placeholder="Número Serial" >
 				</div>
 			</div>
 
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				<div class="form-group text-left">
 					<label class="control-label" for="id_tipo_equipo">Tipo Equipo: *</label>
 					<select name="id_tipo_equipo" id="id_tipo_equipo" class="form-control" required>
@@ -69,7 +68,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-6">		
+			<div class="col-sm-4">		
 				<div class="form-group text-left">
 					<label class="control-label" for="id_contrato">Contrato de Mantenimiento: *</label>
 					<select name="id_contrato" id="id_contrato" class="form-control">
@@ -81,13 +80,12 @@
 				</div>
 			</div>
 
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				<div class="form-group text-left">
 					<label class="control-label" for="estado">Placa: </label>
 					<input type="text" id="placa" name="placa" class="form-control" value="<?php echo $information?$information[0]["placa"]:""; ?>" placeholder="Placa" >
 				</div>
 			</div>
-		</div>
 
 <script>
 	$( function() {
@@ -99,24 +97,23 @@
 	});
 </script>
 		
-		<div class="row">
-			<div class="col-sm-6">		
+			<div class="col-sm-4">		
 				<div class="form-group text-left">
 					<label class="control-label" for="valor_comercial">Valor Comercial: </label>
 					<input type="text" id="valor_comercial" name="valor_comercial" class="form-control" value="<?php echo $information?$information[0]["valor_comercial"]:""; ?>" placeholder="Valor Comercial" >
 				</div>
 			</div>
+		</div>
 
-			<div class="col-sm-6">
+		<div class="row">
+			<div class="col-sm-4">
 				<div class="form-group text-left">
 					<label class="control-label" for="estado">Fecha Adquisición: *</label>
 					<input type="text" class="form-control" id="fecha_adquisicion" name="fecha_adquisicion" value="" placeholder="Fecha Adquisición" />
 				</div>
 			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-sm-6">
+
+			<div class="col-sm-4">
 				<div class="form-group text-left">
 					<label class="control-label" for="id_responsable">Operador/Conductor: *</label>
 					<select name="id_responsable" id="id_responsable" class="form-control" >
@@ -128,7 +125,7 @@
 				</div>
 			</div>
 
-			<div class="col-sm-6">
+			<div class="col-sm-4">
 				<div class="form-group text-left">
 					<label class="control-label" for="estado">Estado: *</label>
 					<select name="estado" id="estado" class="form-control" required>
@@ -138,6 +135,20 @@
 					</select>
 				</div>
 			</div>	
+		</div>
+
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group text-left">
+					<label class="control-label" for="profesional_asignado">Profesional asignado: *</label>
+					<select name="profesional_asignado" id="profesional_asignado" class="form-control" required>
+						<option value=''>Select...</option>
+						<option value=1 <?php if($information && $information[0]["profesional_asignado"] == 1) { echo "selected"; }  ?>>Director</option>
+						<option value=2 <?php if($information && $information[0]["profesional_asignado"] == 2) { echo "selected"; }  ?>>Secretario</option>
+						<option value=2 <?php if($information && $information[0]["profesional_asignado"] == 3) { echo "selected"; }  ?>>Subdirector técnico y operativo</option>
+					</select>
+				</div>
+			</div>
 		</div>
 			
 		<div class="row">

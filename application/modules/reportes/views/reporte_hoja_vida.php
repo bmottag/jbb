@@ -159,12 +159,28 @@ if($infoEquipo)
 
 			</table>';
 	$html.='<br><br>';
+	$profesional = "";
+	switch ($infoEquipo[0]['profesional_asignado']) {
+		case 1:
+			$profesional = 'Director';
+			break;
+		case 2:
+			$profesional = 'Secretario';
+			break;
+		case 3:
+			$profesional = 'Subdirector técnico y operativo';
+			break;
+	}
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
 					<th colspan="6" bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>INFORMACIÓN RESPONSABLE VEHÍCULO</strong></th>
 				</tr>
 				<tr>
-					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;"><strong>NOMBRE</strong></th>
+					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;"><strong>PROFESIONAL ASIGNADO</strong></th>
+					<th width="85%" colspan="5">' . $profesional. '</th>
+				</tr>
+				<tr>
+					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;"><strong>CONDUCTOR/OPERADOR</strong></th>
 					<th width="55%" colspan="3">' . $infoEquipo[0]['name']. '</th>
 					<th width="10%" bgcolor="#dde1da" style="color:#3e403e;"><strong>No. DE CÉDULA</strong></th>
 					<th width="20%">' . $infoEquipo[0]['numero_cedula']. '</th>
