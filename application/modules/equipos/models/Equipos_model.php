@@ -77,7 +77,10 @@
 					'numero_licencia_transito' => $this->input->post('numero_licencia_transito'),
 					'multas' => $this->input->post('multas'),
 					'restricciones' => $this->input->post('restricciones'),
-					'motivo_multa' => $this->input->post('motivo_multa')
+					'motivo_multa' => $this->input->post('motivo_multa'),
+					'numero_puertas' => $this->input->post('numero_puertas'),
+					'numero_ocupantes' => $this->input->post('numero_ocupantes'),
+					'cilindraje' => $this->input->post('cilindraje')
 				);	
 
 				//revisar si es para adicionar o editar

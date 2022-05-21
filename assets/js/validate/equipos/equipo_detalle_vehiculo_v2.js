@@ -2,6 +2,8 @@ $( document ).ready( function () {
 	
 	$("#placa").convertirMayuscula().maxlength(8);
 	$("#color").bloquearNumeros().maxlength(20);
+	$("#numero_puertas").bloquearTexto().maxlength(5);
+	$("#numero_ocupantes").bloquearTexto().maxlength(5);
 	
 	$( "#form" ).validate( {
 		rules: {
@@ -13,7 +15,10 @@ $( document ).ready( function () {
 			numero_motor: 					{ maxlength: 25 },
 			numero_chasis: 					{ minlength: 4, maxlength:30 },
 			codigo_gps: 					{ minlength: 4, maxlength:20 },
-			codigo_ship: 					{ minlength: 4, maxlength:30 }
+			codigo_ship: 					{ minlength: 4, maxlength:30 },
+			numero_puertas: 				{ maxlength:5 },
+			numero_ocupantes: 				{ maxlength:5 },
+			cilindraje: 					{ maxlength:15 }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

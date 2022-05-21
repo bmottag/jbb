@@ -71,18 +71,18 @@ if($infoEquipo)
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>COLOR</strong></th>
 					<th>' . $infoEspecifica[0]['color']. '</th>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>CILINDRAJE</strong></th>
-					<th></th>
+					<th>' . $infoEspecifica[0]['cilindraje']. '</th>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>COMBUSTIBLE</strong></th>
 					<th>' . $combustible. '</th>
 				</tr>
 
 				<tr>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>No. DE OCUPANTES</strong></th>
-					<th></th>
+					<th>' . $infoEspecifica[0]['numero_ocupantes']. '</th>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>CAPACIDAD PESO(KG)</strong></th>
 					<th>' . $infoEspecifica[0]['capacidad']. '</th>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>No. DE PUERTAS</strong></th>
-					<th></th>
+					<th>' . $infoEspecifica[0]['numero_puertas']. '</th>
 				</tr>
 
 				<tr>

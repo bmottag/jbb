@@ -107,6 +107,25 @@
 								<input type="text" id="servicio" name="servicio" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["servicio"]:""; ?>" placeholder="Servicio"  <?php echo $deshabilitar; ?>>
 							</div>						
 						</div>
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label for="numero_puertas">Número Puertas: </label>
+								<input type="number" min="0" max="5" id="numero_puertas" name="numero_puertas" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_puertas"]:""; ?>" placeholder="Número Puertas" <?php echo $deshabilitar; ?>>
+							</div>
+
+							<div class="col-sm-6">
+								<label for="numero_ocupantes">Número Ocupantes: </label>
+								<input type="number" min="0" max="5" id="numero_ocupantes" name="numero_ocupantes" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_ocupantes"]:""; ?>" placeholder="Número Ocupantes" <?php echo $deshabilitar; ?>>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<label for="cilindraje">Cilindraje: </label>
+								<input type="text" id="cilindraje" name="cilindraje" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["cilindraje"]:""; ?>" placeholder="Cilindraje" <?php echo $deshabilitar; ?>>
+							</div>
+						</div>						
 						
 						<div class="form-group">
 							<div class="col-sm-6">
