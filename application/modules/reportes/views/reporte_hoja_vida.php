@@ -91,6 +91,21 @@ if($infoEquipo)
 				</tr>
 			</table>';
 	$html.='<br><br>';
+
+
+	$soat = "";
+	$fechaSoat = "";
+	$tecnoMecanica = "";
+	$fechaTecnoMecanica = "";
+	if($infoSOAT){
+		$soat = $infoSOAT[0]['numero_documento'];
+		$fechaSoat = $infoSOAT[0]['fecha_vencimiento'];
+	}
+	if($infoTecnoMecanica){
+		$tecnoMecanica = $infoTecnoMecanica[0]['numero_documento'];
+		$fechaTecnoMecanica = $infoTecnoMecanica[0]['fecha_vencimiento'];
+	}
+
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
 					<th colspan="5" bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>IDENTIFICACIÓN Y REGISTRO LEGAL AUTOMOTRIZ</strong></th>
@@ -123,16 +138,16 @@ if($infoEquipo)
 
 				<tr>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>No. SOAT</strong></th>
-					<th>' . $infoEspecifica[0]['numero_chasis']. '</th>
-					<th>VENCIMIENTO</th>
+					<th>' . $soat . '</th>
+					<th>VENCIMIENTO ' . $fechaSoat . '</th>
 					<th>SEGURO TODO RIESGO</th>
 					<th></th>
 				</tr>
 
 				<tr>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>No. TÉCNICO MECANICA</strong></th>
-					<th>	</th>
-					<th>VENCIMIENTO</th>
+					<th>' . $tecnoMecanica . '</th>
+					<th>VENCIMIENTO ' . $fechaTecnoMecanica . '</th>
 					<th></th>
 					<th></th>
 				</tr>

@@ -87,3 +87,5 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
  * Custom defines
  */
 defined('ID_ROL_CONDUCTOR')   OR define('ID_ROL_CONDUCTOR', 4);
+defined('ID_TIPO_DOC_SOAT')   OR define('ID_TIPO_DOC_SOAT', 3);
+defined('ID_TIPO_DOC_TECNO_MECANICA')   OR define('ID_TIPO_DOC_TECNO_MECANICA', 4);

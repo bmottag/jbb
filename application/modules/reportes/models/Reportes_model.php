@@ -110,12 +110,18 @@
 		 * @since 6/1/2021
 		 */
 		public function get_documento($arrData) 
-		{		
+		{	
+				$fechaActual = date("Y-m-d");	
 				$this->db->select("A.*, CONCAT(first_name, ' ', last_name) name, T.tipo_documento");
 				$this->db->join('usuarios U', 'U.id_user = A.fk_id_user_d', 'INNER');
 				$this->db->join('param_tipo_documento T', 'T.id_tipo_documento = A.fk_id_tipo_documento', 'INNER');		
 				if (array_key_exists("idEquipo", $arrData)) {
 					$this->db->where('A.fk_id_equipo_d', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idTipoDocumento", $arrData)) {
+					$this->db->where('A.fk_id_tipo_documento', $arrData["idTipoDocumento"]);
+					$this->db->where('A.fecha_inicio <=', $fechaActual);
+					$this->db->where('A.fecha_vencimiento >=', $fechaActual);
 				}
 				$this->db->order_by('A.id_equipo_documento', 'desc');
 				$query = $this->db->get('equipos_documento A');
