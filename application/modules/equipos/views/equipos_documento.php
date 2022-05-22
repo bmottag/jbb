@@ -100,7 +100,7 @@ $(function(){
 						</div>		
 					</div>
 				</div>
-					<table class="table table-hover">
+					<table class="table table-hover small">
 						<thead>
 							<tr>
 								<th>Tipo Documento</th>
@@ -117,7 +117,11 @@ $(function(){
 						<tbody>							
 						<?php
 							$filtroFecha = strtotime(date('Y-m-d'));
-							foreach ($listadoDocumentos as $lista):
+							foreach ($listadoDocumentos as $lista):				
+								$estilosFila = "";
+								$fechaInicio = "N/A";
+								$fechaVencimiento = "N/A";
+								if($lista['aplica_fechas']){
 									//semaforo de acuerdo a fecha de vencimiento
 									$fechaVencimiento = strtotime($lista['fecha_vencimiento']);
 									$diferencia = $fechaVencimiento - $filtroFecha;
@@ -132,15 +136,18 @@ $(function(){
 										//si la diferencia es menor que 0 entonces esta vencida
 										$estilosFila = 'danger text-danger';
 									}
-									echo "<tr class='$estilosFila'>";
-									echo "<td>" . $lista['tipo_documento'] . "</td>";
-									echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_inicio'])) . "</td>";
-									echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_vencimiento'])) . "</td>";
-									echo "<td class='text-center'>" . $lista['numero_documento'] . "</td>";
-									echo "<td>" . $lista['descripcion'] . "</td>";
-									echo "<td class='text-center'>" . $lista['name'] . "</td>";
+									$fechaInicio  = strftime("%B %d, %G",strtotime($lista['fecha_inicio']));
+									$fechaVencimiento  = strftime("%B %d, %G",strtotime($lista['fecha_vencimiento']));
+								}
+								echo "<tr>";
+								echo "<td>" . $lista['tipo_documento'] . "</td>";
+								echo "<td >" . $fechaInicio . "</td>";
+								echo "<td class=' $estilosFila'>" . $fechaVencimiento . "</td>";
+								echo "<td class='text-center'>" . $lista['numero_documento'] . "</td>";
+								echo "<td>" . $lista['descripcion'] . "</td>";
+								echo "<td class='text-center'>" . $lista['name'] . "</td>";
 
-									if(!$deshabilitar){
+								if(!$deshabilitar){
 									echo "<td class='text-center'>";
 									
 									if($lista['url_documento']){
@@ -149,24 +156,23 @@ $(function(){
 										echo "<br><br>";
 									}
 						?>
+									<a class="btn btn-info btn-xs" href="<?php echo base_url('equipos/documents_form/' . $lista['fk_id_equipo_d'] . '/' . $lista['id_equipo_documento']); ?>">Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
+									</a>
+									<br><br>
 
-								<a class="btn btn-info btn-xs" href="<?php echo base_url('equipos/documents_form/' . $lista['fk_id_equipo_d'] . '/' . $lista['id_equipo_documento']); ?>">Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
-								</a>
-								<br><br>
-
-	                            <form  name="formHistorial" id="formHistorial" method="post" action="<?php echo base_url("equipos/historial_documentos"); ?>">
-	                                <input type="hidden" class="form-control" id="hddidDocumento" name="hddidDocumento" value="<?php echo $lista['id_equipo_documento']; ?>" />
-	                                
-	                                <button type="submit" class="btn btn-default btn-xs" id="btnSubmit2" name="btnSubmit2">
-	                                    Ver Cambios <span class="fa fa-th-list" aria-hidden="true" />
-	                                </button>
-	         
-	                            </form>
+		                            <form  name="formHistorial" id="formHistorial" method="post" action="<?php echo base_url("equipos/historial_documentos"); ?>">
+		                                <input type="hidden" class="form-control" id="hddidDocumento" name="hddidDocumento" value="<?php echo $lista['id_equipo_documento']; ?>" />
+		                                
+		                                <button type="submit" class="btn btn-default btn-xs" id="btnSubmit2" name="btnSubmit2">
+		                                    Ver Cambios <span class="fa fa-th-list" aria-hidden="true" />
+		                                </button>
+		         
+		                            </form>
 
 						<?php
 									echo "</td>";
-									}
-									echo "</tr>";
+								}
+								echo "</tr>";
 							endforeach;
 						?>
 						</tbody>

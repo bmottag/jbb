@@ -9,14 +9,14 @@ $( document ).ready( function () {
 		}
 	}, "This field is required.");
 	
-	$("#numero_documento").convertirMayuscula().maxlength(15);
+	$("#numero_documento").convertirMayuscula().maxlength(20);
 	
 	$( "#form" ).validate( {
 		rules: {
 			tipo_documento: 		{ required: true },
 			fecha_inicio: 			{ fieldSpecify: "#noAplica" },
 			fecha_vencimiento:		{ fieldSpecify: "#noAplica" },
-			numero_documento:		{ minlength:3, maxlength:15 }
+			numero_documento:		{ minlength:3, maxlength:20 }
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {

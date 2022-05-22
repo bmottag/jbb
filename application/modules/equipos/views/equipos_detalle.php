@@ -166,7 +166,7 @@
 									<option value=''>Select...</option>
 									<option value=1 <?php if($info && $info[0]["profesional_asignado"] == 1) { echo "selected"; }  ?>>Director</option>
 									<option value=2 <?php if($info && $info[0]["profesional_asignado"] == 2) { echo "selected"; }  ?>>Secretario</option>
-									<option value=2 <?php if($info && $info[0]["profesional_asignado"] == 3) { echo "selected"; }  ?>>Subdirector técnico y operativo</option>
+									<option value=3 <?php if($info && $info[0]["profesional_asignado"] == 3) { echo "selected"; }  ?>>Subdirector técnico y operativo</option>
 								</select>
 							</div>
 
