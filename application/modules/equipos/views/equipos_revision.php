@@ -15,7 +15,7 @@
 					<?php if(!$deshabilitar){ ?>
 					<div class="pull-right">
 						<div class="btn-group">
-							<a href="<?php echo base_url('inspection/set_vehicle/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs">
+							<a href="<?php echo base_url('external/add_vehiculos_inspection/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs">
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Inspección Cotidiana
 							</a>
 						</div>
@@ -52,13 +52,14 @@
 			</div>';
 	}else{
 ?>
-					<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+					<table width="100%" class="table table-striped table-bordered table-hover small" id="dataTables">
 						<thead>
 							<tr>
 								<th class="text-center">Fecha Registro</th>
-								<th class="text-center">Responsable</th>
+								<th class="text-center">Operador/Conductor</th>
 								<th class="text-center">Dependencia</th>
 								<th class="text-center">Vehículo Activo</th>
+								<th class="text-center">Descargar Inspección</th>
 							</tr>
 						</thead>
 						<tbody>							
@@ -74,6 +75,11 @@
 									}else{
 										echo "No";
 									}
+									echo "</td>";
+									echo "<td class='text-center'>";
+						?>
+									<a href="<?php echo base_url("reportes/inspecciones/". $lista['id_inspection_vehiculos']); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></a>
+						<?php
 									echo "</td>";
 									echo "</tr>";
 							endforeach;

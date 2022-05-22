@@ -58,5 +58,26 @@ $(document).ready(function () {
         });
     });
 
+    $('#id_conductor').change(function () {
+        $('#id_conductor option:selected').each(function () {
+            var conductor = $('#id_conductor').val();
+            if (conductor > 0 || conductor != '') {
+                $.ajax ({
+                    type: 'POST',
+                    url: base_url + 'external/infoConductor',
+                    data: {'conductor': conductor},
+                    cache: false,
+                    success: function (data)
+                    {
+                        $('#numero_identificacion').html(data);
+                    }
+                });
+            } else {
+                var data = '';
+                $("#numero_identificacion").html(data);
+            }
+        });
+    });
+
     
 });

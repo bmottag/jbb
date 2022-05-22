@@ -52,7 +52,7 @@ $( document ).ready( function () {
 			
 				$.ajax({
 					type: "POST",	
-					url: base_url + "inspection/save_inspection_vehiculos",	
+					url: base_url + "external/save_inspection_vehiculos",	
 					data: $("#form").serialize(),
 					dataType: "json",
 					contentType: "application/x-www-form-urlencoded;charset=UTF-8",
@@ -76,7 +76,7 @@ $( document ).ready( function () {
 							$("#div_load").css("display", "none");
 							$('#btnSubmit').removeAttr('disabled');
 
-							var url = base_url + "inspection/add_vehiculos_inspection/" + data.idInspection;
+							var url = base_url + "external/add_vehiculos_inspection/" + data.idVehicle + "/" + data.idInspection;
 							$(location).attr("href", url);
 						}
 						else

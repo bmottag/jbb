@@ -52,38 +52,52 @@
 				PREVENTIVO SE REALIZARÁ DIARIAMENTE ANTES DE PONER EL VEHÍCULO EN MARCHA, EL SIGUIENTE FORMATO DE INSPECCIÓN DIARIA, EN EL CUAL SE REVISARÁN LOS ELEMENTOS DE SEGURIDAD ACTIVA Y PASIVA. ESTE ES DILIGENCIADO POR EL CONDUCTOR DEL VEHÍCULO. 
 						</div>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<?php if($fotosEquipos && $fotosEquipos[0]["equipo_foto"]){ ?>
 							<div class="form-group">
 								<div class="row" align="center">
-									<img src="<?php echo base_url($fotosEquipos[0]["equipo_foto"]); ?>" class="img-rounded" alt="Vehicle Photo" />
+									<img src="<?php echo base_url($data['equipo_foto']); ?>" class="img-rounded" alt="Foto Equipo" width="60" height="60" />
 								</div>
 							</div>
 						<?php } ?>
-				
+					</div>
+					<div class="col-lg-3">		
 						<strong>Placas del Vehículo: </strong><?php echo $vehicleInfo[0]['placa']; ?><br>
 						<strong>Número Inventario: </strong><?php echo $vehicleInfo[0]['numero_inventario']; ?>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<strong>Número Serial: </strong><?php echo $vehicleInfo[0]['numero_serial']; ?><br>
 						<strong>Tipo Equipo: </strong><?php echo $vehicleInfo[0]['tipo_equipo']; ?>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<strong>Marca: </strong><?php echo $vehicleInfo[0]['marca']; ?><br>
 						<strong>Modelo: </strong><?php echo $vehicleInfo[0]['modelo']; ?>
 					</div>
 				</div>
 				<hr>
 				<div class="row">
-					<div class="col-lg-4">
+					<div class="col-lg-3">
 						<strong>Fecha: </strong><?php echo date('Y-m-d'); ?><br>
 					</div>
-					<div class="col-lg-4">
-						<strong>Usuario: </strong><?php echo $infoUser[0]["first_name"] . ' ' . $infoUser[0]["last_name"]; ?><br>
-						<strong>Número de Identificación: </strong><?php echo $infoUser[0]['numero_cedula']; ?>
+					<div class="col-lg-3">
+						<strong>Operador/Conductor: </strong>
+						<select name="id_conductor" id="id_conductor" class="form-control" >
+							<option value="">Seleccione...</option>
+							<?php for ($i = 0; $i < count($listaUsuarios); $i++) { ?>
+								<option value="<?php echo $listaUsuarios[$i]["id_user"]; ?>" <?php if($information && $information[0]["fk_id_user_responsable"] == $listaUsuarios[$i]["id_user"]) { echo "selected"; }  ?>><?php echo $listaUsuarios[$i]["first_name"] . ' ' . $listaUsuarios[$i]["last_name"]; ?></option>	
+							<?php } ?>
+						</select>
 					</div>
-					<div class="col-lg-4">
-						<strong>Depedencia: </strong><?php echo $infoUser[0]['dependencia']; ?>
+					<div class="col-lg-3">
+						<span id="numero_identificacion">
+							<?php 
+							if($information)
+							{ 
+								echo "<b>Número de Identificación: </b>" . $information[0]["numero_cedula"];
+								echo "<br><b>Dependencia: </b>" . $information[0]["dependencia"];
+							}
+							?>
+						</span>
 					</div>
 				</div>
 				<hr>
@@ -98,20 +112,32 @@
 							</select>
 						</div>
 					</div>
+
+<?php 
+	$validacion = "none";
+	$validacion2 = "none";
+	if($information && $information[0]["activo"] == 2){
+		$validacion = "inline";
+		$validacion2 = "none";
+	}elseif($information && $information[0]["activo"] == 1){
+		$validacion = "none";
+		$validacion2 = "inline";
+	}
+?>
 					<div class="col-lg-4">
-						<div class="form-group" id="div_razon" style="display:none">						
+						<div class="form-group" id="div_razon" style="display:<?php echo $validacion; ?>">						
 							<label class="control-label" for="razon">Razón por la cual no se encuentra en movimiento <small class="text-primary"> </small></label>
 							<select name="razon" id="razon" class="form-control">
 								<option value=''>Seleccione...</option>
 								<option value=1 <?php if($information && $information[0]["razon_inactivo"] == 1) { echo "selected"; }  ?>>Mantenimiento Preventivo</option>
 								<option value=2 <?php if($information && $information[0]["razon_inactivo"] == 2) { echo "selected"; }  ?>>Mantenimiento Correctivo</option>
-								<option value=3 <?php if($information && $information[0]["razon_inactivo"] == 1) { echo "selected"; }  ?>>No se requiere su servicio</option>
-								<option value=4 <?php if($information && $information[0]["razon_inactivo"] == 2) { echo "selected"; }  ?>>Otro</option>
+								<option value=3 <?php if($information && $information[0]["razon_inactivo"] == 3) { echo "selected"; }  ?>>No se requiere su servicio</option>
+								<option value=4 <?php if($information && $information[0]["razon_inactivo"] == 4) { echo "selected"; }  ?>>Otro</option>
 							</select>
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<div class="form-group" id="div_cual" style="display:none">									
+						<div class="form-group" id="div_cual" style="display:<?php echo $validacion; ?>">					
 							<label class="control-label" for="cual">¿Cual?<small class="text-primary"> </small></label>
 							<input type="text" id="cual" name="cual" class="form-control" value="<?php if($information){ echo $information[0]["razon_cual"]; }?>" placeholder="¿Cual?" >
 						</div>
@@ -171,7 +197,7 @@ if($information)
 
 <?php } ?>
 
-<a class="btn <?php echo $class; ?>" href="<?php echo base_url("inspection/add_signature/vehiculos/" . $information[0]["id_inspection_vehiculos"]); ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Firma </a>
+<a class="btn <?php echo $class; ?>" href="<?php echo base_url("external/add_signature/vehiculos/" . $information[0]["id_inspection_vehiculos"]); ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Firma </a>
 
 									</div>
 								</div>
@@ -194,7 +220,7 @@ if($information)
 	</div>
 	<!-- /.row -->
 	
-	<div class="row" id="div_kilometros" style="display:none">
+	<div class="form-group" id="div_kilometros" style="display:<?php echo $validacion2; ?>">
 		<div class="col-lg-12">				
 			<div class="panel panel-primary">
 				<div class="panel-heading">					
@@ -212,7 +238,7 @@ if($information)
 		</div>
 	</div>
 	
-	<div class="row" id="div_second_box" style="display:none">
+	<div class="row" id="div_second_box" style="display:<?php echo $validacion2; ?>">
 		<div class="col-lg-6">				
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -300,7 +326,7 @@ if($information)
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label class="control-label" for="observacion_documentos">Observaciones</label>
-								<textarea id="observacion_documentos" name="observacion_documentos" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<textarea id="observacion_documentos" name="observacion_documentos" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_documentos"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -361,8 +387,8 @@ if($information)
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="form-group">
-								<label class="control-label" for="radiador">Observaciones</label>
-								<textarea id="observacion_dir" name="observacion_dir" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<label class="control-label" for="observacion_dir">Observaciones</label>
+								<textarea id="observacion_dir" name="observacion_dir" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_dir"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -372,7 +398,7 @@ if($information)
 		</div>
 	</div>
 	
-	<div class="row" id="div_third_box" style="display:none">
+	<div class="row" id="div_third_box" style="display:<?php echo $validacion2; ?>">
 		<div class="col-lg-6">				
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -476,8 +502,8 @@ if($information)
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="form-group">
-								<label class="control-label" for="radiador">Observaciones</label>
-								<textarea id="observacion_luces" name="observacion_luces" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<label class="control-label" for="observacion_luces">Observaciones</label>
+								<textarea id="observacion_luces" name="observacion_luces" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_luces"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -514,8 +540,8 @@ if($information)
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="form-group">
-								<label class="control-label" for="radiador">Observaciones</label>
-								<textarea id="observacion_limpia" name="observacion_limpia" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<label class="control-label" for="observacion_limpia">Observaciones</label>
+								<textarea id="observacion_limpia" name="observacion_limpia" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_limpia"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -525,7 +551,7 @@ if($information)
 		</div>
 	</div>
 	
-	<div class="row" id="div_fourth_box" style="display:none">
+	<div class="row" id="div_fourth_box" style="display:<?php echo $validacion2; ?>">
 		<div class="col-lg-6">				
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -572,7 +598,7 @@ if($information)
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label class="control-label" for="observacion_freno">Observaciones</label>
-								<textarea id="observacion_freno" name="observacion_freno" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<textarea id="observacion_freno" name="observacion_freno" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_freno"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -644,7 +670,7 @@ if($information)
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label class="control-label" for="observacion_llantas">Observaciones</label>
-								<textarea id="observacion_llantas" name="observacion_llantas" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<textarea id="observacion_llantas" name="observacion_llantas" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_llantas"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -654,7 +680,7 @@ if($information)
 		</div>
 	</div>
 
-	<div class="row" id="div_fifth_box" style="display:none">
+	<div class="row" id="div_fifth_box" style="display:<?php echo $validacion2; ?>">
 		<div class="col-lg-6">				
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -701,7 +727,7 @@ if($information)
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label class="control-label" for="observacion_espejos">Observaciones</label>
-								<textarea id="observacion_espejos" name="observacion_espejos" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<textarea id="observacion_espejos" name="observacion_espejos" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_espejos"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -738,8 +764,8 @@ if($information)
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="form-group">
-								<label class="control-label" for="radiador">Observaciones</label>
-								<textarea id="observacion_pito" name="observacion_pito" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<label class="control-label" for="observacion_pito">Observaciones</label>
+								<textarea id="observacion_pito" name="observacion_pito" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_pito"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -749,7 +775,7 @@ if($information)
 		</div>
 	</div>
 
-	<div class="row" id="div_sixth_box" style="display:none">
+	<div class="row" id="div_sixth_box" style="display:<?php echo $validacion2; ?>">
 		<div class="col-lg-6">				
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -830,7 +856,7 @@ if($information)
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label class="control-label" for="observacion_niveles">Observaciones</label>
-								<textarea id="observacion_niveles" name="observacion_niveles" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<textarea id="observacion_niveles" name="observacion_niveles" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_niveles"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -885,7 +911,7 @@ if($information)
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label class="control-label" for="observacion_apoyo">Observaciones</label>
-								<textarea id="observacion_apoyo" name="observacion_apoyo" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<textarea id="observacion_apoyo" name="observacion_apoyo" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_apoyo"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -895,7 +921,7 @@ if($information)
 		</div>
 	</div>
 
-	<div class="row" id="div_seventh_box" style="display:none">
+	<div class="row" id="div_seventh_box" style="display:<?php echo $validacion2; ?>">
 		<div class="col-lg-6">				
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -942,7 +968,7 @@ if($information)
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label class="control-label" for="observacion_cinturon">Observaciones</label>
-								<textarea id="observacion_cinturon" name="observacion_cinturon" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<textarea id="observacion_cinturon" name="observacion_cinturon" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_cinturon"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -952,7 +978,7 @@ if($information)
 		</div>
 	</div>
 
-	<div class="row" id="div_eighth_box" style="display:none">
+	<div class="row" id="div_eighth_box" style="display:<?php echo $validacion2; ?>">
 		<div class="col-lg-6">				
 			<div class="panel panel-primary">
 				<div class="panel-heading">
@@ -964,7 +990,7 @@ if($information)
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label class="control-label" for="observacion_seguridad">Observaciones</label>
-								<textarea id="observacion_seguridad" name="observacion_seguridad" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<textarea id="observacion_seguridad" name="observacion_seguridad" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_seguridad"]; }?></textarea>
 							</div>
 						</div>
 					</div>
@@ -1120,7 +1146,7 @@ if($information)
 						<div class="col-lg-12">
 							<div class="form-group">
 								<label class="control-label" for="observacion_botiquin">Observaciones</label>
-								<textarea id="observacion_botiquin" name="observacion_botiquin" placeholder="Observación" class="form-control" rows="3" ></textarea>
+								<textarea id="observacion_botiquin" name="observacion_botiquin" placeholder="Observación" class="form-control" rows="3" ><?php if($information){ echo $information[0]["observacion_botiquin"]; }?></textarea>
 							</div>
 						</div>
 					</div>

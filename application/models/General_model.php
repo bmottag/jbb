@@ -125,12 +125,10 @@ class General_model extends CI_Model {
 		if (array_key_exists("state", $arrData)) {
 			$this->db->where('U.state', $arrData["state"]);
 		}
-		
 		//list without inactive users
 		if (array_key_exists("filtroState", $arrData)) {
 			$this->db->where('U.state !=', 2);
 		}
-		
 		if (array_key_exists("idUser", $arrData)) {
 			$this->db->where('U.id_user', $arrData["idUser"]);
 		}
@@ -728,24 +726,46 @@ class General_model extends CI_Model {
 			}
 	}
 
-		/**
-		 * Lista de Documentos por OT
-		 * @since 8/9/2021
-		 */
-		public function get_documento_ot($arrData) 
-		{		
-				$this->db->select();
-				if (array_key_exists("idOrdenTrabajo", $arrData)) {
-					$this->db->where('A.fk_id_orden_trabajo', $arrData["idOrdenTrabajo"]);
-				}
-				$this->db->order_by('A.id_ot_documento', 'desc');
-				$query = $this->db->get('orden_trabajo_documento A');
-				if ($query->num_rows() > 0) {
-					return $query->result_array();
-				} else {
-					return false;
-				}
-		}
+	/**
+	 * Lista de Documentos por OT
+	 * @since 8/9/2021
+	 */
+	public function get_documento_ot($arrData) 
+	{		
+			$this->db->select();
+			if (array_key_exists("idOrdenTrabajo", $arrData)) {
+				$this->db->where('A.fk_id_orden_trabajo', $arrData["idOrdenTrabajo"]);
+			}
+			$this->db->order_by('A.id_ot_documento', 'desc');
+			$query = $this->db->get('orden_trabajo_documento A');
+			if ($query->num_rows() > 0) {
+				return $query->result_array();
+			} else {
+				return false;
+			}
+	}
+
+	/**
+	 * Lista inspecciones
+	 * @since 22/05/2022
+	 */
+	public function get_inspecciones($arrData) 
+	{		
+			$this->db->select("I.*, CONCAT(first_name, ' ', last_name) name, U.numero_cedula, D.dependencia");
+			$this->db->join('usuarios U', 'U.id_user = I.fk_id_user_responsable', 'INNER');
+			$this->db->join('param_dependencias D', 'D.id_dependencia = U.fk_id_dependencia_u', 'INNER');
+
+			if (array_key_exists("idInspeccion", $arrData)) {
+				$this->db->where('I.id_inspection_vehiculos', $arrData["idInspeccion"]);
+			}
+			$query = $this->db->get('inspection_vehiculos I');
+
+			if ($query->num_rows() > 0) {
+				return $query->result_array();
+			} else {
+				return false;
+			}
+	}
 
 
 }
