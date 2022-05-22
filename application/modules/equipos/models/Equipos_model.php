@@ -25,12 +25,14 @@
 					'fk_id_responsable' => $this->input->post('id_responsable'),
 					'fecha_adquisicion' => $this->input->post('fecha_adquisicion'),
 					'observacion' => $this->input->post('observacion'),
-					'profesional_asignado' => $this->input->post('profesional_asignado')
+					'profesional_asignado' => $this->input->post('profesional_asignado'),
+					'fk_id_persona' => $this->session->userdata("id")
 				);	
 
 				//revisar si es para adicionar o editar
 				if ($idEquipo == '') 
-				{							
+				{
+					$data['fecha_diligenciamiento'] = date("Y-m-d");							
 					$query = $this->db->insert('equipos', $data);
 					$idEquipo = $this->db->insert_id();
 					
@@ -42,6 +44,7 @@
 					$sql = "UPDATE equipos SET qr_code_encryption = '$path', qr_code_img = '$rutaQRcode'  WHERE id_equipo = $idEquipo";
 					$query = $this->db->query($sql);
 				} else {
+					$data['fecha_diligenciamiento'] = $this->input->post('fecha_diligenciamiento');
 					$this->db->where('id_equipo', $idEquipo);
 					$query = $this->db->update('equipos', $data);
 				}

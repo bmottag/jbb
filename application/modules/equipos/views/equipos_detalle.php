@@ -169,6 +169,20 @@
 									<option value=2 <?php if($info && $info[0]["profesional_asignado"] == 3) { echo "selected"; }  ?>>Subdirector técnico y operativo</option>
 								</select>
 							</div>
+
+<script>
+	$( function() {
+		$( "#fecha_diligenciamiento" ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'yy-mm-dd'
+		});
+	});
+</script>
+							<div class="col-sm-6">
+								<label for="fecha_diligenciamiento">Fecha Diligenciamiento: </label>
+								<input type="text" class="form-control" id="fecha_diligenciamiento" name="fecha_diligenciamiento" value="<?php echo $info?$info[0]["fecha_diligenciamiento"]:""; ?>" placeholder="Fecha Adquisición" <?php echo $deshabilitar; ?>/>
+							</div>
 						</div>
 
 						<div class="form-group">

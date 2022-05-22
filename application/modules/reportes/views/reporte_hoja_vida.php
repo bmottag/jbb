@@ -35,9 +35,9 @@ if($infoEquipo)
 				</tr>
 				<tr>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>FECHA DE DILIGENCIAMIENTO</strong></th>
-					<th></th>
+					<th>' . $infoEquipo[0]['fecha_diligenciamiento']. '</th>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>PESONA QUE DILIGENCIO</strong></th>
-					<th></th>
+					<th>' . $infoEquipo[0]['persona_diligencio']. '</th>
 				</tr>
 			</table>';
 
