@@ -56,7 +56,7 @@
 						<?php if($fotosEquipos && $fotosEquipos[0]["equipo_foto"]){ ?>
 							<div class="form-group">
 								<div class="row" align="center">
-									<img src="<?php echo base_url($data['equipo_foto']); ?>" class="img-rounded" alt="Foto Equipo" width="60" height="60" />
+									<img src="<?php echo base_url($fotosEquipos[0]['equipo_foto']); ?>" class="img-rounded" alt="Foto Equipo" width="60" height="60" />
 								</div>
 							</div>
 						<?php } ?>

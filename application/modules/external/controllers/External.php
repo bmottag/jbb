@@ -52,12 +52,12 @@ class External extends CI_Controller {
 			$arrParam['idEquipo'] = $idEquipo;
 			$data['vehicleInfo'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
 
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
+
 			//Lista de usuarios activos
 			$arrParam = array("filtroState" => TRUE, "idRole" => ID_ROL_CONDUCTOR);
 			$data['listaUsuarios'] = $this->general_model->get_user($arrParam);//workers list
-		
-			//Lista fotos de equipo
-			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 
 			$data["view"] = $data['vehicleInfo'][0]['formulario_inspeccion'];
 			$this->load->view("layout_calendar", $data);
