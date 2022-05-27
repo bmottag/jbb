@@ -75,7 +75,14 @@ class External extends CI_Controller {
 
 			$token = $this->input->post('token');
 			if(isset($token) && !empty($token)) {
-			    $secret_key = '6LdTEiAgAAAAADNkKpH1zACGXQnlqmAwvh-VmDO-';
+				$arrParam2 = array(
+					"table" => "parametros",
+					"order" => "id_parametro",
+					"id" => "x"
+				);
+				$parametric = $this->general_model->get_basic_search($arrParam2);
+				$secret_key = $parametric[7]["parametro_valor"];
+
 			    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secret_key."&response=".$token."&remoteip=" . $_SERVER['REMOTE_ADDR']);
 			    $return = json_decode($response);
 			    
@@ -251,7 +258,14 @@ class External extends CI_Controller {
 
 			$token = $this->input->post('token');
 			if(isset($token) && !empty($token)) {
-			    $secret_key = '6LdTEiAgAAAAADNkKpH1zACGXQnlqmAwvh-VmDO-';
+				$arrParam2 = array(
+					"table" => "parametros",
+					"order" => "id_parametro",
+					"id" => "x"
+				);
+				$parametric = $this->general_model->get_basic_search($arrParam2);
+				$secret_key = $parametric[7]["parametro_valor"];
+				
 			    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secret_key."&response=".$token."&remoteip=" . $_SERVER['REMOTE_ADDR']);
 			    $return = json_decode($response);
 			    
