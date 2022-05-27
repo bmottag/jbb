@@ -1,6 +1,7 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/inspection/inspeccion_vehiculos.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/inspection/ajaxInspeccion.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/inspection/validaciones_inspeccion.js"); ?>"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdTEiAgAAAAADm0QRJnFXzX9Awr51t4XuaKW7Ku"></script>
 
 <?php 	 
 	$idEquipo = $vehicleInfo[0]["id_equipo"];

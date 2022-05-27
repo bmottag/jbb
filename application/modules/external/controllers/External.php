@@ -72,57 +72,42 @@ class External extends CI_Controller {
 	{
 			header('Content-Type: application/json');
 			$data = array();
-		
-			$idInspection = $this->input->post('hddId');
-			$data["idVehicle"] = $this->input->post('hddIdVehicle');
-			
 
-			$msj = "Se guardó la Inspección Cotidiana, por favor firmar!";
-			$flag = true;
-			if ($idInspection != '') {
-				$msj = "Se actualizó la Inspección Cotidiana!";
-				$flag = false;
-			}
-			
-			if ($idInspection = $this->external_model->saveVehicleInspection()) 
-			{
-				/**
-				 * si es un registro nuevo entonces guardo el historial de cambio de aceite
-				 * y verifico si hay comentarios y envio correo al administrador
-				
-				if($flag)
-				{				
-					//FALTA DEFINIR ESTA PARTE
-
-
-					//busco datos del vehiculo
-					$arrParam = array(
-						"table" => "param_vehicle",
-						"order" => "id_vehicle",
-						"column" => "id_vehicle",
-						"id" => $idVehicle
-					);
-					$this->load->model("general_model");
-					$vehicleInfo = $this->general_model->get_basic_search($arrParam);
-					
-					//el que vaya con comentario le envio correo al administrador
-					$comments = $this->input->post('comments');
-
-					$state = 1;//Inspection
-					//$this->inspection_model->saveVehicleNextOilChange($idVehicle, $state, $idInspection);
-					
+			$token = $this->input->post('token');
+			if(isset($token) && !empty($token)) {
+			    $secret_key = '6LdTEiAgAAAAADNkKpH1zACGXQnlqmAwvh-VmDO-';
+			    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secret_key."&response=".$token."&remoteip=" . $_SERVER['REMOTE_ADDR']);
+			    $return = json_decode($response);
+			    
+				if($return->success && $return->action == 'validar' && $return->score >= 0.5) {
+						$idInspection = $this->input->post('hddId');
+						$data["idVehicle"] = $this->input->post('hddIdVehicle');
+						
+						$msj = "Se guardó la Inspección Cotidiana, por favor firmar!";
+						$flag = true;
+						if ($idInspection != '') {
+							$msj = "Se actualizó la Inspección Cotidiana!";
+							$flag = false;
+						}
+						
+						if ($idInspection = $this->external_model->saveVehicleInspection()) 
+						{
+							$data["result"] = true;
+							$data["idInspection"] = $idInspection;
+							$this->session->set_flashdata('retornoExito', $msj);
+						} else {
+							$data["result"] = "error";
+							$data["mensaje"] = "Error!!! Ask for help.";
+							$data["idInspection"] = "";
+							$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+						}
+				} else {
+						$data["result"] = "error";
+						$data["mensaje"] = "Error!!! No pasó el reCAPTCHA.";
+						$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+						//echo "<pre>";print_r($response);
 				}
- */
-				$data["result"] = true;
-				$data["idInspection"] = $idInspection;
-				$this->session->set_flashdata('retornoExito', $msj);
-			} else {
-				$data["result"] = "error";
-				$data["mensaje"] = "Error!!! Ask for help.";
-				$data["idInspection"] = "";
-				$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
 			}
-
 
 			echo json_encode($data);
     }	
