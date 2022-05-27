@@ -1088,6 +1088,14 @@ class Equipos extends CI_Controller {
 			//Lista fotos de equipo
 			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 
+			$arrParam = array(
+				"table" => "encuesta_vehiculos",
+				"order" => "id_encuesta_vehiculos",
+				"column" => "fk_id_equipo_vehiculo",
+				"id" => $idEquipo
+			);
+			$data['infoEncuestas'] = $this->general_model->get_basic_search($arrParam);
+
 			//DESHABILITAR
 			$data['deshabilitar'] = '';
 			$userRol = $this->session->role;

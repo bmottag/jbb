@@ -116,7 +116,7 @@
 
 							<div class="col-sm-6">
 								<label for="numero_ocupantes">Número Ocupantes: </label>
-								<input type="number" min="0" max="5" id="numero_ocupantes" name="numero_ocupantes" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_ocupantes"]:""; ?>" placeholder="Número Ocupantes" <?php echo $deshabilitar; ?>>
+								<input type="number" min="0" max="20" id="numero_ocupantes" name="numero_ocupantes" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_ocupantes"]:""; ?>" placeholder="Número Ocupantes" <?php echo $deshabilitar; ?>>
 							</div>
 						</div>
 

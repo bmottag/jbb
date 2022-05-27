@@ -4,7 +4,7 @@
 		
 		/**
 		 * Add/Edit Vehicle Inspection
-		 * @since 18/1/2021
+		 * @since 25/6/2022
 		 */
 		public function saveVehicleInspection() 
 		{
@@ -86,7 +86,34 @@
 				}
 		}
 		
+		/**
+		 * Add encuesta de satisfaccion
+		 * @since 18/1/2021
+		 */
+		public function saveVehicleEncuesta() 
+		{
+				$data = array(
+					'fk_id_equipo_vehiculo' => $this->input->post('id_equipo'),
+					'fecha_registro' => date("Y-m-d"),
+					'recorrido' => addslashes($this->security->xss_clean($this->input->post('recorrido'))),
+					'amabilidad' => addslashes($this->security->xss_clean($this->input->post('amabilidad'))),
+					'presentacion' => addslashes($this->security->xss_clean($this->input->post('presentacion'))),
+					'limpieza' => addslashes($this->security->xss_clean($this->input->post('limpieza'))),
+					'calidad' => addslashes($this->security->xss_clean($this->input->post('calidad'))),
+					'normas' => addslashes($this->security->xss_clean($this->input->post('normas'))),
+					'velocidad' => addslashes($this->security->xss_clean($this->input->post('velocidad'))),
+					'cinturon' => addslashes($this->security->xss_clean($this->input->post('cinturon'))),
+					'aparatos' => addslashes($this->security->xss_clean($this->input->post('aparatos')))
+				);
+				$query = $this->db->insert('encuesta_vehiculos', $data);
+				$idEncuesta = $this->db->insert_id();
 
+				if ($query) {
+					return $idEncuesta;
+				} else {
+					return false;
+				}
+		}
 		
 	    
 	}

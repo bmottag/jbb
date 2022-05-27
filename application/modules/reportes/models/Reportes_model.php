@@ -56,6 +56,62 @@
 		}
 
 		/**
+		 * Consulta lista de equipos
+		 * @since 24/05/2022
+		 */
+		public function get_vehiculos_info($arrData) 
+		{		
+				$this->db->select("A.*, K.*, T.*, CV.clase_vehiculo, Z.tipo_carroceria,  D.dependencia, C.numero_contrato, CONCAT(U.first_name, ' ', U.last_name) name, U.numero_cedula, U.numero_licencia, U.categoria, U.vigencia, U.numero_contrato, U.fecha_inicio_contrato, U.fecha_final_contrato, U.tiene_multas, U.codigo_multa, CONCAT(W.first_name, ' ', W.last_name) persona_diligencio");
+				$this->db->join('equipos_detalle_vehiculo K', 'K.fk_id_equipo = A.id_equipo', 'INNER');
+				$this->db->join('param_dependencias D', 'D.id_dependencia = A.fk_id_dependencia', 'INNER');
+				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = A.fk_id_tipo_equipo', 'INNER');
+				$this->db->join('contratos_mantenimiento C', 'C.id_contrato_mantenimiento = A.fk_id_contrato_mantenimiento', 'INNER');
+				$this->db->join('usuarios U', 'U.id_user = A.fk_id_responsable', 'INNER');
+				$this->db->join('usuarios W', 'W.id_user = A.fk_id_persona', 'LEFT');
+				$this->db->join('param_clase_vehiculo CV', 'CV.id_clase_vechiculo = K.fk_id_clase_vechiculo', 'LEFT');
+				$this->db->join('param_tipo_carroceria Z', 'Z.id_tipo_carroceria = K.fk_id_tipo_carroceria', 'LEFT');
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.id_equipo', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("estadoEquipo", $arrData)) {
+					$this->db->where('A.estado_equipo', $arrData["estadoEquipo"]);
+				}
+				if (array_key_exists("encryption", $arrData)) {
+					$this->db->where('A.qr_code_encryption ', $arrData["encryption"]);
+				}
+				if (array_key_exists("idTipoEquipo", $arrData) && $arrData["idTipoEquipo"] != '') {
+					$this->db->like('A.fk_id_tipo_equipo', $arrData["idTipoEquipo"]); 
+				}
+				if (array_key_exists("numero_inventario", $arrData) && $arrData["numero_inventario"] != '') {
+					$this->db->like('A.numero_inventario', $arrData["numero_inventario"]); 
+				}
+				if (array_key_exists("marca", $arrData) && $arrData["marca"] != '') {
+					$this->db->like('A.marca', $arrData["marca"]); 
+				}
+				if (array_key_exists("modelo", $arrData) && $arrData["modelo"] != '') {
+					$this->db->like('A.modelo', $arrData["modelo"]); 
+				}
+				if (array_key_exists("numero_serial", $arrData) && $arrData["numero_serial"] != '') {
+					$this->db->like('A.numero_serial', $arrData["numero_serial"]); 
+				}
+
+				$this->db->order_by('id_equipo', 'desc');
+				
+				if (array_key_exists("limit", $arrData)) {
+					$query = $this->db->get('equipos A', $arrData["limit"]);
+				}else{
+					$query = $this->db->get('equipos A');
+				}
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
+		/**
 		 * Consulta detalles de quipos tipo vehiculos
 		 * @since 3/12/2020
 		 */
@@ -333,6 +389,28 @@
 				return false;
 			}
 	}
+
+	/**
+	 * Lista inspecciones
+	 * @since 22/05/2022
+	 */
+	public function get_inspecciones($arrData) 
+	{		
+			$this->db->select("I.*, CONCAT(first_name, ' ', last_name) name, U.numero_cedula, D.dependencia");
+			$this->db->join('usuarios U', 'U.id_user = I.fk_id_user_responsable', 'INNER');
+			$this->db->join('param_dependencias D', 'D.id_dependencia = U.fk_id_dependencia_u', 'INNER');
+
+			if (array_key_exists("idInspeccion", $arrData)) {
+				$this->db->where('I.id_inspection_vehiculos', $arrData["idInspeccion"]);
+			}
+			$query = $this->db->get('inspection_vehiculos I');
+
+			if ($query->num_rows() > 0) {
+				return $query->result_array();
+			} else {
+				return false;
+			}
+	}
 		
 	    
-	}
+}

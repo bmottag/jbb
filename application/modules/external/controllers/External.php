@@ -185,8 +185,8 @@ class External extends CI_Controller {
 	}
 
 	/**
-	 * Trucks list by company and type
-     * @since 25/1/2017
+	 * Informacion del conductor
+     * @since 25/5/2022
      * @author BMOTTAG
 	 */
     public function infoConductor() {
@@ -201,8 +201,96 @@ class External extends CI_Controller {
 		}			
 
     }
-	
 
+	/**
+	 * Form Encuesta de Satisfaccion
+     * @since 25/5/2022
+     * @author BMOTTAG
+	 */
+	public function add_encuesta($idEncuesta = 'x')
+	{
+			$data['information'] = FALSE;
+			$data['idEncuesta'] = FALSE;
+			if ($idEncuesta != 'x') {
+					$data['idEncuesta'] = $idEncuesta;
+			}
+			$arrParam = array('estadoEquipo' => 1, 'idTipoEquipo' => ID_TIPO_EQUIPO_VEHICULOS);
+			$data['listaVehiculos'] = $this->general_model->get_equipos_info($arrParam);//busco datos del vehiculo
+
+			$data["view"] = "form_encuesta";
+			$this->load->view("layout_calendar", $data);
+	}
+
+	/**
+	 * Informacion del equipo
+     * @since 26/5/2022
+     * @author BMOTTAG
+	 */
+    public function infoEquipo() {
+        header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+		$equipo = $this->input->post('equipo');
+		
+		$arrParam = array("idEquipo" => $equipo);
+		$infoEquipo = $this->general_model->get_equipos_info($arrParam);
+		if ($infoEquipo) {
+			echo '<div class="col-lg-3">';	
+			echo "<b>Placas del Vehículo: </b>" . $infoEquipo[0]["placa"];
+			echo "<br><b>Número Inventario: </b>" . $infoEquipo[0]["numero_inventario"];
+			echo "</div>";
+			echo '<div class="col-lg-3">';	
+			echo "<b>Número Serial: </b>" . $infoEquipo[0]["numero_serial"];
+			echo "<br><b>Tipo Equipo: </b>" . $infoEquipo[0]["tipo_equipo"];
+			echo "</div>";
+			echo '<div class="col-lg-3">';	
+			echo "<b>Marca: </b>" . $infoEquipo[0]["marca"];
+			echo "<br><b>Modelo: </b>" . $infoEquipo[0]["modelo"];
+			echo "</div>";
+			echo '<div class="col-lg-3">';	
+			echo "<b>Operador/Conductor: </b>" . $infoEquipo[0]["name"];
+			echo "<br><b>Número de Identificación: </b>" . $infoEquipo[0]["numero_cedula"];
+			echo "<br><b>Dependencia: </b>" . $infoEquipo[0]["dependencia"];
+			echo "</div>";
+		}			
+
+    }
+	
+	/**
+	 * Save encuesta de satisfaccion
+     * @since 26/5/2022
+     * @author BMOTTAG
+	 */
+	public function save_encuesta_vehiculos()
+	{
+			header('Content-Type: application/json');
+			$data = array();
+
+			$token = $this->input->post('token');
+			if(isset($token) && !empty($token)) {
+			    $secret_key = '6LdTEiAgAAAAADNkKpH1zACGXQnlqmAwvh-VmDO-';
+			    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secret_key."&response=".$token."&remoteip=" . $_SERVER['REMOTE_ADDR']);
+			    $return = json_decode($response);
+			    
+				if($return->success && $return->action == 'validar' && $return->score >= 0.5) {
+					$msj = "Se guardó la Información.! Gracias por responder la Encuesta de Satisfacción";
+					if ($idEncuesta = $this->external_model->saveVehicleEncuesta()) 
+					{
+						$data["result"] = true;
+						$data["idEncuesta"] = $idEncuesta;
+						$this->session->set_flashdata('retornoExito', $msj);
+					} else {
+						$data["result"] = "error";
+						$data["mensaje"] = "Error!!! Ask for help.";
+						$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+					}
+				} else {
+						$data["result"] = "error";
+						$data["mensaje"] = "Error!!! No pasó el reCAPTCHA.";
+						$this->session->set_flashdata('retornoError', '<strong>Error!!!</strong> Ask for help');
+						//echo "<pre>";print_r($response);
+				}
+			}
+			echo json_encode($data);
+    }
 
 	
 	
