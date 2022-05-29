@@ -23,7 +23,7 @@ if($infoEquipo)
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
 					<th width="3%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Nro.</strong></th>
-					<th width="6%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Tipo Vehículo.</strong></th>
+					<th width="6%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Nro. Inventario</strong></th>
 					<th width="5%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Placa</strong></th>
 					<th width="6%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Línea</strong></th>
 					<th width="5%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Modelo</strong></th>
@@ -37,7 +37,7 @@ if($infoEquipo)
 					<th width="7%" bgcolor="#dde1da" style="color:#3e403e;"><strong>No. Serie/No. Chasis</strong></th>
 					<th width="7%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Valor</strong></th>
 					<th width="5%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Multas</strong></th>
-					<th width="12%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Conductor Asignado</strong></th>				
+					<th width="12%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Conductor Responsable</strong></th>				
 				</tr>';
 				$x=0;
 				foreach ($infoEquipo as $lista):
@@ -46,7 +46,7 @@ if($infoEquipo)
 					$multas = $lista['multas']==1?"Si":"No";
 					$html.= '<tr>
 								<th >' . $x. '</th>
-								<th >' . $lista['tipo_equipo']. '</th>
+								<th >' . $lista['numero_inventario']. '</th>
 								<th >' . $lista['placa']. '</th>
 								<th >' . $lista['marca']. '</th>
 								<th >' . $lista['modelo']. '</th>

@@ -59,7 +59,7 @@ class Reportes extends CI_Controller {
 			// ---------------------------------------------------------
 
 			// set font
-			$pdf->SetFont('dejavusans', '', 4);
+			$pdf->SetFont('dejavusans', '', 5);
 
 			// writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
 			// writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
@@ -511,6 +511,20 @@ class Reportes extends CI_Controller {
 
 			// output the HTML content
 			$pdf->writeHTML($html2, true, false, true, false, '');
+
+			$html3 = '<table border="0" cellspacing="0" cellpadding="5" >';
+			if($data['infoInspeccion'][0]['signature ']){
+				$html3.= '<tr>
+							<th>'. $data['infoInspeccion'][0]['signature'] . '</th>
+						</tr>';
+			}
+				$html3.= '<tr>
+							<th width="25%">'. $data['infoInspeccion'][0]['name'] . '</th>
+						</tr>';
+			$html3.= '</table>';
+	
+
+			$pdf->writeHTML($html3, true, false, true, false, '');
 
 			// reset pointer to the last page
 			$pdf->lastPage();
