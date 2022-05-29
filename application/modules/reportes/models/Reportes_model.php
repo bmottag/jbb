@@ -411,6 +411,29 @@
 				return false;
 			}
 	}
+
+	/**
+	 * Lista encuestas
+	 * @since 29/05/2022
+	 */
+	public function get_encuestas($arrData) 
+	{		
+			$this->db->select("S.*, CONCAT(first_name, ' ', last_name) name, U.numero_cedula, D.dependencia, E.numero_inventario, E.placa");
+			$this->db->join('equipos E', 'E.id_equipo = S.fk_id_equipo_vehiculo ', 'INNER');
+			$this->db->join('usuarios U', 'U.id_user = E.fk_id_responsable', 'INNER');
+			$this->db->join('param_dependencias D', 'D.id_dependencia = U.fk_id_dependencia_u', 'INNER');
+
+			if (array_key_exists("idEncuesta", $arrData)) {
+				$this->db->where('S.id_encuesta_vehiculos', $arrData["idEncuesta"]);
+			}
+			$query = $this->db->get('encuesta_vehiculos S');
+
+			if ($query->num_rows() > 0) {
+				return $query->result_array();
+			} else {
+				return false;
+			}
+	}
 		
 	    
 }

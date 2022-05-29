@@ -48,6 +48,7 @@
 							<tr>
 								<th class="text-center">Fecha Registro</th>
 								<th class="text-center">Recorrido</th>
+								<th class="text-center">Descargar Encuesta</th>
 							</tr>
 						</thead>
 						<tbody>							
@@ -56,6 +57,11 @@
 									echo "<tr>";
 									echo "<td class='text-center'>" . strftime("%B %d, %G",strtotime($lista['fecha_registro'])) . "</td>";
 									echo "<td>" . $lista['recorrido'] . "</td>";
+									echo "<td class='text-center'>";
+						?>
+									<a href="<?php echo base_url("reportes/encuesta/". $lista['id_encuesta_vehiculos']); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></a>
+						<?php
+									echo "</td>";
 									echo "</tr>";
 							endforeach;
 						?>

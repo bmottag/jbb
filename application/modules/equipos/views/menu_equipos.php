@@ -26,6 +26,7 @@
 				echo "<br><strong>Kilometos/Horas actuales: </strong>" . number_format($info[0]['horas_kilometros_actuales']);
 			}
 			?>
+			<a href="<?php echo base_url("reportes/hojaVidaPDF/". $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs" target="_blank" title="Hoja de Vida"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></a>
 		</div>
 	</div>
 
@@ -66,7 +67,7 @@
 			<i class="fa fa-tasks"></i> Inspección Cotidiana
 		</a>
 		<a href="<?php echo base_url('equipos/encuesta/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN11)?$classActivo:$classInactivo; ?>">
-			<i class="fa fa-tasks"></i> Encuesta de Satisfcción
+			<i class="fa fa-tasks"></i> Encuesta de Satisfacción
 		</a>
 	</div>
 </div>
