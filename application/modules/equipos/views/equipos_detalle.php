@@ -18,7 +18,7 @@
 					<i class="fa <?php echo $info[0]['icono']; ?>"></i> <strong>INFORMACIÓN GENERAL DEL EQUIPO</strong>
 					<div class="pull-right">
 						<div class="btn-group">
-							<a href="<?php echo base_url("reportes/hojaVidaPDF/". $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs" target="_blank">Hoja de Vida <span class="fa fa-file-pdf-o" aria-hidden="true" /></a>
+							<a href="<?php echo base_url("reportes/hojaVidaPDF/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Descargar Formato - FIS.PR.06.F.08 </a>
 						</div>
 					</div>
 				</div>

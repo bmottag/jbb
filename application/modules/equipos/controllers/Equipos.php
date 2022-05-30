@@ -1111,5 +1111,84 @@ class Equipos extends CI_Controller {
 			$data["view"] = 'equipos_encuesta';
 			$this->load->view("layout_calendar", $data);
 	}
+
+	/**
+	 * Comparendos Conductores
+	 * @since 29/05/2022
+     * @author BMOTTAG
+	 */
+	public function comparendos($idEquipo)
+	{
+			$arrParam = array("idEquipo" => $idEquipo);
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			//Lista fotos de equipo
+			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
+			
+			$data['listadoComparendos'] = $this->equipos_model->get_comparendos($arrParam);
+						
+			$data["activarBTN12"] = true;//para activar el boton
+			$data["view"] = 'equipos_comparendos';
+			$this->load->view("layout_calendar", $data);
+	}
+
+    /**
+     * Cargo modal- formulario de Comparendos Conductores
+	 * @since 29/05/2022
+     */
+    public function cargarModalComparendos() 
+	{
+			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
+			
+			$data['information'] = FALSE;
+			$arrParam = array("idEquipo" => $this->input->post("idEquipo"));
+			$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);
+
+			$data["idComparendo"] = $this->input->post("idComparendo");
+
+			//Lista de operadores activos
+			$arrParam = array(
+						"filtroState" => TRUE,
+						'idRole' => 4
+						);
+			$data['listaOperadores'] = $this->general_model->get_user($arrParam);//workers list
+			
+			if ($data["idComparendo"] != 'x') {
+				$arrParam = array("idComparendo" => $data["idComparendo"]);
+				$data['information'] = $this->equipos_model->get_comparendos($arrParam);//info bloques
+				
+				$arrParam = array("idEquipo" => $data['information'][0]['fk_id_equipo']);
+				$data['infoEquipo'] = $this->general_model->get_equipos_info($arrParam);
+			}
+			
+			$this->load->view("comparendos_modal", $data);
+    }
+	
+	/**
+	 * Guardar Comparendos Conductores
+	 * @since 29/05/2022
+     * @author BMOTTAG
+	 */
+	public function guardar_comparendos()
+	{		
+			header('Content-Type: application/json');
+			$data = array();
+
+			$idComparendo = $this->input->post('hddidComparendo');
+			$data["idRecord"] = $this->input->post('hddidEquipo');
+		
+			$msj = "Se guardo la información!";
+
+			if ($idComparendo = $this->equipos_model->guardarComparendos()) 
+			{
+				$data["result"] = true;		
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
+			} else {
+				$data["result"] = "error";
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
+			}
+		
+			echo json_encode($data);
+    }
 	
 }

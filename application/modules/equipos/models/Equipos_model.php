@@ -626,6 +626,63 @@
 				}
 		}
 
+		/**
+		 * Guardar Comparendos Conductores
+		 * @since 29/5/2022
+		 */
+		public function guardarComparendos() 
+		{
+				$idComparendo = $this->input->post('hddidComparendo');
+			
+				$data = array(
+					'fk_id_conductor' => $this->input->post('hddidConductor'),
+					'fk_id_equipo' => $this->input->post('hddidEquipo'),
+					'fecha_revision' => $this->input->post('fecha_revision'),
+					'verificacion_runt' => $this->input->post('verificacion_runt'),
+					'verificacion_simit' => $this->input->post('verificacion_simit')
+				);	
+
+				//revisar si es para adicionar o editar
+				if ($idComparendo == '') 
+				{
+					$query = $this->db->insert('comparendos_conductor', $data);
+				} else {
+					$this->db->where('id_comparendo', $idComparendo);
+					$query = $this->db->update('comparendos_conductor', $data);
+				}
+				if ($query) {
+					return true;
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Lista de Comparendos Conductor
+		 * @since 17/12/2020
+		 */
+		public function get_comparendos($arrData) 
+		{		
+				$this->db->select('C.*, CONCAT(U.first_name, " ", U.last_name) name, U.numero_cedula');				
+				$this->db->join('usuarios U', 'U.id_user = C.fk_id_conductor', 'INNER');
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('C.fk_id_equipo', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idComparendo", $arrData)) {
+					$this->db->where('C.id_comparendo', $arrData["idComparendo"]);
+				}
+				
+				$this->db->order_by('C.id_comparendo', 'desc');
+				$query = $this->db->get('comparendos_conductor C');
+
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
 		
 		
 	    

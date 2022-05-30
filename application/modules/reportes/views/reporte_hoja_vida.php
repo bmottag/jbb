@@ -162,7 +162,7 @@ if($infoEquipo)
 	//<!-- IMAGEN DEL EQUIPO -->
 	$imagen = '#';
 	if($fotosEquipos){ 
-		$imagen = base_url($fotosEquipos[0]["equipo_foto"]);
+		$imagen2 = base_url($fotosEquipos[0]["equipo_foto"]);
 	}
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>

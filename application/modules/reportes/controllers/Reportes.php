@@ -511,7 +511,7 @@ class Reportes extends CI_Controller {
 
 			// output the HTML content
 			$pdf->writeHTML($html2, true, false, true, false, '');
-
+/*
 			$html3 = '<table border="0" cellspacing="0" cellpadding="5" >';
 			if($data['infoInspeccion'][0]['signature ']){
 				$html3.= '<tr>
@@ -525,7 +525,7 @@ class Reportes extends CI_Controller {
 	
 
 			$pdf->writeHTML($html3, true, false, true, false, '');
-
+*/
 			// reset pointer to the last page
 			$pdf->lastPage();
 

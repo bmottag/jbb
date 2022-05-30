@@ -26,7 +26,7 @@
 				echo "<br><strong>Kilometos/Horas actuales: </strong>" . number_format($info[0]['horas_kilometros_actuales']);
 			}
 			?>
-			<a href="<?php echo base_url("reportes/hojaVidaPDF/". $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs" target="_blank" title="Hoja de Vida"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></a>
+			<a href="<?php echo base_url("reportes/hojaVidaPDF/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank" title="FIS.PR.06.F.08"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></a>
 		</div>
 	</div>
 
@@ -54,6 +54,16 @@
 		<a href="<?php echo base_url('equipos/documento/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN6)?$classActivo:$classInactivo; ?>">
 			<i class="fa fa-book"></i> Documentos
 		</a>
+<?php
+if($info[0]['fk_id_tipo_equipo'] == ID_TIPO_EQUIPO_VEHICULOS){
+?>
+		<a href="<?php echo base_url('equipos/comparendos/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN12)?$classActivo:$classInactivo; ?>">
+			<i class="fa fa-legal"></i> Comparendos Conductores
+		</a>
+<?php
+}
+?>
+
 		<a href="<?php echo base_url('mantenimiento/correctivo/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN7)?$classActivo:$classInactivo; ?>">
 			<i class="fa fa-wrench"></i> Mantenimiento Correctivo
 		</a>
