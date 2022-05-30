@@ -109,7 +109,7 @@ $(function(){
 							<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="x">
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Equipo
 							</button>
-							<a href="<?php echo base_url("reportes/litadoEquipos"); ?>" class="btn btn-info btn-xs" target="_blank">Lista Equipo <span class="fa fa-file-pdf-o" aria-hidden="true" /></a>
+							<a href="<?php echo base_url("reportes/litadoEquipos"); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Lista Vehículos </a>
 						</div>
 					</div>
 				</div>

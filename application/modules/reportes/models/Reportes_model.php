@@ -434,6 +434,34 @@
 				return false;
 			}
 	}
+
+		/**
+		 * Lista de Comparendos Conductor
+		 * @since 17/12/2020
+		 */
+		public function get_comparendos($arrData) 
+		{		
+				$this->db->select('C.*, U.first_name, U.last_name, U.numero_cedula, T.tipo_equipo, E.placa');				
+				$this->db->join('usuarios U', 'U.id_user = C.fk_id_conductor', 'INNER');
+				$this->db->join('equipos E', 'E.id_equipo = C.fk_id_equipo', 'INNER');
+				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = E.fk_id_tipo_equipo', 'INNER');
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('C.fk_id_equipo', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idComparendo", $arrData)) {
+					$this->db->where('C.id_comparendo', $arrData["idComparendo"]);
+				}
+				
+				$this->db->order_by('C.id_comparendo', 'desc');
+				$query = $this->db->get('comparendos_conductor C');
+
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
 		
 	    
 }
