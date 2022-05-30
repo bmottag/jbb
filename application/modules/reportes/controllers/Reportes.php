@@ -99,6 +99,8 @@ class Reportes extends CI_Controller {
 			$data['infoSOAT'] = $this->reportes_model->get_documento($arrParam);
 			$arrParam['idTipoDocumento'] = ID_TIPO_DOC_TECNO_MECANICA;
 			$data['infoTecnoMecanica'] = $this->reportes_model->get_documento($arrParam);
+			$arrParam['idTipoDocumento'] = ID_TIPO_DOC_POLIZA;
+			$data['infoPoliza'] = $this->reportes_model->get_documento($arrParam);
 
 			$consulta = $data['infoEquipo'][0]['formulario_especifico'];
 			$data['infoEspecifica'] = $this->reportes_model->$consulta($arrParam);

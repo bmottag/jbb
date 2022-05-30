@@ -105,6 +105,10 @@ if($infoEquipo)
 		$tecnoMecanica = $infoTecnoMecanica[0]['numero_documento'];
 		$fechaTecnoMecanica = $infoTecnoMecanica[0]['fecha_vencimiento'];
 	}
+	if($infoPoliza){
+		$poliza = $infoPoliza[0]['numero_documento'];
+		$fechaPoliza = $infoPoliza[0]['fecha_vencimiento'];
+	}
 
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
@@ -140,8 +144,8 @@ if($infoEquipo)
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>No. SOAT</strong></th>
 					<th>' . $soat . '</th>
 					<th>VENCIMIENTO ' . $fechaSoat . '</th>
-					<th>SEGURO TODO RIESGO</th>
-					<th></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>SEGURO TODO RIESGO </strong> ' . $poliza . '</th>
+					<th>VENCIMIENTO ' . $fechaPoliza . '</th>
 				</tr>
 
 				<tr>
