@@ -16,6 +16,7 @@ $(document).ready(function () {
                 $("#razon").val("");
                 $("#cual").val("");
 				if(activo==2){
+                    console.log('inactivo');
                     $("#hours").val(1);
                     $("#hdd_cuadro_1").val(1);
                     $("#hdd_cuadro_2").val(1);
@@ -31,6 +32,7 @@ $(document).ready(function () {
                     $("#div_seventh_box").css("display", "none");
                     $("#div_eighth_box").css("display", "none");
 				}else if(activo==1){
+                    console.log('encuesta');
                     $("#div_razon").css("display", "none");
                     $("#div_kilometros").css("display", "inline");
                     $("#div_second_box").css("display", "inline");

@@ -19,7 +19,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<i class="fa fa-tasks"></i><strong> INSPECCIÓN COTIDIANA</strong>
+					<i class="fa fa-tasks"></i><strong> CHEQUEO PREOPERACIONAL DIARIO</strong>
 				</div>
 				<div class="panel-body">
 
@@ -108,7 +108,7 @@
 							<label class="control-label" for="activo">¿El vehículo se encuentra activo? <small class="text-primary"> </small></label>
 							<select name="activo" id="activo" class="form-control" required>
 								<option value=''>Seleccione...</option>
-								<option value=0 <?php if($information && $information[0]["activo"] == 1) { echo "selected"; }  ?>>Activo</option>
+								<option value=1 <?php if($information && $information[0]["activo"] == 1) { echo "selected"; }  ?>>Activo</option>
 								<option value=2 <?php if($information && $information[0]["activo"] == 2) { echo "selected"; }  ?>>Inactivo</option>
 							</select>
 						</div>
