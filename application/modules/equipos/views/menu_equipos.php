@@ -74,7 +74,7 @@ if($info[0]['fk_id_tipo_equipo'] == ID_TIPO_EQUIPO_VEHICULOS){
 			<i class="fa fa-briefcase"></i> Ordenes de Trabajo
 		</a>
 		<a href="<?php echo base_url('equipos/revision/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN10)?$classActivo:$classInactivo; ?>">
-			<i class="fa fa-tasks"></i> Inspección Cotidiana
+			<i class="fa fa-tasks"></i> Chequeo Preoperacional
 		</a>
 		<a href="<?php echo base_url('equipos/encuesta/' . $info[0]['id_equipo']); ?>" class="<?php echo isset($activarBTN11)?$classActivo:$classInactivo; ?>">
 			<i class="fa fa-tasks"></i> Encuesta de Satisfacción

@@ -11,12 +11,12 @@
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-book"></i> <strong>INSPECCIÓN COTIDIANA</strong>
+					<i class="fa fa-book"></i> <strong>CHEQUEO PREOPERACIONAL DIARIO</strong>
 					<?php if(!$deshabilitar){ ?>
 					<div class="pull-right">
 						<div class="btn-group">
 							<a href="<?php echo base_url('external/add_vehiculos_inspection/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs">
-									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Inspección Cotidiana
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Chequeo Preoperacional
 							</a>
 						</div>
 					</div>

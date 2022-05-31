@@ -442,7 +442,7 @@ class Reportes extends CI_Controller {
 
 			// set default header data
 			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', PDF_HEADER_STRING, array(94,164,49), array(147,204,110));
-			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, 'MANUAL DE PROCESOS Y PROCEDIMIENTOS', "FIS - GESTIÓN DE RECURSOS FÍSICOS \nInspección cotidiana sobre el estado de los vehículos ", array(0,140,0), array(147,204,110));	
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, 'MANUAL DE PROCESOS Y PROCEDIMIENTOS', "FIS - GESTIÓN DE RECURSOS FÍSICOS \nChequeo preoperacional diario sobre el estado de los vehículos ", array(0,140,0), array(147,204,110));	
 			// set header and footer fonts
 			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
