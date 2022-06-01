@@ -24,16 +24,15 @@ if($infoComparendos)
 				<tr>
 					<th width="10%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Tipo de vehículo</strong></th>
 					<th width="10%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Placa</strong></th>
-					<th width="70%" colspan="6" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Datos personales del conductror </strong></th>
+					<th width="70%" colspan="5" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Datos personales del conductror </strong></th>
 					<th width="10%" rowspan="2"bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Fecha de Revisión </strong></th>				
 				</tr>
 				<tr>
 					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Nombres</strong></th>
 					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Apellidos</strong></th>
 					<th width="10%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Identificación</strong></th>
-					<th width="10%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Verificación de comparendo en SIMUR</strong></th>	
-					<th width="10%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Verificación de comparendo en RUNT</strong></th>	
-					<th width="10%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Verificación de comparendo en SIMIT</strong></th>
+					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Verificación de comparendo en RUNT</strong></th>	
+					<th width="15%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Verificación de comparendo en SIMIT</strong></th>
 				</tr>';
 				foreach ($infoComparendos as $lista):
 					$html.= '<tr>
@@ -42,7 +41,6 @@ if($infoComparendos)
 								<th >' . $lista['first_name']. '</th>
 								<th >' . $lista['last_name']. '</th>
 								<th >' . $lista['numero_cedula']. '</th>
-								<th ></th>
 								<th >' . $lista['verificacion_runt']. '</th>
 								<th >' . $lista['verificacion_simit']. '</th>
 								<th >' . $lista['fecha_revision']. '</th>

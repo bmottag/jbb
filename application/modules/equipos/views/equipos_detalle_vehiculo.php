@@ -125,47 +125,58 @@
 								<label for="cilindraje">Cilindraje: </label>
 								<input type="text" id="cilindraje" name="cilindraje" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["cilindraje"]:""; ?>" placeholder="Cilindraje" <?php echo $deshabilitar; ?>>
 							</div>
-						</div>						
-						
-						<div class="form-group">
+
 							<div class="col-sm-6">
 								<label for="numero_motor">Número Motor: </label>
 								<input type="text" id="numero_motor" name="numero_motor" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_motor"]:""; ?>" placeholder="Número Motor" <?php echo $deshabilitar; ?>>
 							</div>
+						</div>
 
+						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="numero_chasis">Número Chasis: </label>
 								<input type="text" id="numero_chasis" name="numero_chasis" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_chasis"]:""; ?>" placeholder="Número Chasis" <?php echo $deshabilitar; ?>>
 							</div>
-						</div>
 
-						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="codigo_gps">Código GPS: </label>
 								<input type="text" id="codigo_gps" name="codigo_gps" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["codigo_gps"]:""; ?>" placeholder="Código GPS" <?php echo $deshabilitar; ?>>
 							</div>
+						</div>
 
+						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="codigo_ship">Código Ship: </label>
 								<input type="text" id="codigo_ship" name="codigo_ship" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["codigo_ship"]:""; ?>" placeholder="Código Ship" <?php echo $deshabilitar; ?>>
 							</div>						
-						</div>
 
 <?php if($info[0]['fk_id_tipo_equipo'] == 1){ ?>
-						<div class="form-group">
 							<div class="col-sm-6">
 								<label for="numero_licencia_transito">Número de Licencia de Tránsito: </label>
 								<input type="text" id="numero_licencia_transito" name="numero_licencia_transito" class="form-control" value="<?php echo $infoEspecifica?$infoEspecifica[0]["numero_licencia_transito"]:""; ?>" placeholder="Número de Licencia de Tránsito" maxlength="30" <?php echo $deshabilitar; ?>>
 							</div>
+<?php } ?>
+						</div>
 
+<?php if($info[0]['fk_id_tipo_equipo'] == 1){ ?>
+						<div class="form-group">					
 							<div class="col-sm-6">
-								<label for="multas">Actualmente tiene multas?: </label>
+								<label for="multas">Multa por placa?: </label>
 								<select name="multas" id="multas" class="form-control" <?php echo $deshabilitar; ?>>
 									<option value=''>Select...</option>
 									<option value=1 <?php if($infoEspecifica && $infoEspecifica[0]["multas"] == 1) { echo "selected"; }  ?>>Si</option>
 									<option value=2 <?php if($infoEspecifica && $infoEspecifica[0]["multas"] == 2) { echo "selected"; }  ?>>No</option>
 								</select>
-							</div>						
+							</div>
+
+							<div class="col-sm-6">
+								<label for="multas_conductor">Multa por cédula conductor?: </label>
+								<select name="multas_conductor" id="multas_conductor" class="form-control" <?php echo $deshabilitar; ?>>
+									<option value=''>Select...</option>
+									<option value=1 <?php if($infoEspecifica && $infoEspecifica[0]["multas_conductor"] == 1) { echo "selected"; }  ?>>Si</option>
+									<option value=2 <?php if($infoEspecifica && $infoEspecifica[0]["multas_conductor"] == 2) { echo "selected"; }  ?>>No</option>
+								</select>
+							</div>	
 						</div>
 
 						<div class="form-group">

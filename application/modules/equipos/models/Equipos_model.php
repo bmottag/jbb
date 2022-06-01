@@ -79,6 +79,7 @@
 					'codigo_ship' => $this->input->post('codigo_ship'),
 					'numero_licencia_transito' => $this->input->post('numero_licencia_transito'),
 					'multas' => $this->input->post('multas'),
+					'multas_conductor' => $this->input->post('multas_conductor'),
 					'restricciones' => $this->input->post('restricciones'),
 					'motivo_multa' => $this->input->post('motivo_multa'),
 					'numero_puertas' => $this->input->post('numero_puertas'),

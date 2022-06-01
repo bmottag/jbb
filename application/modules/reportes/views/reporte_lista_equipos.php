@@ -29,42 +29,45 @@ if($infoEquipo)
 				<tr>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Tipo de Servicio</strong></th>
 					<th>Oficial</th>
-					<th bgcolor="#dde1da" style="color:#3e403e;"><strong></strong></th>
-					<th></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Fecha</strong></th>
+					<th>' . date('Y-m-d') . '</th>
 				</tr>
 			</table><br><br>';
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
-					<th width="6%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Nro. Inventario</strong></th>
-					<th width="5%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Placa</strong></th>
-					<th width="6%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Línea</strong></th>
-					<th width="5%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Modelo</strong></th>
-					<th width="6%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Color</strong></th>
-					<th width="6%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Clase de Vehículo</strong></th>
-					<th width="7%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Tipo Carrocería</strong></th>
-					<th width="7%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Combustible</strong></th>
-					<th width="7%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Capacidad</strong></th>
-					<th width="7%" bgcolor="#dde1da" style="color:#3e403e;"><strong>No. Motor</strong></th>
-					<th width="7%" bgcolor="#dde1da" style="color:#3e403e;"><strong>No. Serie/No. Chasis</strong></th>
-					<th width="7%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Valor</strong></th>
-					<th width="5%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Multas o Restricciones</strong></th>
-					<th width="12%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Conductor Responsable</strong></th>				
+					<th width="4%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Nro. Inventario</strong></th>
+					<th width="4%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Placa</strong></th>
+					<th width="5%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Marca</strong></th>
+					<th width="6%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Línea</strong></th>
+					<th width="4%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Modelo</strong></th>
+					<th width="4%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Color</strong></th>
+					<th width="6%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Clase de Vehículo</strong></th>
+					<th width="7%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Tipo Carrocería</strong></th>
+					<th width="7%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Combustible</strong></th>
+					<th width="6%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Capacidad</strong></th>
+					<th width="7%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>No. Motor</strong></th>
+					<th width="9%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>No. Serie/No. Chasis</strong></th>
+					<th width="5%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Valor</strong></th>
+					<th width="16%" colspan="3" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Multas o Restricciones</strong></th>
+					<th width="10%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Conductor Responsable</strong></th>				
+				</tr>
+				<tr>
+					<th width="4%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Por Placa</strong></th>
+					<th width="6%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Por Cédula Conductor</strong></th>
+					<th width="6%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Motivo</strong></th>			
 				</tr>';
 
-/*
-placa 
-cédula conductor
-motivo
-*/
 				$x=0;
 				foreach ($infoEquipo as $lista):
 					$x++;
 					$combustible = $lista["combustible"]==1?"Gasolina":"Diesel";
 					$multas = $lista['multas']==1?"Si":"No";
+					$multasConductor = $lista['multas_conductor']==1?"Si":"No";
 					$html.= '<tr>
-								<th >' . $lista['numero_inventario']. '</th>
+								<th style="text-align:center;">' . $lista['numero_inventario']. '</th>
 								<th >' . $lista['placa']. '</th>
 								<th >' . $lista['marca']. '</th>
+								<th >' . $lista['linea']. '</th>
 								<th >' . $lista['modelo']. '</th>
 								<th >' . $lista['color']. '</th>
 								<th >' . $lista['clase_vehiculo']. '</th>
@@ -75,6 +78,8 @@ motivo
 								<th >' . $lista['numero_chasis']. '</th>
 								<th >$ ' . number_format($lista['valor_comercial'],0). '</th>
 								<th >' . $multas. '</th>
+								<th >' . $multasConductor. '</th>
+								<th >' . $lista['motivo_multa']. '</th>
 								<th >' . $lista['name'] . '<br>C.C. ' . $lista['numero_cedula'] . '</th>
 
 							</tr>';
