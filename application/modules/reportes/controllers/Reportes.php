@@ -616,7 +616,7 @@ class Reportes extends CI_Controller {
 
 			ob_end_clean();
 			//Close and output PDF document
-			$pdf->Output('inpeccion_cotidiana_' . $idInspeccion . '.pdf', 'I');
+			$pdf->Output('encuesta_satisfaccion' . $idEncuesta . '.pdf', 'I');
 
 			//============================================================+
 			// END OF FILE

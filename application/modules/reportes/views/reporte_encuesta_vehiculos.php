@@ -41,7 +41,7 @@ if($infoEncuesta)
 
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
-					<th width="100%" bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>RECORRDIO</strong></th>
+					<th width="100%" bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>RECORRIDO</strong></th>
 				</tr>';
 	$html.= '<tr>
 				<th>'. $infoEncuesta[0]['recorrido'] . '</th>
@@ -67,7 +67,7 @@ if($infoEncuesta)
 	}
 	$html.= '<tr>
 				<th width="70%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Amabilidad y Respeto del Conductor</strong></th>
-				<th>'. $respuesta . '</th>
+				<th width="30%">'. $respuesta . '</th>
 			</tr>';
 	switch ($infoEncuesta[0]['presentacion']) {
 		case 0:

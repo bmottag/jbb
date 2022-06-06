@@ -181,13 +181,13 @@ if($infoEquipo)
 	$profesional = "";
 	switch ($infoEquipo[0]['profesional_asignado']) {
 		case 1:
-			$profesional = 'Director';
+			$profesional = 'Director(a)';
 			break;
 		case 2:
-			$profesional = 'Secretario';
+			$profesional = 'Secretario General y de Control Disciplinario';
 			break;
 		case 3:
-			$profesional = 'Subdirector técnico y operativo';
+			$profesional = 'Subdirector de Educativa';
 			break;
 	}
 	$html.= '<table cellspacing="0" cellpadding="5">

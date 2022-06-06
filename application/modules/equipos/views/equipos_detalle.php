@@ -18,7 +18,7 @@
 					<i class="fa <?php echo $info[0]['icono']; ?>"></i> <strong>INFORMACIÓN GENERAL DEL EQUIPO</strong>
 					<div class="pull-right">
 						<div class="btn-group">
-							<a href="<?php echo base_url("reportes/hojaVidaPDF/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Descargar Formato - FIS.PR.06.F.08 </a>
+							<a href="<?php echo base_url("reportes/hojaVidaPDF/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Descargar Formato - Hoja de Vida Vehicular </a>
 						</div>
 					</div>
 				</div>
@@ -164,9 +164,9 @@
 								<label for="profesional_asignado">Profesional asignado: *</label>
 								<select name="profesional_asignado" id="profesional_asignado" class="form-control" required>
 									<option value=''>Select...</option>
-									<option value=1 <?php if($info && $info[0]["profesional_asignado"] == 1) { echo "selected"; }  ?>>Director</option>
-									<option value=2 <?php if($info && $info[0]["profesional_asignado"] == 2) { echo "selected"; }  ?>>Secretario</option>
-									<option value=3 <?php if($info && $info[0]["profesional_asignado"] == 3) { echo "selected"; }  ?>>Subdirector técnico y operativo</option>
+									<option value=1 <?php if($info && $info[0]["profesional_asignado"] == 1) { echo "selected"; }  ?>>Director(a)</option>
+									<option value=2 <?php if($info && $info[0]["profesional_asignado"] == 2) { echo "selected"; }  ?>>Secretario General y de Control Disciplinario</option>
+									<option value=3 <?php if($info && $info[0]["profesional_asignado"] == 3) { echo "selected"; }  ?>>Subdirector de Educativa</option>
 								</select>
 							</div>
 
