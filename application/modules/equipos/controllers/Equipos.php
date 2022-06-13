@@ -1190,5 +1190,40 @@ class Equipos extends CI_Controller {
 		
 			echo json_encode($data);
     }
+
+	/**
+	 * Delete chequeo preoperacional
+     * @since 13/6/2022
+	 */
+	public function delete_chequeo()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			
+			$idInspeccion = $this->input->post('identificador');
+
+			$arrParam = array(
+				"idInspeccion" => $idInspeccion
+			);
+			$information = $this->general_model->get_inspecciones($arrParam);
+			$data["idEquipo"] = $information[0]['fk_id_equipo_vehiculo'];
+
+			$arrParam = array(
+				"table" => "inspection_vehiculos",
+				"primaryKey" => "id_inspection_vehiculos",
+				"id" => $idInspeccion
+			);
+			
+			if ($this->general_model->deleteRecord($arrParam)) 
+			{
+				$data["result"] = true;
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> Se eliminó el Chequeo Preoperacional.');
+			} else {
+				$data["result"] = "error";
+				$data["mensaje"] = "Error!!! Ask for help.";
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
+			}
+			echo json_encode($data);
+    }
 	
 }

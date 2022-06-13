@@ -1,3 +1,5 @@
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/inspection/inspeccion_vehiculos.js"); ?>"></script>
+
 <div id="page-wrapper">
 	<br>
 	
@@ -59,7 +61,7 @@
 								<th class="text-center">Operador/Conductor</th>
 								<th class="text-center">Dependencia</th>
 								<th class="text-center">Vehículo Activo</th>
-								<th class="text-center">Descargar Inspección</th>
+								<th class="text-center">Enlaces</th>
 							</tr>
 						</thead>
 						<tbody>							
@@ -78,7 +80,11 @@
 									echo "</td>";
 									echo "<td class='text-center'>";
 						?>
-									<a href="<?php echo base_url("reportes/inspecciones/". $lista['id_inspection_vehiculos']); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></a>
+									<a title="Descargar Chequeo Preoperacional - FIS.PR.06.F.13" href="<?php echo base_url("reportes/inspecciones/". $lista['id_inspection_vehiculos']); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></a>
+
+									<button type="button" id="<?php echo $lista['id_inspection_vehiculos']; ?>" class='btn btn-danger btn-xs' title="Eliminar Chequeo Preoperacional">
+											<i class="fa fa-trash-o"></i>
+									</button>
 						<?php
 									echo "</td>";
 									echo "</tr>";
