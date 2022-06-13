@@ -41,15 +41,15 @@ if($infoEquipo)
 					<th width="6%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Línea</strong></th>
 					<th width="4%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Modelo</strong></th>
 					<th width="4%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Color</strong></th>
-					<th width="6%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Clase de Vehículo</strong></th>
+					<th width="5%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Clase de Vehículo</strong></th>
 					<th width="7%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Tipo Carrocería</strong></th>
 					<th width="7%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Combustible</strong></th>
 					<th width="6%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Capacidad</strong></th>
 					<th width="7%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>No. Motor</strong></th>
 					<th width="9%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>No. Serie/No. Chasis</strong></th>
-					<th width="5%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Valor</strong></th>
+					<th width="8%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Valor</strong></th>
 					<th width="16%" colspan="3" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Multas o Restricciones</strong></th>
-					<th width="10%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Conductor Responsable</strong></th>				
+					<th width="8%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Conductor Responsable</strong></th>				
 				</tr>
 				<tr>
 					<th width="4%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Por Placa</strong></th>
@@ -82,7 +82,7 @@ if($infoEquipo)
 								<th >' . $lista['capacidad']. '</th>
 								<th >' . $lista['numero_motor']. '</th>
 								<th >' . $lista['numero_chasis']. '</th>
-								<th >$ ' . number_format($lista['valor_comercial'],0) . '<br><b>Fecha Adquisición: </b>' . $lista['fecha_adquisicion'] .  '</th>
+								<th >$ ' . number_format($lista['valor_comercial'],0) . '<br>Fecha Adquisición: ' . $lista['fecha_adquisicion'] .  '</th>
 								<th >' . $multas. '</th>
 								<th >' . $multasConductor. '</th>
 								<th >' . $lista['motivo_multa']. '</th>

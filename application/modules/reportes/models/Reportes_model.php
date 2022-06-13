@@ -61,7 +61,7 @@
 		 */
 		public function get_vehiculos_info($arrData) 
 		{		
-				$this->db->select("A.*, K.*, T.*, CV.clase_vehiculo, Z.tipo_carroceria,  D.dependencia, C.numero_contrato, CONCAT(U.first_name, ' ', U.last_name) name, U.numero_cedula, U.numero_licencia, U.categoria, U.vigencia, U.numero_contrato, U.fecha_inicio_contrato, U.fecha_final_contrato, U.tiene_multas, U.codigo_multa, CONCAT(W.first_name, ' ', W.last_name) persona_diligencio");
+				$this->db->select("A.*, K.*, T.*, CV.clase_vehiculo, Z.tipo_carroceria,  D.dependencia, C.numero_contrato, CONCAT(U.first_name, ' ', U.last_name) name, U.numero_cedula, U.numero_licencia, U.categoria, U.vigencia, U.numero_contrato, U.fecha_inicio_contrato, U.fecha_final_contrato, U.tiene_multas, U.codigo_multa, U.tipo_vinculacion, CONCAT(W.first_name, ' ', W.last_name) persona_diligencio");
 				$this->db->join('equipos_detalle_vehiculo K', 'K.fk_id_equipo = A.id_equipo', 'INNER');
 				$this->db->join('param_dependencias D', 'D.id_dependencia = A.fk_id_dependencia', 'INNER');
 				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = A.fk_id_tipo_equipo', 'INNER');

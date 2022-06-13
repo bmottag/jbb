@@ -213,8 +213,8 @@ if($information){
 					<label class="control-label" for="tipoVinculacion">Tipo Vinculación:</label>
 					<select name="tipoVinculacion" id="tipoVinculacion" class="form-control" required>
 						<option value=''>Seleccione...</option>
-						<option value=1 <?php if($information[0]["tipo_vinculacion"] == 1) { echo "selected"; }  ?>>Planta</option>
-						<option value=2 <?php if($information[0]["tipo_vinculacion"] == 2) { echo "selected"; }  ?>>Contratista</option>
+						<option value=1 <?php if($information && $information[0]["tipo_vinculacion"] == 1) { echo "selected"; }  ?>>Planta</option>
+						<option value=2 <?php if($information && $information[0]["tipo_vinculacion"] == 2) { echo "selected"; }  ?>>Contratista</option>
 					</select>
 				</div>
 			</div>			
