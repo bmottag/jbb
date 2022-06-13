@@ -63,6 +63,12 @@ if($infoEquipo)
 					$combustible = $lista["combustible"]==1?"Gasolina":"Diesel";
 					$multas = $lista['multas']==1?"Si":"No";
 					$multasConductor = $lista['multas_conductor']==1?"Si":"No";
+					$tipoVinculacion = "";
+					if($lista['tipo_vinculacion']==1){
+						$tipoVinculacion = "<br><b>Tipo vinculación: </b>Planta";
+					}elseif($lista['tipo_vinculacion']==2){
+						$tipoVinculacion = "<br><b>Tipo vinculación: </b>Contratista";
+					}
 					$html.= '<tr>
 								<th style="text-align:center;">' . $lista['numero_inventario']. '</th>
 								<th >' . $lista['placa']. '</th>
@@ -76,11 +82,11 @@ if($infoEquipo)
 								<th >' . $lista['capacidad']. '</th>
 								<th >' . $lista['numero_motor']. '</th>
 								<th >' . $lista['numero_chasis']. '</th>
-								<th >$ ' . number_format($lista['valor_comercial'],0). '</th>
+								<th >$ ' . number_format($lista['valor_comercial'],0) . '<br><b>Fecha Adquisición: </b>' . $lista['fecha_adquisicion'] .  '</th>
 								<th >' . $multas. '</th>
 								<th >' . $multasConductor. '</th>
 								<th >' . $lista['motivo_multa']. '</th>
-								<th >' . $lista['name'] . '<br>C.C. ' . $lista['numero_cedula'] . '</th>
+								<th >' . $lista['name'] . '<br>C.C. ' . $lista['numero_cedula'] . $tipoVinculacion . '</th>
 
 							</tr>';
 				endforeach;

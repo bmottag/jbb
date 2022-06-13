@@ -13,6 +13,7 @@ $(document).ready(function () {
                 $('#numero_contrato').val("");
                 $('#fecha_inicio').val("");
                 $('#fecha_final').val("");
+                $('#tipoVinculacion').val("");
                 $("#div_conductor").css("display", "none");
             }
 
@@ -206,6 +207,17 @@ if($information){
 					<input type="text" class="form-control" id="fecha_final" name="fecha_final" value="<?php echo $information?$fechaFinal:""; ?>" placeholder="Fecha Final" />
 				</div>
 			</div>
+
+			<div class="col-sm-4">
+				<div class="form-group text-left">
+					<label class="control-label" for="tipoVinculacion">Tipo Vinculación:</label>
+					<select name="tipoVinculacion" id="tipoVinculacion" class="form-control" required>
+						<option value=''>Seleccione...</option>
+						<option value=1 <?php if($information[0]["tipo_vinculacion"] == 1) { echo "selected"; }  ?>>Planta</option>
+						<option value=2 <?php if($information[0]["tipo_vinculacion"] == 2) { echo "selected"; }  ?>>Contratista</option>
+					</select>
+				</div>
+			</div>			
 
 			<div class="col-sm-4">
 				<div class="form-group text-left">
