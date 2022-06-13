@@ -1050,9 +1050,9 @@ class Equipos extends CI_Controller {
      * @since 6/8/2021
      * @author BMOTTAG
 	 */
-	public function historial_documentos()
+	public function historial_documentos($idDocumento)
 	{
-			$arrParam = array('idDocumento' => $this->input->post('hddidDocumento'));
+			$arrParam = array('idDocumento' => $idDocumento);
 			$data['infoDocumento'] = $this->equipos_model->get_documento($arrParam);
 			$data['infoDocumentoHistorial'] = $this->equipos_model->get_documentos_historial($arrParam);
 
@@ -1216,6 +1216,45 @@ class Equipos extends CI_Controller {
 			
 			if ($this->general_model->deleteRecord($arrParam)) 
 			{
+				$data["result"] = true;
+				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> Se eliminó el Chequeo Preoperacional.');
+			} else {
+				$data["result"] = "error";
+				$data["mensaje"] = "Error!!! Ask for help.";
+				$this->session->set_flashdata('retornoError', '<strong>Error!</strong> Ask for help');
+			}
+			echo json_encode($data);
+    }
+
+	/**
+	 * Delete chequeo preoperacional
+     * @since 13/6/2022
+	 */
+	public function delete_documento()
+	{			
+			header('Content-Type: application/json');
+			$data = array();
+			
+			$idDocumento = $this->input->post('identificador');
+
+			$arrParam = array('idDocumento' => $idDocumento);
+			$data['information'] = $this->equipos_model->get_documento($arrParam);
+			$data["idEquipo"] = $data['information'][0]['fk_id_equipo_d'];
+
+			$arrParam = array(
+				"table" => "auditoria_documentos",
+				"primaryKey" => "fk_id_documento",
+				"id" => $idDocumento
+			);
+			if ($this->general_model->deleteRecord($arrParam)) 
+			{
+				$arrParam = array(
+					"table" => "equipos_documento",
+					"primaryKey" => "id_equipo_documento",
+					"id" => $idDocumento
+				);
+				$this->general_model->deleteRecord($arrParam);
+
 				$data["result"] = true;
 				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> Se eliminó el Chequeo Preoperacional.');
 			} else {

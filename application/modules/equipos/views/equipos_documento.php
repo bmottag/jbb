@@ -1,3 +1,5 @@
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/documento.js"); ?>"></script>
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -156,18 +158,15 @@ $(function(){
 										echo "<br><br>";
 									}
 						?>
-									<a class="btn btn-info btn-xs" href="<?php echo base_url('equipos/documents_form/' . $lista['fk_id_equipo_d'] . '/' . $lista['id_equipo_documento']); ?>">Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
+									<a title="Editar" class="btn btn-info btn-xs" href="<?php echo base_url('equipos/documents_form/' . $lista['fk_id_equipo_d'] . '/' . $lista['id_equipo_documento']); ?>"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 									</a>
-									<br><br>
 
-		                            <form  name="formHistorial" id="formHistorial" method="post" action="<?php echo base_url("equipos/historial_documentos"); ?>">
-		                                <input type="hidden" class="form-control" id="hddidDocumento" name="hddidDocumento" value="<?php echo $lista['id_equipo_documento']; ?>" />
-		                                
-		                                <button type="submit" class="btn btn-default btn-xs" id="btnSubmit2" name="btnSubmit2">
-		                                    Ver Cambios <span class="fa fa-th-list" aria-hidden="true" />
-		                                </button>
-		         
-		                            </form>
+									<a title="Ver Cambios" class="btn btn-default btn-xs" href="<?php echo base_url('equipos/historial_documentos/' . $lista['id_equipo_documento']); ?>"> <span class="fa fa-th-list" aria-hidden="true"></span>
+									</a>
+
+									<button type="button" id="<?php echo $lista['id_equipo_documento']; ?>" class='btn btn-danger btn-xs' title="Eliminar Chequeo Preoperacional">
+											<i class="fa fa-trash-o"></i>
+									</button>
 
 						<?php
 									echo "</td>";
