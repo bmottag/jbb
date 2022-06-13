@@ -51,7 +51,7 @@ $(function(){
 							<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Comparendos Conductores
 							</button>
-							<a href="<?php echo base_url("reportes/comparendos/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true"></span> Descargar Formato - Verificación Comparendos </a>
+							<a href="<?php echo base_url("reportes/comparendos/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true"></span> Descargar Formato - Verificación Comparendos - FIS.PR.06.F.12 </a>
 						</div>
 					</div>
 				</div>
