@@ -42,12 +42,18 @@ $(function(){
 		<div class="col-lg-9">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<i class="fa fa-tint"></i> <strong>SEGUIMIENTO DE OPERACIÓN DE EQUIPO</strong>
-					<div class="pull-right">
-						<div class="btn-group">
-							<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
-									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Seguimiento de Operación
-							</button>
+					<div class="row">
+						<div class="col-lg-12">
+							<i class="fa fa-tint"></i> <strong>SEGUIMIENTO DE OPERACIÓN DE EQUIPO</strong>
+							<div class="pull-right">
+								<div class="btn-group">
+									<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $info[0]['id_equipo']; ?>">
+											<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Seguimiento de Operación
+									</button>
+									<br><br>
+									<a href="<?php echo base_url("reportes/seguimientoOperacionPDF/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Descargar Formato - Seguimiento De Operación De Equipo, Maquinaria Y/o Vehiculos - FIS.PR.06.F.02</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
