@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
 $(function(){ 
 	$(".btn-success").click(function () {	
@@ -68,7 +71,7 @@ $(function(){
 				<?php
 					if($info){
 				?>				
-					<table class="table table-hover">
+					<table class="table table-hover small">
 						<thead>
 							<tr>
 								<th>Tipo Equipo</th>
@@ -76,6 +79,11 @@ $(function(){
 								<th>Conductor</th>
 								<th>Dependencia</th>
 								<th class="text-center">Mes</th>
+								<th class="text-center">Fecha</th>
+								<th class="text-center">Recorrido</th>
+								<th class="text-center">Área</th>
+								<th class="text-center">Nombre Usuario</th>
+								<th class="text-center">Correo Usuario</th>
 								<th class="text-center">Editar</th>
 							</tr>
 						</thead>
@@ -88,10 +96,15 @@ $(function(){
 									echo "<td>" . $lista['conductor'] . "</td>";
 									echo "<td>" . $lista['dependencia'] . "</td>";
 									echo "<td class='text-center'>" . $lista['mes'] . "</td>";
+									echo "<td>" . $lista['fecha_recorrido'] . "</td>";
+									echo "<td>" . $lista['recorrido'] . "</td>";
+									echo "<td>" . $lista['area'] . "</td>";
+									echo "<td>" . $lista['usuario_nombre'] . "</td>";
+									echo "<td>" . $lista['usuario_correo'] . "</td>";
 									echo "<td class='text-center'>";
 						?>
-									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo_recorrido']; ?>" >
-										Editar <span class="glyphicon glyphicon-edit" aria-hidden="true">
+									<button title="Editar" type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal" id="<?php echo $lista['id_equipo_recorrido']; ?>" >
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 									</button>
 
 									<a href="<?php echo base_url("equipos/consumos/" . $lista['id_equipo_recorrido']); ?>" class="btn btn-primary btn-xs">Consumos de Recorrido <span class="glyphicon glyphicon-plus" aria-hidden="true"></a>

@@ -5,7 +5,13 @@ $( document ).ready( function () {
 			idTipoEquipo:			{ required: true },
 			idEquipo:				{ required: true },
 			idConductor:			{ required: true },
-			idMes:					{ required: true }
+			idMes:					{ required: true },
+			fecha_recorrido:		{ required: true },
+			recorrido:				{ required: true },
+			area:					{ required: true },
+			usuario_nombre: 		{ required: true, minlength: 3, maxlength:60 },
+			usuario_correo: 		{ required: true, email: true },
+
 		},
 		errorElement: "em",
 		errorPlacement: function ( error, element ) {
@@ -16,9 +22,11 @@ $( document ).ready( function () {
 		},
 		highlight: function ( element, errorClass, validClass ) {
 			$( element ).parents( ".col-sm-6" ).addClass( "has-error" ).removeClass( "has-success" );
+			$( element ).parents( ".col-sm-12" ).addClass( "has-error" ).removeClass( "has-success" );
 		},
 		unhighlight: function (element, errorClass, validClass) {
 			$( element ).parents( ".col-sm-6" ).addClass( "has-success" ).removeClass( "has-error" );
+			$( element ).parents( ".col-sm-12" ).addClass( "has-success" ).removeClass( "has-error" );
 		},
 		submitHandler: function (form) {
 			return true;

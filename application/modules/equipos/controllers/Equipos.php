@@ -816,6 +816,7 @@ class Equipos extends CI_Controller {
 			header("Content-Type: text/plain; charset=utf-8"); //Para evitar problemas de acentos
 			
 			$data['information'] = FALSE;
+			$data['infoEquipos'] = FALSE;
 			$data["idRecorrido"] = $this->input->post("idRecorrido");	
 
 			$arrParam = array(
@@ -971,7 +972,7 @@ class Equipos extends CI_Controller {
         echo "<option value=''>Seleccione...</option>";
         if ($listaEquipos) {
             foreach ($listaEquipos as $fila) {
-                echo "<option value='" . $fila["id_equipo"] . "' >" . $fila["numero_inventario"] . "</option>";
+                echo "<option value='" . $fila["id_equipo"] . "' >No. Inventario: " . $fila["numero_inventario"] . "</option>";
             }
         }
     }

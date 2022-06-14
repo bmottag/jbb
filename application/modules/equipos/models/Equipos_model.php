@@ -489,7 +489,12 @@
 				$data = array(
 					'fk_id_equipo_r' => $this->input->post('idEquipo'),
 					'fk_id_coductor_recorrido' => $this->input->post('idConductor'),
-					'fk_id_mes_recorrdio' => $this->input->post('idMes')
+					'fk_id_mes_recorrdio' => $this->input->post('idMes'),
+					'fecha_recorrido' => date('Y-m-d'),
+					'recorrido' => $this->input->post('recorrido'),
+					'area' => $this->input->post('area'),
+					'usuario_nombre' => $this->input->post('usuario_nombre'),
+					'usuario_correo' => $this->input->post('usuario_correo')
 				);
 				
 				//revisar si es para adicionar o editar

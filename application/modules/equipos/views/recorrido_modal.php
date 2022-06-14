@@ -36,9 +36,14 @@
 					<label class="control-label" for="idEquipo">Equipo: *</label>
 					<select name="idEquipo" id="idEquipo" class="form-control" required>
 						<option value="">Select...</option>
-						<?php for ($i = 0; $i < count($infoEquipos); $i++) { ?>
-							<option value="<?php echo $infoEquipos[$i]["id_equipo"]; ?>" <?php if($information && $information[0]["fk_id_equipo_r"] == $infoEquipos[$i]["id_equipo"]) { echo "selected"; }  ?>><?php echo $infoEquipos[$i]["numero_inventario"]; ?></option>	
-						<?php } ?>
+						<?php 
+						if($infoEquipos){
+							for ($i = 0; $i < count($infoEquipos); $i++) { ?>
+							<option value="<?php echo $infoEquipos[$i]["id_equipo"]; ?>" <?php if($information && $information[0]["fk_id_equipo_r"] == $infoEquipos[$i]["id_equipo"]) { echo "selected"; }  ?>>No. Inventario: <?php echo $infoEquipos[$i]["numero_inventario"]; ?></option>	
+						<?php 
+							}
+						} 
+						?>
 					</select>
 				</div>
 			</div>
@@ -69,6 +74,59 @@
 				</div>
 			</div>
 
+		</div>
+
+<script>
+	$( function() {
+		$( "#fecha_recorrido" ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'yy-mm-dd'
+		});
+	});
+</script>
+		
+		<div class="row">	
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="fecha_recorrido">Fecha Recorrido: *</label>
+					<input type="text" class="form-control" id="fecha_recorrido" name="fecha_recorrido" value="<?php echo $information?$information[0]["fecha_recorrido"]:""; ?>" placeholder="Fecha Recorrido" required />
+				</div>
+			</div>
+		</div>
+
+		<div class="row">				
+			<div class="col-sm-12">		
+				<div class="form-group text-left">
+					<label class="control-label" for="recorrido">Recorrido: </label>
+					<textarea id="recorrido" name="recorrido" placeholder="Recorrido" class="form-control" rows="3"><?php echo $information?$information[0]["recorrido"]:""; ?></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">				
+			<div class="col-sm-12">		
+				<div class="form-group text-left">
+					<label class="control-label" for="area">Área: </label>
+					<textarea id="area" name="area" placeholder="Área" class="form-control" rows="3"><?php echo $information?$information[0]["area"]:""; ?></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="usuario_nombre">Nombre Usuario: *</label>
+					<input type="text" id="usuario_nombre" name="usuario_nombre" class="form-control" value="<?php echo $information?$information[0]["usuario_nombre"]:""; ?>" placeholder="Nombre Usuario" required />
+				</div>
+			</div>
+			
+			<div class="col-sm-6">
+				<div class="form-group text-left">
+					<label class="control-label" for="usuario_correo">Correo Usuario: *</label>
+					<input type="email" class="form-control" id="usuario_correo" name="usuario_correo" value="<?php echo $information?$information[0]["usuario_correo"]:""; ?>" placeholder="Correo Usuario" required />
+				</div>
+			</div>
 		</div>
 
 		<div class="form-group">
