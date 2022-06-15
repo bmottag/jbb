@@ -22,10 +22,20 @@ if($infoEquipo)
 	//<!-- FIN IMAGEN DEL EQUIPO -->
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>CÓDIGO Y/O PLACA:</strong></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>VEHÍCULO:</strong></th>
 					<th>' . $infoEquipo[0]['placa']. '</th>
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>RESPONSABLE DE LA MAQUINA, EQUIPO O VEHICULO:</strong></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>MES DEL REPORTE:</strong></th>
+					<th ></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>CONDUCTOR RESPONSABLE::</strong></th>
 					<th >' . $infoEquipo[0]['name'] . '<br>C.C. ' . $infoEquipo[0]['numero_cedula'] . '</th>
+				</tr>
+				<tr>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>CÓDIGO:</strong></th>
+					<th></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>N° CONTRATO:</strong></th>
+					<th >' . $infoEquipo[0]['numero_contrato'] . '</th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>ÁREA RESPONSABLE:</strong></th>
+					<th >' . $infoEquipo[0]['dependencia'] . '</th>
 				</tr>
 			</table>';
 
@@ -33,91 +43,30 @@ if($infoEquipo)
 	$html.='<br><br>';
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
-					<th rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Nombre Operador y/o usuario </strong></th>
-					<th rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Fecha</strong></th>
-					<th colspan="3" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Aceite(GI/LT) </strong></th>
-					<th rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Grasa</strong></th>
-					<th colspan="3" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Combustible (GI/M3) </strong></th>
-					<th colspan="3" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Labor Realizada</strong></th>
-					<th rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Firma del operador y/o usuario</strong></th>
-					<th rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Firma de responsable del equipo</strong></th>
+					<th colspan="6" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>DESCRIPCIÓN DE ACTIVIDADES </strong></th>
 				</tr>
 				<tr>
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Trans </strong></th>
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Hidr </strong></th>
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Mot </strong></th>
-
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Gasolina </strong></th>
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Gas </strong></th>
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>ACPM </strong></th>
-
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Labor </strong></th>
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Área </strong></th>
-					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Horas y/o Km </strong></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>FECHA </strong></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>RECORRIDO </strong></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>ÁREA </strong></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>NOMBRE USUARIO </strong></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>CORREO ELECTRÓNICO </strong></th>
+					<th bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>FIRMA </strong></th>
 				</tr>';
 
-
-
-				if($listadoControlCombustible){
-					foreach ($listadoControlCombustible as $lista):
-						$gasolina ="";
-						$acpm ="";
-						$grasa = "";
-						$trans= "";
-						$hidr= "";
-						$motor= "";
-						switch ($lista['tipo_consumo']) {
-							case 1:
-								if($infoEspecifica[0]["combustible"]==1){
-									$gasolina ="x";
-								}else{
-									$acpm ="X";
-								}
-								break;
-							case 2:
-								$grasa = "X";
-								break;
-							case 3:
-								$trans= "X";
-								break;
-							case 4:
-								$hidr= "X";
-								break;
-							case 5:
-								$motor= "X";
-								break;
-						}
+				if($listadoRecorridos){
+					foreach ($listadoRecorridos as $lista):
 						$html.= '<tr>
-									<th>'. $lista["name"].'</th>
-									<th>'. $lista["fecha_combustible"].'</th>
-									<th style="text-align:center;">'. $trans.'</th>
-									<th style="text-align:center;">'. $hidr.'</th>
-									<th style="text-align:center;">'. $motor.'</th>
-									<th style="text-align:center;">'. $grasa.'</th>
-									<th style="text-align:center;">'. $gasolina.'</th>
-									<th></th>
-									<th>'. $acpm .'</th>
-									<th>'. $lista["labor_realizada"].'</th>
-									<th>'. $lista["lugar"].'</th>
-									<th style="text-align:right;">'. $lista["kilometros_actuales"].'</th>
-									<th></th>
+									<th>'. $lista["fecha_recorrido"].'</th>
+									<th>'. $lista["recorrido"].'</th>
+									<th>'. $lista["area"].'</th>
+									<th>'. $lista["usuario_nombre"].'</th>
+									<th>'. $lista["usuario_correo"].'</th>
 									<th></th>
 								</tr>';
 					endforeach;
 				} 
 	$html.= '</table>';
-
-
-	$html.= '<table cellspacing="0" cellpadding="5">
-				<tr>
-					<th>Observaciones:</th>
-				</tr>
-			</table>';
-	$html.= '<table cellspacing="0" cellpadding="5">
-				<tr>
-					<th style="text-align:center;"> Trans: Transmisión - Hidr: Hidraulica - Mot: Motor - Gas: Gasolina</th>
-				</tr>
-			</table>';
 
 }
 			
