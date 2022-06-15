@@ -110,7 +110,7 @@ $(function(){
 									<div class="col-lg-4">
 										<div class="form-group"><br>
 											<button type="submit" id="btnSearch" name="btnSearch" class="btn btn-primary btn-sm" >
-												Search <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+												Buscar <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 											</button> 
 										</div>
 									</div>

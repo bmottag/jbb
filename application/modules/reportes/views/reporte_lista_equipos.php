@@ -47,9 +47,9 @@ if($infoEquipo)
 					<th width="6%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Capacidad</strong></th>
 					<th width="7%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>No. Motor</strong></th>
 					<th width="9%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>No. Serie/No. Chasis</strong></th>
-					<th width="8%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Valor</strong></th>
+					<th width="8%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Valor / Fecha Adquisición</strong></th>
 					<th width="16%" colspan="3" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Multas o Restricciones</strong></th>
-					<th width="8%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Conductor Responsable</strong></th>				
+					<th width="8%" rowspan="2" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Conductor Responsable y Tipo Vinculación</strong></th>				
 				</tr>
 				<tr>
 					<th width="4%" bgcolor="#dde1da" style="color:#3e403e;text-align:center;"><strong>Por Placa</strong></th>
