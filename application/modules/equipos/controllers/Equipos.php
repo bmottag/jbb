@@ -801,7 +801,25 @@ class Equipos extends CI_Controller {
 	{
 			//se filtra por company_type para que solo se pueda editar los subcontratistas
 			$arrParam = array();
+			if($_POST){
+				$arrParam['idEquipo'] = $this->input->post('idEquipoSearch');
+				$arrParam['idMes'] = $this->input->post('idMes');
+			}
 			$data['info'] = $this->general_model->get_recorridos($arrParam);
+
+			$arrParam = array(
+				"table" => "param_tipo_equipos",
+				"order" => "tipo_equipo",
+				"id" => "x"
+			);
+			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
+
+			$arrParam = array(
+				"table" => "param_meses",
+				"order" => "id_mes",
+				"id" => "x"
+			);
+			$data['listaMeses'] = $this->general_model->get_basic_search($arrParam);
 			
 			$data["view"] = 'recorridos';
 			$this->load->view("layout_calendar", $data);
@@ -966,7 +984,10 @@ class Equipos extends CI_Controller {
         $idTipoEquipo = $this->input->post('idTipoEquipo');
 				
 		//busco listado de links activos para un menu
-		$arrParam = array("idTipoEquipo" => $idTipoEquipo);
+		$arrParam = array(
+			"idTipoEquipo" => $idTipoEquipo,
+			"estadoEquipo" => 1
+		);
 		$listaEquipos = $this->general_model->get_equipos_info($arrParam);
 
         echo "<option value=''>Seleccione...</option>";

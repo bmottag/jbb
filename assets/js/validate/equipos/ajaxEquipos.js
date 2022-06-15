@@ -29,5 +29,29 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#idTipoEquipoSearch').change(function () {
+        $('#idTipoEquipoSearch option:selected').each(function () {
+            var idTipoEquipo = $('#idTipoEquipoSearch').val();
+            if (idTipoEquipo > 0 || idTipoEquipo != '') {
+                $("#div_equipo").css("display", "inline");
+                
+                $.ajax ({
+                    type: 'POST',
+                    url: base_url + 'equipos/listaEquiposInfo',
+                    data: {'idTipoEquipo': idTipoEquipo},
+                    cache: false,
+                    success: function (data)
+                    {
+                        $('#idEquipoSearch').html(data);
+                    }
+                });
+            } else {                
+                var data = '';
+                $("#div_equipo").css("display", "none");
+                $('#idEquipoSearch').html(data);
+            }
+        });
+    });
     
 });

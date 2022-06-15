@@ -585,12 +585,15 @@ class General_model extends CI_Model {
 		$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = E.fk_id_tipo_equipo', 'INNER');
 		$this->db->join('usuarios U', 'U.id_user = R.fk_id_coductor_recorrido', 'INNER');
 		$this->db->join('param_dependencias D', 'D.id_dependencia = U.fk_id_dependencia_u', 'INNER');
-		$this->db->join('param_meses M', 'M.id_mes = R.fk_id_mes_recorrdio', 'INNER');
+		$this->db->join('param_meses M', 'M.id_mes = R.fk_id_mes_recorrido', 'INNER');
 		if (array_key_exists("idRecorrido", $arrData)) {
 			$this->db->where('R.id_equipo_recorrido ', $arrData["idRecorrido"]);
 		}
 		if (array_key_exists("idEquipo", $arrData)) {
 			$this->db->where('R.fk_id_equipo_r', $arrData["idEquipo"]);
+		}
+		if (array_key_exists("idMes", $arrData)) {
+			$this->db->where('R.fk_id_mes_recorrido', $arrData["idMes"]);
 		}
 		if (array_key_exists("idConductor", $arrData)) {
 			$this->db->where('R.fk_id_coductor_recorrdio', $arrData["idConductor"]);
