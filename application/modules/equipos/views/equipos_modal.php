@@ -20,7 +20,7 @@
 			
 			<div class="col-sm-4">
 				<div class="form-group text-left">
-					<label class="control-label" for="id_dependencia">Depedencia: *</label>
+					<label class="control-label" for="id_dependencia">Área Responsable: *</label>
 					<select name="id_dependencia" id="id_dependencia" class="form-control" required>
 						<option value="">Seleccione...</option>
 						<?php for ($i = 0; $i < count($dependencias); $i++) { ?>
@@ -49,7 +49,7 @@
 	
 			<div class="col-sm-4">		
 				<div class="form-group text-left">
-					<label class="control-label" for="numero_serial">Número Serial: *</label>
+					<label class="control-label" for="numero_serial">Número Serial/Serie: *</label>
 					<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $information?$information[0]["numero_serial"]:""; ?>" placeholder="Número Serial" >
 				</div>
 			</div>

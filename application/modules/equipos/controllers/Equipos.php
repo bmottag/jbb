@@ -158,6 +158,9 @@ class Equipos extends CI_Controller {
 						$this->ciqrcode->generate($params);
 						//FIN - genero imagen con la libreria y la subo
 					}
+
+					//guardo regitro en la tabla auditoria
+					$this->equipos_model->saveAuditoriaEquipo($idEquipo);
 					
 					$data["idRecord"] = $idEquipo;
 					$data["result"] = true;		
@@ -315,11 +318,11 @@ class Equipos extends CI_Controller {
 			
 			$idInfoEspecificaEquipo = $this->input->post('hddId');
 			$data["idRecord"] = $this->input->post('hddIdEquipo');
-			$MetodoGuardar = $this->input->post('hddMetodoGuardar');
+			$metodoGuardar = $this->input->post('hddMetodoGuardar');
 		
 			$msj = "Se guardo la información!";
 
-			if ($idInfoEspecificaEquipo = $this->equipos_model->$MetodoGuardar()) 
+			if ($idInfoEspecificaEquipo = $this->equipos_model->$metodoGuardar()) 
 			{				
 				$data["result"] = true;		
 				$this->session->set_flashdata('retornoExito', '<strong>Correcto!</strong> ' . $msj);
@@ -692,21 +695,26 @@ class Equipos extends CI_Controller {
 	{
 			$arrParam = array("idEquipo" => $idEquipo);
 			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+			$data['listadoRevision'] = FALSE;
 
 			//Lista fotos de equipo
 			$data['fotosEquipos'] = $this->general_model->get_fotos_equipos($arrParam);
 
-			//DESHABILITAR
-			$data['deshabilitar'] = '';
-			$userRol = $this->session->role;
-			//si el rol es: Usuario Consulta; Encargado; Operador - Conductor
-			if($userRol == 2 || $userRol == 3 || $userRol == 5)
-			{
-				$data['deshabilitar'] = 'disabled';
+			if($_POST){
+				$from =  $this->input->post('fecha_inicio');
+				$to =  $this->input->post('fecha_fin');
+				$data['from'] = formatear_fecha($from);
+				$data['to'] = formatear_fecha($to);
+				//le sumo un dia al dia final para que ingrese ese dia en la consulta
+				$data['to'] = date('Y-m-d',strtotime ( '+1 day ' , strtotime ( $data['to'] ) ) );
+
+				$arrParam["fecha_inicio"] = $data['from'];
+				$arrParam["fecha_fin"] = $data['to'];
+			}else{
+				$arrParam["limit"] = 30;
 			}
-			
 			$data['listadoRevision'] = $this->equipos_model->get_diagnostico($arrParam);
-						
+			
 			$data["activarBTN10"] = true;//para activar el boton
 			$data["view"] = 'equipos_revision';
 			$this->load->view("layout_calendar", $data);
@@ -1286,5 +1294,22 @@ class Equipos extends CI_Controller {
 			}
 			echo json_encode($data);
     }
+
+	/**
+	 * Listado de equipos INACTVOS
+     * @since 23/11/2020
+     * @author BMOTTAG
+	 */
+	public function historial_equipos($estado=2)
+	{
+			$data['estadoEquipo'] = $estado;
+
+			$arrParam = array("estadoEquipo" => $estado);
+			$data['info'] = $this->general_model->get_equipos_info($arrParam);
+
+			
+			$data["view"] = 'equipos_inactivos';
+			$this->load->view("layout_calendar", $data);
+	}
 	
 }

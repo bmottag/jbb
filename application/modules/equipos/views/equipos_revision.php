@@ -1,5 +1,8 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/validate/inspection/inspeccion_vehiculos.js"); ?>"></script>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <div id="page-wrapper">
 	<br>
 	
@@ -14,7 +17,6 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-book"></i> <strong>CHEQUEO PREOPERACIONAL DIARIO</strong>
-					<?php if(!$deshabilitar){ ?>
 					<div class="pull-right">
 						<div class="btn-group">
 							<a href="<?php echo base_url('external/add_vehiculos_inspection/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs">
@@ -22,7 +24,6 @@
 							</a>
 						</div>
 					</div>
-					<?php } ?>
 				</div>
 				<div class="panel-body">
 				
@@ -46,6 +47,68 @@
 <?php
 	}
 ?> 
+
+<script>
+	$( function() {
+		var dateFormat = "mm/dd/yy",
+		from = $( "#fecha_inicio" )
+		.datepicker({
+			changeMonth: true,
+			changeYear: true
+		})
+		.on( "change", function() {
+			to.datepicker( "option", "minDate", getDate( this ) );
+		}),
+		to = $( "#fecha_fin" ).datepicker({
+			changeMonth: true,
+			changeYear: true
+		})
+		.on( "change", function() {
+			from.datepicker( "option", "maxDate", getDate( this ) );
+		});
+
+		function getDate( element ) {
+			var date;
+			try {
+				date = $.datepicker.parseDate( dateFormat, element.value );
+			} catch( error ) {
+				date = null;
+			}
+
+			return date;
+		}
+	});
+</script>
+
+					<form name="formRevision" id="formCheckin" method="post">
+						<div class="panel panel-default">
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-lg-2">
+										<div class="form-group input-group-sm">	
+											<label class="control-label" for="fecha_inicio">Fecha Desde: *</label>								
+											<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php if($_POST){ echo $_POST["fecha_inicio"]; } ?>" placeholder="Fecha Inicio" required />
+										</div>
+									</div>
+
+									<div class="col-lg-2">
+										<div class="form-group input-group-sm">	
+											<label class="control-label" for="idEquipoSearch">Fecha Hasta: *</label>
+											<input type="text" class="form-control" id="fecha_fin" name="fecha_fin"value="<?php if($_POST){ echo $_POST["fecha_fin"]; } ?>" placeholder="Fecha Hasta" required />
+										</div>
+									</div>
+
+									<div class="col-lg-4">
+										<div class="form-group"><br>
+											<button type="submit" id="btnSearch" name="btnSearch" class="btn btn-primary btn-sm" >
+												Buscar <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+											</button> 
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
 
 <?php 										
 	if(!$listadoRevision){ 

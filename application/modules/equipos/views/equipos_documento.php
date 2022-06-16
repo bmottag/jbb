@@ -164,7 +164,7 @@ $(function(){
 									<a title="Ver Cambios" class="btn btn-default btn-xs" href="<?php echo base_url('equipos/historial_documentos/' . $lista['id_equipo_documento']); ?>"> <span class="fa fa-th-list" aria-hidden="true"></span>
 									</a>
 
-									<button type="button" id="<?php echo $lista['id_equipo_documento']; ?>" class='btn btn-danger btn-xs' title="Eliminar Chequeo Preoperacional">
+									<button type="button" id="<?php echo $lista['id_equipo_documento']; ?>" class='btn btn-danger btn-xs' title="Eliminar Documento">
 											<i class="fa fa-trash-o"></i>
 									</button>
 

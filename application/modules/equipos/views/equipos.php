@@ -23,74 +23,66 @@ $(function(){
 	<br>	
 	<!-- /.row -->
 	<div class="row">
-		<div class="col-lg-3">
+		<div class="col-lg-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<i class="fa fa-search"></i> BUSCAR EQUIPOS
+					<i class="fa fa-search"></i> BUSCAR EQUIPOS <small> - <strong>Seleccionar</strong> mínimo una opción</small>
 				</div>
 				<div class="panel-body">
 
-					<form  name="formBuscar" id="formBuscar" role="form" method="post" class="form-horizontal" >
+					<form  name="formBuscar" id="formBuscar" method="post" >
 
-						<div class="form-group">
-							<div class="col-lg-12">
-								<p class="text-danger"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> 
-									<strong>Seleccionar</strong> mínimo una opción
-								</p>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-sm-12">
-								<label for="numero_serial">Tipo Equipo:</label>
-								<select name="id_tipo_equipo" id="id_tipo_equipo" class="form-control" >
-									<option value="">Seleccione...</option>
-									<?php for ($i = 0; $i < count($tipoEquipo); $i++) { ?>
-										<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>" <?php if($_POST && $_POST["id_tipo_equipo"] == $tipoEquipo[$i]["id_tipo_equipo"]) { echo "selected"; }  ?>><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>	
-									<?php } ?>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-sm-12">
-								<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" value="<?php echo $_POST?$this->input->post('numero_inventario'):""; ?>" placeholder="Número Inventario Entidad" >
-							</div>
-						</div>
-
-						<div class="form-group">	
-							<div class="col-sm-12">
-								<input type="text" id="marca" name="marca" class="form-control" value="<?php echo $_POST?$this->input->post('marca'):""; ?>" placeholder="Marca" >
-							</div>
-						</div>
-													
-						<div class="form-group">
-							<div class="col-sm-12">
-								<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $_POST?$this->input->post('numero_serial'):""; ?>" placeholder="Número Serial" >
-							</div>
-						</div>
-						
-						<div class="row"></div><br>
-						<div class="form-group">
-							<div class="row" align="center">
-								<div style="width80%;" align="center">
-									
-								 <button type="submit" class="btn btn-primary" id='btnBuscar' name='btnBuscar'><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar </button>
-									
+						<div class="row">
+							<div class="col-lg-2">
+								<div class="form-group input-group-sm">	
+									<label class="control-label" for="idTipoEquipoSearch">Tipo de Equipo: </label>								
+									<select name="id_tipo_equipo" id="id_tipo_equipo" class="form-control" >
+										<option value="">Seleccione...</option>
+										<?php for ($i = 0; $i < count($tipoEquipo); $i++) { ?>
+											<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>" <?php if($_POST && $_POST["id_tipo_equipo"] == $tipoEquipo[$i]["id_tipo_equipo"]) { echo "selected"; }  ?>><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>	
+										<?php } ?>
+									</select>
 								</div>
 							</div>
+
+							<div class="col-lg-2">
+								<div class="form-group input-group-sm">	
+									<label class="control-label" for="idTipoEquipoSearch">Número Inventario Entidad: </label>								
+									<input type="text" id="numero_inventario" name="numero_inventario" class="form-control" value="<?php echo $_POST?$this->input->post('numero_inventario'):""; ?>" placeholder="Número Inventario Entidad" >
+								</div>
+							</div>
+
+							<div class="col-lg-2">
+								<div class="form-group input-group-sm">	
+									<label class="control-label" for="idTipoEquipoSearch">Marca: </label>								
+									<input type="text" id="marca" name="marca" class="form-control" value="<?php echo $_POST?$this->input->post('marca'):""; ?>" placeholder="Marca" >
+								</div>
+							</div>
+
+							<div class="col-lg-2">
+								<div class="form-group input-group-sm">	
+									<label class="control-label" for="idTipoEquipoSearch">Número Serial: </label>								
+									<input type="text" id="numero_serial" name="numero_serial" class="form-control" value="<?php echo $_POST?$this->input->post('numero_serial'):""; ?>" placeholder="Número Serial" >
+								</div>
+							</div>
+
+							<div class="col-lg-4">
+								<div class="form-group"><br>
+									<button type="submit" id="btnBuscar" name="btnBuscar" class="btn btn-primary btn-sm" >
+										Buscar <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									</button> 
+								</div>
+							</div>
+
 						</div>
-						
 					</form>
-
 				</div>
-				<!-- /.panel-body -->
 			</div>
-			<!-- /.panel -->
 		</div>
-		<!-- /.col-lg-12 -->
+	</div>
 
-		<div class="col-lg-9">
+	<div class="row">
+		<div class="col-lg-12">
 			<div class="panel panel-success">
 				<div class="panel-heading">
 <?php

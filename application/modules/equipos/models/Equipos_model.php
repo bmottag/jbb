@@ -96,6 +96,11 @@
 					$query = $this->db->update('equipos_detalle_vehiculo', $data);
 				}
 				if ($query) {
+					//guardo en la tabla de auditoria
+					$idUser = $this->session->userdata("id");
+					$data["fecha_diligenciamiento"] = date("Y-m-d G:i:s");
+					$data["fk_id_persona"] = $idUser;
+					$query = $this->db->insert('auditoria_equipos_detalle_vehiculo', $data);
 					return true;
 				} else {
 					return false;
@@ -137,6 +142,12 @@
 					$query = $this->db->update('equipos_detalle_bomba', $data);
 				}
 				if ($query) {
+					//guardo en la tabla de auditoria
+					$idUser = $this->session->userdata("id");
+					$data["fecha_diligenciamiento"] = date("Y-m-d G:i:s");
+					$data["fk_id_persona"] = $idUser;
+					$query = $this->db->insert('auditoria_equipos_detalle_bomba', $data);
+					return true;
 					return true;
 				} else {
 					return false;
@@ -395,10 +406,19 @@
 				if (array_key_exists("idInspeccion", $arrData)) {
 					$this->db->where('I.id_inspection_vehiculos', $arrData["idInspeccion"]);
 				}
+				if (array_key_exists("from", $arrData)) {
+					$this->db->where('I.fecha_registro >=', $arrData["from"]);
+				}				
+				if (array_key_exists("to", $arrData)) {
+					$this->db->where('I.fecha_registro <=', $arrData["to"]);
+				}
 				
 				$this->db->order_by('I.id_inspection_vehiculos', 'desc');
-				$query = $this->db->get('inspection_vehiculos I');
-
+				if (array_key_exists("limit", $arrData)) {
+					$query = $this->db->get('inspection_vehiculos I', $arrData["limit"]);
+				}else{
+					$query = $this->db->get('inspection_vehiculos I');
+				}
 
 				if ($query->num_rows() > 0) {
 					return $query->result_array();
@@ -684,6 +704,40 @@
 
 				if ($query->num_rows() > 0) {
 					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
+		/**
+		 * Add Auditoria Equipos
+		 * @since 16/06/2022
+		 */
+		public function saveAuditoriaEquipo($idEquipo) 
+		{
+				$data = array(
+					'fk_id_equipo' => $idEquipo,
+					'numero_inventario' => $this->input->post('numero_inventario'),
+					'fk_id_dependencia' => $this->input->post('id_dependencia'),
+					'marca' => $this->input->post('marca'),
+					'modelo' => $this->input->post('modelo'),
+					'numero_serial' => $this->input->post('numero_serial'),
+					'fk_id_tipo_equipo' => $this->input->post('id_tipo_equipo'),
+					'estado_equipo' => $this->input->post('estado'),
+					'observacion' => $this->input->post('observacion'),
+					'fecha_adquisicion' => $this->input->post('fecha_adquisicion'),
+					'valor_comercial' => $this->input->post('valor_comercial'),
+					'placa' => $this->input->post('placa'),
+					'fk_id_contrato_mantenimiento' => $this->input->post('id_contrato'),
+					'fk_id_responsable' => $this->input->post('id_responsable'),
+					'profesional_asignado' => $this->input->post('profesional_asignado'),
+					'fk_id_persona' => $this->session->userdata("id"),
+					'fecha_diligenciamiento' => date("Y-m-d G:i:s")
+				);	
+				$query = $this->db->insert('auditoria_equipos', $data);
+
+				if ($query) {
+					return true;
 				} else {
 					return false;
 				}
