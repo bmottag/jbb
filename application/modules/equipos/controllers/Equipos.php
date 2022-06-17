@@ -708,8 +708,8 @@ class Equipos extends CI_Controller {
 				//le sumo un dia al dia final para que ingrese ese dia en la consulta
 				$data['to'] = date('Y-m-d',strtotime ( '+1 day ' , strtotime ( $data['to'] ) ) );
 
-				$arrParam["fecha_inicio"] = $data['from'];
-				$arrParam["fecha_fin"] = $data['to'];
+				$arrParam["from"] = $data['from'];
+				$arrParam["to"] = $data['to'];
 			}else{
 				$arrParam["limit"] = 30;
 			}

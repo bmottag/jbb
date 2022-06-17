@@ -496,6 +496,43 @@
 			return false;
 		}
 	}
+
+		/**
+		 * Lista de Diagnostico
+		 * @since 20/3/2021
+		 */
+		public function get_diagnostico($arrData) 
+		{		
+				$this->db->select("I.*, CONCAT(first_name, ' ', last_name) name, D.dependencia");
+				$this->db->join('usuarios U', 'U.id_user = I.fk_id_user_responsable', 'INNER');
+				$this->db->join('param_dependencias D', 'D.id_dependencia = U.fk_id_dependencia_u', 'INNER');		
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('I.fk_id_equipo_vehiculo', $arrData["idEquipo"]);
+				}
+				if (array_key_exists("idInspeccion", $arrData)) {
+					$this->db->where('I.id_inspection_vehiculos', $arrData["idInspeccion"]);
+				}
+				if (array_key_exists("from", $arrData)) {
+					$this->db->where('I.fecha_registro >=', $arrData["from"]);
+				}				
+				if (array_key_exists("to", $arrData)) {
+					$this->db->where('I.fecha_registro <=', $arrData["to"]);
+				}
+				$this->db->order_by('fecha_registro', 'asc');
+				$this->db->order_by('I.id_inspection_vehiculos', 'desc');
+				if (array_key_exists("limit", $arrData)) {
+					$query = $this->db->get('inspection_vehiculos I', $arrData["limit"]);
+				}else{
+					$query = $this->db->get('inspection_vehiculos I');
+				}
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
 		
 	    
 }

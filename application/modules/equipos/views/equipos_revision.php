@@ -117,6 +117,21 @@
 			</div>';
 	}else{
 ?>
+
+				<?php
+					if($_POST){
+				?>
+					<div class="row">
+						<div class="col-lg-12" align="right">
+							<div class="btn-group" >
+								<a href="<?php echo base_url("reportes/consolidadoChequoPDF/". $info[0]['id_equipo']. "/" . $from . "/" . $to); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Descargar Formato</a>
+							</div>
+						</div>
+					</div>
+				<?php
+					}
+				?>
+
 					<table width="100%" class="table table-striped table-bordered table-hover small" id="dataTables">
 						<thead>
 							<tr>
