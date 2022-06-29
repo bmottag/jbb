@@ -23,7 +23,8 @@
 									<a href="<?php echo base_url("reportes/hojaVidaPDF/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Descargar Formato - Hoja de Vida Vehicular - FIS.PR.06.F.08</a>
 									<br><br>
 									<a href="<?php echo base_url("reportes/caracterizacionPDF/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Descargar Formato - Caracterización General - FIS.PR.06.F.01</a>
-									<a href="<?php echo base_url("equipos/historial_equipos/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file" aria-hidden="true" ></span> Historial de Cambios</a>
+									<br><br>
+									<a href="<?php echo base_url("equipos/historial_equipos/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs"><span class="fa fa-file" aria-hidden="true" ></span> Historial de Cambios</a>
 								</div>
 							</div>
 						</div>

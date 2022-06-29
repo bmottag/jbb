@@ -1300,15 +1300,13 @@ class Equipos extends CI_Controller {
      * @since 23/11/2020
      * @author BMOTTAG
 	 */
-	public function historial_equipos($estado=2)
+	public function historial_equipos($idEquipo)
 	{
-			$data['estadoEquipo'] = $estado;
+			$data["idEquipo"] = $idEquipo;
+			$arrParam = array("idEquipo" => $idEquipo);
+			$data['info'] = $this->general_model->get_historial_equipo($arrParam);
 
-			$arrParam = array("estadoEquipo" => $estado);
-			$data['info'] = $this->general_model->get_equipos_info($arrParam);
-
-			
-			$data["view"] = 'equipos_inactivos';
+			$data["view"] = 'equipos_historial';
 			$this->load->view("layout_calendar", $data);
 	}
 

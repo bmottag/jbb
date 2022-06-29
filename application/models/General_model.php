@@ -770,5 +770,32 @@ class General_model extends CI_Model {
 			}
 	}
 
+		/**
+		 * Consulta HIStorial de cambios del equipo
+		 * @since 29/06/2022
+		 */
+		public function get_historial_equipo($arrData) 
+		{		
+				$this->db->select("A.*, D.dependencia, T.*, C.*, CONCAT(U.first_name, ' ', U.last_name) name, U.numero_cedula, CONCAT(X.first_name, ' ', X.last_name) name_diligencio");
+				$this->db->join('param_dependencias D', 'D.id_dependencia = A.fk_id_dependencia', 'INNER');
+				$this->db->join('param_tipo_equipos T', 'T.id_tipo_equipo = A.fk_id_tipo_equipo', 'INNER');
+				$this->db->join('contratos_mantenimiento C', 'C.id_contrato_mantenimiento = A.fk_id_contrato_mantenimiento', 'LEFT');
+				$this->db->join('usuarios U', 'A.fk_id_responsable = U.id_user', 'LEFT');
+				$this->db->join('usuarios X', 'A.fk_id_persona = X.id_user', 'LEFT');			
+
+				if (array_key_exists("idEquipo", $arrData)) {
+					$this->db->where('A.fk_id_equipo', $arrData["idEquipo"]);
+				}
+
+				$this->db->order_by('id_auditoria_equipos', 'desc');
+				$query = $this->db->get('auditoria_equipos A');
+
+				if ($query->num_rows() > 0) {
+					return $query->result_array();
+				} else {
+					return false;
+				}
+		}
+
 
 }
