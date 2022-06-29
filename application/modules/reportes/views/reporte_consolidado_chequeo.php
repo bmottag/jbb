@@ -24,7 +24,7 @@ if($listadoRevision)
 				</tr>
 				<tr>
 					<th width="25%" bgcolor="#dde1da" style="color:#3e403e;"><strong>VEHÍCULO</strong></th>
-					<th width="25%"></th>
+					<th width="25%">' . $infoEquipo[0]["marca"] . ' - ' . $infoEquipo[0]["modelo"] . '</th>
 					<th width="25%" bgcolor="#dde1da" style="color:#3e403e;"><strong>PLACA</strong></th>
 					<th width="25%">' . $infoEquipo[0]["placa"] . '</th>
 				</tr>

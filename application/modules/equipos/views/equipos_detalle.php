@@ -20,10 +20,17 @@
 							<i class="fa <?php echo $info[0]['icono']; ?>"></i> <strong>INFORMACIÓN GENERAL DEL EQUIPO</strong>
 							<div class="pull-right">
 								<div class="btn-group">
+<?php 
+	if($info[0]["fk_id_tipo_equipo"] == 1){
+?>
 									<a href="<?php echo base_url("reportes/hojaVidaPDF/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Descargar Formato - Hoja de Vida Vehicular - FIS.PR.06.F.08</a>
-									<br><br>
+<?php 
+	}elseif($info[0]["fk_id_tipo_equipo"] == 3){
+?>
 									<a href="<?php echo base_url("reportes/caracterizacionPDF/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Descargar Formato - Caracterización General - FIS.PR.06.F.01</a>
-									<br><br>
+<?php 
+	}
+?>
 									<a href="<?php echo base_url("equipos/historial_equipos/". $info[0]['id_equipo']); ?>" class="btn btn-primary btn-xs"><span class="fa fa-file" aria-hidden="true" ></span> Historial de Cambios</a>
 								</div>
 							</div>
