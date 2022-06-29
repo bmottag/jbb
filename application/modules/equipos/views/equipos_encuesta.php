@@ -12,6 +12,13 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<i class="fa fa-book"></i> <strong>ENCUESTA DE SATISFACCIÓN</strong>
+					<div class="pull-right">
+						<div class="btn-group">																				
+							<a href="<?php echo base_url('external/add_encuesta'); ?>" class="btn btn-info btn-xs">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Encuesta de Satisfacción
+							</a>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">
 				

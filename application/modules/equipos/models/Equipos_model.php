@@ -743,6 +743,35 @@
 				}
 		}
 
+		/**
+		 * Contar encuestas de satisfaccióm
+		 * @author BMOTTAG
+		 * @since  23/06/2022
+		 */
+		public function countEncuestas($arrData)
+		{
+
+				$sql = "SELECT count(id_encuesta_vehiculos) CONTEO";
+				$sql.= " FROM   encuesta_vehiculos";
+				$sql.= " WHERE 1=1 ";
+				if (array_key_exists("preguntaSatisfaccion", $arrData)) {
+					$sql.= " AND " . $arrData["preguntaSatisfaccion"] . " <= 1";
+				}
+				if (array_key_exists("preguntaSeguridad", $arrData)) {
+					$sql.= " AND " . $arrData["preguntaSeguridad"] . " = 0";
+				}
+				if (array_key_exists("from", $arrData)) {
+					$sql.= " AND fecha_registro >='". $arrData["from"]. "'";
+				}				
+				if (array_key_exists("to", $arrData)) {
+					$sql.= " AND fecha_registro <='". $arrData["to"]. "'";
+				}
+
+				$query = $this->db->query($sql);
+				$row = $query->row();
+				return $row->CONTEO;
+		}
+
 		
 		
 	    

@@ -1311,5 +1311,49 @@ class Equipos extends CI_Controller {
 			$data["view"] = 'equipos_inactivos';
 			$this->load->view("layout_calendar", $data);
 	}
+
+	/**
+	 * Informacion encuestas
+     * @since 9/7/2021
+     * @author BMOTTAG
+	 */
+	public function consolidado_encuestas()
+	{
+			$arrParam = array();
+			if($_POST){
+				$from =  $this->input->post('fecha_inicio');
+				$to =  $this->input->post('fecha_fin');
+				$data['from'] = formatear_fecha($from);
+				$data['to'] = formatear_fecha($to);
+				//le sumo un dia al dia final para que ingrese ese dia en la consulta
+				$data['to'] = date('Y-m-d',strtotime ( '+1 day ' , strtotime ( $data['to'] ) ) );
+
+				$arrParam["from"] = $data['from'];
+				$arrParam["to"] = $data['to'];
+
+				$data['numeroEncuestas'] = $this->equipos_model->countEncuestas($arrParam);
+
+				$arrParam["preguntaSatisfaccion"] = 'amabilidad';
+				$data['numeroAmabilidad'] = $this->equipos_model->countEncuestas($arrParam);
+				$arrParam["preguntaSatisfaccion"] = 'presentacion';
+				$data['numeroPresentacion'] = $this->equipos_model->countEncuestas($arrParam);
+				$arrParam["preguntaSatisfaccion"] = 'limpieza';
+				$data['numeroLimpieza'] = $this->equipos_model->countEncuestas($arrParam);
+				$arrParam["preguntaSatisfaccion"] = 'calidad';
+				$data['numeroCalidad'] = $this->equipos_model->countEncuestas($arrParam);
+
+				$arrParam["preguntaSeguridad"] = 'normas';
+				$data['numeroNormas'] = $this->equipos_model->countEncuestas($arrParam);
+				$arrParam["preguntaSeguridad"] = 'velocidad';
+				$data['numeroVelocidad'] = $this->equipos_model->countEncuestas($arrParam);
+				$arrParam["preguntaSeguridad"] = 'cinturon';
+				$data['numeroCinturon'] = $this->equipos_model->countEncuestas($arrParam);
+				$arrParam["preguntaSeguridad"] = 'aparatos';
+				$data['numeroAparatos'] = $this->equipos_model->countEncuestas($arrParam);
+			}
+			
+			$data["view"] = 'consolidado_encuestas';
+			$this->load->view("layout_calendar", $data);
+	}
 	
 }
