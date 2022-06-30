@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 <div id="page-wrapper">
 	<br>
 	<div class="row">
@@ -89,15 +86,13 @@
 								<div class="row">
 									<div class="col-lg-2">
 										<div class="form-group input-group-sm">	
-											<label class="control-label" for="fecha_inicio">Fecha Desde: *</label>								
-											<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php if($_POST){ echo $_POST["fecha_inicio"]; } ?>" placeholder="Fecha Inicio" required />
-										</div>
-									</div>
-
-									<div class="col-lg-2">
-										<div class="form-group input-group-sm">	
-											<label class="control-label" for="idEquipoSearch">Fecha Hasta: *</label>
-											<input type="text" class="form-control" id="fecha_fin" name="fecha_fin"value="<?php if($_POST){ echo $_POST["fecha_fin"]; } ?>" placeholder="Fecha Hasta" required />
+											<label class="control-label" for="idMes">Mes: *</label>
+											<select name="idMes" id="idMes" class="form-control" required >
+												<option value="">Seleccione...</option>
+												<?php for ($i = 0; $i < count($listaMeses); $i++) { ?>
+													<option value="<?php echo $listaMeses[$i]["id_mes"]; ?>" <?php if($_POST && $_POST["idMes"] == $listaMeses[$i]["id_mes"]) { echo "selected"; }  ?>><?php echo $listaMeses[$i]["mes"]; ?></option>	
+												<?php } ?>
+											</select>
 										</div>
 									</div>
 
@@ -133,19 +128,43 @@
 						<tbody>							
 							<tr>
 								<th>Amabilidad y Respeto del Conductor</th>
-								<th class="text-center"><?php echo $numeroAmabilidad; ?></th>
+								<th class="text-center"> 
+									<?php echo $numeroAmabilidad; 
+										if($numeroAmabilidad > 0){
+									?> 
+									<a href="<?php echo base_url("reportes/encuesta_insatisfechas/". $idMes ."/amabilidad/x"); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></span> Ver las Encuestas</a>
+									<?php } ?> 
+								</th>
 							</tr>
 							<tr>
 								<th>Presentación Personal del Conductor</th>
-								<th class="text-center"><?php echo $numeroPresentacion; ?></th>
+								<th class="text-center">
+									<?php echo $numeroPresentacion; 
+										if($numeroPresentacion > 0){
+									?> 
+									<a href="<?php echo base_url("reportes/encuesta_insatisfechas/". $idMes ."/presentacion/x"); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></span> Ver las Encuestas</a>
+									<?php } ?> 
+								</th>
 							</tr>
 							<tr>
 								<th>Limpieza del Vehículo</th>
-								<th class="text-center"><?php echo $numeroLimpieza; ?></th>
+								<th class="text-center">
+									<?php echo $numeroLimpieza; 
+										if($numeroLimpieza > 0){
+									?> 
+									<a href="<?php echo base_url("reportes/encuesta_insatisfechas/". $idMes ."/limpieza/x"); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></span> Ver las Encuestas</a>
+									<?php } ?> 
+								</th>
 							</tr>
 							<tr>
 								<th>Calidad del servicio en modo, tiempo y lugar</th>
-								<th class="text-center"><?php echo $numeroCalidad; ?></th>
+								<th class="text-center">
+									<?php echo $numeroCalidad; 
+										if($numeroCalidad > 0){
+									?> 
+									<a href="<?php echo base_url("reportes/encuesta_insatisfechas/". $idMes ."/calidad/x"); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></span> Ver las Encuestas</a>
+									<?php } ?> 
+								</th>
 							</tr>
 						</tbody>
 					</table>
@@ -160,19 +179,43 @@
 						<tbody>							
 							<tr>
 								<th>El conductor cumplió con las normas de Tránsito </th>
-								<th class="text-center"><?php echo $numeroNormas; ?></th>
+								<th class="text-center">
+									<?php echo $numeroNormas; 
+										if($numeroNormas > 0){
+									?> 
+									<a href="<?php echo base_url("reportes/encuesta_insatisfechas/". $idMes ."/x/normas"); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></span> Ver las Encuestas</a>
+									<?php } ?> 
+								</th>
 							</tr>
 							<tr>
 								<th>El recorrido se realizó con la velocidad permitida</th>
-								<th class="text-center"><?php echo $numeroVelocidad; ?></th>
+								<th class="text-center">
+									<?php echo $numeroVelocidad; 
+										if($numeroVelocidad > 0){
+									?> 
+									<a href="<?php echo base_url("reportes/encuesta_insatisfechas/". $idMes ."/x/velocidad"); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></span> Ver las Encuestas</a>
+									<?php } ?> 
+								</th>
 							</tr>
 							<tr>
 								<th>El conductor utilizó y solicitó que usted usara el cinturón de seguridad</th>
-								<th class="text-center"><?php echo $numeroCinturon; ?></th>
+								<th class="text-center">
+									<?php echo $numeroCinturon; 
+										if($numeroCinturon > 0){
+									?> 
+									<a href="<?php echo base_url("reportes/encuesta_insatisfechas/". $idMes ."/x/cinturon"); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></span> Ver las Encuestas</a>
+									<?php } ?> 
+								</th>
 							</tr>
 							<tr>
 								<th>El conductor usó aparatos móviles o bidireccionales (pantallas, tablets, etc) con el vehículo en movimiento y sin audífonos o bluetooth? </th>
-								<th class="text-center"><?php echo $numeroAparatos; ?></th>
+								<th class="text-center">
+									<?php echo $numeroAparatos; 
+										if($numeroAparatos > 0){
+									?> 
+									<a href="<?php echo base_url("reportes/encuesta_insatisfechas/". $idMes ."/x/aparatos"); ?>" class="btn btn-info btn-xs" target="_blank"> <span class="fa fa-file-pdf-o" aria-hidden="true" /></span> Ver las Encuestas</a>
+									<?php } ?> 
+								</th>
 							</tr>
 						</tbody>
 					</table>

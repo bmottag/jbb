@@ -1142,5 +1142,276 @@ class Reportes extends CI_Controller {
 			// END OF FILE
 			//============================================================+		
 	}
+
+	/**
+	 * Encuesta en PDF
+	 * @param int $idMes
+     * @since 22/5/2021
+     * @author BMOTTAG
+	 */
+	public function encuesta_insatisfechas($idMes, $variable1, $variable2)
+	{
+			$this->load->library('Pdf');
+			
+			// create new PDF document
+			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+			// set document information
+			$pdf->SetCreator(PDF_CREATOR);
+			$pdf->SetAuthor('JBB');
+			$pdf->SetTitle('MANUAL DE PROCESOS');
+			$pdf->SetSubject('FIS');
+
+			// set default header data
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, '', PDF_HEADER_STRING, array(94,164,49), array(147,204,110));
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, 'MANUAL DE PROCESOS Y PROCEDIMIENTOS', "FIS - GESTIÓN DE RECURSOS FÍSICOS \nEncuesta de Satisfacción ", array(0,140,0), array(147,204,110));	
+			// set header and footer fonts
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+			// set default monospaced font
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+			
+			$pdf->setPrintFooter(false); //no imprime el pie ni la linea 
+
+			// set margins
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+			// set auto page breaks
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+			// set image scale factor
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+			// set some language-dependent strings (optional)
+			if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+				require_once(dirname(__FILE__).'/lang/eng.php');
+				$pdf->setLanguageArray($l);
+			}
+
+			// ---------------------------------------------------------
+
+			// set font
+			$pdf->SetFont('dejavusans', '', 6);
+
+			// writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
+			// writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
+			
+			// - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+			// Print a table
+				
+			// add a page
+			//$pdf->AddPage('L', 'A4');
+
+			$from = $this->data_first_month_day($idMes);
+			$to = $this->data_last_month_day($idMes);
+			$to = date('Y-m-d',strtotime ( '+1 day ' , strtotime ( $to ) ) );
+
+			
+			if($variable1 != 'x'){
+				$arrParam = array(
+					"from" => $from,
+					"to" => $to,
+					"preguntaSatisfaccion" => $variable1
+				);
+			}else{
+				$arrParam = array(
+					"from" => $from,
+					"to" => $to,
+					"preguntaSeguridad" => $variable2
+				);
+			}
+			
+			$infoEncuesta = $this->reportes_model->get_encuestas($arrParam);
+					
+			//datos especificos
+			if($infoEncuesta)
+			{ 
+				foreach ($infoEncuesta as $lista):
+
+					// add a page
+					$pdf->AddPage();
+
+					// create some HTML content	
+					$html = '<style>
+								table {
+									font-family: arial, sans-serif;
+									border: 1px solid black;
+									border-collapse: collapse;
+									width: 100%;
+								}
+
+								td, th {
+									border: 1px solid black;
+									text-align: left;
+									padding: 8px;
+								}
+								</style>';
+
+					$html.= '<table cellspacing="0" cellpadding="5">
+								<tr>
+									<th width="25%" bgcolor="#dde1da" style="color:#3e403e;"><strong>1. FECHA</strong></th>
+									<th width="75%">' . $lista['fecha_registro']. '</th>
+								</tr>
+								<tr>
+									<th bgcolor="#dde1da" style="color:#3e403e;"><strong>2. DEPEDENCIA</strong></th>
+									<th>' . $lista['dependencia']. '</th>
+								</tr>
+								<tr>
+									<th bgcolor="#dde1da" style="color:#3e403e;"><strong>3. NOMBRE DEL CONDUCTOR</strong></th>
+									<th>' . $lista['name']. '</th>
+								</tr>
+								<tr>
+									<th bgcolor="#dde1da" style="color:#3e403e;"><strong>4. VEHÍCULO</strong></th>
+									<th>Nro. Inventario: ' . $lista['numero_inventario']. '- Placa: ' . $lista['placa'] . '</th>
+								</tr>
+							</table>';
+
+					$html.= '<table cellspacing="0" cellpadding="5">
+								<tr>
+									<th width="100%" bgcolor="#dde1da" style="color:#3e403e; text-align: center;"><strong>RECORRIDO</strong></th>
+								</tr>';
+					$html.= '<tr>
+								<th>'. $lista['recorrido'] . '</th>
+							</tr>';
+
+					$html.= '</table>';
+
+
+					$html.= '<table cellspacing="0" cellpadding="5">';
+					switch ($lista['amabilidad']) {
+						case 0:
+							$respuesta = 'Insatisfecho';
+							break;
+						case 1:
+							$respuesta = 'Poco Satisfecho';
+							break;
+						case 2:
+							$respuesta = 'Muy Satisfecho';
+							break;
+						case 3:
+							$respuesta = 'Completamente Satisfecho';
+							break;
+					}
+					$html.= '<tr>
+								<th width="70%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Amabilidad y Respeto del Conductor</strong></th>
+								<th width="30%">'. $respuesta . '</th>
+							</tr>';
+					switch ($lista['presentacion']) {
+						case 0:
+							$respuesta = 'Insatisfecho';
+							break;
+						case 1:
+							$respuesta = 'Poco Satisfecho';
+							break;
+						case 2:
+							$respuesta = 'Muy Satisfecho';
+							break;
+						case 3:
+							$respuesta = 'Completamente Satisfecho';
+							break;
+					}
+					$html.= '<tr>
+								<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Presentación Personal del Conductor</strong></th>
+								<th>'. $respuesta . '</th>
+							</tr>';
+
+					switch ($lista['limpieza']) {
+						case 0:
+							$respuesta = 'Insatisfecho';
+							break;
+						case 1:
+							$respuesta = 'Poco Satisfecho';
+							break;
+						case 2:
+							$respuesta = 'Muy Satisfecho';
+							break;
+						case 3:
+							$respuesta = 'Completamente Satisfecho';
+							break;
+					}
+					$html.= '<tr>
+								<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Limpieza del Vehículo</strong></th>
+								<th>'. $respuesta . '</th>
+							</tr>';
+
+					switch ($lista['calidad']) {
+						case 0:
+							$respuesta = 'Insatisfecho';
+							break;
+						case 1:
+							$respuesta = 'Poco Satisfecho';
+							break;
+						case 2:
+							$respuesta = 'Muy Satisfecho';
+							break;
+						case 3:
+							$respuesta = 'Completamente Satisfecho';
+							break;
+					}
+					$html.= '<tr>
+								<th bgcolor="#dde1da" style="color:#3e403e;"><strong>Calidad del servicio en modo, tiempo y lugar</strong></th>
+								<th>'. $respuesta . '</th>
+							</tr>';
+
+					$respuesta = $lista['normas']==1?'Si':'No';
+					$html.= '<tr>
+								<th bgcolor="#dde1da" style="color:#3e403e;"><strong>El conductor cumplió con las normas de Tránsito</strong></th>
+								<th>'. $respuesta . '</th>
+							</tr>';
+
+					$respuesta = $lista['velocidad']==1?'Si':'No';
+					$html.= '<tr>
+								<th bgcolor="#dde1da" style="color:#3e403e;"><strong>El recorrido se realizó con la velocidad permitida</strong></th>
+								<th>'. $respuesta . '</th>
+							</tr>';
+
+					$respuesta = $lista['cinturon']==1?'Si':'No';
+					$html.= '<tr>
+								<th bgcolor="#dde1da" style="color:#3e403e;"><strong>El conductor utilizó y solicitó que usted usara el cinturón de seguridad</strong></th>
+								<th>'. $respuesta . '</th>
+							</tr>';
+
+					$respuesta = $lista['aparatos']==1?'Si':'No';
+					$html.= '<tr>
+								<th bgcolor="#dde1da" style="color:#3e403e;"><strong>El conductor usó aparatos móviles o bidireccionales (pantallas, tablets, etc) con el vehículo en movimiento y sin audífonos o bluetooth? </strong></th>
+								<th>'. $respuesta . '</th>
+							</tr>';
+
+					$html.= '</table>';
+
+
+					$pdf->writeHTML($html, true, false, true, false, '');
+				endforeach;
+				
+			}
+		
+			// reset pointer to the last page
+			$pdf->lastPage();
+
+			ob_end_clean();
+			//Close and output PDF document
+			$pdf->Output('encuesta_satisfaccion.pdf', 'I');
+
+			//============================================================+
+			// END OF FILE
+			//============================================================+		
+	}
+
+	/** Actual month last day **/
+	function data_last_month_day($month) {
+	  $year = date('Y');
+	  $day = date("d", mktime(0,0,0, $month+1, 0, $year));
+
+	  return date('Y-m-d', mktime(0,0,0, $month, $day, $year));
+	}
+
+	/** Actual month first day **/
+	function data_first_month_day($month) {
+	  $year = date('Y');
+	  return date('Y-m-d', mktime(0,0,0, $month, 1, $year));
+	}
 	
 }

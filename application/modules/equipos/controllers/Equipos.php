@@ -1317,17 +1317,28 @@ class Equipos extends CI_Controller {
 	 */
 	public function consolidado_encuestas()
 	{
-			$arrParam = array();
-			if($_POST){
-				$from =  $this->input->post('fecha_inicio');
-				$to =  $this->input->post('fecha_fin');
-				$data['from'] = formatear_fecha($from);
-				$data['to'] = formatear_fecha($to);
-				//le sumo un dia al dia final para que ingrese ese dia en la consulta
-				$data['to'] = date('Y-m-d',strtotime ( '+1 day ' , strtotime ( $data['to'] ) ) );
+			$arrParam = array(
+				"table" => "param_meses",
+				"order" => "id_mes",
+				"id" => "x"
+			);
+			$data['listaMeses'] = $this->general_model->get_basic_search($arrParam);
 
-				$arrParam["from"] = $data['from'];
-				$arrParam["to"] = $data['to'];
+			if($_POST){
+				$data["idMes"] =  $this->input->post('idMes');
+				$from = $this->data_first_month_day($data["idMes"]);
+				$to = $this->data_last_month_day($data["idMes"]);
+
+
+				//$from =  $this->input->post('fecha_inicio');
+				//$to =  $this->input->post('fecha_fin');
+				//$data['from'] = formatear_fecha($from);
+				//$data['to'] = formatear_fecha($to);
+				//le sumo un dia al dia final para que ingrese ese dia en la consulta
+				$to = date('Y-m-d',strtotime ( '+1 day ' , strtotime ( $to ) ) );
+
+				$arrParam["from"] = $from;
+				$arrParam["to"] = $to;
 
 				$data['numeroEncuestas'] = $this->equipos_model->countEncuestas($arrParam);
 
@@ -1340,6 +1351,7 @@ class Equipos extends CI_Controller {
 				$arrParam["preguntaSatisfaccion"] = 'calidad';
 				$data['numeroCalidad'] = $this->equipos_model->countEncuestas($arrParam);
 
+				$arrParam = array();
 				$arrParam["preguntaSeguridad"] = 'normas';
 				$data['numeroNormas'] = $this->equipos_model->countEncuestas($arrParam);
 				$arrParam["preguntaSeguridad"] = 'velocidad';
@@ -1352,6 +1364,20 @@ class Equipos extends CI_Controller {
 			
 			$data["view"] = 'consolidado_encuestas';
 			$this->load->view("layout_calendar", $data);
+	}
+
+	/** Actual month last day **/
+	function data_last_month_day($month) {
+	  $year = date('Y');
+	  $day = date("d", mktime(0,0,0, $month+1, 0, $year));
+
+	  return date('Y-m-d', mktime(0,0,0, $month, $day, $year));
+	}
+
+	/** Actual month first day **/
+	function data_first_month_day($month) {
+	  $year = date('Y');
+	  return date('Y-m-d', mktime(0,0,0, $month, 1, $year));
 	}
 	
 }

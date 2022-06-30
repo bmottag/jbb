@@ -426,6 +426,18 @@
 			if (array_key_exists("idEncuesta", $arrData)) {
 				$this->db->where('S.id_encuesta_vehiculos', $arrData["idEncuesta"]);
 			}
+			if (array_key_exists("preguntaSatisfaccion", $arrData)) {
+				$this->db->where('S.' . $arrData["preguntaSatisfaccion"] . '<= ', 1);
+			}
+			if (array_key_exists("preguntaSeguridad", $arrData)) {
+				$this->db->where('S.' . $arrData["preguntaSeguridad"] . '= ', 0);
+			}
+			if (array_key_exists("from", $arrData)) {
+				$this->db->where('S.fecha_registro >=', $arrData["from"]);
+			}
+			if (array_key_exists("to", $arrData)) {
+				$this->db->where('S.fecha_registro <=', $arrData["to"]);
+			}
 			$query = $this->db->get('encuesta_vehiculos S');
 
 			if ($query->num_rows() > 0) {
