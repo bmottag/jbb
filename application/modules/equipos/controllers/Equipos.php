@@ -1366,6 +1366,45 @@ class Equipos extends CI_Controller {
 			$this->load->view("layout_calendar", $data);
 	}
 
+	/**
+	 * Lista de cehqueo preoperacional
+     * @since 30/6/2022
+     * @author BMOTTAG
+	 */
+	public function consolidado_chequeo_preoperacional()
+	{
+			//se filtra por company_type para que solo se pueda editar los subcontratistas
+			$arrParam = array();
+			if($_POST){
+				$data["idEquipo"] = $arrParam['idEquipo'] = $this->input->post('idEquipoSearch');
+				$data["idMes"] = $this->input->post('idMes');
+
+				$from = $this->data_first_month_day($data["idMes"]);
+				$to = $this->data_last_month_day($data["idMes"]);
+				$to = date('Y-m-d',strtotime ( '+1 day ' , strtotime ( $to ) ) );
+				$arrParam["from"] = $from;
+				$arrParam["to"] = $to;
+			}
+			$data['listadoRevision'] = $this->equipos_model->get_diagnostico($arrParam);
+
+			$arrParam = array(
+				"table" => "param_tipo_equipos",
+				"order" => "tipo_equipo",
+				"id" => "x"
+			);
+			$data['tipoEquipo'] = $this->general_model->get_basic_search($arrParam);
+
+			$arrParam = array(
+				"table" => "param_meses",
+				"order" => "id_mes",
+				"id" => "x"
+			);
+			$data['listaMeses'] = $this->general_model->get_basic_search($arrParam);
+			
+			$data["view"] = 'consolidado_chequeo_preoperacional';
+			$this->load->view("layout_calendar", $data);
+	}
+
 	/** Actual month last day **/
 	function data_last_month_day($month) {
 	  $year = date('Y');

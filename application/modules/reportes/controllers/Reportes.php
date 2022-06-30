@@ -6,6 +6,7 @@ class Reportes extends CI_Controller {
     public function __construct() {
         parent::__construct();
 		$this->load->model("reportes_model");
+		$this->load->model("general_model");
     }
 
 	/**
@@ -1060,7 +1061,7 @@ class Reportes extends CI_Controller {
      * @since 16/6/2022
      * @author BMOTTAG
 	 */
-	public function consolidadoChequoPDF($idEquipo, $from,$to)
+	public function consolidadoChequoPDF($idEquipo, $idMes)
 	{
 			$this->load->library('Pdf');
 			
@@ -1119,6 +1120,17 @@ class Reportes extends CI_Controller {
 			$arrParam = array('idEquipo' => $idEquipo);
 			$data['infoEquipo'] = $this->reportes_model->get_equipos_info($arrParam);
 
+			$arrParam = array(
+				"table" => "param_meses",
+				"order" => "id_mes",
+				"column" => "id_mes",
+				"id" => $idMes
+			);
+			$data['infoMes'] = $this->general_model->get_basic_search($arrParam);
+
+			$from = $this->data_first_month_day($idMes);
+			$to = $this->data_last_month_day($idMes);
+			$to = date('Y-m-d',strtotime ( '+1 day ' , strtotime ( $to ) ) );
 			$arrParam = array(
 				"idEquipo" => $idEquipo,
 				"from" => $from,

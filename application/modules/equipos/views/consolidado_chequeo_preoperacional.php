@@ -1,32 +1,28 @@
-<script type="text/javascript" src="<?php echo base_url("assets/js/validate/inspection/inspeccion_vehiculos.js"); ?>"></script>
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/validate/equipos/ajaxEquipos.js"); ?>"></script>
 
 <div id="page-wrapper">
 	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4 class="list-group-item-heading">
+					<i class="fa fa-gear fa-fw"></i> EQUIPOS - CONSOLIDADO CHEQUEO PREOPERACIONAL
+					</h4>
+				</div>
+			</div>
+		</div>
+		<!-- /.col-lg-12 -->				
+	</div>
 	
 	<!-- /.row -->
 	<div class="row">
-		<!-- Start of menu -->
-		<?php
-			$this->load->view('menu_equipos');
-		?>
-		<!-- End of menu -->
-		<div class="col-lg-9">
-			<div class="panel panel-info">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
 				<div class="panel-heading">
-					<i class="fa fa-book"></i> <strong>CHEQUEO PREOPERACIONAL DIARIO</strong>
-					<div class="pull-right">
-						<div class="btn-group">
-							<a href="<?php echo base_url('external/add_vehiculos_inspection/' . $info[0]['id_equipo']); ?>" class="btn btn-info btn-xs">
-									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Chequeo Preoperacional
-							</a>
-						</div>
-					</div>
+					<i class="fa fa-building"></i> CONSOLIDADO CHEQUEO PREOPERACIONAL
 				</div>
 				<div class="panel-body">
-				
 <?php
 	$retornoExito = $this->session->flashdata('retornoExito');
 	if ($retornoExito) {
@@ -48,53 +44,39 @@
 	}
 ?> 
 
-<script>
-	$( function() {
-		var dateFormat = "mm/dd/yy",
-		from = $( "#fecha_inicio" )
-		.datepicker({
-			changeMonth: true,
-			changeYear: true
-		})
-		.on( "change", function() {
-			to.datepicker( "option", "minDate", getDate( this ) );
-		}),
-		to = $( "#fecha_fin" ).datepicker({
-			changeMonth: true,
-			changeYear: true
-		})
-		.on( "change", function() {
-			from.datepicker( "option", "maxDate", getDate( this ) );
-		});
-
-		function getDate( element ) {
-			var date;
-			try {
-				date = $.datepicker.parseDate( dateFormat, element.value );
-			} catch( error ) {
-				date = null;
-			}
-
-			return date;
-		}
-	});
-</script>
-
-					<form name="formRevision" id="formCheckin" method="post">
+					<form name="formCheckin" id="formCheckin" method="post">
 						<div class="panel panel-default">
 							<div class="panel-footer">
 								<div class="row">
 									<div class="col-lg-2">
 										<div class="form-group input-group-sm">	
-											<label class="control-label" for="fecha_inicio">Fecha Desde: *</label>								
-											<input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php if($_POST){ echo $_POST["fecha_inicio"]; } ?>" placeholder="Fecha Inicio" required />
+											<label class="control-label" for="idTipoEquipoSearch">Tipo de Equipo: *</label>								
+											<select name="idTipoEquipoSearch" id="idTipoEquipoSearch" class="form-control" required >
+												<option value="">Seleccione...</option>
+												<?php for ($i = 0; $i < count($tipoEquipo); $i++) { ?>
+													<option value="<?php echo $tipoEquipo[$i]["id_tipo_equipo"]; ?>" <?php if($_POST && $_POST["idTipoEquipoSearch"] == $tipoEquipo[$i]["id_tipo_equipo"]) { echo "selected"; }  ?>><?php echo $tipoEquipo[$i]["tipo_equipo"]; ?></option>
+												<?php } ?>
+											</select>
 										</div>
 									</div>
 
 									<div class="col-lg-2">
 										<div class="form-group input-group-sm">	
-											<label class="control-label" for="idEquipoSearch">Fecha Hasta: *</label>
-											<input type="text" class="form-control" id="fecha_fin" name="fecha_fin"value="<?php if($_POST){ echo $_POST["fecha_fin"]; } ?>" placeholder="Fecha Hasta" required />
+											<label class="control-label" for="idEquipoSearch">Equipo: *</label>
+											<select name="idEquipoSearch" id="idEquipoSearch" class="form-control" required>
+
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-2">
+										<div class="form-group input-group-sm">	
+											<label class="control-label" for="idMes">Mes: *</label>
+											<select name="idMes" id="idMes" class="form-control" required >
+												<option value="">Seleccione...</option>
+												<?php for ($i = 0; $i < count($listaMeses); $i++) { ?>
+													<option value="<?php echo $listaMeses[$i]["id_mes"]; ?>" <?php if($_POST && $_POST["idMes"] == $listaMeses[$i]["id_mes"]) { echo "selected"; }  ?>><?php echo $listaMeses[$i]["mes"]; ?></option>	
+												<?php } ?>
+											</select>
 										</div>
 									</div>
 
@@ -109,7 +91,9 @@
 							</div>
 						</div>
 					</form>
-
+				<?php
+					if($_POST){
+				?>	
 <?php 										
 	if(!$listadoRevision){ 
 		echo '<div class="col-lg-12">
@@ -117,6 +101,14 @@
 			</div>';
 	}else{
 ?>
+
+					<div class="row">
+						<div class="col-lg-12" align="right">
+							<div class="btn-group" >
+								<a href="<?php echo base_url("reportes/consolidadoChequoPDF/". $idEquipo . "/" . $idMes); ?>" class="btn btn-primary btn-xs" target="_blank"><span class="fa fa-file-pdf-o" aria-hidden="true" ></span> Descargar Consolidado Mes</a>
+							</div>
+						</div>
+					</div>
 
 					<table width="100%" class="table table-striped table-bordered table-hover small" id="dataTables">
 						<thead>
@@ -157,26 +149,9 @@
 						</tbody>
 					</table>
 				<?php } ?>
+				<?php } ?>
 				</div>
-				<!-- /.panel-body -->
 			</div>
-			<!-- /.panel -->
 		</div>
-		<!-- /.col-lg-12 -->
 	</div>
-	<!-- /.row -->
 </div>
-<!-- /#page-wrapper -->
-		
-<!-- Tables -->
-<script>
-$(document).ready(function() {
-    $('#dataTables').DataTable({
-        responsive: true,
-		 "ordering": false,
-		 paging: false,
-		"searching": false,
-		"info": false
-    });
-});
-</script>

@@ -20,24 +20,26 @@ if($listadoRevision)
 
 	$html.= '<table cellspacing="0" cellpadding="5">
 				<tr>
-					<th colspan="4" style="color:#3e403e;text-align:center;"><strong>LISTADO DE CHEQUEO PREOCUPACIONAL VEHÍCULO</strong></th>
+					<th colspan="6" style="color:#3e403e;text-align:center;"><strong>LISTADO DE CHEQUEO PREOCUPACIONAL VEHÍCULO</strong></th>
 				</tr>
 				<tr>
 					<th width="25%" bgcolor="#dde1da" style="color:#3e403e;"><strong>VEHÍCULO</strong></th>
 					<th width="25%">' . $infoEquipo[0]["marca"] . ' - ' . $infoEquipo[0]["modelo"] . '</th>
-					<th width="25%" bgcolor="#dde1da" style="color:#3e403e;"><strong>PLACA</strong></th>
-					<th width="25%">' . $infoEquipo[0]["placa"] . '</th>
+					<th colspan="2" width="25%" bgcolor="#dde1da" style="color:#3e403e;"><strong>PLACA</strong></th>
+					<th colspan="2" width="25%">' . $infoEquipo[0]["placa"] . '</th>
 				</tr>
 				<tr>
 					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>CONDUCTOR</strong></th>
 					<th>' . $infoEquipo[0]["name"] . '</th>
-					<th bgcolor="#dde1da" style="color:#3e403e;"><strong>AÑO</strong></th>
-					<th>' . date('Y'). '</th>
+					<th width="12%" bgcolor="#dde1da" style="color:#3e403e;"><strong>AÑO</strong></th>
+					<th width="13%" >' . date('Y'). '</th>
+					<th width="12%" bgcolor="#dde1da" style="color:#3e403e;"><strong>MES</strong></th>
+					<th width="13%">' . $infoMes[0]["mes"] . '</th>
 				</tr>
 			</table><br><br>';
 	$html.= '<table cellspacing="0" cellpadding="5">';
 	$html.= '<tr>
-				<th width="10%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Valores</strong></th>';
+				<th width="10%" bgcolor="#dde1da" style="color:#3e403e;"><strong>Pregunta / No. Día</strong></th>';
 				$numeroValores = count($listadoRevision);
 				$ancho = 90/$numeroValores;
 				foreach ($listadoRevision as $lista):
